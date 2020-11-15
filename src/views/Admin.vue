@@ -1,0 +1,192 @@
+<template>
+  <div class="admin">
+    <div class="container">
+      <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-12">
+          <div class="card" >
+            <div class="card-body" >
+              <h1>Admin</h1>
+              <p class="card-text">
+                A tool for admins to quickly generate the commands need to create the hero roster.
+                Select the hero and the team.
+                You do not have submit a complete roster the remain slots will random as normal.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-header">
+             <h5>Heroes</h5>
+             <input v-model="filter" class="form-control" placeholder="Search" />
+            </div>
+            <div class="card-body"> <!-- style="overflow-y: scroll; height: 400px;" -->
+              <template v-for="(hero) in collection" v-bind:key="hero.id">
+                <div class="hero">
+                  <img :src="hero.image_banner" class="image" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
+                  <!-- Modal -->
+                  <div class="modal fade" :id="'modal-'+hero.id" tabindex="-1" role="dialog"  aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Pick Team</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h2><img :src="hero.image_icon" /> {{hero.name}}</h2>
+                          <p v-if="hero.picked">This hero is already picked.</p>
+                          <p v-if="!hero.picked && hero.ability_replace_required && hasAbilityReplaceRequired">There is already a hero that requires ability replacement, only one per Ability Draft game allowed.</p>
+                        </div>
+                        <div class="modal-footer mr-auto">
+                          <button type="button" class="btn btn-success" v-if="!hero.picked && this.roaster_radiant.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickRadiant(hero)">Radiant</button>
+                          <button type="button" class="btn btn-danger" v-if="!hero.picked && this.roaster_dire.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickDire(hero)">Dire</button>
+                          <button type="button" class="btn btn-primary" v-if="!hero.picked && this.roaster_extra.length < 2 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickExtra(hero)">Extra</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+        <div class="col-xl-12">
+           <div class="card" >
+            <div class="card-header">
+              <h5>Commands</h5>
+            </div>
+            <div class="card-body" >
+              <pre class="card-text">{{commands}}</pre>
+            </div>
+            <div class="card-footer">
+              <p>
+                For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
+                You can manually enter these commands in the Dota2 Console one by one.<br />
+                Also, you can start Dota directly and the console commands will be set for you via the Launch Options.
+              </p>
+              <button type="button" class="btn btn-primary" @click="launch">Launch Dota</button>
+              &nbsp;
+              <button type="button" class="btn btn-danger" @click="clear">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import data from '@/data/heroes.json'
+
+export default {
+  name: "Admin",
+  data() {
+    return {
+      filter: null,
+      heroes: data,
+      roaster_radiant: [],
+      roaster_dire: [],
+      roaster_extra: []
+    }
+  },
+  computed: {
+    collection: function () {
+      let f = this.filter;
+      if(f) {
+        f = f.toLowerCase();
+        return this.heroes.filter(_ => _.name.toLowerCase().includes(f) || _.aliases.includes(f));
+      } else {
+        return this.heroes;
+      }
+    },
+    hasSelection: function() {
+      return (this.roaster_radiant.length + this.roaster_dire.length + this.roaster_extra.length) > 0;
+    },
+    hasAbilityReplaceRequired: function() {
+      return (this.roaster_radiant.filter(_ => _.ability_replace_required).length + this.roaster_dire.filter(_ => _.ability_replace_required).length + this.roaster_extra.filter(_ => _.ability_replace_required).length) > 0;
+    },
+    commands: function() {
+      let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
+      for (const item of this.roaster_radiant) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
+      }
+      for (const item of this.roaster_dire) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire \n"
+      }
+      for (const item of this.roaster_extra) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
+      }
+      return cmd;
+    },
+    launchOptions: function() {
+      let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
+      for (const item of this.roaster_radiant) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
+      }
+      for (const item of this.roaster_dire) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
+      }
+      for (const item of this.roaster_extra) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra "
+      }
+      return cmd;
+    }
+  },
+  methods: {
+    pickRadiant(hero) {
+      this.pick(hero, this.roaster_radiant);
+    },
+    pickDire(hero) {
+      this.pick(hero, this.roaster_dire);
+    },
+    pickExtra(hero) {
+      this.pick(hero, this.roaster_extra);
+    },
+    pick(hero, list) {
+      hero.picked = true;
+      list.push(hero);
+      $(".modal").modal('hide');
+    },
+    launch() {  
+      let cmd = this.launchOptions;
+      let params = encodeURIComponent(cmd);
+      let url = "steam://run/570//" + params;
+      window.open(url);
+      //var data = this.commands;
+      //var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
+      //saveAs(blob, "autoexec.cfg");
+    },
+    clear() {
+      this.roaster_radiant = [];
+      this.roaster_dire = [];
+      this.roaster_extra = [];
+    }
+  },
+  mounted () {
+    //var url = process.env.VUE_APP_SERVER_URL + '/api/heroes';
+    //this.axios.get(url).then(response => (this.heroes = response.data))
+  }
+};
+</script>
+
+<style>
+.admin {
+  padding: 4em 0 6em 0;
+  text-align: left;
+}
+.hero {
+  display: inline;
+}
+.image {
+  padding: 2px;
+  width: 70px;
+  height: 40px;
+}
+</style>
