@@ -176,7 +176,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .admin {
   padding: 4em 0 6em 0;
   text-align: left;

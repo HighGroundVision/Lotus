@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cell {
   border: 1px solid #555;
   width: 50px;

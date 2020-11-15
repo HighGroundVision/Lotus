@@ -247,7 +247,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home {
   padding: 4em 0 6em 0;
   text-align: center;
