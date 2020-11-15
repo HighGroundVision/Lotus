@@ -5,7 +5,7 @@
         <div class="col-xl-12">
           <div class="card" >
             <div class="card-body" >
-              <h1>Admin</h1>
+              <h1>Host Choice</h1>
               <p class="card-text">
                 A tool for admins to quickly generate the commands need to create the hero roster.
                 Select the hero and the team.
