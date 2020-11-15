@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="col-xl-4">
-                  <input id="range1" type="range" :min="30" :max="50" step="1"  class="form-control-range" v-model="value_low_wr">
+                  <input id="range1" type="range" :min="0" :max="100" step="1"  class="form-control-range" v-model="value_low_wr">
                 </div>
                 <div class="col-xl-1">
                   <span>{{value_low_wr}}%</span>
@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="col-xl-4">
-                  <input id="range2" type="range" :min="50" :max="70" step="1" class="form-control-range" v-model="value_high_wr">
+                  <input id="range2" type="range" :min="0" :max="100" step="1" class="form-control-range" v-model="value_high_wr">
                 </div>
                 <div class="col-xl-1">
                   <span>{{value_high_wr}}%</span>
@@ -50,6 +50,14 @@
               </div>
               <br />
               <div class="row">
+                <div class="col-xl-7">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch11" v-model="switch_str">
+                    <label class="custom-control-label" for="switch11">Disqualify Strength Heroes</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row" v-if="!switch_str">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch3" v-model="switch_low_str">
@@ -63,7 +71,7 @@
                   <span>{{value_low_str}}</span>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" v-if="!switch_str">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch4" v-model="switch_high_str">
@@ -77,7 +85,16 @@
                   <span>{{value_high_str}}</span>
                 </div>
               </div>
+              <br />
               <div class="row">
+                <div class="col-xl-7">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch12" v-model="switch_int">
+                    <label class="custom-control-label" for="switch12">Disqualify Intelligence Heroes</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row" v-if="!switch_int">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch5" v-model="switch_low_int">
@@ -91,7 +108,7 @@
                   <span>{{value_low_int}}</span>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" v-if="!switch_int">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch6" v-model="switch_high_int">
@@ -105,7 +122,16 @@
                   <span>{{value_high_int}}</span>
                 </div>
               </div>
+              <br />
               <div class="row">
+                <div class="col-xl-7">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch13" v-model="switch_agi">
+                    <label class="custom-control-label" for="switch13">Disqualify Agility Heroes</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row" v-if="!switch_agi">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch7" v-model="switch_low_agi">
@@ -119,7 +145,7 @@
                   <span>{{value_low_agi}}</span>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" v-if="!switch_agi">
                 <div class="col-xl-7">
                   <div class="custom-control custom-switch">
                     <input type="checkbox" class="custom-control-input" id="switch8" v-model="switch_high_agi">
@@ -133,14 +159,39 @@
                   <span>{{value_high_agi}}</span>
                 </div>
               </div>
-              <br />
+              <hr />
+              <span>Ensure that there is equal number of Heroes:</span>
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch9" v-model="switch_primary_attribute">
-                <label class="custom-control-label" for="switch9">Balance teams around primary attribute</label>
+                <input type="checkbox" class="custom-control-input" id="switch9" v-model="switch_equal_primary">
+                <label class="custom-control-label" for="switch9">That share a primary attribute (Strength/Intelligence/Agility)</label>
               </div>
               <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch10" v-model="switch_attack_capabilities">
-                <label class="custom-control-label" for="switch10">Balance teams around attack capabilities</label>
+                <input type="checkbox" class="custom-control-input" id="switch10" v-model="switch_equal_attack">
+                <label class="custom-control-label" for="switch10">That share an attack capability (Melee/Ranged)</label>
+              </div>
+              <br />
+              <span>Ensure that there is at least one each type of primary attribute (Strength/Intelligence/Agility) on each Team:</span>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch15" v-model="switch_attribute_str">
+                <label class="custom-control-label" for="switch15">Strength</label>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch16" v-model="switch_attribute_int">
+                <label class="custom-control-label" for="switch16">Intelligence</label>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch17" v-model="switch_attribute_agi">
+                <label class="custom-control-label" for="switch17">Agility</label>
+              </div>
+              <br />
+              <span>Ensure that there is at least one each type of attack capabilities (Melee/Ranged) on each Team:</span>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch18" v-model="switch_attack_melee">
+                <label class="custom-control-label" for="switch18">Melee</label>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="switch19" v-model="switch_attack_ranged">
+                <label class="custom-control-label" for="switch19">Ranged</label>
               </div>
             </div>
             <div class="card-footer">
@@ -234,8 +285,16 @@ export default {
       value_low_agi: 1.0,
       switch_high_agi: false,
       value_high_agi: 4.0,
-      switch_primary_attribute: false,
-      switch_attack_capabilities: false,
+      switch_equal_primary: false,
+      switch_equal_attack: false,
+      switch_str: false,
+      switch_attribute_str: false,
+      switch_int: false,
+      switch_attribute_int: false,
+      switch_agi: false,
+      switch_attribute_agi: false,
+      switch_attack_melee: false,
+      switch_attack_ranged: false,
       roster_radiant: [],
       roster_dire: [],
       //roster_extra: []
@@ -274,27 +333,41 @@ export default {
         let amount = this.value_high_wr / 100;
         collection = collection.filter(_ => _.win_rate < amount);
       }
-      if(this.switch_low_str) {
-        collection = collection.filter(_ => _.strength_gain > this.value_low_str);
+      if(this.switch_str) {
+        collection = collection.filter(_ => _.primary_attribute != "STRENGTH");
+      } else{
+        if(this.switch_low_str) {
+          collection = collection.filter(_ => _.strength_gain > this.value_low_str);
+        }
+        if(this.switch_high_str) {
+          collection = collection.filter(_ => _.strength_gain < this.value_high_str);
+        }
       }
-      if(this.switch_high_str) {
-        collection = collection.filter(_ => _.strength_gain < this.value_high_str);
+      if(this.switch_int) {
+        collection = collection.filter(_ => _.primary_attribute != "INTELLECT");
+      } else {
+        if(this.switch_low_int) {
+          collection = collection.filter(_ => _.intelligence_gain > this.value_low_int);
+        }
+        if(this.switch_high_int) {
+          collection = collection.filter(_ => _.intelligence_gain < this.value_high_int);
+        }
       }
-      if(this.switch_low_int) {
-        collection = collection.filter(_ => _.strength_gain > this.value_low_int);
-      }
-      if(this.switch_high_int) {
-        collection = collection.filter(_ => _.strength_gain < this.value_high_int);
-      }
-      if(this.switch_low_agi) {
-        collection = collection.filter(_ => _.strength_gain > this.value_low_agi);
-      }
-      if(this.switch_high_agi) {
-        collection = collection.filter(_ => _.strength_gain < this.value_high_agi);
+      if(this.switch_agi) {
+        collection = collection.filter(_ => _.primary_attribute != "AGILITY");
+        } else {
+          if(this.switch_low_agi) {
+          collection = collection.filter(_ => _.agility_gain > this.value_low_agi);
+        }
+        if(this.switch_high_agi) {
+          collection = collection.filter(_ => _.agility_gain < this.value_high_agi);
+        }
       }
 
-      if(collection.length < 10)
+      if(collection.length < 10) {
+        alert("Failure to generate a pool, Not enough heroes left in the pool.");
         return;
+      }
 
       let i = 0;
       var limit = 1000;
@@ -346,53 +419,53 @@ export default {
       if(duplicate.length > 0)
         return true;
 
-      if(this.switch_attack_capabilities) {
-        var r_ranged = radiant.filter(_ => _.attack_capabilities == "RANGED").length;
-        var r_melee = radiant.filter(_ => _.attack_capabilities == "MELEE").length;
-        var d_ranged = dire.filter(_ => _.attack_capabilities == "RANGED").length;
-        var d_melee = dire.filter(_ => _.attack_capabilities == "MELEE").length;
-        var delta_ranged = Math.abs(r_ranged - d_ranged);
-        var delta_melee  = Math.abs(r_melee - d_melee);
+      var r_ranged = radiant.filter(_ => _.attack_capabilities == "RANGED").length;
+      var r_melee = radiant.filter(_ => _.attack_capabilities == "MELEE").length;
+      var d_ranged = dire.filter(_ => _.attack_capabilities == "RANGED").length;
+      var d_melee = dire.filter(_ => _.attack_capabilities == "MELEE").length;
+      var r_str = radiant.filter(_ => _.primary_attribute == "STRENGTH").length;
+      var d_str = dire.filter(_ => _.primary_attribute == "STRENGTH").length;
+      var r_agi = radiant.filter(_ => _.primary_attribute == "AGILITY").length;
+      var d_agi = dire.filter(_ => _.primary_attribute == "AGILITY").length;
+      var r_int = radiant.filter(_ => _.primary_attribute == "INTELLECT").length;
+      var d_int = dire.filter(_ => _.primary_attribute == "INTELLECT").length;
 
-        if(delta_ranged > 3)
+      if(this.switch_equal_attack) {
+        if(r_ranged != d_ranged)
           return true;
-        if(delta_melee > 3)
+        if(r_melee != d_melee)
           return true;
       }
 
-      if(this.switch_primary_attribute) {
-        /*
-        var r_str = radiant.filter(_ => _.primary_attribute == "STRENGTH").length;
-        var d_str = dire.filter(_ => _.primary_attribute == "STRENGTH").length;
-        var r_agi = radiant.filter(_ => _.primary_attribute == "AGILITY").length;
-        var d_agi = dire.filter(_ => _.primary_attribute == "AGILITY").length;
-        var r_int = radiant.filter(_ => _.primary_attribute == "INTELLECT").length;
-        var d_int = dire.filter(_ => _.primary_attribute == "INTELLECT").length;
-        if(r_str = 0 || d_str == 0 || r_agi == 0 || d_agi == 0 || r_int == 0 || d_int == 0)
-          return true;
-        */
-        
-        var r_str = radiant.filter(_ => _.primary_attribute == "STRENGTH").length;
-        var d_str = dire.filter(_ => _.primary_attribute == "STRENGTH").length;
-        if(r_str == 0 || d_str == 0)
-          return true;
+      if(this.switch_equal_primary) {
         if(r_str != d_str)
-          return true;
-
-        var r_agi = radiant.filter(_ => _.primary_attribute == "AGILITY").length;
-        var d_agi = dire.filter(_ => _.primary_attribute == "AGILITY").length;
-        if(r_agi == 0 || d_agi == 0)
           return true;
         if(r_agi != d_agi)
           return true;
-
-        var r_int = radiant.filter(_ => _.primary_attribute == "INTELLECT").length;
-        var d_int = dire.filter(_ => _.primary_attribute == "INTELLECT").length;
-        if(r_int == 0 || d_int == 0)
-          return true;
         if(r_int != d_int)
           return true;
-      
+      }
+
+      if(this.switch_attribute_str) {
+        if(r_str == 0 || d_str == 0)
+          return true;
+      }
+      if(this.switch_attribute_int) {
+        if(r_int == 0 || d_int == 0)
+          return true;
+      }
+      if(this.switch_attribute_agi) {
+        if(r_agi == 0 || d_agi == 0)
+          return true;
+      }
+
+      if(this.switch_attack_melee) {
+        if(r_melee == 0 || d_melee == 0)
+          return true;
+      }
+      if(this.switch_attack_ranged) {
+          if(r_ranged == 0 || d_ranged == 0)
+          return true;
       }
 
       return false;
