@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="col-xl-4">
-                  <input id="range1" type="range" class="form-control-range" v-model="value_low_wr">
+                  <input id="range1" type="range" :min="30" :max="50" step="1"  class="form-control-range" v-model="value_low_wr">
                 </div>
                 <div class="col-xl-1">
                   <span>{{value_low_wr}}%</span>
@@ -42,7 +42,7 @@
                   </div>
                 </div>
                 <div class="col-xl-4">
-                  <input id="range2" type="range" class="form-control-range" v-model="value_high_wr">
+                  <input id="range2" type="range" :min="50" :max="70" step="1" class="form-control-range" v-model="value_high_wr">
                 </div>
                 <div class="col-xl-1">
                   <span>{{value_high_wr}}%</span>
@@ -155,7 +155,21 @@
             <div class="card-header">
               <h5>Roster</h5>
             </div>
-            <div class="card-body" >
+            <div class="card-body text-center">
+               <div class="row">
+                 <div class="col-xl-6">
+                   <h5>Radiant</h5>
+                   <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
+                     <img :src="hero.image_banner" class="image" :title="hero.primary_attribute" />
+                   </template>
+                 </div>
+                 <div class="col-xl-6">
+                   <h5>Dire</h5>
+                   <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
+                      <img :src="hero.image_banner" class="image" :title="hero.primary_attribute"/>
+                   </template>
+                 </div>
+               </div>
             </div>
            </div>
          </div>
@@ -199,9 +213,9 @@ export default {
       heroes: data,
       generated: false,
       switch_low_wr: false,
-      value_low_wr: 5,
+      value_low_wr: 45,
       switch_high_wr: false,
-      value_high_wr: 95,
+      value_high_wr: 55,
       max_str: Math.max(...sg),
       min_str:  Math.min(...sg),
       switch_low_str: false,
@@ -222,12 +236,30 @@ export default {
       value_high_agi: 4.0,
       switch_primary_attribute: false,
       switch_attack_capabilities: false,
+      roster_radiant: [],
+      roster_dire: [],
+      //roster_extra: []
     }
   },
   computed: {
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
-      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team \n";
+      for (const item of this.roster_radiant) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
+      }
+      for (const item of this.roster_dire) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire \n"
+      }
+      return cmd;
+    },
+    launchOptions: function() {
+      let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
+      for (const item of this.roster_radiant) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
+      }
+      for (const item of this.roster_dire) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
+      }
       return cmd;
     }
   },
@@ -264,45 +296,44 @@ export default {
       if(collection.length < 10)
         return;
 
-      let pool = [];
       let i = 0;
       var limit = 1000;
       for (; i <= limit; i++) {
-        pool = this.getPool(collection);
-
-        if(this.checkPool(pool)) {
+        let teams = this.getTeams(collection);
+        let radiant = teams[0];
+        let dire = teams[1];
+        if(this.checkTeams(radiant, dire)) {
           continue;
+        } else {
+          this.roster_radiant = radiant;
+          this.roster_dire = dire;
+          break;
         }
-
-        let radiant = [];
-        let dire = [];
-        
-        break;
       }
-
-      // this.switch_primary_attribute, this.switch_attack_capabilities
-
       if(i == limit) {
         alert("Failure to generate a pool, Please try again.");
         return;
       }
 
-     
-      
-      console.log("Pool", pool);
-
       this.generated = true;
     },
-    getPool(collection) {
-        let pool = [];
-        for (let i = 0; i < 10; i++) {
+    getTeams(collection) {
+        let radiant = [];
+        let dire = [];
+        for (let i = 0; i < 5; i++) {
           var index = Math.floor((Math.random() * collection.length));
           var item = collection[index];
-          pool.push(item);
+          radiant.push(item);
         }
-        return pool;
+        for (let i = 0; i < 5; i++) {
+          var index = Math.floor((Math.random() * collection.length));
+          var item = collection[index];
+          dire.push(item);
+        }
+        return [radiant,dire];
     },
-    checkPool(pool) {
+    checkTeams(radiant,dire) {
+      var pool = radiant.concat(dire);
       if(pool.filter(_ => _.ability_replace_required).length > 1)
         return true;
 
@@ -314,6 +345,55 @@ export default {
       }, []);
       if(duplicate.length > 0)
         return true;
+
+      if(this.switch_attack_capabilities) {
+        var r_ranged = radiant.filter(_ => _.attack_capabilities == "RANGED").length;
+        var r_melee = radiant.filter(_ => _.attack_capabilities == "MELEE").length;
+        var d_ranged = dire.filter(_ => _.attack_capabilities == "RANGED").length;
+        var d_melee = dire.filter(_ => _.attack_capabilities == "MELEE").length;
+        var delta_ranged = Math.abs(r_ranged - d_ranged);
+        var delta_melee  = Math.abs(r_melee - d_melee);
+
+        if(delta_ranged > 3)
+          return true;
+        if(delta_melee > 3)
+          return true;
+      }
+
+      if(this.switch_primary_attribute) {
+        /*
+        var r_str = radiant.filter(_ => _.primary_attribute == "STRENGTH").length;
+        var d_str = dire.filter(_ => _.primary_attribute == "STRENGTH").length;
+        var r_agi = radiant.filter(_ => _.primary_attribute == "AGILITY").length;
+        var d_agi = dire.filter(_ => _.primary_attribute == "AGILITY").length;
+        var r_int = radiant.filter(_ => _.primary_attribute == "INTELLECT").length;
+        var d_int = dire.filter(_ => _.primary_attribute == "INTELLECT").length;
+        if(r_str = 0 || d_str == 0 || r_agi == 0 || d_agi == 0 || r_int == 0 || d_int == 0)
+          return true;
+        */
+        
+        var r_str = radiant.filter(_ => _.primary_attribute == "STRENGTH").length;
+        var d_str = dire.filter(_ => _.primary_attribute == "STRENGTH").length;
+        if(r_str == 0 || d_str == 0)
+          return true;
+        if(r_str != d_str)
+          return true;
+
+        var r_agi = radiant.filter(_ => _.primary_attribute == "AGILITY").length;
+        var d_agi = dire.filter(_ => _.primary_attribute == "AGILITY").length;
+        if(r_agi == 0 || d_agi == 0)
+          return true;
+        if(r_agi != d_agi)
+          return true;
+
+        var r_int = radiant.filter(_ => _.primary_attribute == "INTELLECT").length;
+        var d_int = dire.filter(_ => _.primary_attribute == "INTELLECT").length;
+        if(r_int == 0 || d_int == 0)
+          return true;
+        if(r_int != d_int)
+          return true;
+      
+      }
 
       return false;
     },
@@ -351,12 +431,9 @@ export default {
   padding: 4em 0 6em 0;
   text-align: left;
 }
-.hero {
-  display: inline;
-}
 .image {
   padding: 2px;
-  width: 70px;
-  height: 40px;
+  width: 100px;
+  height: 55px;
 }
 </style>
