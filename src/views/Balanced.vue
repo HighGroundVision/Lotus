@@ -270,17 +270,24 @@ export default {
       for (; i <= limit; i++) {
         pool = this.getPool(collection);
 
-        if(this.checkPool(pool, this.switch_primary_attribute, this.switch_attack_capabilities)) {
+        if(this.checkPool(pool)) {
           continue;
         }
+
+        let radiant = [];
+        let dire = [];
         
         break;
       }
+
+      // this.switch_primary_attribute, this.switch_attack_capabilities
 
       if(i == limit) {
         alert("Failure to generate a pool, Please try again.");
         return;
       }
+
+     
       
       console.log("Pool", pool);
 
@@ -295,7 +302,7 @@ export default {
         }
         return pool;
     },
-    checkPool(pool, pa, ac) {
+    checkPool(pool) {
       if(pool.filter(_ => _.ability_replace_required).length > 1)
         return true;
 
@@ -307,14 +314,6 @@ export default {
       }, []);
       if(duplicate.length > 0)
         return true;
-
-      if(pa) {
-        // primary_attribute
-      }
-
-      if(ac) {
-        // attack_capabilities
-      }
 
       return false;
     },
