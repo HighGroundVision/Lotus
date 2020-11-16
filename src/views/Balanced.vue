@@ -225,6 +225,12 @@
            </div>
          </div>
       </div>
+      <!-- Ordering by lowest win rate 1st -->
+      <!-- Roles (for Dota) -->
+      <!-- Total Primary Attribute -->
+      <!-- Base Damage -->
+      <!-- Manual Ordering -->
+      <!-- new switch the disqualify to apply to the Extras -->
       <div class="row" style="margin-bottom: 2em;" v-if="generated">
         <div class="col-xl-12">
            <div class="card">
