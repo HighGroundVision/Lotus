@@ -7,7 +7,7 @@
             <div class="card-body" >
               <h1>Balanced Draft</h1>
               <p class="card-text">
-                The draft is still randomly generated but a number of additional rules are added to ensure balanced heroes on each side. The extra heroes are random.
+                The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams.
               </p>
             </div>
           </div>
@@ -211,13 +211,13 @@
                  <div class="col-xl-6">
                    <h5>Radiant</h5>
                    <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
-                     <img :src="hero.image_banner" class="image" :title="hero.primary_attribute" />
+                     <img :src="hero.image_banner" class="image" :title="hero.name" />
                    </template>
                  </div>
                  <div class="col-xl-6">
                    <h5>Dire</h5>
                    <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
-                      <img :src="hero.image_banner" class="image" :title="hero.primary_attribute"/>
+                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
                    </template>
                  </div>
                </div>
@@ -244,9 +244,29 @@
               <p>
                 For more details about commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
                 You can manually enter these commands in the Dota2 Console one by one. OR<br />
-                You can also start Dota directly and the console commands will be set for you via the Launch Options.
+                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.
               </p>
-              <button type="button" class="btn btn-primary" @click="launch">Launch Dota</button>
+              <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;" v-if="generated">
+        <div class="col-xl-12">
+           <div class="card">
+            <div class="card-header">
+              <h5>Cleanup</h5>
+            </div>
+            <div class="card-body" >
+              <pre class="card-text">dota_gamemode_ability_draft_set_draft_hero_and_team_clear</pre>
+            </div>
+            <div class="card-footer">
+              <p>
+                The roster is remembered until cleared, this is even between restarts of Dota.<br />
+                So when you done remember to use the clear command.<br />
+                You can also use the 'Clear Roster' button which will start dota directly and the console commands will be set for you via the Launch Options.
+              </p>
+              <button type="button" class="btn btn-primary" @click="cleanup">Clear Roster</button>
             </div>
           </div>
         </div>
@@ -484,6 +504,12 @@ export default {
       //var data = this.commands;
       //var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
       //saveAs(blob, "autoexec.cfg");
+    },
+    cleanup() {
+      var cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear";
+      let params = encodeURIComponent(cmd);
+      let url = "steam://run/570//" + params;
+      window.open(url);
     }
   },
   async mounted() {

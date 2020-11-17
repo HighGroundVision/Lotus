@@ -41,10 +41,10 @@
                           <p v-if="hero.picked">This hero is already picked.</p>
                           <p v-if="!hero.picked && hero.ability_replace_required && hasAbilityReplaceRequired">There is already a hero that requires ability replacement, only one per Ability Draft game allowed.</p>
                         </div>
-                        <div class="modal-footer mr-auto">
-                          <button type="button" class="btn btn-success" v-if="!hero.picked && this.roaster_radiant.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickRadiant(hero)">Radiant</button>
-                          <button type="button" class="btn btn-danger" v-if="!hero.picked && this.roaster_dire.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickDire(hero)">Dire</button>
-                          <button type="button" class="btn btn-primary" v-if="!hero.picked && this.roaster_extra.length < 2 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickExtra(hero)">Extra</button>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" v-if="!hero.picked && this.roster_radiant.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickRadiant(hero)">Radiant</button>
+                          <button type="button" class="btn btn-danger" v-if="!hero.picked && this.roster_dire.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickDire(hero)">Dire</button>
+                          <button type="button" class="btn btn-primary" v-if="!hero.picked && this.roster_extra.length < 2 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickExtra(hero)">Extra</button>
                         </div>
                       </div>
                     </div>
@@ -54,6 +54,40 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+         <div class="col-xl-12">
+           <div class="card">
+            <div class="card-header">
+              <h5>Roster</h5>
+            </div>
+            <div class="card-body text-center">
+               <div class="row">
+                 <div class="col-xl-5">
+                   <h5>Radiant</h5>
+                   <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
+                     <img :src="hero.image_banner" class="image" :title="hero.name" />
+                   </template>
+                 </div>
+                 <div class="col-xl-5">
+                   <h5>Dire</h5>
+                   <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
+                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                   </template>
+                 </div>
+                 <div class="col-xl-2">
+                   <h5>Extra</h5>
+                   <template v-for="(hero) in roster_extra" v-bind:key="hero.id">
+                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                   </template>
+                 </div>
+               </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-danger" @click="clear">Clear</button>
+            </div>
+           </div>
+         </div>
       </div>
       <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
         <div class="col-xl-12">
@@ -68,11 +102,29 @@
               <p>
                 For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
                 You can manually enter these commands in the Dota2 Console one by one.<br />
-                Also, you can start Dota directly and the console commands will be set for you via the Launch Options.
+                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.
               </p>
-              <button type="button" class="btn btn-primary" @click="launch">Launch Dota</button>
-              &nbsp;
-              <button type="button" class="btn btn-danger" @click="clear">Clear</button>
+              <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+        <div class="col-xl-12">
+           <div class="card">
+            <div class="card-header">
+              <h5>Cleanup</h5>
+            </div>
+            <div class="card-body" >
+              <pre class="card-text">dota_gamemode_ability_draft_set_draft_hero_and_team_clear</pre>
+            </div>
+            <div class="card-footer">
+              <p>
+                The roster is remembered until cleared, this is even between restarts of Dota.<br />
+                So when you done remember to use the clear command.<br />
+                You can also use the 'Clear Roster' button which will start dota directly and the console commands will be set for you via the Launch Options.
+              </p>
+              <button type="button" class="btn btn-primary" @click="cleanup">Clear Roster</button>
             </div>
           </div>
         </div>
@@ -91,9 +143,9 @@ export default {
     return {
       filter: null,
       heroes: data,
-      roaster_radiant: [],
-      roaster_dire: [],
-      roaster_extra: []
+      roster_radiant: [],
+      roster_dire: [],
+      roster_extra: []
     }
   },
   computed: {
@@ -107,33 +159,33 @@ export default {
       }
     },
     hasSelection: function() {
-      return (this.roaster_radiant.length + this.roaster_dire.length + this.roaster_extra.length) > 0;
+      return (this.roster_radiant.length + this.roster_dire.length + this.roster_extra.length) > 0;
     },
     hasAbilityReplaceRequired: function() {
-      return (this.roaster_radiant.filter(_ => _.ability_replace_required).length + this.roaster_dire.filter(_ => _.ability_replace_required).length + this.roaster_extra.filter(_ => _.ability_replace_required).length) > 0;
+      return (this.roster_radiant.filter(_ => _.ability_replace_required).length + this.roster_dire.filter(_ => _.ability_replace_required).length + this.roster_extra.filter(_ => _.ability_replace_required).length) > 0;
     },
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
-      for (const item of this.roaster_radiant) {
+      for (const item of this.roster_radiant) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
       }
-      for (const item of this.roaster_dire) {
+      for (const item of this.roster_dire) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire \n"
       }
-      for (const item of this.roaster_extra) {
+      for (const item of this.roster_extra) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
       }
       return cmd;
     },
     launchOptions: function() {
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
-      for (const item of this.roaster_radiant) {
+      for (const item of this.roster_radiant) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
       }
-      for (const item of this.roaster_dire) {
+      for (const item of this.roster_dire) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
       }
-      for (const item of this.roaster_extra) {
+      for (const item of this.roster_extra) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra "
       }
       return cmd;
@@ -141,13 +193,13 @@ export default {
   },
   methods: {
     pickRadiant(hero) {
-      this.pick(hero, this.roaster_radiant);
+      this.pick(hero, this.roster_radiant);
     },
     pickDire(hero) {
-      this.pick(hero, this.roaster_dire);
+      this.pick(hero, this.roster_dire);
     },
     pickExtra(hero) {
-      this.pick(hero, this.roaster_extra);
+      this.pick(hero, this.roster_extra);
     },
     pick(hero, list) {
       hero.picked = true;
@@ -163,10 +215,19 @@ export default {
       //var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
       //saveAs(blob, "autoexec.cfg");
     },
+    cleanup() {
+      var cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear";
+      let params = encodeURIComponent(cmd);
+      let url = "steam://run/570//" + params;
+      window.open(url);
+    },
     clear() {
-      this.roaster_radiant = [];
-      this.roaster_dire = [];
-      this.roaster_extra = [];
+      for (const hero of this.heroes) {
+        hero.picked = false;
+      }
+      this.roster_radiant = [];
+      this.roster_dire = [];
+      this.roster_extra = [];
     }
   },
   mounted () {

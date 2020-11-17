@@ -21,7 +21,12 @@
           <div class="card">
             <div class="card-body">
               <h3>Lobby Host</h3>
-              <p>Nullam ut tortor et massa tempor hendrerit et ac turpis. Ut ac ultrices dui. Quisque ultricies sed leo et vehicula. Phasellus quis elit molestie, feugiat urna quis, pretium ante. Etiam vel risus in nunc sollicitudin rhoncus sit amet sed risus. Suspendisse id mollis ligula. Fusce ut condimentum libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis consequat diam diam, et ultrices felis blandit ac. Sed nec libero ac nibh imperdiet maximus ut id est. Nunc ut felis convallis, porta lacus eget, cursus leo.</p>
+              <p>
+                You can use the following tools as the lobby host to set the roster.
+                We recommend that you use these tools first before lunching dota and creating the lobby as these tools have a 'Set Roster' 
+                button that will start Dota directly and the console commands will be set for you via the Launch Options. 
+                This saves you from having to enter the console commands one by one.
+              </p>
             </div>
           </div>
         </div>
@@ -32,7 +37,10 @@
             <img class="card-img-top" src="@/assets/admin.png" alt="Admin Tool">
             <div class="card-body">
               <h5 class="card-title">Host Choice</h5>
-              <p class="card-text">Select heroes to generate the commands need to set the hero roster.</p>
+              <p class="card-text">
+                Select heroes and their team (Radiant/Dire/Extra) to create a roster.
+                You do not have submit a complete roster the remain slots will random as normal.
+              </p>
             </div>
             <div class="card-footer">
               <router-link to="/admin" class="btn btn-primary">Draft</router-link>
@@ -45,7 +53,8 @@
             <div class="card-body">
               <h5 class="card-title">Balanced Draft</h5>
               <p class="card-text">
-                The draft is still randomly generated but a number of additional rules can be switched on to ensure balanced heroes on each side. The extra heroes are random.
+                The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams.
+                You can use these switches to create a fair and balanced draft or a complete clown festival the choice is yours.
               </p>
             </div>
             <div class="card-footer">
@@ -77,7 +86,6 @@
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Single_Draft">Single Draft</a></p>
             </div>
             <div class="card-footer" style="height: 60px;">
-              <a href="#" class="btn btn-primary disabled">Draft</a>
             </div>
           </div>
         </div>
@@ -95,7 +103,6 @@
               <p class="blockquote-footer">Submitted by HorizoN</p>
             </div>
             <div class="card-footer" style="height: 60px;">
-              <a href="#" class="btn btn-primary disabled">Draft</a>
             </div>
           </div>
         </div>
