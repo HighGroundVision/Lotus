@@ -11,6 +11,9 @@
               <p class="card-text">
                 With the addition of some new <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">console commands</a> 
                 to set the hero roaster (5 heroes for each team + 2 extras) we are interested in creating experimental lobbies to test different drafting strategies.
+                We recommend that you use these tools first before lunching dota and creating the lobby as these tools have a 'Set Roster' 
+                button that will start Dota directly and the console commands will be set for you via the Launch Options. 
+                This saves you from having to enter the console commands one by one.
               </p>
             </div>
           </div>
@@ -22,10 +25,7 @@
             <div class="card-body">
               <h3>Lobby Host</h3>
               <p>
-                You can use the following tools as the lobby host to set the roster.
-                We recommend that you use these tools first before lunching dota and creating the lobby as these tools have a 'Set Roster' 
-                button that will start Dota directly and the console commands will be set for you via the Launch Options. 
-                This saves you from having to enter the console commands one by one.
+                You can use the following tools as the lobby host to set the roster but you have to select or generate the roster.
               </p>
             </div>
           </div>
@@ -34,7 +34,7 @@
       <div class="row" style="margin-bottom: 2em;">
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
-            <img class="card-img-top" src="@/assets/admin.png" alt="Admin Tool">
+            <img class="card-img-top" src="@/assets/host_choice.png" alt="Admin Tool">
             <div class="card-body">
               <h5 class="card-title">Host Choice</h5>
               <p class="card-text">
@@ -67,8 +67,10 @@
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body">
-              <h3>Casual Lobby</h3>
-              <p>In pretium tellus massa, eget elementum metus porttitor id. Fusce odio dolor, molestie sit amet interdum mattis, efficitur non mi. Nunc a sem non urna blandit tempus et et justo. Etiam scelerisque suscipit turpis, eget ullamcorper ex ullamcorper quis. Vivamus sodales lobortis tortor, sed sollicitudin lacus egestas sit amet. Nulla nec diam eleifend, lacinia magna nec, faucibus tellus. Maecenas blandit tristique ex, in euismod turpis volutpat non. Nam fringilla odio non euismod eleifend.</p>
+              <h3>Player Participation</h3>
+              <p>
+                You can use the following tools as the lobby host to set the roster but each player interact with these tools to create the roster.
+              </p>
             </div>
           </div>
         </div>
@@ -96,9 +98,15 @@
               <h5 class="card-title">Horizon Draft</h5>
               <p class="card-text">
                 Players pick from a pool of 18 random heroes.
+                There are a number of seconds in the pre-selection phase to review the randomly selected heroes.
+                Then each player gets a few seconds to choose a hero or slot is left random.
+                The extra heroes are random.
+                <!--
+                Players pick from a pool of 18 random heroes.
                 There is a 15 seconds pre-selection phase to review the randomly selected heroes.
                 Then each player gets 5 seconds to choose a hero or slot is left random.
                 The extra heroes are random.
+                -->
               </p>
               <p class="blockquote-footer">Submitted by HorizoN</p>
             </div>
@@ -111,8 +119,10 @@
         <div class="col-xl-12">
           <div class="card">
             <div class="card-body">
-              <h3>Tournament Lobby</h3>
-              <p>Cras tincidunt a sapien et volutpat. Curabitur fringilla posuere tortor, non molestie eros aliquet nec. Nunc eget congue metus. Donec quis massa fermentum, mollis ante sit amet, maximus dolor. Cras non nisi at ipsum imperdiet posuere vitae eget lectus. Vestibulum ac faucibus lacus. Proin placerat neque vel cursus efficitur. Sed non tincidunt velit. Nulla sed blandit tellus, sit amet dapibus libero. Aenean fringilla at lectus non aliquet.</p>
+              <h3>Tournaments</h3>
+              <p>
+                You can use the following tools as the lobby host to set the roster but two captions interact with these tools to create the roster.
+              </p>
             </div>
           </div>
         </div>
@@ -120,14 +130,15 @@
        <div class="row" style="margin-bottom: 2em;">
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
-            <img class="card-img-top" src="https://via.placeholder.com/200x100?text=Coming+Soon" alt="Card image cap">
+            <img class="card-img-top" src="@/assets/captains_duel.png" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">Captains Duel</h5>
               <p class="card-text">
-                The captains ban certain heroes, up to seven per team, preventing either team from picking the hero. 
-                The captain also chooses five heroes for their team and one extra.
+                The lobby host populates the pool of available heroes.
+                The captains ban certain heroes, up to 7 per team, preventing either team from picking the hero.
+                The captain also chooses 5 heroes for their team and one extra.
                 Each captain has 30 seconds for each ban, and 30 for each pick.
-                If time runs out during a ban selection, no hero will be banned buy if time runs out during a pick selection the slot will remain random.
+                If time runs out during a ban selection, no hero will be banned but if time runs out during a pick selection the slot will remain random.
               </p>
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Captains_Mode">Captains Mode</a></p>
             </div>
@@ -135,6 +146,49 @@
             </div>
           </div>
         </div>
+        <div class="col-xl-4" style="padding-bottom: 20px;">
+          <div class="card" style="height: 100%;">
+            <img class="card-img-top" src="@/assets/cake_cutting.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Cake Cutting</h5>
+              <p class="card-text">
+                One divides, One chooses.
+                <br />
+                The captains pick from a pool of 20 random heroes.
+                The captains ban certain heroes, up to 4 per team, preventing either team from picking the hero.
+                The captain also take turns chooses five heroes for each pool (A/B).
+                The 2 heroes remaining (unpicked/unbanned) are the extras.
+                Then there's a random coin toss, the winner can pick a Pool (A/B) or a Side (and hence 1st or 2nd pick) then the other captain picks from the other pair.
+                <!--
+                20 Random Heroes
+                4 Bans (2/Team)
+                6 Picks (3/Team) (3/Pool)
+                4 Bans (2/Team)
+                4 Picks (2/Team) (2/Pool)
+                2 Extras
+                -->
+              </p>
+              <p class="blockquote-footer">Submitted by noxville</p>
+            </div>
+            <div class="card-footer" style="height: 60px;">
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4" style="padding-bottom: 20px;">
+          <div class="card" style="height: 100%;">
+            <img class="card-img-top" src="@/assets/elimination_draft.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">Elimination</h5>
+              <p class="card-text">
+                Once a hero is picked they are elimated from future pools.
+              </p>
+              <p class="blockquote-footer">Submitted by CandianChicken</p>
+            </div>
+            <div class="card-footer" style="height: 60px;">
+            </div>
+          </div>
+        </div>
+        <!--
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
             <img class="card-img-top" src="https://via.placeholder.com/200x100?text=Coming+Soon" alt="Card image cap">
@@ -151,20 +205,7 @@
             </div>
           </div>
         </div>       
-        <div class="col-xl-4" style="padding-bottom: 20px;">
-          <div class="card" style="height: 100%;">
-            <img class="card-img-top" src="https://via.placeholder.com/200x100?text=Coming+Soon" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Elimination</h5>
-              <p class="card-text">
-                Once a hero is picked they are elimated from future pools.
-              </p>
-              <p class="blockquote-footer">Submitted by CandianChicken</p>
-            </div>
-            <div class="card-footer" style="height: 60px;">
-            </div>
-          </div>
-        </div>
+        -->
         <!--
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
@@ -182,53 +223,6 @@
           </div>
         </div>
         -->
-        <div class="col-xl-4" style="padding-bottom: 20px;">
-          <div class="card" style="height: 100%;">
-            <img class="card-img-top" src="https://via.placeholder.com/200x100?text=Coming+Soon" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">Cake Cutting</h5>
-              <p class="card-text">
-                One divides, One chooses.
-                <br />
-                20 heroes available as a random subset of the available pool.
-                Ability pool are the 10 picked heroes + 2 unpicked/unbanned heroes spells then there's a random coin toss, the winner can pick Pool A, or Pool B, or Radiant + FP, or Dire + SP
-                <!--
-                so it could be 20 heroes available as a random subset of the available pool
-
-                Team 1 bans any hero
-                Team 2 bans any hero
-                Team 1 bans any hero
-                Team 2 bans any hero
-
-                Team 1 picks a hero for pool A
-                Team 2 picks a hero for pool A
-                Team 2 picks a hero for pool B
-                Team 1 picks a hero for pool B
-                Team 1 picks a hero for pool A
-                Team 2 picks a hero for pool B
-
-                Team 2 bans a hero
-                Team 1 bans a hero
-                Team 2 bans a hero
-                Team 1 bans a hero
-
-                Team 2 picks a hero for Pool A
-                Team 1 picks a hero for Pool B
-                Team 1 picks a hero for Pool A
-                Team 2 picks a hero for Pool B
-
-                (2 heroes remaining)
-
-                ability pool are the 10 picked heroes + 2 unpicked/unbanned heroes spells
-                then there's a random coin toss, the winner can pick Pool A, or Pool B, or Radiant + FP, or Dire + SP
-                -->
-              </p>
-              <p class="blockquote-footer">Submitted by noxville</p>
-            </div>
-            <div class="card-footer" style="height: 60px;">
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
