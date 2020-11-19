@@ -84,7 +84,7 @@
                </div>
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-danger" @click="clear">Clear</button>
+              <button type="button" class="btn btn-danger" @click="clear">Reset</button>
             </div>
            </div>
          </div>
@@ -211,9 +211,6 @@ export default {
       let params = encodeURIComponent(cmd);
       let url = "steam://run/570//" + params;
       window.open(url);
-      //var data = this.commands;
-      //var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-      //saveAs(blob, "autoexec.cfg");
     },
     cleanup() {
       var cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear";
@@ -229,10 +226,6 @@ export default {
       this.roster_dire = [];
       this.roster_extra = [];
     }
-  },
-  mounted () {
-    //var url = process.env.VUE_APP_SERVER_URL + '/api/heroes';
-    //this.axios.get(url).then(response => (this.heroes = response.data))
   }
 };
 </script>

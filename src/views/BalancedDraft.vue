@@ -193,6 +193,20 @@
                 <input type="checkbox" class="custom-control-input" id="switch19" v-model="switch_attack_ranged">
                 <label class="custom-control-label" for="switch19">Ranged</label>
               </div>
+              <hr />
+              <span>Order the roster by:</span>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="radios1" :value="0" v-model="roster_order">
+                <label class="form-check-label" for="radios1">
+                  Random
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="radios2" :value="1" v-model="roster_order">
+                <label class="form-check-label" for="radios2">
+                  Ascending Win Rate
+                </label>
+              </div>
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-success" @click="generate">Generate</button>
@@ -208,15 +222,21 @@
             </div>
             <div class="card-body text-center">
                <div class="row">
-                 <div class="col-xl-6">
+                 <div class="col-xl-5">
                    <h5>Radiant</h5>
                    <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
                      <img :src="hero.image_banner" class="image" :title="hero.name" />
                    </template>
                  </div>
-                 <div class="col-xl-6">
+                 <div class="col-xl-5">
                    <h5>Dire</h5>
                    <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
+                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                   </template>
+                 </div>
+                 <div class="col-xl-2">
+                   <h5>Extra</h5>
+                   <template v-for="(hero) in roster_extra" v-bind:key="hero.id">
                       <img :src="hero.image_banner" class="image" :title="hero.name"/>
                    </template>
                  </div>
@@ -225,12 +245,13 @@
            </div>
          </div>
       </div>
+      <!-- Change Disqualify to Include (Filter) -->
       <!-- Ordering by lowest win rate 1st -->
-      <!-- Roles (for Dota) -->
-      <!-- Total Primary Attribute -->
-      <!-- Base Damage -->
-      <!-- Manual Ordering -->
-      <!-- new switch the disqualify to apply to the Extras -->
+      <!-- Manual Ordering Roster -->
+      <!-- Disqualify By Roles -->
+      <!-- Total Primary Attribute (Above/Below)  -->
+      <!-- Base Damage (Above/Below) -->
+      <!-- Switch to Randomize Extras -->
       <div class="row" style="margin-bottom: 2em;" v-if="generated">
         <div class="col-xl-12">
            <div class="card">
@@ -323,7 +344,8 @@ export default {
       switch_attack_ranged: false,
       roster_radiant: [],
       roster_dire: [],
-      //roster_extra: []
+      roster_extra: [],
+      roster_order: 0
     }
   },
   computed: {
@@ -335,6 +357,9 @@ export default {
       for (const item of this.roster_dire) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire \n"
       }
+      for (const item of this.roster_extra) {
+        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
+      }
       return cmd;
     },
     launchOptions: function() {
@@ -344,6 +369,9 @@ export default {
       }
       for (const item of this.roster_dire) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
+      }
+      for (const item of this.roster_extra) {
+        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra "
       }
       return cmd;
     }
@@ -501,9 +529,6 @@ export default {
       let params = encodeURIComponent(cmd);
       let url = "steam://run/570//" + params;
       window.open(url);
-      //var data = this.commands;
-      //var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-      //saveAs(blob, "autoexec.cfg");
     },
     cleanup() {
       var cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear";
@@ -512,22 +537,6 @@ export default {
       window.open(url);
     }
   },
-  async mounted() {
-    /*
-    var url = process.env.VUE_APP_SERVER_URL + '/api/heroes';
-    var response = await this.axios.get(url);
-    this.heroes = response.data;
-    let sg = this.heroes.map(_ => _.strength_gain);
-    this.max_str = Math.max(...sg);
-    this.min_str = Math.min(...sg);
-    let ig = this.heroes.map(_ => _.intelligence_gain);
-    this.max_int = Math.max(...ig);
-    this.min_int = Math.min(...ig);
-    let ag = this.heroes.map(_ => _.agility_gain);
-    this.max_agi = Math.max(...ag);
-    this.min_agi = Math.min(...ag);
-    */
-  }
 };
 </script>
 
@@ -538,7 +547,7 @@ export default {
 }
 .image {
   padding: 2px;
-  width: 100px;
-  height: 55px;
+  width: 70px;
+  height: 40px;
 }
 </style>

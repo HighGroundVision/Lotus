@@ -43,7 +43,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <router-link to="/admin" class="btn btn-primary">Draft</router-link>
+              <router-link to="/host" class="btn btn-primary">Draft</router-link>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
               <h5 class="card-title">Balanced Draft</h5>
               <p class="card-text">
                 The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams.
-                You can use these switches to create a fair and balanced draft or a complete clown festival the choice is yours.
+                You can use these switches to create a fair draft or a complete clown festival the choice is yours.
               </p>
             </div>
             <div class="card-footer">
