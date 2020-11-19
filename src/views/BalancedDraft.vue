@@ -201,12 +201,14 @@
                   Random
                 </label>
               </div>
+              <!--
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="radios2" :value="1" v-model="roster_order">
                 <label class="form-check-label" for="radios2">
                   Ascending Win Rate
                 </label>
               </div>
+              -->
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-success" @click="generate">Generate</button>
