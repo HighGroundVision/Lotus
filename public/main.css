@@ -213,3 +213,7 @@ ul.actions.fit.small li {
 .fab {
     margin-right: 5px;
 }
+
+.noUi-connect {
+    background: #007bff !important;
+}

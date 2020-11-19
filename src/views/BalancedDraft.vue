@@ -7,7 +7,7 @@
             <div class="card-body" >
               <h1>Balanced Draft</h1>
               <p class="card-text">
-                The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams.
+                The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes, Balance the Teams, and Order the Roster.
               </p>
             </div>
           </div>
@@ -20,195 +20,226 @@
              <h5>Switches</h5>
             </div>
             <div class="card-body">
+ 
               <div class="row">
-                <div class="col-xl-7">
+                <div class="col-xl-12">
                   <div class="custom-control custom-switch ">
-                    <input type="checkbox" class="custom-control-input" id="switch1" v-model="switch_low_wr">
-                    <label class="custom-control-label" for="switch1">Disqualify Heroes Below this WinRate</label>
+                    <input type="checkbox" class="custom-control-input" id="switch_random_radiant" v-model="switch_random_radiant">
+                    <label class="custom-control-label" for="switch_random_radiant">Keep Radiant Heroes Randomize</label>
                   </div>
-                </div>
-                <div class="col-xl-4">
-                  <input id="range1" type="range" :min="0" :max="100" step="1"  class="form-control-range" v-model="value_low_wr">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_low_wr}}%</span>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch2" v-model="switch_high_wr">
-                    <label class="custom-control-label" for="switch2">Disqualify Heroes Above this WinRate</label>
+                <div class="col-xl-12">
+                  <div class="custom-control custom-switch ">
+                    <input type="checkbox" class="custom-control-input" id="switch_random_dire" v-model="switch_random_dire">
+                    <label class="custom-control-label" for="switch_random_dire">Keep Dire Heroes Randomize</label>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="0" :max="100" step="1" class="form-control-range" v-model="value_high_wr">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_high_wr}}%</span>
-                </div>
               </div>
-              <br />
               <div class="row">
-                <div class="col-xl-7">
+                <div class="col-xl-12">
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch11" v-model="switch_str">
-                    <label class="custom-control-label" for="switch11">Disqualify Strength Heroes</label>
+                    <input type="checkbox" class="custom-control-input" id="switch_random_extras" v-model="switch_random_extras">
+                    <label class="custom-control-label" for="switch_random_extras">Keep Extras Heroes Randomize</label>
                   </div>
                 </div>
               </div>
-              <div class="row" v-if="!switch_str">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch3" v-model="switch_low_str">
-                    <label class="custom-control-label" for="switch3">Disqualify Heroes Below this Strength Gain</label>
+              <div>
+                <hr />
+                <h5 class="text-center">Filters</h5>
+                <hr />
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_roles" v-model="switch_roles">
+                      <label class="custom-control-label" for="switch_roles">Disqualify Heroes in following <b>Roles</b></label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <MultiSelect v-model="flagged_roles" :options="roles" :filter="true" placeholder="Select Roles"  />
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_str" :max="max_str" step="0.1" class="form-control-range" v-model="value_low_str">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_low_str}}</span>
-                </div>
-              </div>
-              <div class="row" v-if="!switch_str">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch4" v-model="switch_high_str">
-                    <label class="custom-control-label" for="switch4">Disqualify Heroes Above this Strength Gain</label>
+                <br /><br /><br />
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch ">
+                      <input type="checkbox" class="custom-control-input" id="switch_winrate" v-model="switch_winrate">
+                      <label class="custom-control-label" for="switch_winrate">Disqualify Heroes outside <b>Win Rate</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_winrate" :type="1" suffix="%" :min="30" :max="70"></range-slider>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_str" :max="max_str" step="0.1" class="form-control-range" v-model="value_high_str">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_high_str}}</span>
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch12" v-model="switch_int">
-                    <label class="custom-control-label" for="switch12">Disqualify Intelligence Heroes</label>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch ">
+                      <input type="checkbox" class="custom-control-input" id="switch_dmg" v-model="switch_dmg">
+                      <label class="custom-control-label" for="switch_dmg">Disqualify Heroes outside <b>Base Damage</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_dmg" :type="3" :min="min_dmg" :max="max_dmg"></range-slider>
                   </div>
                 </div>
-              </div>
-              <div class="row" v-if="!switch_int">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch5" v-model="switch_low_int">
-                    <label class="custom-control-label" for="switch5">Disqualify Heroes Below this Intelligence Gain</label>
+                <br />
+                <div class="row">
+                  <div class="col-xl-7">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_str" v-model="switch_str">
+                      <label class="custom-control-label" for="switch_str">Disqualify Strength Heroes</label>
+                    </div>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_int" :max="max_int" step="0.1" class="form-control-range" v-model="value_low_int">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_low_int}}</span>
-                </div>
-              </div>
-              <div class="row" v-if="!switch_int">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch6" v-model="switch_high_int">
-                    <label class="custom-control-label" for="switch6">Disqualify Heroes Above this Intelligence Gain</label>
+                 <div class="row">
+                  <div class="col-xl-7">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_int" v-model="switch_int">
+                      <label class="custom-control-label" for="switch_int">Disqualify Intelligence Heroes</label>
+                    </div>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_int" :max="max_int" step="0.1" class="form-control-range" v-model="value_high_int">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_high_int}}</span>
-                </div>
-              </div>
-              <br />
-              <div class="row">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch13" v-model="switch_agi">
-                    <label class="custom-control-label" for="switch13">Disqualify Agility Heroes</label>
+                <div class="row">
+                  <div class="col-xl-7">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_agi" v-model="switch_agi">
+                      <label class="custom-control-label" for="switch_agi">Disqualify Agility Heroes</label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row" v-if="!switch_agi">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch7" v-model="switch_low_agi">
-                    <label class="custom-control-label" for="switch7">Disqualify Heroes Below this Agility Gain</label>
+                <br />
+                <div class="row" v-if="!switch_str">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch ">
+                      <input type="checkbox" class="custom-control-input" id="switch_gain_str_range" v-model="switch_gain_str_range">
+                      <label class="custom-control-label" for="switch_gain_str_range">Disqualify Heroes outside <b>Strength Gain</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_gain_str" :type="2" :min="min_gain_str" :max="max_gain_str"></range-slider>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_agi" :max="max_agi" step="0.1" class="form-control-range" v-model="value_low_agi">
-                </div>
-                <div class="col-xl-1">
-                  <span>{{value_low_agi}}</span>
-                </div>
-              </div>
-              <div class="row" v-if="!switch_agi">
-                <div class="col-xl-7">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch8" v-model="switch_high_agi">
-                    <label class="custom-control-label" for="switch8">Disqualify Heroes Above this Agility Gain</label>
+                <div class="row" v-if="!switch_str">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch ">
+                      <input type="checkbox" class="custom-control-input" id="switch_max_str_range" v-model="switch_max_str_range">
+                      <label class="custom-control-label" for="switch_max_str_range">Disqualify Heroes outside <b>Max Strength</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_max_str" :type="3" :min="min_str" :max="max_str"></range-slider>
                   </div>
                 </div>
-                <div class="col-xl-4">
-                  <input id="range2" type="range" :min="min_agi" :max="max_agi" step="0.1" class="form-control-range" v-model="value_high_agi">
+                <br />
+                <div class="row" v-if="!switch_int">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch ">
+                      <input type="checkbox" class="custom-control-input" id="switch_gain_int_range" v-model="switch_gain_int_range">
+                      <label class="custom-control-label" for="switch_gain_int_range">Disqualify Heroes outside <b>Intelligence Gain</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_gain_int" :type="2" :min="min_gain_int" :max="max_gain_int"></range-slider>
+                  </div>
                 </div>
-                <div class="col-xl-1">
-                  <span>{{value_high_agi}}</span>
+                <div class="row" v-if="!switch_int">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_max_int_range" v-model="switch_max_int_range">
+                      <label class="custom-control-label" for="switch_max_int_range">Disqualify Heroes outside <b>Max Intelligence</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_max_int" :type="3" :min="min_int" :max="max_int"></range-slider>
+                  </div>
+                </div>
+                <br />
+                <div class="row" v-if="!switch_agi">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_gain_agi_range" v-model="switch_gain_agi_range">
+                      <label class="custom-control-label" for="switch_gain_agi_range">Disqualify Heroes outside this <b>Agility Gain</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_gain_agi" :type="2" :min="min_gain_agi" :max="max_gain_agi"></range-slider>
+                  </div>
+                </div>
+                <div class="row" v-if="!switch_agi">
+                  <div class="col-xl-6">
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" id="switch_max_int_range" v-model="switch_max_agi_range">
+                      <label class="custom-control-label" for="switch_max_int_range">Disqualify Heroes outside <b>Max Agility</b> range</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <range-slider v-model="range_max_agi" :type="3" :min="min_agi" :max="max_agi"></range-slider>
+                  </div>
                 </div>
               </div>
               <hr />
-              <span>Ensure that there is equal number of Heroes:</span>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch9" v-model="switch_equal_primary">
-                <label class="custom-control-label" for="switch9">That share a primary attribute (Strength/Intelligence/Agility)</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch10" v-model="switch_equal_attack">
-                <label class="custom-control-label" for="switch10">That share an attack capability (Melee/Ranged)</label>
-              </div>
-              <br />
-              <span>Ensure that there is at least one each type of primary attribute (Strength/Intelligence/Agility) on each Team:</span>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch15" v-model="switch_attribute_str">
-                <label class="custom-control-label" for="switch15">Strength</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch16" v-model="switch_attribute_int">
-                <label class="custom-control-label" for="switch16">Intelligence</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch17" v-model="switch_attribute_agi">
-                <label class="custom-control-label" for="switch17">Agility</label>
-              </div>
-              <br />
-              <span>Ensure that there is at least one each type of attack capabilities (Melee/Ranged) on each Team:</span>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch18" v-model="switch_attack_melee">
-                <label class="custom-control-label" for="switch18">Melee</label>
-              </div>
-              <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="switch19" v-model="switch_attack_ranged">
-                <label class="custom-control-label" for="switch19">Ranged</label>
+              <h5 class="text-center">Balance Teams</h5>
+              <hr />
+              <div>
+                <span>Ensure that there is at least one each type of primary attribute on each Team:</span>
+                <div class="custom-control custom-switch" v-if="!switch_str">
+                  <input type="checkbox" class="custom-control-input" id="switch_attribute_str" v-model="switch_attribute_str">
+                  <label class="custom-control-label" for="switch_attribute_str">Strength</label>
+                </div>
+                <div class="custom-control custom-switch" v-if="!switch_int">
+                  <input type="checkbox" class="custom-control-input" id="switch_attribute_int" v-model="switch_attribute_int">
+                  <label class="custom-control-label" for="switch_attribute_int">Intelligence</label>
+                </div>
+                <div class="custom-control custom-switch" v-if="!switch_agi">
+                  <input type="checkbox" class="custom-control-input" id="switch_attribute_agi" v-model="switch_attribute_agi">
+                  <label class="custom-control-label" for="switch_attribute_agi">Agility</label>
+                </div>
+                <br />
+                <span>Ensure that there is at least one each type of attack capabilities on each Team:</span>
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="switch_attack_melee" v-model="switch_attack_melee">
+                  <label class="custom-control-label" for="switch_attack_melee">Melee</label>
+                </div>
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="switch_attack_ranged" v-model="switch_attack_ranged">
+                  <label class="custom-control-label" for="switch_attack_ranged">Ranged</label>
+                </div>
+                <br />
+                <span>Ensure that there is equal number of Heroes:</span>
+                <div class="custom-control custom-switch" >
+                  <input type="checkbox" class="custom-control-input" id="switch_equal_primary" v-model="switch_equal_primary">
+                  <label class="custom-control-label" for="switch_equal_primary">That share a <span title="Strength/Intelligence/Agility">primary attribute</span></label>
+                </div>
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="switch_equal_attack" v-model="switch_equal_attack">
+                  <label class="custom-control-label" for="switch_equal_attack">That share an <span title="Melee/Ranged">attack capability</span></label>
+                </div>
               </div>
               <hr />
-              <span>Order the roster by:</span>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="radios1" :value="0" v-model="roster_order">
-                <label class="form-check-label" for="radios1">
-                  Random
-                </label>
+              <h5 class="text-center">Order Roster</h5>
+              <hr />
+              <div>
+                <span>Order each teams heroes by:</span>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="roster_order" id="roster_order_random" :value="0" v-model="roster_order">
+                  <label class="form-check-label" for="roster_order_random">
+                    Random
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="roster_order" id="roster_order_winrate" :value="1" v-model="roster_order">
+                  <label class="form-check-label" for="roster_order_winrate" title="Ascending Win Rate">
+                    Weaker Heroes First
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="roster_order" id="roster_order_winrate" :value="2" v-model="roster_order">
+                  <label class="form-check-label" for="roster_order_winrate" title="Descending Win Rate">
+                    Stronger Heroes First
+                  </label>
+                </div>
               </div>
-              <!--
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="radios2" :value="1" v-model="roster_order">
-                <label class="form-check-label" for="radios2">
-                  Ascending Win Rate
-                </label>
-              </div>
-              -->
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-success" @click="generate">Generate</button>
@@ -216,6 +247,7 @@
           </div>
         </div>
       </div>
+      <!-- Manual Ordering Roster -->
       <div class="row" style="margin-bottom: 2em;" v-if="generated">
          <div class="col-xl-12">
            <div class="card">
@@ -226,34 +258,51 @@
                <div class="row">
                  <div class="col-xl-5">
                    <h5>Radiant</h5>
-                   <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
-                     <img :src="hero.image_banner" class="image" :title="hero.name" />
-                   </template>
+                   <div v-if="roster_radiant.length == 0">
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                   </div>
+                   <div v-else>
+                    <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
+                      <img :src="hero.image_banner" class="image" :title="hero.name" />
+                    </template>
+                   </div>
                  </div>
                  <div class="col-xl-5">
                    <h5>Dire</h5>
-                   <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
-                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
-                   </template>
+                   <div v-if="roster_dire.length == 0">
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                      <img src="@/assets/random.jpg" class="image" title="Random"/>
+                   </div>
+                   <div v-else>
+                    <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
+                        <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                    </template>
+                   </div>
                  </div>
                  <div class="col-xl-2">
-                   <h5>Extra</h5>
-                   <template v-for="(hero) in roster_extra" v-bind:key="hero.id">
+                  <h5>Extra</h5>
+                  <div v-if="roster_extra.length == 0">
+                    <img src="@/assets/random.jpg" class="image" title="Random"/>
+                    <img src="@/assets/random.jpg" class="image" title="Random"/>
+                  </div>
+                  <div v-else>
+                    <template v-for="(hero) in roster_extra" v-bind:key="hero.id">
                       <img :src="hero.image_banner" class="image" :title="hero.name"/>
-                   </template>
+                    </template>
+                  </div>
                  </div>
                </div>
             </div>
            </div>
          </div>
       </div>
-      <!-- Change Disqualify to Include (Filter) -->
-      <!-- Ordering by lowest win rate 1st -->
-      <!-- Manual Ordering Roster -->
-      <!-- Disqualify By Roles -->
-      <!-- Total Primary Attribute (Above/Below)  -->
-      <!-- Base Damage (Above/Below) -->
-      <!-- Switch to Randomize Extras -->
       <div class="row" style="margin-bottom: 2em;" v-if="generated">
         <div class="col-xl-12">
            <div class="card">
@@ -301,53 +350,92 @@
 <script>
 // @ is an alias to /src
 import data from '@/data/heroes.json'
+import MultiSelect from 'primevue/multiselect';
+import RangeSlider from '@/components/RangeSlider.vue'
 
 export default {
   name: "Admin",
+  components: {
+    RangeSlider, MultiSelect
+  },
   data() {
     let sg = data.map(_ => _.strength_gain);
+    let smax = data.map(_ => _.max_strength);
     let ig = data.map(_ => _.intelligence_gain);
+    let imax = data.map(_ => _.max_intelligence);
     let ag = data.map(_ => _.agility_gain);
+    let amax = data.map(_ => _.max_agility);
+    let dmg = data.map(_ => _.damage)
+    let roles = data.map(_ => _.roles).reduce((acc,currentValue,index, array) => {
+        for (const item of currentValue) {
+          if(array.indexOf(item)!=index && !acc.includes(item)) 
+            acc.push(item);
+        }
+        return acc;
+      }, []);
 
     return {
       heroes: data,
+      roles: roles,
       generated: false,
-      switch_low_wr: false,
-      value_low_wr: 45,
-      switch_high_wr: false,
-      value_high_wr: 55,
-      max_str: Math.max(...sg),
-      min_str:  Math.min(...sg),
-      switch_low_str: false,
-      value_low_str: 2.0,
-      switch_high_str: false,
-      value_high_str: 4.0,
-      max_int:  Math.max(...ig),
-      min_int: Math.min(...ig),
-      switch_low_int: false,
-      value_low_int: 2.0,
-      switch_high_int: false,
-      value_high_int: 4.0,
-      max_agi: Math.max(...ag),
-      min_agi: Math.min(...ag),
-      switch_low_agi: false,
-      value_low_agi: 1.0,
-      switch_high_agi: false,
-      value_high_agi: 4.0,
-      switch_equal_primary: false,
-      switch_equal_attack: false,
-      switch_str: false,
-      switch_attribute_str: false,
-      switch_int: false,
-      switch_attribute_int: false,
-      switch_agi: false,
-      switch_attribute_agi: false,
-      switch_attack_melee: false,
-      switch_attack_ranged: false,
       roster_radiant: [],
       roster_dire: [],
       roster_extra: [],
-      roster_order: 0
+
+      switch_random_radiant: false,
+      switch_random_dire: false,
+      switch_random_extras: false,
+      
+      switch_winrate: false,
+      range_winrate: [45, 55],
+
+      switch_dmg: false,
+      min_dmg: Math.min(...dmg),
+      max_dmg: Math.max(...dmg),
+      range_dmg: [Math.min(...dmg),Math.max(...dmg)],
+
+      switch_roles: false,
+      flagged_roles: [],
+
+      switch_str: false,
+      max_gain_str: Math.max(...sg),
+      min_gain_str:  Math.min(...sg),
+      min_str: Math.min(...smax),
+      max_str: Math.max(...smax),
+      switch_gain_str_range: false,
+      range_gain_str: [Math.min(...sg), Math.max(...sg)],
+      switch_max_str_range: false,
+      range_max_str: [Math.min(...smax),  Math.max(...smax)],
+
+      switch_int: false,
+      max_gain_int:  Math.max(...ig),
+      min_gain_int: Math.min(...ig),
+      min_int: Math.min(...imax),
+      max_int: Math.max(...imax),
+      switch_gain_int_range: false,
+      range_gain_int: [Math.min(...ig), Math.max(...ig)],
+      switch_max_int_range: false,
+      range_max_int: [Math.min(...imax), Math.max(...imax)],
+
+      switch_agi: false,
+      max_gain_agi: Math.max(...ag),
+      min_gain_agi: Math.min(...ag),
+      min_agi: Math.min(...amax),
+      max_agi: Math.max(...amax),
+      switch_gain_agi_range: false,
+      range_gain_agi: [Math.min(...ag), Math.max(...ag)],
+      switch_max_agi_range: false,
+      range_max_agi: [Math.min(...amax), Math.max(...amax)],
+
+      switch_equal_primary: false,
+      switch_equal_attack: false,      
+      switch_attribute_str: false, 
+      switch_attribute_int: false,
+      switch_attribute_agi: false,
+      switch_attack_melee: false,
+      switch_attack_ranged: false,
+
+      roster_order: 0,
     }
   },
   computed: {
@@ -380,47 +468,9 @@ export default {
   },
   methods: {
     generate() {     
-      let collection = this.heroes;
-      if(this.switch_low_wr) {
-        let amount = this.value_low_wr /100;
-        collection = collection.filter(_ => _.win_rate > amount);
-      }
-      if(this.switch_high_wr) {
-        let amount = this.value_high_wr / 100;
-        collection = collection.filter(_ => _.win_rate < amount);
-      }
-      if(this.switch_str) {
-        collection = collection.filter(_ => _.primary_attribute != "STRENGTH");
-      } else{
-        if(this.switch_low_str) {
-          collection = collection.filter(_ => _.strength_gain > this.value_low_str);
-        }
-        if(this.switch_high_str) {
-          collection = collection.filter(_ => _.strength_gain < this.value_high_str);
-        }
-      }
-      if(this.switch_int) {
-        collection = collection.filter(_ => _.primary_attribute != "INTELLECT");
-      } else {
-        if(this.switch_low_int) {
-          collection = collection.filter(_ => _.intelligence_gain > this.value_low_int);
-        }
-        if(this.switch_high_int) {
-          collection = collection.filter(_ => _.intelligence_gain < this.value_high_int);
-        }
-      }
-      if(this.switch_agi) {
-        collection = collection.filter(_ => _.primary_attribute != "AGILITY");
-        } else {
-          if(this.switch_low_agi) {
-          collection = collection.filter(_ => _.agility_gain > this.value_low_agi);
-        }
-        if(this.switch_high_agi) {
-          collection = collection.filter(_ => _.agility_gain < this.value_high_agi);
-        }
-      }
-
-      if(collection.length < 10) {
+      let collection = this.getHeroes();
+      let pool_size = this.getPoolSize();
+      if(collection.length < pool_size) {
         alert("Failure to generate a pool, Not enough heroes left in the pool.");
         return;
       }
@@ -431,11 +481,13 @@ export default {
         let teams = this.getTeams(collection);
         let radiant = teams[0];
         let dire = teams[1];
-        if(this.checkTeams(radiant, dire)) {
+        let extra = teams[2];
+        if(this.checkTeams(radiant, dire, extra)) {
           continue;
         } else {
           this.roster_radiant = radiant;
           this.roster_dire = dire;
+          this.roster_extra = extra;
           break;
         }
       }
@@ -446,23 +498,130 @@ export default {
 
       this.generated = true;
     },
+    getPoolSize() {
+      let pool_size = 12;
+      if(this.switch_random_extras) {
+        pool_size -= 2;
+      }
+      if(this.switch_random_radiant) {
+        pool_size -= 5;
+      }
+      if(this.switch_random_dire) {
+        pool_size -= 5;
+      }
+      return pool_size;
+    },
+    getHeroes() {
+      let collection = this.heroes;
+
+      if(this.switch_str) {
+        collection = collection.filter(_ => _.primary_attribute != "STRENGTH");
+      }
+      if(this.switch_int) {
+         collection = collection.filter(_ => _.primary_attribute != "INTELLECT");
+      }
+      if(this.switch_agi) {
+        collection = collection.filter(_ => _.primary_attribute != "AGILITY");
+      }
+
+      if(this.switch_roles) {
+        for (const role of this.flagged_roles) {
+          collection = collection.filter(_ => !_.roles.includes(role));
+        }
+      }
+
+      if(this.switch_winrate) {
+        let low = this.range_winrate[0] / 100;
+        let hi = this.range_winrate[1] / 100;
+        collection = collection.filter(_ => _.win_rate >= low && _.win_rate <= hi);
+      }
+
+      if(this.switch_dmg) {
+        let low = this.range_dmg[0];
+        let hi = this.range_dmg[1];
+        collection = collection.filter(_ => _.damage >= low && _.damage <= hi);
+      }
+
+      if(this.switch_gain_str_range) {
+        let low = this.range_gain_str[0];
+        let hi = this.range_gain_str[1];
+        collection = collection.filter(_ => _.strength_gain >= low && _.strength_gain <= hi);
+      }
+
+      if(this.switch_max_str_range) {
+        let low = this.range_max_str[0];
+        let hi = this.range_max_str[1];
+        collection = collection.filter(_ => _.max_strength >= low && _.max_strength <= hi);
+      }
+
+      if(this.switch_gain_int_range) {
+        let low = this.range_gain_int[0];
+        let hi = this.range_gain_int[1];
+        collection = collection.filter(_ => _.intelligence_gain >= low && _.intelligence_gain <= hi);
+      }
+
+      if(this.switch_max_int_range) {
+        let low = this.range_max_int[0];
+        let hi = this.range_max_int[1];
+        collection = collection.filter(_ => _.max_intelligence >= low && _.max_intelligence <= hi);
+      }
+
+      if(this.switch_gain_agi_range) {
+        let low = this.range_gain_agi[0];
+        let hi = this.range_gain_agi[1];
+        collection = collection.filter(_ => _.agility_gain >= low && _.agility_gain <= hi);
+      }
+
+      if(this.switch_max_agi_range) {
+        let low = this.range_max_agi[0];
+        let hi = this.range_max_agi[1];
+        collection = collection.filter(_ => _.max_agility >= low && _.max_agility <= hi);
+      }
+
+      return collection;
+    },
+    sortByWinRate(lhs, rhs) {
+      if(this.roster_order == 1) {
+        return lhs.win_rate - rhs.win_rate;
+      } else if(this.roster_order == 2) {
+        return rhs.win_rate - lhs.win_rate;
+      }
+    },
     getTeams(collection) {
         let radiant = [];
         let dire = [];
-        for (let i = 0; i < 5; i++) {
-          var index = Math.floor((Math.random() * collection.length));
-          var item = collection[index];
-          radiant.push(item);
+        let extra = [];
+        if(this.switch_random_radiant == false) {
+          for (let i = 0; i < 5; i++) {
+            var index = Math.floor((Math.random() * collection.length));
+            var item = collection[index];
+            radiant.push(item);
+          }
+          if(this.roster_order != 0) {
+            radiant.sort(this.sortByWinRate);
+          }
         }
-        for (let i = 0; i < 5; i++) {
-          var index = Math.floor((Math.random() * collection.length));
-          var item = collection[index];
-          dire.push(item);
+        if(this.switch_random_dire == false) {
+          for (let i = 0; i < 5; i++) {
+            var index = Math.floor((Math.random() * collection.length));
+            var item = collection[index];
+            dire.push(item);
+          }
+          if(this.roster_order != 0) {
+            dire.sort(this.sortByWinRate);
+          }
         }
-        return [radiant,dire];
+        if(this.switch_random_extras == false) {
+          for (let i = 0; i < 2; i++) {
+            var index = Math.floor((Math.random() * collection.length));
+            var item = collection[index];
+            extra.push(item);
+          }    
+        }
+        return [radiant,dire,extra];
     },
-    checkTeams(radiant,dire) {
-      var pool = radiant.concat(dire);
+    checkTeams(radiant,dire,extra) {
+      var pool = radiant.concat(dire).concat(extra);
       if(pool.filter(_ => _.ability_replace_required).length > 1)
         return true;
 
@@ -539,6 +698,8 @@ export default {
       window.open(url);
     }
   },
+  mounted() {
+  }
 };
 </script>
 
@@ -552,4 +713,8 @@ export default {
   width: 70px;
   height: 40px;
 }
+.p-multiselect {
+    width: 100%;
+}
 </style>
+
