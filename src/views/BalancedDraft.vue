@@ -467,7 +467,12 @@ export default {
     }
   },
   methods: {
-    generate() {     
+    generate() {
+      this.generated = false;
+      this.roster_radiant = [];
+      this.roster_dire = [];
+      this.roster_extra = [];
+
       let collection = this.getHeroes();
       let pool_size = this.getPoolSize();
       if(collection.length < pool_size) {

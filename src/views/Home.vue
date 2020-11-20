@@ -88,6 +88,7 @@
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Single_Draft">Single Draft</a></p>
             </div>
             <div class="card-footer" style="height: 60px;">
+              Coming Soon
             </div>
           </div>
         </div>
@@ -111,6 +112,7 @@
               <p class="blockquote-footer">Submitted by HorizoN</p>
             </div>
             <div class="card-footer" style="height: 60px;">
+              Coming Soon
             </div>
           </div>
         </div>
@@ -143,6 +145,7 @@
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Captains_Mode">Captains Mode</a></p>
             </div>
             <div class="card-footer" style="height: 60px;">
+              Coming Soon
             </div>
           </div>
         </div>
@@ -171,6 +174,7 @@
               <p class="blockquote-footer">Submitted by noxville</p>
             </div>
             <div class="card-footer" style="height: 60px;">
+              Coming Soon
             </div>
           </div>
         </div>
@@ -185,6 +189,7 @@
               <p class="blockquote-footer">Submitted by CandianChicken</p>
             </div>
             <div class="card-footer" style="height: 60px;">
+              Coming Soon
             </div>
           </div>
         </div>
