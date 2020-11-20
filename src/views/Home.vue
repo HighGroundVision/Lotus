@@ -11,9 +11,14 @@
               <p class="card-text">
                 With the addition of some new <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">console commands</a> 
                 to set the hero roaster (5 heroes for each team + 2 extras) we are interested in creating experimental lobbies to test different drafting strategies.
+              </p>
+              <p>
                 We recommend that you use these tools first before lunching dota and creating the lobby as these tools have a 'Set Roster' 
                 button that will start Dota directly and the console commands will be set for you via the Launch Options. 
                 This saves you from having to enter the console commands one by one.
+              </p>
+              <p>
+                Got an Ideas for a new draft strategies send it to us and it could be added to the list for all to enjoy.
               </p>
             </div>
           </div>
@@ -32,6 +37,7 @@
         </div>
       </div>
       <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-2"></div>
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
             <img class="card-img-top" src="@/assets/host_choice.png" alt="Admin Tool">
@@ -76,6 +82,7 @@
         </div>
       </div>
       <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-2"></div>
         <div class="col-xl-4" style="padding-bottom: 20px;">
           <div class="card" style="height: 100%;">
             <img class="card-img-top" src="@/assets/single_draft.png" alt="Single Draft Tool">
