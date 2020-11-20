@@ -25,7 +25,7 @@
             <div class="card-body"> <!-- style="overflow-y: scroll; height: 400px;" -->
               <template v-for="(hero) in collection" v-bind:key="hero.id">
                 <div class="hero">
-                  <img :src="hero.image_banner" class="image" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
+                  <img :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': hero.picked }" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
                   <!-- Modal -->
                   <div class="modal fade" :id="'modal-'+hero.id" tabindex="-1" role="dialog"  aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,11 +40,13 @@
                           <h2><img :src="hero.image_icon" /> {{hero.name}}</h2>
                           <p v-if="hero.picked">This hero is already picked.</p>
                           <p v-if="!hero.picked && hero.ability_replace_required && hasAbilityReplaceRequired">There is already a hero that requires ability replacement, only one per Ability Draft game allowed.</p>
+                          <p v-if="hasFullSelection">The roster is full.</p>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-success" v-if="!hero.picked && this.roster_radiant.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickRadiant(hero)">Radiant</button>
                           <button type="button" class="btn btn-danger" v-if="!hero.picked && this.roster_dire.length < 5 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickDire(hero)">Dire</button>
                           <button type="button" class="btn btn-primary" v-if="!hero.picked && this.roster_extra.length < 2 && (hero.ability_replace_required && this.hasAbilityReplaceRequired) == false" @click="pickExtra(hero)">Extra</button>
+                          <button type="button" class="btn btn-warning" v-if="hero.picked" @click="remove(hero)">Remove</button>
                         </div>
                       </div>
                     </div>
@@ -66,19 +68,19 @@
                  <div class="col-xl-5">
                    <h5>Radiant</h5>
                    <template v-for="(hero) in roster_radiant" v-bind:key="hero.id">
-                     <img :src="hero.image_banner" class="image" :title="hero.name" />
+                     <img :src="hero.image_banner" class="image" :title="hero.name" data-toggle="modal" :data-target="'#modal-'+hero.id" />
                    </template>
                  </div>
                  <div class="col-xl-5">
                    <h5>Dire</h5>
                    <template v-for="(hero) in roster_dire" v-bind:key="hero.id">
-                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                      <img :src="hero.image_banner" class="image" :title="hero.name" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
                    </template>
                  </div>
                  <div class="col-xl-2">
                    <h5>Extra</h5>
                    <template v-for="(hero) in roster_extra" v-bind:key="hero.id">
-                      <img :src="hero.image_banner" class="image" :title="hero.name"/>
+                      <img :src="hero.image_banner" class="image" :title="hero.name" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
                    </template>
                  </div>
                </div>
@@ -137,6 +139,8 @@
 // @ is an alias to /src
 import data from '@/data/heroes.json'
 
+// TODO: Color heroes based on pick
+
 export default {
   name: "Admin",
   data() {
@@ -160,6 +164,9 @@ export default {
     },
     hasSelection: function() {
       return (this.roster_radiant.length + this.roster_dire.length + this.roster_extra.length) > 0;
+    },
+    hasFullSelection: function() {
+      return (this.roster_radiant.length + this.roster_dire.length + this.roster_extra.length) == 12;
     },
     hasAbilityReplaceRequired: function() {
       return (this.roster_radiant.filter(_ => _.ability_replace_required).length + this.roster_dire.filter(_ => _.ability_replace_required).length + this.roster_extra.filter(_ => _.ability_replace_required).length) > 0;
@@ -206,6 +213,13 @@ export default {
       list.push(hero);
       $(".modal").modal('hide');
     },
+    remove(hero)  {
+      hero.picked = false;
+      this.roster_radiant = this.roster_radiant.filter(_ => _.id != hero.id);
+      this.roster_dire = this.roster_dire.filter(_ => _.id != hero.id);
+      this.roster_extra = this.roster_extra.filter(_ => _.id != hero.id);
+      $(".modal").modal('hide');
+    },
     launch() {  
       let cmd = this.launchOptions;
       let params = encodeURIComponent(cmd);
@@ -242,5 +256,8 @@ export default {
   padding: 2px;
   width: 70px;
   height: 40px;
+}
+.darkened-image { 
+  filter: brightness(25%); 
 }
 </style>
