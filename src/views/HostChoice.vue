@@ -11,6 +11,9 @@
                 Select the hero and the team.
                 You do not have submit a complete roster the remain slots will random as normal.
               </p>
+              <div class="alert alert-primary" role="alert">
+                If you want the disable player shuffle to work you need set the Server Location to LOCAL HOST
+              </div>
             </div>
           </div>
         </div>
@@ -96,6 +99,7 @@
            <div class="card" >
             <div class="card-header">
               <h5>Commands</h5>
+              
             </div>
             <div class="card-body" >
               <pre class="card-text">{{commands}}</pre>
@@ -173,6 +177,9 @@ export default {
     },
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
+
+      cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
+
       for (const item of this.roster_radiant) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
       }
@@ -186,6 +193,9 @@ export default {
     },
     launchOptions: function() {
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
+      
+      cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 \n";
+
       for (const item of this.roster_radiant) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
       }

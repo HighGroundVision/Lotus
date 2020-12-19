@@ -9,6 +9,9 @@
               <p class="card-text">
                 The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes, Balance the Teams, and Order the Roster.
               </p>
+              <div class="alert alert-primary" role="alert">
+                If you want the disable player shuffle to work you need set the Server Location to LOCAL HOST
+              </div>
             </div>
           </div>
         </div>
@@ -240,6 +243,14 @@
                   </label>
                 </div>
               </div>
+              <h5 class="text-center">Player Shuffle</h5>
+              <hr />
+              <div>
+                 <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="switch_player_order" v-model="player_order">
+                  <label class="custom-control-label" for="switch_player_order">Disable Player Shuffle</label>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
               <button type="button" class="btn btn-success" @click="generate">Generate</button>
@@ -436,11 +447,18 @@ export default {
       switch_attack_ranged: false,
 
       roster_order: 0,
+
+      player_order: false,
     }
   },
   computed: {
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
+
+      if(this.player_order) {
+         cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n";
+      }
+
       for (const item of this.roster_radiant) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
       }
@@ -454,6 +472,11 @@ export default {
     },
     launchOptions: function() {
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
+
+      if(this.player_order) {
+         cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
+      }
+
       for (const item of this.roster_radiant) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
       }
