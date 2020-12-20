@@ -109,6 +109,28 @@ export default {
                 }
             }
         });
+      } else if (vm.type == 4) {
+        var format = wNumb({ decimals: 0 });
+        noUiSlider.create(slider, {
+            start: vm.modelValue,
+            connect: true,
+            step: 1,
+            range: {
+                min: vm.min,
+                max: vm.max
+            },
+            /*
+            tooltips: [format],
+            pips: {
+                mode: 'steps',
+                density: 10,
+                format: format,
+                filter: function(value, type) {
+                  return value % 10 ? value % 5 ? -1 : 0 : 1;
+                }
+            }
+            */
+        });
       }
       
       slider.noUiSlider.on('change.one', function (values, handle, unencoded, tap, positions, noUiSlider) {

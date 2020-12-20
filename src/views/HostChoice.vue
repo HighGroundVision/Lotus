@@ -11,9 +11,6 @@
                 Select the hero and the team.
                 You do not have submit a complete roster the remain slots will random as normal.
               </p>
-              <div class="alert alert-primary" role="alert">
-                If you want the disable player shuffle to work you need set the Server Location to LOCAL HOST
-              </div>
             </div>
           </div>
         </div>
@@ -60,6 +57,63 @@
           </div>
         </div>
       </div>
+      <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-12">
+           <div class="card" >
+            <div class="card-header">
+              <h5>Additional Options</h5>
+            </div>
+            <div class="card-body" >
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_shuffle_player" v-model="shuffle_player">
+                    <label class="custom-control-label" for="switch_shuffle_player">Disable Player Shuffle</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_per_player_time" v-model="switch_per_player_time">
+                    <label class="custom-control-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                   <single-slider v-model="per_player_time" :min="1" :max="10"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_pre_round_time" v-model="switch_pre_round_time">
+                    <label class="custom-control-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_round_time"  :min="1" :max="30"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_pre_time" v-model="switch_pre_time">
+                    <label class="custom-control-label" for="switch_pre_time">Override total time in seconds before the draft starts.</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_time" :min="30" :max="120"></single-slider>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="alert alert-warning" role="alert">
+                If you want the Additional Options to work you need set the Server Location to LOCAL HOST in the private lobby.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
          <div class="col-xl-12">
            <div class="card">
@@ -94,12 +148,12 @@
            </div>
          </div>
       </div>
+      
       <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
         <div class="col-xl-12">
            <div class="card" >
             <div class="card-header">
               <h5>Commands</h5>
-              
             </div>
             <div class="card-body" >
               <pre class="card-text">{{commands}}</pre>
@@ -142,18 +196,27 @@
 <script>
 // @ is an alias to /src
 import data from '@/data/heroes.json'
-
-// TODO: Color heroes based on pick
+import SingleSlider from '@/components/SingleSlider.vue'
 
 export default {
   name: "Admin",
+  components: {
+    SingleSlider
+  },
   data() {
     return {
       filter: null,
       heroes: data,
       roster_radiant: [],
       roster_dire: [],
-      roster_extra: []
+      roster_extra: [],
+      shuffle_player: false,
+      switch_per_player_time: false,
+      per_player_time: 7,
+      switch_pre_round_time: false,
+      pre_round_time: 5,
+      switch_pre_time: false,
+      pre_time: 60,
     }
   },
   computed: {
@@ -178,7 +241,19 @@ export default {
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
 
-      cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
+      if(this.shuffle_player) {
+        cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
+      }
+
+      if(this.switch_per_player_time) {
+        cmd += "dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " \n"
+      }
+      if(this.switch_pre_round_time) {
+        cmd += "dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " \n"
+      }
+      if(this.switch_pre_time) {
+        cmd += "dota_gamemode_ability_draft_pre_time " + this.pre_time + " \n"
+      }
 
       for (const item of this.roster_radiant) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
@@ -194,7 +269,19 @@ export default {
     launchOptions: function() {
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
       
-      cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 \n";
+      if(this.shuffle_player) {
+        cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
+      }
+
+      if(this.switch_per_player_time) {
+        cmd += "+dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " "
+      }
+      if(this.switch_pre_round_time) {
+        cmd += "+dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " "
+      }
+      if(this.switch_pre_time) {
+        cmd += "+dota_gamemode_ability_draft_pre_time " + this.pre_time + " "
+      }
 
       for (const item of this.roster_radiant) {
         cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "

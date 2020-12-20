@@ -9,9 +9,6 @@
               <p class="card-text">
                 The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes, Balance the Teams, and Order the Roster.
               </p>
-              <div class="alert alert-primary" role="alert">
-                If you want the disable player shuffle to work you need set the Server Location to LOCAL HOST
-              </div>
             </div>
           </div>
         </div>
@@ -23,7 +20,6 @@
              <h5>Switches</h5>
             </div>
             <div class="card-body">
- 
               <div class="row">
                 <div class="col-xl-12">
                   <div class="custom-control custom-switch ">
@@ -243,17 +239,66 @@
                   </label>
                 </div>
               </div>
-              <h5 class="text-center">Player Shuffle</h5>
-              <hr />
-              <div>
-                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="switch_player_order" v-model="player_order">
-                  <label class="custom-control-label" for="switch_player_order">Disable Player Shuffle</label>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-success" @click="generate">Generate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 2em;">
+        <div class="col-xl-12">
+          <div class="card" >
+            <div class="card-header">
+              <h5>Additional Options</h5>
+            </div>
+            <div class="card-body" >
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_shuffle_player" v-model="shuffle_player">
+                    <label class="custom-control-label" for="switch_shuffle_player">Disable Player Shuffle</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_per_player_time" v-model="switch_per_player_time">
+                    <label class="custom-control-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                   <single-slider v-model="per_player_time" :min="1" :max="10"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_pre_round_time" v-model="switch_pre_round_time">
+                    <label class="custom-control-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_round_time"  :min="1" :max="30"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="switch_pre_time" v-model="switch_pre_time">
+                    <label class="custom-control-label" for="switch_pre_time">Override total time in seconds before the draft starts.</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_time" :min="30" :max="120"></single-slider>
                 </div>
               </div>
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-success" @click="generate">Generate</button>
+              <div class="alert alert-warning" role="alert">
+                If you want the Additional Options to work you need set the Server Location to LOCAL HOST in the private lobby.
+              </div>
             </div>
           </div>
         </div>
@@ -363,11 +408,12 @@
 import data from '@/data/heroes.json'
 import MultiSelect from 'primevue/multiselect';
 import RangeSlider from '@/components/RangeSlider.vue'
+import SingleSlider from '@/components/SingleSlider.vue'
 
 export default {
   name: "Admin",
   components: {
-    RangeSlider, MultiSelect
+    RangeSlider, SingleSlider, MultiSelect
   },
   data() {
     let sg = data.map(_ => _.strength_gain);
@@ -448,7 +494,13 @@ export default {
 
       roster_order: 0,
 
-      player_order: false,
+      shuffle_player: false,
+      switch_per_player_time: false,
+      per_player_time: 7,     // dota_gamemode_ability_draft_per_player_time
+      switch_pre_round_time: false,
+      pre_round_time: 5,      // dota_gamemode_ability_draft_pre_round_time
+      switch_pre_time: false,
+      pre_time: 60,           // dota_gamemode_ability_draft_pre_time
     }
   },
   computed: {
