@@ -507,10 +507,19 @@ export default {
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
 
-      if(this.player_order) {
-         cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n";
+      if(this.shuffle_player) {
+        cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
       }
 
+      if(this.switch_per_player_time) {
+        cmd += "dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " \n"
+      }
+      if(this.switch_pre_round_time) {
+        cmd += "dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " \n"
+      }
+      if(this.switch_pre_time) {
+        cmd += "dota_gamemode_ability_draft_pre_time " + this.pre_time + " \n"
+      }
       for (const item of this.roster_radiant) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
       }
@@ -520,13 +529,26 @@ export default {
       for (const item of this.roster_extra) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
       }
+
+      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team"
+
       return cmd;
     },
     launchOptions: function() {
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
 
-      if(this.player_order) {
-         cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
+      if(this.shuffle_player) {
+        cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
+      }
+
+      if(this.switch_per_player_time) {
+        cmd += "+dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " "
+      }
+      if(this.switch_pre_round_time) {
+        cmd += "+dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " "
+      }
+      if(this.switch_pre_time) {
+        cmd += "+dota_gamemode_ability_draft_pre_time " + this.pre_time + " "
       }
 
       for (const item of this.roster_radiant) {

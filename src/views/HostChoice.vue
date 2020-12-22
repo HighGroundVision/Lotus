@@ -264,6 +264,9 @@ export default {
       for (const item of this.roster_extra) {
         cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
       }
+
+      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team"
+      
       return cmd;
     },
     launchOptions: function() {
