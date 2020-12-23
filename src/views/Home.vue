@@ -49,7 +49,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <router-link to="/host" class="btn btn-primary">Draft</router-link>
+              <router-link to="/host-choice" class="btn btn-primary">Draft</router-link>
             </div>
           </div>
         </div>
@@ -64,7 +64,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <router-link to="/balanced" class="btn btn-primary">Draft</router-link>
+              <router-link to="/balanced-draft" class="btn btn-primary">Draft</router-link>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Single_Draft">Single Draft</a></p>
             </div>
             <div class="card-footer" style="height: 60px;">
-              Coming Soon
+              <router-link to="/single-draft" class="btn btn-primary">Draft</router-link>
             </div>
           </div>
         </div>

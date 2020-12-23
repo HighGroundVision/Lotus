@@ -15,7 +15,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;">
+      <br />
+      <div class="row">
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header">
@@ -57,7 +58,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;">
+      <br />
+      <div class="row">
         <div class="col-xl-12">
            <div class="card" >
             <div class="card-header">
@@ -114,7 +116,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+      <br />
+      <div class="row" v-if="hasSelection">
          <div class="col-xl-12">
            <div class="card">
             <div class="card-header">
@@ -148,8 +151,8 @@
            </div>
          </div>
       </div>
-      
-      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+      <br />
+      <div class="row" v-if="hasSelection">
         <div class="col-xl-12">
            <div class="card" >
             <div class="card-header">
@@ -169,7 +172,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;" v-if="hasSelection">
+      <br />
+      <div class="row" v-if="hasSelection">
         <div class="col-xl-12">
            <div class="card">
             <div class="card-header">
@@ -199,7 +203,7 @@ import data from '@/data/heroes.json'
 import SingleSlider from '@/components/SingleSlider.vue'
 
 export default {
-  name: "Admin",
+  name: "HostChoice",
   components: {
     SingleSlider
   },

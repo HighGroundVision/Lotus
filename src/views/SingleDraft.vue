@@ -1,0 +1,412 @@
+<template>
+  <div class="single-draft">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="card" >
+            <div class="card-body" >
+              <h1>Single Draft</h1>
+              <p class="card-text">
+                Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player.
+                The extra heroes are random.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row" v-if="hasNoLobby">
+        <div class="col-xl-6" v-if="isNotShared">
+          <div class="card">
+            <div class="card-header">
+             <h5>Create Session</h5>
+            </div>
+            <div class="card-body">
+              <p>
+                All the heroes in the session's pool will be distinct with a Strength/Agility/Intelligence for each player and only one hero could require ability replacement.
+              </p>
+              <p>
+                After the session is created, you will need to share the link with the lobby you are hosting so they can select a hero. 
+                If you are playing as well as hosting then you can will need to also select a hero in the correct slot.
+                You can also select a hero for another player if they are having issues connecting or selecting.
+              </p>
+              <div class="alert alert-warning" role="alert">
+                You need set the Server Location to LOCAL HOST in the private lobby else the disabling the player shuffle will not work and the player will not get the hero that drafted.
+                Also it is important for the player to select the same slot here and in the lobby or they will not get the hero they drafted.
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-success" @click="create">Create</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-6">
+          <div class="card">
+            <div class="card-header">
+             <h5>Join Session</h5>
+            </div>
+            <div class="card-body">
+              <p>Enter the Session Identity you received from the lobby host, click the Join button and select you slot in the lobby.</p>
+              <input v-model="lobby_id" class="form-control" placeholder="Session Identity" />
+            </div>
+            <div class="card-footer">
+              <button type="button" class="btn btn-primary" v-bind:disabled="hasLobbyId" @click="join">Join</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row" v-if="isHost">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-header">
+            <button type="button" class="btn btn-sm btn-success float-right" @click="share">Share</button>
+             <h5>Host</h5>
+            </div>
+            <div class="card-body text-center">
+              <div class="row">
+                <div class="col-xl-6">
+                  <h4 class="text-success">The Radiant</h4>
+                </div>
+                <div class="col-xl-6">
+                  <h4 class="text-danger">The Dire</h4>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <template v-for="(slot, index) in slots" v-bind:key="index">
+                  <div class="col-xl-6">
+                    <img v-if="connections[index]" src="@/assets/user-connected.svg" class="user user-connected"/>
+                    <img v-else  src="@/assets/user-disconnected.svg" class="user user-disconnected" />
+                    <template v-for="(item) in slot" v-bind:key="item.id">
+                      <img v-if="selection[index] == undefined" :src="item.image_banner" class="image" @click="host_selection(index, item.key)" />
+                      <img v-else :src="item.image_banner" class="image" @click="host_selection(index, item.key)" v-bind:class="{'picked': item.key == selection[index], 'discarded': item.key != selection[index]}" />
+                    </template>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row" v-if="isHost">
+        <div class="col-xl-12">
+           <div class="card" >
+            <div class="card-header">
+              <h5>Commands</h5>
+            </div>
+            <div class="card-body" >
+              <pre class="card-text">{{commands}}</pre>
+            </div>
+            <div class="card-footer">
+              <p>
+                For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
+                You can manually enter these commands in the Dota2 Console one by one.<br />
+                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.
+              </p>
+              <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-if="isPlayer">
+        <div class="col-xl-12">
+          <div class="card">
+            <div class="card-header">
+             <h5>Player</h5>
+            </div>
+            <div class="card-body text-center">
+              <div v-if="hasSlot">
+                <div v-if="hasDrafted">
+                  <div class="alert alert-success" role="alert">
+                    Your draft has been submitted to the host!
+                  </div>
+                  <img :src="drafted.image_profile" class="image-large rounded" />
+                </div>
+                <div v-else>
+                  <div class="alert alert-primary" role="alert">
+                    Select a hero from the following.
+                  </div>
+                  <div class="row">
+                    <div class="col-xl-4">
+                      <h4 class="text-danger">Strength</h4>
+                    </div>
+                    <div class="col-xl-4">
+                      <h4 class="text-success">Agility</h4>
+                    </div>
+                    <div class="col-xl-4">
+                      <h4 class="text-primary">Intelligence</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <template v-for="(item) in slots[slot]" v-bind:key="item.id">
+                      <div class="col-xl-4">
+                        <img :src="item.image_profile" class="image-large rounded" @click="player_selection(item.key)" />
+                      </div>
+                    </template>
+                  </div>
+                </div>               
+              </div>
+              <div v-else>
+                <div class="alert alert-warning" role="alert">
+                  It is important to select the same slot in the both lobbies or you will not get the hero you drafted.
+                </div>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <h4 class="text-success">The Radiant</h4>
+                  </div>
+                  <div class="col-xl-6">
+                    <h4 class="text-danger">The Dire</h4>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <template v-for="(slot, index) in slots" v-bind:key="index">
+                    <div class="col-xl-6">
+                      <button type="button" class="btn btn-primary btn-block m-2" @click="claim_slot(index)">Claim Slot</button>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import data from '@/data/heroes.json'
+import { v4 as uuid } from 'uuid';
+import axios from 'axios';
+import * as signalR from "@microsoft/signalr";
+
+Array.prototype.random = function () {
+  return this[Math.floor((Math.random()*this.length))];
+}
+
+export default {
+  name: "SingleDraft",
+  data() {
+    return {
+      heroes: data,
+      has_lobby: false,
+      host: false,
+      shared: this.$route.query.session != undefined,
+      lobby_id: this.$route.query.session,
+      slots: [],
+      connections: [false,false,false,false,false,false,false,false,false,false],
+      selection: [],
+      slot: null,
+      drafted: null,
+    }
+  },
+  computed: {
+    isNotShared() {
+      return !this.shared;
+    },
+    hasLobbyId() {
+      return !(this.lobby_id);
+    },
+    hasNoLobby() {
+      return !this.has_lobby;
+    },
+    isHost() {
+      return this.host && this.has_lobby;
+    },
+    isPlayer() {
+      return this.host == false &&this.has_lobby;
+    },
+    hasSlot() {
+      return this.slot != null;
+    },
+    hasDrafted() {
+      return this.drafted != null;
+    },
+    commands: function() {
+      var radiant = [0,2,4,6,8]
+      var dire = [1,3,5,7,9]
+      
+      let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
+
+      for (const index of radiant) {
+        let key = this.selection[index];
+        if(key) {
+          cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + key + " radiant \n"
+        }
+      }
+
+      for (const index of dire) {
+        let key = this.selection[index];
+        if(key) {
+          cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + key + " dire \n"
+        }
+      }
+
+      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team"
+      
+      return cmd;
+    },
+    launchOptions: function() {
+      var radiant = [0,2,4,6,8]
+      var dire = [1,3,5,7,9]
+
+      let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
+      
+      for (const index of radiant) {
+        let key = this.selection[index];
+        if(key) {
+          cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + key + " radiant "
+        }
+      }
+
+      for (const index of dire) {
+        let key = this.selection[index];
+        if(key) {
+          cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + key + " dire "
+        }
+      }
+
+      return cmd;
+    }
+  },
+  methods: {
+    create() {
+      this.host = true
+      this.has_lobby = true
+      this.lobby_id = uuid()
+      this.slots = this.generate()
+      this.connect_lobby()
+    },
+    async join() {
+      this.host = false
+      this.has_lobby = true
+      await this.get_lobby()
+    },
+    share() {
+      var url = window.location.href + "?session=" + this.lobby_id
+      navigator.clipboard.writeText(url)
+    },
+    host_selection(slot, key) {
+      this.selection[slot] = key;
+    },
+    generate() {
+      var str = this.heroes.filter(_ => _.primary_attribute == "STRENGTH")
+      var agi = this.heroes.filter(_ => _.primary_attribute == "AGILITY")
+      var int = this.heroes.filter(_ => _.primary_attribute == "INTELLECT")
+      var slots = []
+      var selection = []
+
+      for (let i = 0; i < 10; i++) {  
+        do {
+          selection = []
+          selection.push(str.random())
+          selection.push(agi.random())
+          selection.push(int.random())
+        } while(this.selection_invalid(slots, selection))
+        slots[i] = selection;
+      }
+
+      return slots;
+    },
+    selection_invalid(slots, selection) {
+      var collection = slots.flat();
+      var requires_replacement = collection.filter(_ => _.ability_replace_required).length > 0
+      for (const item of selection) {
+        if(collection.includes(item)) {
+          return true;
+        }
+        if(requires_replacement == true && item.ability_replace_required == true) {
+          return true;
+        }
+      }
+      return false;
+    },
+    async connect_lobby() {
+      let self = this;
+
+      var urlNegotiate = `http://localhost:7071/api/single/${this.lobby_id}`;
+      var urlCreateSession = `http://localhost:7071/api/single/create`;
+
+      await axios.post(urlCreateSession, {
+        id: this.lobby_id,
+        slots: self.slots
+      });
+
+      const connection = new signalR.HubConnectionBuilder()
+        .withUrl(urlNegotiate)
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+      
+      connection.on("SelectedSlot", (slot) => {
+        self.connections[slot] = true;
+      });
+
+      connection.on("SelectedHero", (slot, key) => {
+        self.selection[slot] = key;
+      });
+
+      connection.start();
+    },
+    async get_lobby() {
+      var url = `http://localhost:7071/api/single/get/${this.lobby_id}/`;
+      var response = await axios.get(url)
+      this.slots = response.data.slots
+    },
+    async claim_slot(index) {
+      var url = `http://localhost:7071/api/single/claim/`;
+      await axios.post(url, {
+        session: this.lobby_id,
+        slot: index
+      })
+      this.slot = index;
+    },
+    async player_selection(key) {
+      var url = `http://localhost:7071/api/single/draft/`;
+      await axios.post(url, {
+        session: this.lobby_id,
+        slot: this.slot,
+        key: key
+      })
+      this.drafted = this.heroes.find(_ => _.key == key);
+    }
+  }
+};
+</script>
+
+<style scoped>
+.single-draft {
+  padding: 4em 0 6em 0;
+  text-align: left;
+}
+.image {
+  margin: 2px;
+  width: 100px;
+  height: 50px;
+}
+.image-large {
+  cursor: pointer;
+  width: 230px;
+  height: 275px;
+}
+.user {
+  height: 50px;
+  margin: 2px;
+}
+.user-disconnected {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(10deg) brightness(100%) contrast(119%);
+}
+.user-connected {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(100%) contrast(119%);
+}
+.picked {
+  filter: brightness(120%);
+}
+.discarded {
+  filter: grayscale(100%) brightness(25%);
+}
+</style>

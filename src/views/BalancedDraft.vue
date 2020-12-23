@@ -1,7 +1,7 @@
 <template>
   <div class="admin">
     <div class="container">
-      <div class="row" style="margin-bottom: 2em;">
+      <div class="row">
         <div class="col-xl-12">
           <div class="card" >
             <div class="card-body" >
@@ -13,7 +13,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;">
+      <br />
+      <div class="row" >
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header">
@@ -246,7 +247,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;">
+      <br />
+      <div class="row">
         <div class="col-xl-12">
           <div class="card" >
             <div class="card-header">
@@ -303,8 +305,9 @@
           </div>
         </div>
       </div>
+      <br />
       <!-- Manual Ordering Roster -->
-      <div class="row" style="margin-bottom: 2em;" v-if="generated">
+      <div class="row" v-if="generated">
          <div class="col-xl-12">
            <div class="card">
             <div class="card-header">
@@ -359,7 +362,8 @@
            </div>
          </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;" v-if="generated">
+      <br />
+      <div class="row"  v-if="generated">
         <div class="col-xl-12">
            <div class="card">
             <div class="card-header">
@@ -379,7 +383,8 @@
           </div>
         </div>
       </div>
-      <div class="row" style="margin-bottom: 2em;" v-if="generated">
+      <br />
+      <div class="row"  v-if="generated">
         <div class="col-xl-12">
            <div class="card">
             <div class="card-header">
@@ -411,7 +416,7 @@ import RangeSlider from '@/components/RangeSlider.vue'
 import SingleSlider from '@/components/SingleSlider.vue'
 
 export default {
-  name: "Admin",
+  name: "BalancedDraft",
   components: {
     RangeSlider, SingleSlider, MultiSelect
   },
