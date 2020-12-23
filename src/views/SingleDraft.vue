@@ -329,8 +329,8 @@ export default {
     async connect_lobby() {
       let self = this;
 
-      var urlNegotiate = `http://localhost:7071/api/single/${this.lobby_id}`;
-      var urlCreateSession = `http://localhost:7071/api/single/create`;
+      var urlNegotiate = `${process.env.VUE_APP_BASE_URL}/api/single/${this.lobby_id}`;
+      var urlCreateSession = `${process.env.VUE_APP_BASE_URL}/api/single/create`;
 
       await axios.post(urlCreateSession, {
         id: this.lobby_id,
@@ -353,12 +353,12 @@ export default {
       connection.start();
     },
     async get_lobby() {
-      var url = `http://localhost:7071/api/single/get/${this.lobby_id}/`;
+      var url = `${process.env.VUE_APP_BASE_URL}/api/single/get/${this.lobby_id}/`;
       var response = await axios.get(url)
       this.slots = response.data.slots
     },
     async claim_slot(index) {
-      var url = `http://localhost:7071/api/single/claim/`;
+      var url = `${process.env.VUE_APP_BASE_URL}/api/single/claim/`;
       await axios.post(url, {
         session: this.lobby_id,
         slot: index
@@ -366,7 +366,7 @@ export default {
       this.slot = index;
     },
     async player_selection(key) {
-      var url = `http://localhost:7071/api/single/draft/`;
+      var url = `${process.env.VUE_APP_BASE_URL}/api/single/draft/`;
       await axios.post(url, {
         session: this.lobby_id,
         slot: this.slot,
