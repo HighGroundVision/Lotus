@@ -232,7 +232,8 @@ export default {
       var dire = [1,3,5,7,9]
       
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
-
+      cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
+      
       for (const index of radiant) {
         let key = this.selection[index];
         if(key) {
@@ -256,7 +257,8 @@ export default {
       var dire = [1,3,5,7,9]
 
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
-      
+      cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
+
       for (const index of radiant) {
         let key = this.selection[index];
         if(key) {
@@ -373,7 +375,13 @@ export default {
         key: key
       })
       this.drafted = this.heroes.find(_ => _.key == key);
-    }
+    },
+    launch() {
+      let cmd = this.launchOptions;
+      let params = encodeURIComponent(cmd);
+      let url = "steam://run/570//" + params;
+      window.open(url);
+    },
   }
 };
 </script>
