@@ -65,25 +65,47 @@
             </div>
             <div class="card-body text-center">
               <div class="row">
-                <div class="col-xl-6">
-                  <h4 class="text-success">The Radiant</h4>
-                </div>
-                <div class="col-xl-6">
-                  <h4 class="text-danger">The Dire</h4>
+                <div class="col-xl-12">
+                  <p>
+                    Below is the random roster that was generated for this session. 
+                    You can share this session with your looby by clicked the Share button.
+                    After which players can select the correct slot and then pick a hero.
+                    When the player selects a slot the icon next to the slot <img  src="@/assets/user-disconnected.svg" class="user user-disconnected" style="width:18px;height:18px;" /> will change to <img  src="@/assets/user-connected.svg" class="user user-connected" style="width:18px;height:18px;" /> and then to <img  src="@/assets/user-star.svg" class="user user-picked" style="width:18px;height:18px;" /> when they pick.
+                    You as the host can override any picks.
+                  </p>
                 </div>
               </div>
               <hr />
               <div class="row">
-                <template v-for="(slot, index) in slots" v-bind:key="index">
-                  <div class="col-xl-6">
-                    <img v-if="connections[index]" src="@/assets/user-connected.svg" class="user user-connected"/>
-                    <img v-else  src="@/assets/user-disconnected.svg" class="user user-disconnected" />
-                    <template v-for="(item) in slot" v-bind:key="item.id">
-                      <img v-if="selection[index] == undefined" :src="item.image_banner" class="image" @click="host_selection(index, item.key)" />
-                      <img v-else :src="item.image_banner" class="image" @click="host_selection(index, item.key)" v-bind:class="{'picked': item.key == selection[index], 'discarded': item.key != selection[index]}" />
-                    </template>
-                  </div>
-                </template>
+                <div class="col-xl-6">
+                  <h4 class="text-success">The Radiant</h4>
+                  <template v-for="(slot, index) in slots.slice(0,5)" v-bind:key="index">
+                    <div>
+                      <img v-if="!selection[index] && connections[index]" src="@/assets/user-connected.svg" class="user user-connected"/>
+                      <img v-if="selection[index]" src="@/assets/user-star.svg" class="user user-picked"/>
+                      <img v-if="!connections[index] && !selection[index]"  src="@/assets/user-disconnected.svg" class="user user-disconnected" />
+                      <template v-for="(item) in slot" v-bind:key="item.id">
+                        <img v-if="selection[index] == undefined" :src="item.image_banner" class="image" @click="host_selection(index, item.key)" />
+                        <img v-else :src="item.image_banner" class="image" @click="host_selection(index, item.key)" v-bind:class="{'picked': item.key == selection[index], 'discarded': item.key != selection[index]}" />
+                      </template>
+                    </div>
+                  </template>
+                </div>
+                <div class="col-xl-6">
+                  <h4 class="text-danger">The Dire</h4>
+                  <template v-for="(slot, index) in slots.slice(5)" v-bind:key="index">
+                    <div>
+                      <img v-if="!selection[index+5] && connections[index+5]" src="@/assets/user-connected.svg" class="user user-connected"/>
+                      <img v-if="selection[index+5]" src="@/assets/user-star.svg" class="user user-picked"/>
+                      <img v-if="!connections[index+5] && !selection[index+5]"  src="@/assets/user-disconnected.svg" class="user user-disconnected" />
+                      <template v-for="(item) in slot" v-bind:key="item.id">
+                        <img v-if="selection[index+5] == undefined" :src="item.image_banner" class="image" @click="host_selection(index+5, item.key)" />
+                        <img v-else :src="item.image_banner" class="image" @click="host_selection(index+5, item.key)" v-bind:class="{'picked': item.key == selection[index+5], 'discarded': item.key != selection[index+5]}" />
+                      </template>
+                    </div>
+                  </template>
+                </div>
+
               </div>
             </div>
           </div>
@@ -103,9 +125,11 @@
               <p>
                 For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
                 You can manually enter these commands in the Dota2 Console one by one.<br />
-                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.
+                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.<br />
+                As well, you can use the 'Copy Roster' button to copy the console commands for use with Gungir.
               </p>
-              <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
+              <button type="button" class="btn btn-primary m-1" @click="launch">Set Roster</button>
+              <button type="button" class="btn btn-primary m-1" @click="copy">Copy Roster</button>
             </div>
           </div>
         </div>
@@ -155,18 +179,20 @@
                 <div class="row">
                   <div class="col-xl-6">
                     <h4 class="text-success">The Radiant</h4>
+                    <template v-for="(slot, index) in slots.slice(0,5)" v-bind:key="index">
+                      <div>
+                        <button type="button" class="btn btn-success btn-block m-2" @click="claim_slot(index)">Claim Radiant Slot {{index+1}}</button>
+                      </div>
+                    </template>
                   </div>
                   <div class="col-xl-6">
                     <h4 class="text-danger">The Dire</h4>
+                    <template v-for="(slot, index) in slots.slice(5)" v-bind:key="index">
+                      <div>
+                        <button type="button" class="btn btn-danger btn-block m-2" @click="claim_slot(index+5)">Claim Dire Slot {{index+1}}</button>
+                      </div>
+                    </template>
                   </div>
-                </div>
-                <hr />
-                <div class="row">
-                  <template v-for="(slot, index) in slots" v-bind:key="index">
-                    <div class="col-xl-6">
-                      <button type="button" class="btn btn-primary btn-block m-2" @click="claim_slot(index)">Claim Slot</button>
-                    </div>
-                  </template>
                 </div>
               </div>
             </div>
@@ -382,6 +408,10 @@ export default {
       let url = "steam://run/570//" + params;
       window.open(url);
     },
+    copy() {
+      let cmd = this.commands;
+      navigator.clipboard.writeText(cmd);
+    },
   }
 };
 </script>
@@ -410,6 +440,9 @@ export default {
 }
 .user-connected {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(100%) contrast(119%);
+}
+.user-picked {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg) brightness(100%) contrast(119%);
 }
 .picked {
   filter: brightness(120%);

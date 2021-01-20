@@ -165,30 +165,11 @@
               <p>
                 For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
                 You can manually enter these commands in the Dota2 Console one by one.<br />
-                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.
+                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.<br />
+                As well, you can use the 'Copy Roster' button to copy the console commands for use with Gungir.
               </p>
               <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row" v-if="hasSelection">
-        <div class="col-xl-12">
-           <div class="card">
-            <div class="card-header">
-              <h5>Cleanup</h5>
-            </div>
-            <div class="card-body" >
-              <pre class="card-text">dota_gamemode_ability_draft_set_draft_hero_and_team_clear</pre>
-            </div>
-            <div class="card-footer">
-              <p>
-                The roster is remembered until cleared, this is even between restarts of Dota.<br />
-                So when you done remember to use the clear command.<br />
-                You can also use the 'Clear Roster' button which will start dota directly and the console commands will be set for you via the Launch Options.
-              </p>
-              <button type="button" class="btn btn-primary" @click="cleanup">Clear Roster</button>
+              <button type="button" class="btn btn-primary m-1" @click="copy">Copy Roster</button>
             </div>
           </div>
         </div>
@@ -330,11 +311,9 @@ export default {
       let url = "steam://run/570//" + params;
       window.open(url);
     },
-    cleanup() {
-      var cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear";
-      let params = encodeURIComponent(cmd);
-      let url = "steam://run/570//" + params;
-      window.open(url);
+    copy() {
+      let cmd = this.commands;
+      navigator.clipboard.writeText(cmd);
     },
     clear() {
       for (const hero of this.heroes) {
