@@ -254,8 +254,8 @@ export default {
       return this.drafted != null;
     },
     commands: function() {
-      var radiant = [0,2,4,6,8]
-      var dire = [1,3,5,7,9]
+      var radiant = [0,1,2,3,4]
+      var dire = [5,6,7,8,9]
       
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
       cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
@@ -279,8 +279,8 @@ export default {
       return cmd;
     },
     launchOptions: function() {
-      var radiant = [0,2,4,6,8]
-      var dire = [1,3,5,7,9]
+      var radiant = [0,1,2,3,4]
+      var dire = [5,6,7,8,9]
 
       let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
       cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
