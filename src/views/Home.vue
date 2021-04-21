@@ -191,9 +191,10 @@
             <div class="card-body">
               <h5 class="card-title">Elimination</h5>
               <p class="card-text">
-                Once a hero is picked they are elimated from future pools.
+                Each team's captain bans and chooses heroes for the team's roster. 
+                Once a hero is picked they are eliminated from future pools.
               </p>
-              <p class="blockquote-footer">Submitted by CandianChicken</p>
+              <p class="blockquote-footer">Submitted by CanadianChicken</p>
             </div>
             <div class="card-footer" style="height: 60px;">
               Coming Soon

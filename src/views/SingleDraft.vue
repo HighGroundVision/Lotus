@@ -436,7 +436,7 @@ export default {
   margin: 2px;
 }
 .user-disconnected {
-  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(10deg) brightness(100%) contrast(119%);
+  filter: invert(40%) sepia(20%) saturate(2476%) hue-rotate(320deg) brightness(100%) contrast(119%);
 }
 .user-connected {
   filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(100%) contrast(119%);

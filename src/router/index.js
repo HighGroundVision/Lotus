@@ -23,7 +23,32 @@ const routes = [{
         name: "SingleDraft",
         component: () =>
             import ( /* webpackChunkName: "single" */ "../views/SingleDraft.vue")
+    },
+    {
+        path: "/elimination",
+        name: "EliminationCreate",
+        component: () =>
+            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Create.vue")
+    },
+    {
+        path: "/elimination/:id/series",
+        name: "EliminationSeries",
+        component: () =>
+            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Series.vue")
+    },
+    {
+        path: "/elimination/:id/lobby/:match/:team",
+        name: "EliminationLobby",
+        component: () =>
+            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Lobby.vue")
+    },
+    {
+        path: "/elimination/:id/match/:match",
+        name: "EliminationMatch",
+        component: () =>
+            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Match.vue")
     }
+
 ];
 
 // route level code-splitting

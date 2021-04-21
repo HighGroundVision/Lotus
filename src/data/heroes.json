@@ -17,7 +17,7 @@
         "max_agility": 68,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5173674589,
+        "win_rate": 0.5099549211,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -43,7 +43,7 @@
         "max_agility": 67,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4901222954,
+        "win_rate": 0.4733148661,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -74,7 +74,7 @@
         "max_agility": 86,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4797742239,
+        "win_rate": 0.4905199925,
         "picked": false,
         "damage": 26,
         "roles": [
@@ -102,7 +102,7 @@
         "max_agility": 108,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4447488584,
+        "win_rate": 0.4638999431,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -130,7 +130,7 @@
         "max_agility": 91,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5109223301,
+        "win_rate": 0.5286478228,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -156,7 +156,7 @@
         "max_agility": 86,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5319548872,
+        "win_rate": 0.5391955098,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -183,7 +183,7 @@
         "max_agility": 100,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5095022624,
+        "win_rate": 0.5329873981,
         "picked": false,
         "damage": 38,
         "roles": [
@@ -212,7 +212,7 @@
         "max_agility": 69,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4735849057,
+        "win_rate": 0.5010756894,
         "picked": false,
         "damage": 18,
         "roles": [
@@ -241,7 +241,7 @@
         "max_agility": 66,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.486536676,
+        "win_rate": 0.4732549317,
         "picked": false,
         "damage": 39,
         "roles": [
@@ -270,7 +270,7 @@
         "max_agility": 124,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5321849501,
+        "win_rate": 0.5344422347,
         "picked": false,
         "damage": 38,
         "roles": [
@@ -300,7 +300,7 @@
         "max_agility": 99,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5076481836,
+        "win_rate": 0.516220831,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -327,7 +327,7 @@
         "max_agility": 79,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4928057554,
+        "win_rate": 0.515051395,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -358,7 +358,7 @@
         "max_agility": 71,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.495,
+        "win_rate": 0.4832785618,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -387,7 +387,7 @@
         "max_agility": 105,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4706976744,
+        "win_rate": 0.4535168772,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -416,7 +416,7 @@
         "max_agility": 45,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5282651072,
+        "win_rate": 0.5418469062,
         "picked": false,
         "damage": 37,
         "roles": [
@@ -446,7 +446,7 @@
         "max_agility": 60,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5325389551,
+        "win_rate": 0.5097414762,
         "picked": false,
         "damage": 44,
         "roles": [
@@ -474,7 +474,7 @@
         "max_agility": 78,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5027985075,
+        "win_rate": 0.4957870548,
         "picked": false,
         "damage": 30,
         "roles": [
@@ -500,7 +500,7 @@
         "max_agility": 103,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4480519481,
+        "win_rate": 0.4572966951,
         "picked": false,
         "damage": 18,
         "roles": [
@@ -526,7 +526,7 @@
         "max_agility": 82,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5409356725,
+        "win_rate": 0.528960491,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -556,7 +556,7 @@
         "max_agility": 64,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4950848972,
+        "win_rate": 0.4661584232,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -585,7 +585,7 @@
         "max_agility": 72,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5230914232,
+        "win_rate": 0.4987593052,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -612,7 +612,7 @@
         "max_agility": 66,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4826007326,
+        "win_rate": 0.4808502489,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -639,7 +639,7 @@
         "max_agility": 72,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5569143932,
+        "win_rate": 0.5275324187,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -667,7 +667,7 @@
         "max_agility": 56,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5680970149,
+        "win_rate": 0.5597014925,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -696,7 +696,7 @@
         "max_agility": 57,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4723756906,
+        "win_rate": 0.4725089135,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -725,7 +725,7 @@
         "max_agility": 38,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4484018265,
+        "win_rate": 0.4602573808,
         "picked": false,
         "damage": 38,
         "roles": [
@@ -755,7 +755,7 @@
         "max_agility": 79,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4830827068,
+        "win_rate": 0.4976103995,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -784,7 +784,7 @@
         "max_agility": 107,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5108388313,
+        "win_rate": 0.5080800308,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -812,7 +812,7 @@
         "max_agility": 89,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5408038977,
+        "win_rate": 0.5562847047,
         "picked": false,
         "damage": 30,
         "roles": [
@@ -840,7 +840,7 @@
         "max_agility": 54,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5098591549,
+        "win_rate": 0.5119800652,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -869,7 +869,7 @@
         "max_agility": 68,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.47920434,
+        "win_rate": 0.4885165663,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -898,7 +898,7 @@
         "max_agility": 100,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4507042254,
+        "win_rate": 0.458490566,
         "picked": false,
         "damage": 35,
         "roles": [
@@ -926,7 +926,7 @@
         "max_agility": 73,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4986449864,
+        "win_rate": 0.4873822976,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -954,7 +954,7 @@
         "max_agility": 44,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4916044776,
+        "win_rate": 0.4810102179,
         "picked": false,
         "damage": 27,
         "roles": [
@@ -983,7 +983,7 @@
         "max_agility": 109,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4628252788,
+        "win_rate": 0.4681599408,
         "picked": false,
         "damage": 40,
         "roles": [
@@ -1013,7 +1013,7 @@
         "max_agility": 75,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4667274385,
+        "win_rate": 0.4859101295,
         "picked": false,
         "damage": 23,
         "roles": [
@@ -1040,7 +1040,7 @@
         "max_agility": 134,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.6234003656,
+        "win_rate": 0.6010072748,
         "picked": false,
         "damage": 19,
         "roles": [
@@ -1068,7 +1068,7 @@
         "max_agility": 132,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5866666667,
+        "win_rate": 0.5747911921,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -1094,7 +1094,7 @@
         "max_agility": 69,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4663551402,
+        "win_rate": 0.4509694258,
         "picked": false,
         "damage": 23,
         "roles": [
@@ -1120,7 +1120,7 @@
         "max_agility": 71,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5479115479,
+        "win_rate": 0.5393089634,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -1150,7 +1150,7 @@
         "max_agility": 62,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5138226883,
+        "win_rate": 0.5180471125,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -1176,7 +1176,7 @@
         "max_agility": 46,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4838012959,
+        "win_rate": 0.4856866538,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -1203,7 +1203,7 @@
         "max_agility": 118,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5473781049,
+        "win_rate": 0.5363636364,
         "picked": false,
         "damage": 18,
         "roles": [
@@ -1233,7 +1233,7 @@
         "max_agility": 63,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4643902439,
+        "win_rate": 0.4683663834,
         "picked": false,
         "damage": 21,
         "roles": [
@@ -1260,7 +1260,7 @@
         "max_agility": 53,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.524929445,
+        "win_rate": 0.513354802,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -1291,7 +1291,7 @@
         "max_agility": 69,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5142332415,
+        "win_rate": 0.5212109526,
         "picked": false,
         "damage": 37,
         "roles": [
@@ -1319,7 +1319,7 @@
         "max_agility": 107,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5286624204,
+        "win_rate": 0.5421466447,
         "picked": false,
         "damage": 24,
         "roles": [
@@ -1347,7 +1347,7 @@
         "max_agility": 75,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4587912088,
+        "win_rate": 0.4730561971,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -1372,7 +1372,7 @@
         "max_agility": 90,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4822627037,
+        "win_rate": 0.4980177459,
         "picked": false,
         "damage": 24,
         "roles": [
@@ -1400,7 +1400,7 @@
         "max_agility": 77,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.517921147,
+        "win_rate": 0.5279026217,
         "picked": false,
         "damage": 23,
         "roles": [
@@ -1427,7 +1427,7 @@
         "max_agility": 63,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4628736741,
+        "win_rate": 0.4684599356,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -1456,7 +1456,7 @@
         "max_agility": 104,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.469043152,
+        "win_rate": 0.4732695554,
         "picked": false,
         "damage": 20,
         "roles": [
@@ -1483,7 +1483,7 @@
         "max_agility": 126,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5870337478,
+        "win_rate": 0.5580390684,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -1509,7 +1509,7 @@
         "max_agility": 46,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4676390155,
+        "win_rate": 0.4717909883,
         "picked": false,
         "damage": 26,
         "roles": [
@@ -1539,7 +1539,7 @@
         "max_agility": 90,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5323671498,
+        "win_rate": 0.5349053101,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -1568,7 +1568,7 @@
         "max_agility": 77,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5478011472,
+        "win_rate": 0.5229514416,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -1597,7 +1597,7 @@
         "max_agility": 130,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5119266055,
+        "win_rate": 0.5065254398,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -1626,7 +1626,7 @@
         "max_agility": 71,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4562982005,
+        "win_rate": 0.4654817105,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -1655,7 +1655,7 @@
         "max_agility": 129,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5333935018,
+        "win_rate": 0.5393722984,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -1685,7 +1685,7 @@
         "max_agility": 133,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5704035874,
+        "win_rate": 0.5613348248,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -1712,7 +1712,7 @@
         "max_agility": 153,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5354037267,
+        "win_rate": 0.5328315598,
         "picked": false,
         "damage": 13,
         "roles": [
@@ -1742,7 +1742,7 @@
         "max_agility": 126,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5769230769,
+        "win_rate": 0.5705645161,
         "picked": false,
         "damage": 24,
         "roles": [
@@ -1773,7 +1773,7 @@
         "max_agility": 130,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.6071428571,
+        "win_rate": 0.5904744047,
         "picked": false,
         "damage": 32,
         "roles": [
@@ -1801,7 +1801,7 @@
         "max_agility": 51,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4329159213,
+        "win_rate": 0.4291643086,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -1830,7 +1830,7 @@
         "max_agility": 87,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5096322242,
+        "win_rate": 0.5257826888,
         "picked": false,
         "damage": 40,
         "roles": [
@@ -1860,7 +1860,7 @@
         "max_agility": 94,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4775549188,
+        "win_rate": 0.4781794344,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -1889,7 +1889,7 @@
         "max_agility": 59,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5236270754,
+        "win_rate": 0.5290622578,
         "picked": false,
         "damage": 40,
         "roles": [
@@ -1917,7 +1917,7 @@
         "max_agility": 69,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5129740519,
+        "win_rate": 0.5142318567,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -1945,7 +1945,7 @@
         "max_agility": 66,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4883068288,
+        "win_rate": 0.484935164,
         "picked": false,
         "damage": 16,
         "roles": [
@@ -1974,7 +1974,7 @@
         "max_agility": 61,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.531598513,
+        "win_rate": 0.515853427,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -2002,7 +2002,7 @@
         "max_agility": 114,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4437148218,
+        "win_rate": 0.4746500189,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -2034,7 +2034,7 @@
         "max_agility": 125,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4729849424,
+        "win_rate": 0.471134212,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -2061,7 +2061,7 @@
         "max_agility": 122,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4920930233,
+        "win_rate": 0.479886148,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -2090,7 +2090,7 @@
         "max_agility": 51,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5073394495,
+        "win_rate": 0.4860113422,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -2118,7 +2118,7 @@
         "max_agility": 97,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4528985507,
+        "win_rate": 0.4716587678,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -2145,7 +2145,7 @@
         "max_agility": 56,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4721485411,
+        "win_rate": 0.4660447761,
         "picked": false,
         "damage": 45,
         "roles": [
@@ -2172,7 +2172,7 @@
         "max_agility": 63,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5429864253,
+        "win_rate": 0.5170842825,
         "picked": false,
         "damage": 23,
         "roles": [
@@ -2199,7 +2199,7 @@
         "max_agility": 97,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5154440154,
+        "win_rate": 0.5039179104,
         "picked": false,
         "damage": 24,
         "roles": [
@@ -2225,7 +2225,7 @@
         "max_agility": 100,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5193370166,
+        "win_rate": 0.5205915387,
         "picked": false,
         "damage": 24,
         "roles": [
@@ -2252,7 +2252,7 @@
         "max_agility": 60,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4702702703,
+        "win_rate": 0.4652255639,
         "picked": false,
         "damage": 43,
         "roles": [
@@ -2280,7 +2280,7 @@
         "max_agility": 98,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4887780549,
+        "win_rate": 0.4946767073,
         "picked": false,
         "damage": 27,
         "roles": [
@@ -2308,7 +2308,7 @@
         "max_agility": 73,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4603773585,
+        "win_rate": 0.4676992822,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -2339,7 +2339,7 @@
         "max_agility": 84,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5,
+        "win_rate": 0.499488491,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -2368,7 +2368,7 @@
         "max_agility": 125,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5469043152,
+        "win_rate": 0.5290083411,
         "picked": false,
         "damage": 22,
         "roles": [
@@ -2395,7 +2395,7 @@
         "max_agility": 64,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5036563071,
+        "win_rate": 0.4987811738,
         "picked": false,
         "damage": 49,
         "roles": [
@@ -2423,7 +2423,7 @@
         "max_agility": 94,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5343915344,
+        "win_rate": 0.5301161103,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -2453,7 +2453,7 @@
         "max_agility": 37,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4927404719,
+        "win_rate": 0.4948083821,
         "picked": false,
         "damage": 19,
         "roles": [
@@ -2479,7 +2479,7 @@
         "max_agility": 89,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5196078431,
+        "win_rate": 0.5241523016,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -2509,7 +2509,7 @@
         "max_agility": 72,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4413407821,
+        "win_rate": 0.4458801498,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -2538,7 +2538,7 @@
         "max_agility": 73,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5335786569,
+        "win_rate": 0.5254988914,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -2565,7 +2565,7 @@
         "max_agility": 123,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5503597122,
+        "win_rate": 0.5509398496,
         "picked": false,
         "damage": 16,
         "roles": [
@@ -2590,7 +2590,7 @@
         "max_agility": 86,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4623655914,
+        "win_rate": 0.4553621561,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -2618,7 +2618,7 @@
         "max_agility": 68,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4826941066,
+        "win_rate": 0.4887553315,
         "picked": false,
         "damage": 36,
         "roles": [
@@ -2649,7 +2649,7 @@
         "max_agility": 73,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4810238305,
+        "win_rate": 0.4771956276,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -2677,7 +2677,7 @@
         "max_agility": 81,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5033428844,
+        "win_rate": 0.5168728909,
         "picked": false,
         "damage": 42,
         "roles": [
@@ -2705,7 +2705,7 @@
         "max_agility": 53,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5009765625,
+        "win_rate": 0.5074768124,
         "picked": false,
         "damage": 10,
         "roles": [
@@ -2732,7 +2732,7 @@
         "max_agility": 119,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5,
+        "win_rate": 0.4757028486,
         "picked": false,
         "damage": 33,
         "roles": [
@@ -2759,7 +2759,7 @@
         "max_agility": 166,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5606361829,
+        "win_rate": 0.5477634572,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -2785,7 +2785,7 @@
         "max_agility": 60,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4750445633,
+        "win_rate": 0.4813641446,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -2816,7 +2816,7 @@
         "max_agility": 64,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4861367837,
+        "win_rate": 0.4837314275,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -2842,7 +2842,7 @@
         "max_agility": 49,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4679487179,
+        "win_rate": 0.4700854701,
         "picked": false,
         "damage": 27,
         "roles": [
@@ -2868,7 +2868,7 @@
         "max_agility": 0,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.466367713,
+        "win_rate": 0.4710211592,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -2897,7 +2897,7 @@
         "max_agility": 75,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4648700674,
+        "win_rate": 0.4833333333,
         "picked": false,
         "damage": 66,
         "roles": [
@@ -2927,7 +2927,7 @@
         "max_agility": 120,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4903403864,
+        "win_rate": 0.5005653977,
         "picked": false,
         "damage": 31,
         "roles": [
@@ -2956,7 +2956,7 @@
         "max_agility": 86,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5415549598,
+        "win_rate": 0.5501480385,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -2984,7 +2984,7 @@
         "max_agility": 60,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.5333943275,
+        "win_rate": 0.5179573513,
         "picked": false,
         "damage": 40,
         "roles": [
@@ -3014,7 +3014,7 @@
         "max_agility": 34,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.477809254,
+        "win_rate": 0.4818731118,
         "picked": false,
         "damage": 39,
         "roles": [
@@ -3041,7 +3041,7 @@
         "max_agility": 90,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4247211896,
+        "win_rate": 0.4493083191,
         "picked": false,
         "damage": 26,
         "roles": [
@@ -3070,7 +3070,7 @@
         "max_agility": 134,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.490403071,
+        "win_rate": 0.4956805529,
         "picked": false,
         "damage": 25,
         "roles": [
@@ -3098,7 +3098,7 @@
         "max_agility": 122,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4672727273,
+        "win_rate": 0.4784997159,
         "picked": false,
         "damage": 17,
         "roles": [
@@ -3126,7 +3126,7 @@
         "max_agility": 96,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4901036758,
+        "win_rate": 0.4982986767,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -3155,7 +3155,7 @@
         "max_agility": 50,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4701857283,
+        "win_rate": 0.4749034749,
         "picked": false,
         "damage": 28,
         "roles": [
@@ -3185,7 +3185,7 @@
         "max_agility": 85,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4541241891,
+        "win_rate": 0.4669282511,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -3212,7 +3212,7 @@
         "max_agility": 40,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5257641921,
+        "win_rate": 0.5297307405,
         "picked": false,
         "damage": 29,
         "roles": [
@@ -3238,7 +3238,7 @@
         "max_agility": 107,
         "primary_attribute": "AGILITY",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4396632367,
+        "win_rate": 0.4301359517,
         "picked": false,
         "damage": 41,
         "roles": [
@@ -3265,7 +3265,7 @@
         "max_agility": 59,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4750679964,
+        "win_rate": 0.4944300037,
         "picked": false,
         "damage": 30,
         "roles": [
@@ -3293,7 +3293,7 @@
         "max_agility": 73,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4851024209,
+        "win_rate": 0.4671926111,
         "picked": false,
         "damage": 17,
         "roles": [
@@ -3321,7 +3321,7 @@
         "max_agility": 55,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.5194218609,
+        "win_rate": 0.4888649425,
         "picked": false,
         "damage": 34,
         "roles": [
@@ -3352,7 +3352,7 @@
         "max_agility": 69,
         "primary_attribute": "STRENGTH",
         "attack_capabilities": "MELEE",
-        "win_rate": 0.4427549195,
+        "win_rate": 0.4778225806,
         "picked": false,
         "damage": 41,
         "roles": [
@@ -3380,7 +3380,7 @@
         "max_agility": 47,
         "primary_attribute": "INTELLECT",
         "attack_capabilities": "RANGED",
-        "win_rate": 0.4614670381,
+        "win_rate": 0.4653905646,
         "picked": false,
         "damage": 37,
         "roles": [

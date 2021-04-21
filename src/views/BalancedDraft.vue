@@ -293,7 +293,7 @@
                   </div>
                 </div>
                 <div class="col-xl-6">
-                  <single-slider v-model="pre_time" :min="30" :max="120"></single-slider>
+                  <single-slider v-model="pre_time" :min="10" :max="120"></single-slider>
                 </div>
               </div>
             </div>

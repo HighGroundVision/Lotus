@@ -29,10 +29,6 @@ export default {
         type: Number,
         required: true,
       },
-      type: {
-        type: Number,
-        required: true,
-      },
       min: {
         type: Number,
         default: 0
@@ -64,8 +60,8 @@ export default {
           },
       });
       slider.noUiSlider.on('update', function (values, handle, unencoded, tap, positions, noUiSlider) {
-        debugger;
-        vm.$emit('update:modelValue', Math.round(unencoded[0]));
+        var item = Math.round(unencoded[0]);
+        vm.$emit('update:modelValue', item);
       });
     })
     
