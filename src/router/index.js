@@ -22,13 +22,25 @@ const routes = [{
         path: "/single-draft",
         name: "SingleDraft",
         component: () =>
-            import ( /* webpackChunkName: "single" */ "../views/SingleDraft.vue")
+            import ( /* webpackChunkName: "single" */ "../views/single/Index.vue")
+    },
+    {
+        path: "/single-draft/lobby/:id",
+        name: "SingleDraftLobby",
+        component: () =>
+            import ( /* webpackChunkName: "single" */ "../views/single/Lobby.vue")
+    },
+    {
+        path: "/single-draft/host/:id",
+        name: "SingleDraftHost",
+        component: () =>
+            import ( /* webpackChunkName: "single" */ "../views/single/Host.vue")
     },
     {
         path: "/elimination",
-        name: "EliminationCreate",
+        name: "EliminationIndex",
         component: () =>
-            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Create.vue")
+            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Index.vue")
     },
     {
         path: "/elimination/:id/series",

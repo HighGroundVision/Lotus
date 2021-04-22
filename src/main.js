@@ -4,16 +4,16 @@ import router from "./router";
 import store from "./store";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import Toast from 'vue3-toast-single'
+import Toaster from '@meforma/vue-toaster';
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import 'vue3-toast-single/dist/toast.css'
+
 
 createApp(App)
-    .use(Toast)
     .use(store)
     .use(router)
+    .use(Toaster)
     .use(VueAxios, axios)
     .mount("#app");

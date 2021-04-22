@@ -187,7 +187,6 @@ import SingleSlider from '@/components/SingleSlider.vue'
 import Commands from '@/components/Commands.vue'
 
 export default {
-  name: "HostChoice",
   components: {
     SingleSlider, Commands
   },

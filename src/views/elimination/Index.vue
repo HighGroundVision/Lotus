@@ -105,7 +105,6 @@ function defaultOptions() {
 }
 
 export default {
-  name: "Elimination",
   data() {
     return {
       format: 1,

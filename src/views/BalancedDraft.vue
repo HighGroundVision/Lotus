@@ -377,7 +377,6 @@ import SingleSlider from '@/components/SingleSlider.vue'
 import Commands from '@/components/Commands.vue'
 
 export default {
-  name: "BalancedDraft",
   components: {
     RangeSlider, SingleSlider, MultiSelect, Commands
   },
