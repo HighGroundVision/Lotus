@@ -48,7 +48,6 @@ import Countdown from 'countdown-vue'
 import * as signalR from "@microsoft/signalr";
 
 export default {
-  name: "Elimination",
   components: { Countdown },
   data() {
     return {

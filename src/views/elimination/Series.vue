@@ -252,7 +252,6 @@ import SingleSlider from '@/components/SingleSlider.vue'
 import Match from '@/components/Match.vue'
 
 export default {
-  name: "Elimination",
   components: {
     RangeSlider, SingleSlider, MultiSelect, Match, draggable
   },
