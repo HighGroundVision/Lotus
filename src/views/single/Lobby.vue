@@ -115,7 +115,7 @@
                 <p>You Teammate Options</p>
                 <template v-for="(item) in team" v-bind:key="item.slot">
                  <template v-for="(selection) in item.selection" v-bind:key="selection.id">
-                    <div v-if="data.switch_show_choice" class="d-inline">
+                    <div v-if="item.choice" class="d-inline">
                       <img :src="selection.image_banner" class="image" v-bind:class="{'picked':item.choice?.id == selection.id, 'discarded': item.choice?.id != selection.id}" />
                     </div>
                     <div v-else class="d-inline">
