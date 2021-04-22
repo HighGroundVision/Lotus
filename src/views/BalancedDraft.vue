@@ -363,28 +363,7 @@
          </div>
       </div>
       <br />
-      <div class="row"  v-if="generated">
-        <div class="col-xl-12">
-           <div class="card">
-            <div class="card-header">
-              <h5>Commands</h5>
-            </div>
-            <div class="card-body" >
-              <pre class="card-text">{{commands}}</pre>
-            </div>
-            <div class="card-footer">
-              <p>
-                For more details about commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
-                You can manually enter these commands in the Dota2 Console one by one. OR<br />
-                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.<br />
-                As well, you can use the 'Copy Roster' button to copy the console commands for use with Gungir.
-              </p>
-              <button type="button" class="btn btn-primary" @click="launch">Set Roster</button>
-              <button type="button" class="btn btn-primary m-1" @click="copy">Copy Roster</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Commands v-if="generated" :options="options" ></Commands>
     </div>
   </div>
 </template>
@@ -395,11 +374,12 @@ import data from '@/data/heroes.json'
 import MultiSelect from 'primevue/multiselect';
 import RangeSlider from '@/components/RangeSlider.vue'
 import SingleSlider from '@/components/SingleSlider.vue'
+import Commands from '@/components/Commands.vue'
 
 export default {
   name: "BalancedDraft",
   components: {
-    RangeSlider, SingleSlider, MultiSelect
+    RangeSlider, SingleSlider, MultiSelect, Commands
   },
   data() {
     let sg = data.map(_ => _.strength_gain);
@@ -490,6 +470,21 @@ export default {
     }
   },
   computed: {
+    options: function () {
+      return {
+        roster_radiant: this.roster_radiant,
+        roster_dire: this.roster_dire,
+        roster_extra: this.roster_extra,
+        shuffle_player: this.shuffle_player,
+        switch_per_player_time: this.switch_per_player_time,
+        per_player_time: this.per_player_time,
+        switch_pre_round_time: this.switch_pre_round_time,
+        pre_round_time: this.pre_round_time,
+        switch_pre_time: this.switch_pre_time,
+        pre_time: this.pre_time,
+      };
+    },
+    /*
     commands: function() {
       let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
 
@@ -548,6 +543,7 @@ export default {
       }
       return cmd;
     }
+    */
   },
   methods: {
     generate() {
@@ -773,6 +769,7 @@ export default {
 
       return false;
     },
+    /*
     launch() {
       let cmd = this.launchOptions;
       let params = encodeURIComponent(cmd);
@@ -783,8 +780,7 @@ export default {
       let cmd = this.commands;
       navigator.clipboard.writeText(cmd);
     }
-  },
-  mounted() {
+    */
   }
 };
 </script>

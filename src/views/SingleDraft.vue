@@ -46,11 +46,15 @@
              <h5>Join Session</h5>
             </div>
             <div class="card-body">
-              <p>Enter the Session Identity you received from the lobby host, click the Join button and select you slot in the lobby.</p>
-              <input v-model="lobby_id" class="form-control" placeholder="Session Identity" />
+              <p>
+                Enter the Session Identity you received from the lobby host, click the Join button and select you slot in the lobby. 
+                You also need to enter a Persona/Nickname so the host can confirm that all players are in the correct slot.
+              </p>
+              <input v-model="lobby_id" class="form-control m-1" placeholder="Session Identity" />
+              <input v-model="name" class="form-control m-1" placeholder="Persona/Nickname" />
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-primary" v-bind:disabled="hasLobbyId" @click="join">Join</button>
+              <button type="button" class="btn btn-primary" v-bind:disabled="readyToJoin" @click="join">Join</button>
             </div>
           </div>
         </div>
@@ -60,7 +64,6 @@
         <div class="col-xl-12">
           <div class="card">
             <div class="card-header">
-            <button type="button" class="btn btn-sm btn-success float-right" @click="share">Share</button>
              <h5>Host</h5>
             </div>
             <div class="card-body text-center">
@@ -105,35 +108,18 @@
                     </div>
                   </template>
                 </div>
-
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <br />
-      <div class="row" v-if="isHost">
-        <div class="col-xl-12">
-           <div class="card" >
-            <div class="card-header">
-              <h5>Commands</h5>
-            </div>
-            <div class="card-body" >
-              <pre class="card-text">{{commands}}</pre>
-            </div>
             <div class="card-footer">
-              <p>
-                For more details about the commands see this <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">reddit post</a>. <br />
-                You can manually enter these commands in the Dota2 Console one by one.<br />
-                Also, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Launch Options.<br />
-                As well, you can use the 'Copy Roster' button to copy the console commands for use with Gungir.
-              </p>
-              <button type="button" class="btn btn-primary m-1" @click="launch">Set Roster</button>
-              <button type="button" class="btn btn-primary m-1" @click="copy">Copy Roster</button>
+              <button type="button" class="btn btn-sm btn-success" @click="share">Share</button>
             </div>
           </div>
         </div>
       </div>
+
+      <br />
+      <Commands v-if="isHost" :options="options" ></Commands>
+
       <div class="row" v-if="isPlayer">
         <div class="col-xl-12">
           <div class="card">
@@ -210,6 +196,7 @@ import data from '@/data/heroes.json'
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import * as signalR from "@microsoft/signalr";
+import Commands from '@/components/Commands.vue'
 
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
@@ -217,11 +204,15 @@ Array.prototype.random = function () {
 
 export default {
   name: "SingleDraft",
+  components: {
+    Commands
+  },
   data() {
     return {
       heroes: data,
       has_lobby: false,
       host: false,
+      name: "",
       shared: this.$route.query.session != undefined,
       lobby_id: this.$route.query.session,
       slots: [],
@@ -232,11 +223,23 @@ export default {
     }
   },
   computed: {
+    options: function () {
+      var self = this;
+      var radiant = [0,1,2,3,4].map(i => self.heroes.find(_ => _.key == self.selection[i])).filter(x => x != undefined);
+      var dire = [5,6,7,8,9].map(i => self.heroes.find(_ => _.key == self.selection[i])).filter(x => x != undefined);
+
+      return {
+        roster_radiant: radiant,
+        roster_dire: dire,
+        shuffle_player: true,
+      };
+    },
     isNotShared() {
       return !this.shared;
     },
-    hasLobbyId() {
-      return !(this.lobby_id);
+    readyToJoin() {
+      var ready = (this.lobby_id != undefined) && (this.name != "");
+      return !ready;
     },
     hasNoLobby() {
       return !this.has_lobby;
