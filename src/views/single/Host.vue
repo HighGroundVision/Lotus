@@ -24,19 +24,6 @@
 
       <div class="row">
         <div class="col-xl-12">
-          <div class="card mb-5" >
-            <div class="card-body" >
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="switch_show_heroes_to_host" v-model="switch_show_heroes_to_host">
-                <label class="form-check-label" for="switch_show_heroes_to_host">Show heroes to the host</label>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xl-12">
           <div class="card mb-5">
             <div class="card-header">
              <h5>Hero Selection</h5>
@@ -80,7 +67,7 @@
                                 {{element.player.name ?? 'Disconnected'}}
                               </h3>
                             </div>
-                            <div class="p-2" v-if="switch_show_heroes_to_host">
+                            <div class="p-2">
                               <template v-for="(id) in element.selection" v-bind:key="id">
                                 <img v-if="element.choice"  @click="overwrite(element.id, id)" :src="image(id)" class="p-1" v-bind:class="{'picked': id == element.choice, 'discarded': id != element.choice}" />
                                 <img v-else  @click="overwrite(element.id, id)" :src="image(id)" class="p-1" />
@@ -90,8 +77,8 @@
                                <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                 <ul  class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                                  <li v-if="element.choice != null" ><a @click="clear(element.id)" class="dropdown-item">Clear Choice</a></li>
-                                  <li v-if="element.player.id != null"><a @click="kick(element.id)" class="dropdown-item">Kick Player</a></li>
+                                  <li><a @click="clear(element.id)" class="dropdown-item" v-bind:class="{'disabled': element.choice == null}">Clear Choice</a></li>
+                                  <li><a @click="kick(element.id)" class="dropdown-item" v-bind:class="{'disabled': element.player.id == null}">Kick Player</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -129,9 +116,7 @@ export default {
     Commands, draggable
   },
   data() {
-    return {
-      switch_show_heroes_to_host: false,
-    };
+    return {};
   },
   created () {
     this.load();
