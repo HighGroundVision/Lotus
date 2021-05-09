@@ -468,6 +468,11 @@ export default {
       pre_time: 60,           // dota_gamemode_ability_draft_pre_time
     }
   },
+  mounted() {
+    this.$nextTick(() => {
+      window.scrollTo(0, 0);
+    })
+  },
   computed: {
     options: function () {
       return {

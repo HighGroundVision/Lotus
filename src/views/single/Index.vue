@@ -61,6 +61,10 @@ export default {
   },
   mounted() {
     this.reset();
+
+    this.$nextTick(() => {
+      window.scrollTo(0, 0);
+    })
   },
   methods: {
     onCreate() {
