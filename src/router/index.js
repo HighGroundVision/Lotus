@@ -25,13 +25,13 @@ const routes = [{
             import ( /* webpackChunkName: "single" */ "../views/single/Index.vue")
     },
     {
-        path: "/single-draft/lobby/:id",
-        name: "SingleDraftLobby",
+        path: "/single-draft/player/:id",
+        name: "SingleDraftPlayer",
         component: () =>
-            import ( /* webpackChunkName: "single" */ "../views/single/Lobby.vue")
+            import ( /* webpackChunkName: "single" */ "../views/single/Player.vue")
     },
     {
-        path: "/single-draft/host/:id",
+        path: "/single-draft/host",
         name: "SingleDraftHost",
         component: () =>
             import ( /* webpackChunkName: "single" */ "../views/single/Host.vue")

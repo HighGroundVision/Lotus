@@ -36,7 +36,7 @@
               </p>
             </div>
             <div class="card-footer">
-              <button type="button" class="btn btn-success" @click="create">Create</button>
+              <button type="button" class="btn btn-success" @click="onCreate">Create</button>
             </div>
           </div>
         </div>
@@ -47,79 +47,27 @@
 
 <script>
 // @ is an alias to /src
-import data from '@/data/heroes.json'
-import { v4 as uuid } from 'uuid';
-import axios from 'axios';
-//import * as signalR from "@microsoft/signalr";
-//import Commands from '@/components/Commands.vue'
-
-Array.prototype.random = function () {
-  return this[Math.floor((Math.random()*this.length))];
-}
-
-function selection_invalid(slots, selection) {
-  var collection = slots.map(_ => _.selection).flat();
-  var requires_replacement = collection.filter(_ => _.ability_replace_required).length > 0
-  for (const item of selection) {
-    if(collection.includes(item)) {
-      return true;
-    }
-    if(requires_replacement == true && item.ability_replace_required == true) {
-      return true;
-    }
-  }
-  return false;
-}
+// import data from '@/data/heroes.json'
+// import { v4 as uuid } from 'uuid';
+// import axios from 'axios';
+// import * as signalR from "@microsoft/signalr";
+// import Commands from '@/components/Commands.vue'
+import { createNamespacedHelpers } from 'vuex'
+const { mapActions } = createNamespacedHelpers('single-draft/host')
 
 export default {
   data() {
-    return {
-      heroes: data,
-    }
+    return {}
   },
-  computed: {
-    options: function () {
-      return {};
-    }
+  mounted() {
+    this.reset();
   },
   methods: {
-    async create() {
-      let str = this.heroes.filter(_ => _.primary_attribute == "STRENGTH");
-      let agi = this.heroes.filter(_ => _.primary_attribute == "AGILITY");
-      let int = this.heroes.filter(_ => _.primary_attribute == "INTELLECT");
-      let slots = []
-      let selection = [];
-
-      // TODO: Fix this...!
-
-      for (let i = 0; i < 10; i++) {  
-        selection = [];
-        do {
-          selection = [];
-          selection.push(str.random());
-          selection.push(agi.random());
-          selection.push(int.random());
-        } while(selection_invalid(slots, selection));
-
-        slots.push({
-          slot: i,
-          name: "",
-          selection: selection,
-          choice: null,
-          state: 0,
-        });
-      }
-      
-      let body = {
-        slots: slots,
-        ready: false,
-        switch_show_selection_team: false,
-        switch_show_choice: false,
-      };
-      let url = `${process.env.VUE_APP_BASE_URL}/api/single/`;
-      let response = await axios.post(url, body);
-      this.$router.push(`/single-draft/host/${response.data.id}`);
-    }
+    onCreate() {
+      this.create();
+      this.$router.push(`/single-draft/host`);
+    },
+    ...mapActions(['reset','create'])
   }
 };
 </script>

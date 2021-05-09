@@ -26,16 +26,14 @@
             <div class="card-body"> <!-- style="overflow-y: scroll; height: 400px;" -->
               <template v-for="(hero) in collection" v-bind:key="hero.id">
                 <div class="hero">
-                  <img :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': hero.picked }" data-toggle="modal" :data-target="'#modal-'+hero.id"/>
+                  <img :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': hero.picked }" data-bs-toggle="modal" :data-bs-target="'#modal-'+hero.id"/>
                   <!-- Modal -->
                   <div class="modal fade" :id="'modal-'+hero.id" tabindex="-1" role="dialog"  aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <h5 class="modal-title">Pick Team</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                           <h2><img :src="hero.image_icon" /> {{hero.name}}</h2>
@@ -68,17 +66,17 @@
             <div class="card-body" >
               <div class="row">
                 <div class="col-xl-12">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_shuffle_player" v-model="shuffle_player">
-                    <label class="custom-control-label" for="switch_shuffle_player">Disable Player Shuffle</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="shuffle_player" v-model="shuffle_player">
+                    <label class="form-check-label" for="shuffle_player">Disable Player Shuffle</label>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_per_player_time" v-model="switch_per_player_time">
-                    <label class="custom-control-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_per_player_time" v-model="switch_per_player_time">
+                    <label class="form-check-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
@@ -87,9 +85,9 @@
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_pre_round_time" v-model="switch_pre_round_time">
-                    <label class="custom-control-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_round_time" v-model="switch_pre_round_time">
+                    <label class="form-check-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
@@ -98,9 +96,9 @@
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_pre_time" v-model="switch_pre_time">
-                    <label class="custom-control-label" for="switch_pre_time">Override total time in seconds before the draft starts.</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_time" v-model="switch_pre_time">
+                    <label class="form-check-label" for="switch_pre_time">Override total time in seconds before the draft starts</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
@@ -153,29 +151,6 @@
       </div>
       <br />
       <Commands v-if="hasSelection" :options="options" ></Commands>
-      <!--
-      <div class="row" v-if="hasSelection">
-        <div class="col-xl-12">
-           <div class="card" >
-            <div class="card-header">
-              <h5>Commands</h5>
-            </div>
-            <div class="card-body" >
-              <pre class="card-text">{{commands}}</pre>
-            </div>
-            <div class="card-footer">
-              <p>
-                You can use the 'Copy Roster' button to copy the console commands so you can paste them into the Dota Console.
-                Also if you don't know what the console is, you can use the 'Set Roster' button to start Dota directly and the console commands will be set for you via the Steam Launch Option<br /> 
-              </p>
-              <button type="button" class="btn btn-primary" @click="copy">Copy Roster</button>
-              <button type="button" class="btn btn-primary  m-1" @click="launch">Set Roster</button>
-              
-            </div>
-          </div>
-        </div>
-      </div
-      -->
     </div>
   </div>
 </template>
@@ -239,65 +214,6 @@ export default {
     hasAbilityReplaceRequired: function() {
       return (this.roster_radiant.filter(_ => _.ability_replace_required).length + this.roster_dire.filter(_ => _.ability_replace_required).length + this.roster_extra.filter(_ => _.ability_replace_required).length) > 0;
     },
-    commands: function() {
-      let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear;\n";
-
-      if(this.shuffle_player) {
-        cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0;\n"
-      }
-
-      if(this.switch_per_player_time) {
-        cmd += "dota_gamemode_ability_draft_per_player_time " + this.per_player_time + ";\n"
-      }
-      if(this.switch_pre_round_time) {
-        cmd += "dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + ";\n"
-      }
-      if(this.switch_pre_time) {
-        cmd += "dota_gamemode_ability_draft_pre_time " + this.pre_time + ";\n"
-      }
-
-      for (const item of this.roster_radiant) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant;\n"
-      }
-      for (const item of this.roster_dire) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire;\n"
-      }
-      for (const item of this.roster_extra) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra;\n"
-      }
-
-      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team;\n"
-      
-      return cmd;
-    },
-    launchOptions: function() {
-      let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
-      
-      if(this.shuffle_player) {
-        cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
-      }
-
-      if(this.switch_per_player_time) {
-        cmd += "+dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " "
-      }
-      if(this.switch_pre_round_time) {
-        cmd += "+dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " "
-      }
-      if(this.switch_pre_time) {
-        cmd += "+dota_gamemode_ability_draft_pre_time " + this.pre_time + " "
-      }
-
-      for (const item of this.roster_radiant) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
-      }
-      for (const item of this.roster_dire) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
-      }
-      for (const item of this.roster_extra) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra "
-      }
-      return cmd;
-    }
   },
   methods: {
     pickRadiant(hero) {
@@ -312,24 +228,16 @@ export default {
     pick(hero, list) {
       hero.picked = true;
       list.push(hero);
-      $(".modal").modal('hide');
+      var myModal = bootstrap.Modal.getInstance(document.getElementById('modal-' + hero.id));
+      myModal.hide();
     },
     remove(hero)  {
       hero.picked = false;
       this.roster_radiant = this.roster_radiant.filter(_ => _.id != hero.id);
       this.roster_dire = this.roster_dire.filter(_ => _.id != hero.id);
       this.roster_extra = this.roster_extra.filter(_ => _.id != hero.id);
-      $(".modal").modal('hide');
-    },
-    launch() {  
-      let cmd = this.launchOptions;
-      let params = encodeURIComponent(cmd);
-      let url = "steam://run/570//" + params;
-      window.open(url);
-    },
-    copy() {
-      let cmd = this.commands;
-      navigator.clipboard.writeText(cmd);
+      var myModal = bootstrap.Modal.getInstance(document.getElementById('modal-' + hero.id));
+      myModal.hide();
     },
     clear() {
       for (const hero of this.heroes) {

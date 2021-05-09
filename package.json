@@ -7,7 +7,6 @@
         "build": "vue-cli-service build"
     },
     "dependencies": {
-        "@meforma/vue-toaster": "^1.2.2",
         "@microsoft/signalr": "^5.0.1",
         "axios": "^0.21.1",
         "core-js": "^3.6.5",

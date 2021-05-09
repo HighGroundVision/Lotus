@@ -23,25 +23,25 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-xl-12">
-                  <div class="custom-control custom-switch ">
-                    <input type="checkbox" class="custom-control-input" id="switch_random_radiant" v-model="switch_random_radiant">
-                    <label class="custom-control-label" for="switch_random_radiant">Keep Radiant Heroes Randomize</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_random_radiant" v-model="switch_random_radiant">
+                    <label class="form-check-label" for="switch_random_radiant">Keep Radiant Heroes Randomize</label>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-12">
-                  <div class="custom-control custom-switch ">
-                    <input type="checkbox" class="custom-control-input" id="switch_random_dire" v-model="switch_random_dire">
-                    <label class="custom-control-label" for="switch_random_dire">Keep Dire Heroes Randomize</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_random_dire" v-model="switch_random_dire">
+                    <label class="form-check-label" for="switch_random_dire">Keep Dire Heroes Randomize</label>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-12">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_random_extras" v-model="switch_random_extras">
-                    <label class="custom-control-label" for="switch_random_extras">Keep Extras Heroes Randomize</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_random_extras" v-model="switch_random_extras">
+                    <label class="form-check-label" for="switch_random_extras">Keep Extras Heroes Randomize</label>
                   </div>
                 </div>
               </div>
@@ -51,9 +51,9 @@
                 <hr />
                 <div class="row">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_roles" v-model="switch_roles">
-                      <label class="custom-control-label" for="switch_roles">Disqualify Heroes in following <b>Roles</b></label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_roles" v-model="switch_roles">
+                    <label class="form-check-label" for="switch_roles">Disqualify Heroes in following <b>Roles</b></label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -63,9 +63,9 @@
                 <br /><br /><br />
                 <div class="row">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch ">
-                      <input type="checkbox" class="custom-control-input" id="switch_winrate" v-model="switch_winrate">
-                      <label class="custom-control-label" for="switch_winrate">Disqualify Heroes outside <b>Win Rate</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_winrate" v-model="switch_winrate">
+                      <label class="form-check-label" for="switch_winrate">Disqualify Heroes outside <b>Win Rate</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -74,9 +74,9 @@
                 </div>
                 <div class="row">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch ">
-                      <input type="checkbox" class="custom-control-input" id="switch_dmg" v-model="switch_dmg">
-                      <label class="custom-control-label" for="switch_dmg">Disqualify Heroes outside <b>Base Damage</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_dmg" v-model="switch_dmg">
+                      <label class="form-check-label" for="switch_dmg">Disqualify Heroes outside <b>Base Damage</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -86,34 +86,34 @@
                 <br />
                 <div class="row">
                   <div class="col-xl-7">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_str" v-model="switch_str">
-                      <label class="custom-control-label" for="switch_str">Disqualify Strength Heroes</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_str" v-model="switch_str">
+                      <label class="form-check-label" for="switch_str">Disqualify Strength Heroes</label>
                     </div>
                   </div>
                 </div>
                  <div class="row">
                   <div class="col-xl-7">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_int" v-model="switch_int">
-                      <label class="custom-control-label" for="switch_int">Disqualify Intelligence Heroes</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_int" v-model="switch_int">
+                      <label class="form-check-label" for="switch_int">Disqualify Intelligence Heroes</label>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-xl-7">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_agi" v-model="switch_agi">
-                      <label class="custom-control-label" for="switch_agi">Disqualify Agility Heroes</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_agi" v-model="switch_agi">
+                      <label class="form-check-label" for="switch_agi">Disqualify Agility Heroes</label>
                     </div>
                   </div>
                 </div>
                 <br />
                 <div class="row" v-if="!switch_str">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch ">
-                      <input type="checkbox" class="custom-control-input" id="switch_gain_str_range" v-model="switch_gain_str_range">
-                      <label class="custom-control-label" for="switch_gain_str_range">Disqualify Heroes outside <b>Strength Gain</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_gain_str_range" v-model="switch_gain_str_range">
+                      <label class="form-check-label" for="switch_gain_str_range">Disqualify Heroes outside <b>Strength Gain</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -122,9 +122,9 @@
                 </div>
                 <div class="row" v-if="!switch_str">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch ">
-                      <input type="checkbox" class="custom-control-input" id="switch_max_str_range" v-model="switch_max_str_range">
-                      <label class="custom-control-label" for="switch_max_str_range">Disqualify Heroes outside <b>Max Strength</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_max_str_range" v-model="switch_max_str_range">
+                      <label class="form-check-label" for="switch_max_str_range">Disqualify Heroes outside <b>Max Strength</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -134,9 +134,9 @@
                 <br />
                 <div class="row" v-if="!switch_int">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch ">
-                      <input type="checkbox" class="custom-control-input" id="switch_gain_int_range" v-model="switch_gain_int_range">
-                      <label class="custom-control-label" for="switch_gain_int_range">Disqualify Heroes outside <b>Intelligence Gain</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_gain_int_range" v-model="switch_gain_int_range">
+                      <label class="form-check-label" for="switch_gain_int_range">Disqualify Heroes outside <b>Intelligence Gain</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -145,9 +145,9 @@
                 </div>
                 <div class="row" v-if="!switch_int">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_max_int_range" v-model="switch_max_int_range">
-                      <label class="custom-control-label" for="switch_max_int_range">Disqualify Heroes outside <b>Max Intelligence</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_max_int_range" v-model="switch_max_int_range">
+                      <label class="form-check-label" for="switch_max_int_range">Disqualify Heroes outside <b>Max Intelligence</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -157,9 +157,9 @@
                 <br />
                 <div class="row" v-if="!switch_agi">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_gain_agi_range" v-model="switch_gain_agi_range">
-                      <label class="custom-control-label" for="switch_gain_agi_range">Disqualify Heroes outside this <b>Agility Gain</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_gain_agi_range" v-model="switch_gain_agi_range">
+                      <label class="form-check-label" for="switch_gain_agi_range">Disqualify Heroes outside this <b>Agility Gain</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -168,9 +168,9 @@
                 </div>
                 <div class="row" v-if="!switch_agi">
                   <div class="col-xl-6">
-                    <div class="custom-control custom-switch">
-                      <input type="checkbox" class="custom-control-input" id="switch_max_int_range" v-model="switch_max_agi_range">
-                      <label class="custom-control-label" for="switch_max_int_range">Disqualify Heroes outside <b>Max Agility</b> range</label>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="switch_max_agi_range" v-model="switch_max_agi_range">
+                      <label class="form-check-label" for="switch_max_agi_range">Disqualify Heroes outside <b>Max Agility</b> range</label>
                     </div>
                   </div>
                   <div class="col-xl-6">
@@ -183,37 +183,37 @@
               <hr />
               <div>
                 <span>Ensure that there is at least one each type of primary attribute on each Team:</span>
-                <div class="custom-control custom-switch" v-if="!switch_str">
-                  <input type="checkbox" class="custom-control-input" id="switch_attribute_str" v-model="switch_attribute_str">
-                  <label class="custom-control-label" for="switch_attribute_str">Strength</label>
+                <div class="form-check form-switch" v-if="!switch_str">
+                  <input class="form-check-input" type="checkbox" id="switch_attribute_str" v-model="switch_attribute_str">
+                  <label class="form-check-label" for="switch_attribute_str">Strength</label>
                 </div>
-                <div class="custom-control custom-switch" v-if="!switch_int">
-                  <input type="checkbox" class="custom-control-input" id="switch_attribute_int" v-model="switch_attribute_int">
-                  <label class="custom-control-label" for="switch_attribute_int">Intelligence</label>
+                <div class="form-check form-switch" v-if="!switch_int">
+                  <input class="form-check-input" type="checkbox" id="switch_attribute_int" v-model="switch_attribute_int">
+                  <label class="form-check-label" for="switch_attribute_int">Intelligence</label>
                 </div>
-                <div class="custom-control custom-switch" v-if="!switch_agi">
-                  <input type="checkbox" class="custom-control-input" id="switch_attribute_agi" v-model="switch_attribute_agi">
-                  <label class="custom-control-label" for="switch_attribute_agi">Agility</label>
+                <div class="form-check form-switch" v-if="!switch_agi">
+                  <input class="form-check-input" type="checkbox" id="switch_attribute_agi" v-model="switch_attribute_agi">
+                  <label class="form-check-label" for="switch_attribute_agi">Agility</label>
                 </div>
                 <br />
                 <span>Ensure that there is at least one each type of attack capabilities on each Team:</span>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="switch_attack_melee" v-model="switch_attack_melee">
-                  <label class="custom-control-label" for="switch_attack_melee">Melee</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="switch_attack_melee" v-model="switch_attack_melee">
+                  <label class="form-check-label" for="switch_attack_melee">Melee</label>
                 </div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="switch_attack_ranged" v-model="switch_attack_ranged">
-                  <label class="custom-control-label" for="switch_attack_ranged">Ranged</label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="switch_attack_ranged" v-model="switch_attack_ranged">
+                  <label class="form-check-label" for="switch_attack_ranged">Ranged</label>
                 </div>
                 <br />
                 <span>Ensure that there is equal number of Heroes:</span>
-                <div class="custom-control custom-switch" >
-                  <input type="checkbox" class="custom-control-input" id="switch_equal_primary" v-model="switch_equal_primary">
-                  <label class="custom-control-label" for="switch_equal_primary">That share a <span title="Strength/Intelligence/Agility">primary attribute</span></label>
+                <div class="form-check form-switch" >
+                  <input class="form-check-input" type="checkbox" id="switch_equal_primary" v-model="switch_equal_primary">
+                  <label class="form-check-label" for="switch_equal_primary">That share a <span title="Strength/Intelligence/Agility">primary attribute</span></label>
                 </div>
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="switch_equal_attack" v-model="switch_equal_attack">
-                  <label class="custom-control-label" for="switch_equal_attack">That share an <span title="Melee/Ranged">attack capability</span></label>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="switch_equal_attack" v-model="switch_equal_attack">
+                  <label class="form-check-label" for="switch_equal_attack">That share an <span title="Melee/Ranged">attack capability</span></label>
                 </div>
               </div>
               <hr />
@@ -257,17 +257,17 @@
             <div class="card-body" >
               <div class="row">
                 <div class="col-xl-12">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_shuffle_player" v-model="shuffle_player">
-                    <label class="custom-control-label" for="switch_shuffle_player">Disable Player Shuffle</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="shuffle_player" v-model="shuffle_player">
+                    <label class="form-check-label" for="shuffle_player">Disable Player Shuffle</label>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_per_player_time" v-model="switch_per_player_time">
-                    <label class="custom-control-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_per_player_time" v-model="switch_per_player_time">
+                    <label class="form-check-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
@@ -276,9 +276,9 @@
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_pre_round_time" v-model="switch_pre_round_time">
-                    <label class="custom-control-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_round_time" v-model="switch_pre_round_time">
+                    <label class="form-check-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
@@ -287,9 +287,9 @@
               </div>
               <div class="row">
                 <div class="col-xl-6">
-                  <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" id="switch_pre_time" v-model="switch_pre_time">
-                    <label class="custom-control-label" for="switch_pre_time">Override total time in seconds before the draft starts.</label>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_time" v-model="switch_pre_time">
+                    <label class="form-check-label" for="switch_pre_time">Override total time in seconds before the draft starts</label>
                   </div>
                 </div>
                 <div class="col-xl-6">
