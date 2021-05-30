@@ -4,7 +4,7 @@
       <div :id="id" ></div>
     </div>
     <div class="col-xl-2">
-      <span class="badge badge-primary">{{modelValue}}</span>
+      <span class="badge bg-secondary">{{modelValue}}</span>
     </div>
   </div>
 </template>
@@ -65,7 +65,13 @@ export default {
       });
     })
     
-  }
+  },
+  watch: {
+    modelValue: function (newValue, oldValue) {
+      var slider = document.getElementById(this.id);
+      slider.noUiSlider.set(newValue);
+    }
+  },
 };
 </script>
 

@@ -144,15 +144,16 @@
               <h5 class="card-title">Captains Duel</h5>
               <p class="card-text">
                 The lobby host populates the pool of available heroes.
-                The captains ban certain heroes, up to 7 per team, preventing either team from picking the hero.
-                The captain also chooses 5 heroes for their team and one extra.
-                Each captain has 30 seconds for each ban, and 30 for each pick.
-                If time runs out during a ban selection, no hero will be banned but if time runs out during a pick selection the slot will remain random.
+                The captains ban certain heroes preventing either team from picking the hero.
+                The captain also chooses heroes for their team.
+                The host can control the number and sequence for the bans and picks.
+                The host can set the time in seconds that are allotted for bans and picks as well as bonus bonus time that can be used throughout any selection. 
+                If time runs out during a ban selection, no hero will be banned; if time runs out during a pick selection, a random hero will be chosen. 
               </p>
               <p class="blockquote-footer">Inspired by <a href="https://dota2.gamepedia.com/Game_modes#Captains_Mode">Captains Mode</a></p>
             </div>
             <div class="card-footer" style="height: 60px;">
-              Coming Soon
+              <router-link to="/captains-draft" class="btn btn-primary">Draft</router-link>
             </div>
           </div>
         </div>

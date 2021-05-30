@@ -37,30 +37,25 @@ const routes = [{
             import ( /* webpackChunkName: "single" */ "../views/single/Host.vue")
     },
     {
-        path: "/elimination",
-        name: "EliminationIndex",
+        path: "/captains-draft",
+        name: "CaptainIndex",
         component: () =>
-            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Index.vue")
+            import ( /* webpackChunkName: "elimination" */ "../views/captains/Index.vue")
     },
     {
-        path: "/elimination/:id/series",
-        name: "EliminationSeries",
+        path: "/captains-draft/host/:id",
+        name: "CaptainLobby",
         component: () =>
-            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Series.vue")
+            import ( /* webpackChunkName: "elimination" */ "../views/captains/Host.vue")
     },
     {
-        path: "/elimination/:id/lobby/:match/:team",
-        name: "EliminationLobby",
+        path: "/captains-draft/lobby/:id/:team",
+        name: "CaptainDraft",
         component: () =>
-            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Lobby.vue")
-    },
-    {
-        path: "/elimination/:id/match/:match",
-        name: "EliminationMatch",
-        component: () =>
-            import ( /* webpackChunkName: "elimination" */ "../views/elimination/Match.vue")
+            import ( /* webpackChunkName: "elimination" */ "../views/captains/Lobby.vue")
     }
 
+   
 ];
 
 // route level code-splitting

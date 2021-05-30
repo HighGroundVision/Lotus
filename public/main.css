@@ -14,9 +14,9 @@
     align-items: center;
     background: #fff;
     cursor: default;
-    height: 6em;
+    height: 4em;
     left: 0;
-    line-height: 6em;
+    line-height: 4em;
     position: fixed;
     top: 0;
     width: 100%;
@@ -42,7 +42,7 @@
 }
 
 #view {
-    margin-top: 100px;
+    margin-top: 65px;
     min-height: 900px;
 }
 
