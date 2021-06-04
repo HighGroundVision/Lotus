@@ -28,6 +28,13 @@
             </div>
             <div class="card-body">
               <div class="row">
+                <div class="col-xl-12">
+                  <div class="px-1 my-1 rounded bg-success text-center text-white">
+                    <span>Radiant</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-xl-2">
                   <div v-if="radiantSequence.filter(_ => _.phase === 2).length > 0">
                     <div class="px-1 my-1 rounded bg-secondary text-white">
@@ -46,7 +53,7 @@
                     </template>
                   </div>
                 </div>
-                <template v-for="(item) in radiantSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
+                <template v-for="(item, i) in radiantSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
                   <div class="col-xl-2">
                     <figure v-if="item.selection" class="figure">
                       <img class="w-100 border-top border-start border-end rounded-top" :src="`https://hyperstone.highgroundvision.com/images/heroes/profile/${item.selection}.png`" />
@@ -54,21 +61,24 @@
                     </figure>
                      <figure v-else class="figure">
                        <img class="w-100 border-top border-start border-end rounded-top" src="@/assets/unknown.png" />
-                      <figcaption class="figure-caption text-center bg-secondary text-dark rounded-bottom">&nbsp;</figcaption>
+                      <figcaption class="figure-caption text-center bg-secondary text-white rounded-bottom">Pick {{(i+1)}}</figcaption>
                       
                     </figure>
                   </div>
                 </template>
               </div>
               <hr />
-
               <div class="row">
-
+                <div class="col-xl-12">
+                  <div class="px-1 my-1 rounded bg-danger text-center text-white">
+                    <span>Dire</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
                 <div class="col-xl-2">
-                  <!--<img src="@/assets/dire.png" class="p-1 rounded w-100"  />-->
-
                   <div v-if="direSequence.filter(_ => _.phase === 2).length > 0">
-                     <div class="m-1 p-1 rounded bg-secondary text-white">
+                     <div class="px-1 my-1 rounded bg-secondary text-white">
                       <span>Bans</span>
                     </div>
                     <template v-for="(item) in direSequence.filter(_ => _.phase === 2)" v-bind:key="item.i">
@@ -76,7 +86,7 @@
                     </template>
                   </div>
                   <div v-if="direSequence.filter(_ => _.phase === 3).length > 0">
-                    <div class="m-1 p-1 rounded bg-secondary text-white">
+                    <div class="px-1 my-1 rounded bg-secondary text-white">
                       <span>Extra</span>
                     </div>
                     <template v-for="(item) in direSequence.filter(_ => _.phase === 3)" v-bind:key="item.i">
@@ -84,7 +94,7 @@
                     </template>
                   </div>
                 </div>
-                <template v-for="(item) in direSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
+                <template v-for="(item, i) in direSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
                   <div class="col-xl-2">
                     <figure v-if="item.selection" class="figure">
                       <img class="w-100 border-top border-start border-end  rounded-top" :src="`https://hyperstone.highgroundvision.com/images/heroes/profile/${item.selection}.png`" />
@@ -92,7 +102,7 @@
                     </figure>
                     <figure v-else class="figure">
                       <img class="w-100 border-top border-start border-end  rounded-top" src="@/assets/unknown.png" />
-                      <figcaption class="figure-caption text-center bg-secondary text-dark rounded-bottom">&nbsp;</figcaption>
+                      <figcaption class="figure-caption text-center bg-secondary text-white rounded-bottom">Pick {{(i+1)}}</figcaption>
                     </figure>
                   </div>
                 </template>
