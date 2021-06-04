@@ -121,12 +121,12 @@
               <div v-if="switch_sequence_mode" class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with Phases">
                 <span class="navbar-brand mb-0 h1">Add Phase</span>
                 <div class="btn-group me-2" role="group">
-                  <button @click="addPhase(1,1)" type="button" class="btn btn-success">Pick</button>
-                  <button @click="addPhase(1,2)" type="button" class="btn btn-success">Ban</button>
-                  <button @click="addPhase(1,3)" type="button" class="btn btn-success">Extra</button>
-                  <button @click="addPhase(2,1)" type="button" class="btn btn-danger">Pick</button>
-                  <button @click="addPhase(2,2)" type="button" class="btn btn-danger">Ban</button>
-                  <button @click="addPhase(2,3)" type="button" class="btn btn-danger">Extra</button>
+                  <button @click="addPhase(0,1)" type="button" class="btn btn-success">Pick</button>
+                  <button @click="addPhase(0,2)" type="button" class="btn btn-success">Ban</button>
+                  <button @click="addPhase(0,3)" type="button" class="btn btn-success">Extra</button>
+                  <button @click="addPhase(1,1)" type="button" class="btn btn-danger">Pick</button>
+                  <button @click="addPhase(1,2)" type="button" class="btn btn-danger">Ban</button>
+                  <button @click="addPhase(1,3)" type="button" class="btn btn-danger">Extra</button>
                 </div>
                 <span class="navbar-brand mb-0 h1">Commands</span>
                 <div class="btn-group me-2" role="group">
@@ -148,7 +148,7 @@
               </div>
               <hr />
               <template v-for="(item, i) in sequence" v-bind:key="i">
-                <div class="d-inline p-1 ms-1 rounded" v-bind:class="{ 'bg-success text-white': item.team === 1, 'bg-danger text-white': item.team === 2 }">
+                <div class="d-inline p-1 ms-1 rounded" v-bind:class="{ 'bg-success text-white': item.team === 0, 'bg-danger text-white': item.team === 1 }">
                   <span v-if="item.phase === 1">Pick</span>
                   <span v-else-if="item.phase === 2">Ban</span>
                   <span v-else-if="item.phase === 3">Extra</span>
@@ -160,6 +160,7 @@
           </div>
         </div>
       </div>
+      <!--
       <div class="row">
         <div class="col-xl-12">
           <div class="card mb-3">
@@ -173,11 +174,11 @@
               </p>
             </div>
             <div class="card-body">
-              <!-- Modify Time limits MODE:(Bans:30 | Picks: 30 | Extra:10 | Reserve:130) vs DRAFT:(Bans:0 | Picks:0 | Extra:0 | Reserve:180) -->
               <div class="btn-group me-2" role="group">
                 <button @click="timeDefault" type="button" class="btn btn-secondary">Default</button>
                 <button @click="timeQuick" type="button" class="btn btn-secondary">Quick</button>
                 <button @click="timePool" type="button" class="btn btn-secondary">Pool</button>
+                <button @click="timeNone" type="button" class="btn btn-secondary">None</button>
               </div>
               <hr />
               <label>Time allotted for picks</label>
@@ -192,7 +193,7 @@
           </div>
         </div>
       </div>
-      
+      -->
       <div class="row">
         <div class="col-xl-12">
           <div class="card mb-3">
@@ -280,20 +281,19 @@ export default {
       numberOfHeroesForRandom: 20,
       switch_sequence_mode: false,
       sequence: [],
-      time_picks: 30,
-      time_bans: 30,
-      time_extra: 10,
-      time_reserve: 130,
+      timed: false,
+      time_picks: 0,
+      time_bans: 0,
+      time_extra: 0,
+      time_reserve: 0,
     };
   },
   mounted() {
-    this.$nextTick(() => {
-      window.scrollTo(0, 0);
-    })
+    window.scrollTo(0, 0);
   },
   computed: {
     valid() {
-      return this.pool.length > 10 && this.sequence.filter(_ => _.phase == 1).length == 10;
+      return this.pool.length >= 10 && this.sequence.filter(_ => _.phase == 1).length == 10;
     },
     heroes: function () {
       let f = this.filter;
@@ -321,24 +321,16 @@ export default {
         pool: this.pool,
         sequence: this.sequence,
         phase: 0,
+        timed: this.timed,
+        times: [this.time_reserve,this.time_picks,this.time_bans,this.time_extra],
         teams: [
           { 
             id: uuid(), 
-            team: 1,
-            ready: false,
-            time_picks: this.time_picks,
-            time_bans: this.time_bans,
-            time_extra: this.time_extra,
-            time_reserve: this.time_reserve,
+            times: [this.time_reserve,this.time_picks,this.time_bans,this.time_extra],
           },
           { 
-            id: uuid(), 
-            team: 2,
-            ready: false,
-            time_picks: this.time_picks,
-            time_bans: this.time_bans,
-            time_extra: this.time_extra,
-            time_reserve: this.time_reserve,
+            id: uuid(),
+            times: [this.time_reserve,this.time_picks,this.time_bans,this.time_extra],
           }
         ]
       };
@@ -388,10 +380,10 @@ export default {
     },
     invertSequence() {
       for (const item of this.sequence) {
-        if(item.team === 1) {
-          item.team = 2;
-        } else if (item.team === 2) {
+        if(item.team === 0) {
           item.team = 1;
+        } else if (item.team === 1) {
+          item.team = 0;
         }
       }
     },
@@ -414,22 +406,32 @@ export default {
       this.sequence = Zeta.slice();
     },
     timeDefault() {
+      this.timed = true;
       this.time_picks = 30;
       this.time_bans = 30;
       this.time_extra = 10;
       this.time_reserve = 130;
     },
     timeQuick() {
+      this.timed = true;
       this.time_picks = 10;
       this.time_bans = 10;
       this.time_extra = 5;
       this.time_reserve = 30;
     },
     timePool() {
+      this.timed = true;
       this.time_picks = 0;
       this.time_bans = 0;
       this.time_extra = 0;
       this.time_reserve = 180;
+    },
+    timeNone() {
+      this.timed = false;
+      this.time_picks = 0;
+      this.time_bans = 0;
+      this.time_extra = 0;
+      this.time_reserve = 0;
     }
   }
 };

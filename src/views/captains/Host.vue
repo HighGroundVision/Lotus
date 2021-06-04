@@ -20,94 +20,84 @@
             <div class="card-header">
               <h5 class="d-inline align-middle">Lobby</h5>
               <div class="float-end">
-                <h5 class="d-inline align-middle" title="Time left in this phase">Clock Disabled</h5>
+                <h5 class="d-inline align-middle" title="Time left in this phase" v-bind:class="{'blinking': time < 30 && time > 0}">
+                  <span class="badge bg-secondary" v-if="timed" v-bind:class="{'bg-warning': time < 30 & time >= 10, 'bg-danger': time < 10}">{{time}}s</span>
+                  <span class="badge bg-secondary" v-else>Timer Disabled</span>
+                </h5>
               </div>
             </div>
             <div class="card-body">
               <div class="row">
-                <div class="col-xl-9">
-                  <div style="position: sticky; top: 80px;">
-                    <div class="row my-2">
-                      <div class="col-xl-12">
-                        <div class="border border-danger shadow">
-                          <template v-for="(hero) in strHeroes" v-bind:key="hero.id">
-                            <div class="d-inline">
-                              <img @click="toggleHero(hero.id)" :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': isDisabled(hero.id) }" />
-                            </div>
-                          </template>
-                        </div>
-                      </div>
+                <div class="col-xl-2">
+                  <div v-if="radiantSequence.filter(_ => _.phase === 2).length > 0">
+                    <div class="px-1 my-1 rounded bg-secondary text-white">
+                      <span>Bans</span>
                     </div>
-                    <br />
-                    <div class="row my-2">
-                      <div class="col-xl-12">
-                        <div class="border border-success shadow">
-                          <template v-for="(hero) in agiHeroes" v-bind:key="hero.id">
-                            <div class="d-inline">
-                              <img @click="toggleHero(hero.id)" :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': isDisabled(hero.id) }" />
-                            </div>
-                          </template>
-                        </div>
-                      </div>
-                    </div>
-                    <br />
-                    <div class="row my-2">
-                      <div class="col-xl-12">
-                        <div class="border border-primary shadow">
-                          <template v-for="(hero) in intHeroes" v-bind:key="hero.id">
-                            <div class="d-inline">
-                              <img @click="toggleHero(hero.id)" :src="hero.image_banner" class="image" v-bind:class="{ 'darkened-image': isDisabled(hero.id) }" />
-                            </div>
-                          </template>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3">
-                  <div class="d-flex">
-                     <div class="p-1 mx-1 mt-1 rounded bg-success bg-gradient text-white w-50">
-                      <div>
-                        <img src="@/assets/radiant.png" class="float-end rounded" style="height: 24px;" />
-                        <span>Radiant</span>
-                      </div>
-                    </div>
-                    <div class="p-1 mx-1 mt-1 rounded bg-danger bg-gradient text-white w-50">
-                      <div>
-                        <img src="@/assets/dire.png" class="float-end rounded" style="height: 24px;" />
-                          <span>Dire</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div > <!-- style="height: 600px; overflow-y: auto;" -->
-                    <template v-for="(item, i) in sequence" v-bind:key="i">
-                      <div v-if="item.team === 1" class="d-flex">
-                        <div class="p-1 mx-1 mt-1 rounded text-white w-50" v-bind:class="{'bg-primary':i === phase, 'bg-secondary':i !== phase}"> <!--- -->
-                          <span v-if="item.phase === 1">Pick</span>
-                          <span v-else-if="item.phase === 2">Ban</span>
-                          <span v-else-if="item.phase === 3">Extra</span>
-                          <img v-if="item.selection" class="float-end" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" style="height: 24px;" />
-                        </div>
-                        <div class="p-1 mx-1 mt-1 rounded bg-white text-white w-50">
-                        </div>
-                      </div>
-                      <div v-if="item.team === 2" class="d-flex">
-                        <div class="p-1 mx-1 mt-1 rounded bg-white text-white w-50">
-                        </div>
-                        <div class="p-1 mx-1 mt-1 rounded text-white w-50" v-bind:class="{'bg-primary':i === phase, 'bg-secondary':i !== phase}"> <!--- -->
-                          <span v-if="item.phase === 1">Pick</span>
-                          <span v-else-if="item.phase === 2">Ban</span>
-                          <span v-else-if="item.phase === 3">Extra</span>
-                          <img v-if="item.selection" class="float-end" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" style="height: 24px;" />
-                        </div>
-                        
-                      </div>
+                    <template v-for="(item) in radiantSequence.filter(_ => _.phase === 2)" v-bind:key="item.i">
+                      <img v-if="item.selection" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" />
                     </template>
                   </div>
-                  
+                  <div v-else-if="radiantSequence.filter(_ => _.phase === 3).length > 0">
+                    <div class="px-1 my-1 rounded bg-secondary text-white">
+                      <span>Extra</span>
+                    </div>
+                    <template v-for="(item) in radiantSequence.filter(_ => _.phase === 3)" v-bind:key="item.i">
+                      <img v-if="item.selection" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" />
+                    </template>
+                  </div>
                 </div>
+                <template v-for="(item) in radiantSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
+                  <div class="col-xl-2">
+                    <figure v-if="item.selection" class="figure">
+                      <img class="w-100 border-top border-start border-end rounded-top" :src="`https://hyperstone.highgroundvision.com/images/heroes/profile/${item.selection}.png`" />
+                      <figcaption class="figure-caption text-center bg-secondary text-white rounded-bottom">{{heroName(item.selection)}}</figcaption>
+                    </figure>
+                     <figure v-else class="figure">
+                       <img class="w-100 border-top border-start border-end rounded-top" src="@/assets/unknown.png" />
+                      <figcaption class="figure-caption text-center bg-secondary text-dark rounded-bottom">&nbsp;</figcaption>
+                      
+                    </figure>
+                  </div>
+                </template>
               </div>
-              
+              <hr />
+
+              <div class="row" style="background-image: url('@/assets/dire.png')">
+
+                <div class="col-xl-2">
+                  <!--<img src="@/assets/dire.png" class="p-1 rounded w-100"  />-->
+
+                  <div v-if="direSequence.filter(_ => _.phase === 2).length > 0">
+                     <div class="m-1 p-1 rounded bg-secondary text-white">
+                      <span>Bans</span>
+                    </div>
+                    <template v-for="(item) in direSequence.filter(_ => _.phase === 2)" v-bind:key="item.i">
+                      <img v-if="item.selection" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" />
+                    </template>
+                  </div>
+                  <div v-if="direSequence.filter(_ => _.phase === 3).length > 0">
+                    <div class="m-1 p-1 rounded bg-secondary text-white">
+                      <span>Extra</span>
+                    </div>
+                    <template v-for="(item) in direSequence.filter(_ => _.phase === 3)" v-bind:key="item.i">
+                      <img v-if="item.selection" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" />
+                    </template>
+                  </div>
+                </div>
+                <template v-for="(item) in direSequence.filter(_ => _.phase === 1)" v-bind:key="item.i">
+                  <div class="col-xl-2">
+                    <figure v-if="item.selection" class="figure">
+                      <img class="w-100 border-top border-start border-end  rounded-top" :src="`https://hyperstone.highgroundvision.com/images/heroes/profile/${item.selection}.png`" />
+                      <figcaption class="figure-caption text-center bg-secondary text-white rounded-bottom">{{heroName(item.selection)}}</figcaption>
+                    </figure>
+                    <figure v-else class="figure">
+                      <img class="w-100 border-top border-start border-end  rounded-top" src="@/assets/unknown.png" />
+                      <figcaption class="figure-caption text-center bg-secondary text-dark rounded-bottom">&nbsp;</figcaption>
+                    </figure>
+                  </div>
+                </template>
+              </div>
+             
             </div>
             <div class="card-footer">
               <div class="dropdown d-inline">
@@ -124,7 +114,65 @@
           </div>
         </div>
       </div>
-      <!-- Additional Options -->
+      <br />
+      <div class="row">
+        <div class="col-xl-12">
+           <div class="card" >
+            <div class="card-header">
+              <h5>Additional Options</h5>
+            </div>
+            <div class="card-body" >
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="shuffle_player" v-model="shuffle_player">
+                    <label class="form-check-label" for="shuffle_player">Disable Player Shuffle</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_per_player_time" v-model="switch_per_player_time">
+                    <label class="form-check-label" for="switch_per_player_time">Override total time in seconds a player has to draft an ability</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                   <single-slider v-model="per_player_time" :min="1" :max="10"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_round_time" v-model="switch_pre_round_time">
+                    <label class="form-check-label" for="switch_pre_round_time">Override total time in seconds for break between rounds</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_round_time"  :min="1" :max="30"></single-slider>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch_pre_time" v-model="switch_pre_time">
+                    <label class="form-check-label" for="switch_pre_time">Override total time in seconds before the draft starts</label>
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <single-slider v-model="pre_time" :min="30" :max="120"></single-slider>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="alert alert-warning" role="alert">
+                If you want the Additional Options to work you need set the Server Location to LOCAL HOST in the private lobby.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
       <Commands :options="options" ></Commands>
     </div>  
   </div>
@@ -135,10 +183,13 @@ import data from '@/data/heroes.json';
 import axios from 'axios';
 import * as signalR from "@microsoft/signalr";
 import Commands from '@/components/Commands.vue'
+import humanize from "humanize";
 
 // TODO: Host Start
 // TODO: Additional Options
 // TODO: Commands
+
+let interval = null;
 
 export default {
   components: {
@@ -147,14 +198,13 @@ export default {
   data() {
     return {
       lobby_id: null,
+      started: false,
       teams: [],
       pool: [],
       phase: 0,
       sequence: [],
-      time_picks: 0,
-      time_bans: 0,
-      time_extra: 0,
-      time_bonus: 0,
+      timed: false,
+      time: 0,
       // Additional
       shuffle_player: false,
       switch_per_player_time: false,
@@ -167,10 +217,13 @@ export default {
   },
   computed: {
      options: function () {
+      let r = this.sequence.filter(_ => _.phase == 1).filter(_ => _.team == 0).filter(_ => _.selection > 0).map(_ => this.heroes.find(h => h.id == _.selection));
+      let d = this.sequence.filter(_ => _.phase == 1).filter(_ => _.team == 1).filter(_ => _.selection > 0).map(_ => this.heroes.find(h => h.id == _.selection));
+      let e = this.sequence.filter(_ => _.phase == 3).filter(_ => _.selection > 0).map(_ => this.heroes.find(h => h.id == _.selection));
       return {
-        roster_radiant: this.radiantSequence,
-        roster_dire: this.direSequence,
-        roster_extra: this.extraSequence,
+        roster_radiant: r,
+        roster_dire: d,
+        roster_extra: e,
         shuffle_player: this.shuffle_player,
         switch_per_player_time: this.switch_per_player_time,
         per_player_time: this.per_player_time,
@@ -181,7 +234,7 @@ export default {
       };
     },
     playersReady: function() {
-      return false;
+      return !this.started;
     },
     heroes: function () {
       return data.slice();
@@ -196,14 +249,10 @@ export default {
       return this.heroes.filter(_ => _.primary_attribute === "INTELLECT");
     },
     radiantSequence: function () {
-      debugger;
-      return this.sequence.filter(_ => _.phase === 1 && _.team === 1).filter(_ => _.selection > 0).map(_ => data.find(i => i.id == _.selection));
+      return this.sequence.filter(_ => _.team === 0);
     },
     direSequence: function () {
-      return this.sequence.filter(_ => _.phase === 1 && _.team === 2).filter(_ => _.selection > 0).map(_ => data.find(i => i.id == _.selection));
-    },
-    extraSequence: function () {
-      return this.sequence.filter(_ => _.phase === 3).filter(_ => _.selection > 0).map(_ => data.find(i => i.id == _.selection));
+      return this.sequence.filter(_ => _.team === 1);
     },
     isPickPhase: function () {
       let next = this.sequence[this.phase];
@@ -250,10 +299,12 @@ export default {
     this.fetchData();
     this.signalR();
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
   methods: {
     async fetchData() {
       this.lobby_id = this.$route.params.id;
-      this.team_id = this.$route.params.team;
 
       var url = `${process.env.VUE_APP_BASE_URL}/api/captains/${this.lobby_id}`;
       var response = await axios.get(url);
@@ -262,6 +313,25 @@ export default {
       this.sequence = response.data.sequence;
       this.phase = response.data.phase;
       this.teams = response.data.teams;
+      this.timed = response.data.timed;
+      this.started = response.data.started;
+
+      if(this.phase > this.sequence.length)
+        return;
+
+      let round = this.sequence[this.phase];
+      let item = response.data.teams[round.team];
+
+      if(this.started  === true) {
+        clearInterval(interval);
+        interval = setInterval(() => {
+          let delta = Math.round((Date.now() / 1000) - response.data._ts);
+          let p = this.sequence[this.phase].phase;
+          this.time = (item.times[0] + item.times[p]) - delta;
+        }, 1000);
+      } else {
+        this.timed = false;
+      }
     },
     signalR() {
       var url = `${process.env.VUE_APP_BASE_URL}/api/captains/${this.lobby_id}`;
@@ -271,7 +341,7 @@ export default {
         .build();
     
       let self = this;
-      connection.on("update", (phase, hero) => {     
+      connection.on("update", (a) => {     
         self.fetchData();
       });
 
@@ -281,20 +351,42 @@ export default {
       return this.pool.includes(id) == false || this.sequence.filter(_ => _.selection > 0).map(_ => _.selection).includes(id);
     },
     shareRadiant() {
-      debugger;
-      const team = this.teams.find(_ => _.team === 1);
+      const team = this.teams[0];
       const url = `${window.location.origin}/#/captains-draft/lobby/${this.lobby_id}/${team.id}`;
       navigator.clipboard.writeText(url);
     },
     shareDire() {
-      const team = this.teams.find(_ => _.team === 2);
+      const team = this.teams[1];
       const url = `${window.location.origin}/#/captains-draft/lobby/${this.lobby_id}/${team.id}`;
       navigator.clipboard.writeText(url);
     },
+    heroName(id) {
+      return this.heroes.find(_ => _.id === id)?.name ?? "Unknown";
+    },
+    isActive(team, ) {
+
+    },
+    async start() {
+      let body = {};
+      var url = `${process.env.VUE_APP_BASE_URL}/api/captains/${this.lobby_id}/start`;
+      var response = await axios.post(url, body);
+    },
+    async selectHero() {
+
+      // let body = {
+      //   hero: 0,
+      //   phase: this.phase
+      // };
+      // var url = `${process.env.VUE_APP_BASE_URL}/api/captains/${this.lobby_id}/selection`;
+      // var response = await axios.post(url, body);
+    }
   },
   watch: {
-    options: function (val) {
-      console.log(val);
+    time: function (newValue, oldValue) {
+      if(this.timed && newValue === 0) {
+        clearInterval(interval);
+        this.selectHero();
+      }
     }
   }
 };
@@ -319,4 +411,5 @@ export default {
 @keyframes blinker {  
   50% { opacity: 0; }
 }
+
 </style>
