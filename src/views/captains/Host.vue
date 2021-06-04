@@ -62,7 +62,7 @@
               </div>
               <hr />
 
-              <div class="row" style="background-image: url('@/assets/dire.png')">
+              <div class="row">
 
                 <div class="col-xl-2">
                   <!--<img src="@/assets/dire.png" class="p-1 rounded w-100"  />-->
