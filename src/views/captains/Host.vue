@@ -37,7 +37,7 @@
                       <img v-if="item.selection" :src="`https://hyperstone.highgroundvision.com/images/heroes/icon/${item.selection}.png`" />
                     </template>
                   </div>
-                  <div v-else-if="radiantSequence.filter(_ => _.phase === 3).length > 0">
+                  <div v-if="radiantSequence.filter(_ => _.phase === 3).length > 0">
                     <div class="px-1 my-1 rounded bg-secondary text-white">
                       <span>Extra</span>
                     </div>
