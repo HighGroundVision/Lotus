@@ -193,7 +193,7 @@ import data from '@/data/heroes.json';
 import axios from 'axios';
 import * as signalR from "@microsoft/signalr";
 import Commands from '@/components/Commands.vue'
-import humanize from "humanize";
+import SingleSlider from '@/components/SingleSlider.vue'
 
 // TODO: Host Start
 // TODO: Additional Options
@@ -203,7 +203,7 @@ let interval = null;
 
 export default {
   components: {
-    Commands
+    Commands, SingleSlider
   },
   data() {
     return {
