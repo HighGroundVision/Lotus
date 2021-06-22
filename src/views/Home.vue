@@ -6,7 +6,7 @@
           <div class="card" >
             <div class="card-body" >
               <p class="card-text">
-                Welcome to High Ground Vision - Ability Drafter
+                Welcome to High Ground Vision's Hero Drafter for AD - Lotus
               </p>
               <p class="card-text">
                 With the addition of some new <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">console commands</a> 
