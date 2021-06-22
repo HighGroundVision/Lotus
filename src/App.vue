@@ -2,7 +2,7 @@
   <!-- Header -->
   <header id="header">
     <img class="logo-icon" src="/favicon.ico" style="" />
-    <a href="/" class="logo">Ability Drafter</a>
+    <a href="/" class="logo">Lotus</a>
   </header>
   <!-- Nav -->
   <!--
