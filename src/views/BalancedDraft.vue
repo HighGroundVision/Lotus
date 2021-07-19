@@ -252,6 +252,7 @@
         <div class="col-xl-12">
           <div class="card" >
             <div class="card-header">
+              <button type="button" class="btn btn-primary btn-sm float-end" @click="speedDraft">Speed Draft</button>
               <h5>Additional Options</h5>
             </div>
             <div class="card-body" >
@@ -488,66 +489,6 @@ export default {
         pre_time: this.pre_time,
       };
     },
-    /*
-    commands: function() {
-      let cmd = "dota_gamemode_ability_draft_set_draft_hero_and_team_clear \n";
-
-      if(this.shuffle_player) {
-        cmd += "dota_gamemode_ability_draft_shuffle_draft_order 0 \n"
-      }
-
-      if(this.switch_per_player_time) {
-        cmd += "dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " \n"
-      }
-      if(this.switch_pre_round_time) {
-        cmd += "dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " \n"
-      }
-      if(this.switch_pre_time) {
-        cmd += "dota_gamemode_ability_draft_pre_time " + this.pre_time + " \n"
-      }
-      for (const item of this.roster_radiant) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant \n"
-      }
-      for (const item of this.roster_dire) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire \n"
-      }
-      for (const item of this.roster_extra) {
-        cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra \n"
-      }
-
-      cmd += "dota_gamemode_ability_draft_set_draft_hero_and_team"
-
-      return cmd;
-    },
-    launchOptions: function() {
-      let cmd = "-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear ";
-
-      if(this.shuffle_player) {
-        cmd += "+dota_gamemode_ability_draft_shuffle_draft_order 0 ";
-      }
-
-      if(this.switch_per_player_time) {
-        cmd += "+dota_gamemode_ability_draft_per_player_time " + this.per_player_time + " "
-      }
-      if(this.switch_pre_round_time) {
-        cmd += "+dota_gamemode_ability_draft_pre_round_time " + this.pre_round_time + " "
-      }
-      if(this.switch_pre_time) {
-        cmd += "+dota_gamemode_ability_draft_pre_time " + this.pre_time + " "
-      }
-
-      for (const item of this.roster_radiant) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " radiant "
-      }
-      for (const item of this.roster_dire) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " dire "
-      }
-      for (const item of this.roster_extra) {
-        cmd += "+dota_gamemode_ability_draft_set_draft_hero_and_team " + item.key + " extra "
-      }
-      return cmd;
-    }
-    */
   },
   methods: {
     generate() {
@@ -772,6 +713,14 @@ export default {
       }
 
       return false;
+    },
+    speedDraft() {
+        this.switch_per_player_time = true;
+        this.per_player_time = 1;
+        this.switch_pre_round_time  = true;
+        this.pre_round_time = 1;
+        this.switch_pre_time  = true;
+        this.pre_time = 10;
     },
     /*
     launch() {

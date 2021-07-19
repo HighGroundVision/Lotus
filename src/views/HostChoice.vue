@@ -61,6 +61,7 @@
         <div class="col-xl-12">
            <div class="card" >
             <div class="card-header">
+              <button type="button" class="btn btn-primary btn-sm float-end" @click="speedDraft">Speed Draft</button>
               <h5>Additional Options</h5>
             </div>
             <div class="card-body" >
@@ -102,7 +103,7 @@
                   </div>
                 </div>
                 <div class="col-xl-6">
-                  <single-slider v-model="pre_time" :min="30" :max="120"></single-slider>
+                  <single-slider v-model="pre_time" :min="10" :max="120"></single-slider>
                 </div>
               </div>
             </div>
@@ -251,7 +252,15 @@ export default {
       this.roster_radiant = [];
       this.roster_dire = [];
       this.roster_extra = [];
-    }
+    },
+    speedDraft() {
+        this.switch_per_player_time = true;
+        this.per_player_time = 1;
+        this.switch_pre_round_time  = true;
+        this.pre_round_time = 1;
+        this.switch_pre_time  = true;
+        this.pre_time = 10;
+    },
   }
 };
 </script>
