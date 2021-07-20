@@ -832,7 +832,7 @@
         "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/107.jpg",
         "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/107.png",
         "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/107.jpg",
-        "ability_replace_required": true,
+        "ability_replace_required": false,
         "strength_gain": 4.4,
         "max_strength": 154,
         "intelligence_gain": 2.1,
@@ -1101,6 +1101,7 @@
         "picked": false,
         "damage": 25,
         "roles": [
+            "Support",
             "Nuker",
             "Escape",
             "Disabler"
@@ -2359,7 +2360,7 @@
         "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/79.jpg",
         "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/79.png",
         "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/79.jpg",
-        "ability_replace_required": true,
+        "ability_replace_required": false,
         "strength_gain": 2.6,
         "max_strength": 101,
         "intelligence_gain": 3.6,
