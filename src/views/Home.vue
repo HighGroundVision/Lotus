@@ -10,7 +10,7 @@
               </p>
               <p class="card-text">
                 With the addition of some new <a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">console commands</a> 
-                to set the hero roaster (5 heroes for each team + 2 extras) we are interested in creating experimental lobbies to test different drafting strategies.
+                to set the hero roster (5 heroes for each team + 2 extras) we are interested in creating experimental lobbies to test different drafting strategies.
               </p>
               <p>
                 We recommend that you use these tools first before lunching dota and creating the lobby as these tools have a 'Set Roster' 
