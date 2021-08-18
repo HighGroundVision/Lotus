@@ -43,7 +43,7 @@
             <div class="card-body text-center">
               <template v-for="(item) in heroes" v-bind:key="item.id">
                 <figure class="figure m-1" @click="pick(item.id)">
-                  <img :src="item.image_banner" class="rounded-top"/>
+                  <img :src="item.image_profile" class="rounded-top"/>
                   <figcaption class="figure-caption bg-secondary text-white rounded-bottom text-center">{{item.name}}</figcaption>
                 </figure>
               </template>
@@ -60,7 +60,7 @@
             </div>
             <div class="card-body text-center">
                <figure class="figure m-1">
-                <img :src="hero.image_banner" class="rounded-top"/>
+                <img :src="hero.image_profile" class="rounded-top"/>
                 <figcaption class="figure-caption bg-secondary text-white rounded-bottom text-center">{{hero.name}}</figcaption>
               </figure>
             </div>
