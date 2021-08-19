@@ -1,26 +1,53 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <router-view />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@font-face {
+  font-family: 'Radiance';
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance.eot');
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance.eot?#iefix') format('embedded-opentype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance.woff') format('woff'),
+    url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance.ttf') format('truetype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance.svg#ywftsvg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Radiance';
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.eot');
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.eot?#iefix') format('embedded-opentype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.woff') format('woff'),
+    url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.ttf') format('truetype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-bold.svg#ywftsvg') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Radiance';
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot');
+  src: url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.eot?#iefix') format('embedded-opentype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.woff') format('woff'),
+    url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.ttf') format('truetype'), url('https://cdn.cloudflare.steamstatic.com/apps/dota2/fonts/radiance-semibold.svg#ywftsvg') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: #000;
+  color: #fff;
+}
+
+/*!sc*/
+a {
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+/*!sc*/
+* {
+  box-sizing: border-box;
+  font-family: 'Radiance', 'Noto Sans', sans-serif;
 }
 </style>
