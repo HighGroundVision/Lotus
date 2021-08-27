@@ -38,6 +38,10 @@ body {
   color: #fff;
 }
 
+hr {
+  border: rgb(89, 31, 130) 2px dashed;
+}
+
 /*!sc*/
 a {
   color: inherit;
@@ -49,5 +53,18 @@ a {
 * {
   box-sizing: border-box;
   font-family: 'Radiance', 'Noto Sans', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(0deg, rgb(89, 31, 130) 0%, rgb(255, 165, 0) 100%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  box-shadow: 0px 0px 0px 100000vh #222;
 }
 </style>

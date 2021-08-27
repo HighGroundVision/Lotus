@@ -1,24 +1,69 @@
-# lotus
+# HGV - Lotus
 
-## Project setup
-```
-npm install
-```
+## Experimental Drafting Options for Ability Draft Lobbies
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**Host Choice**
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Hero Grid
+  - Filter
+  - Image Grid
+  - Option for ImageType: Profile, Banner, Icon
+  - Selection Collection
+  - OnSelected Event
+  - OnRejected Event
+- Additional Options
+  - Shuffle Events
+  - Time Events
+- Roster
+  - Radiant / Dir / Extra slots
+  - Drop and Drag bettween slots
+  - Reset Command / OnReset Event
+  - Copy Command
+  - Start Command
 
-### Lints and fixes files
-```
-npm run lint
-```
+**Balanced Draft**
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Switchs
+  - Randomize Section
+  - Filters Section
+  - Balance Section
+  - Order Section
+  - Generate Command
+- Additional Options
+  - Shuffle Events
+  - Time Events
+- Roster
+  - Radiant / Dir / Extra slots
+  - Drop and Drag bettween slots
+  - Reset Command / OnReset Event
+  - Copy Command
+  - Start Command
+
+**Single Draft**
+
+Pages
+
+- Lobby
+  - Lobby Client
+  - List Lobbies
+    - Join Lobby Command
+    - Persona
+  - Create Lobby
+    - Draft Details
+      - Blind vs Open
+      - Heroes Selection
+- Draft
+  - Game Client
+  - Leave Match Command
+  - Phases
+    - Ready
+    - Pick
+  - If Host
+    - Copy Command
+
+## Split Game Client and Server
+
+NPM Packages hosted on Github
+
+- Create Project 'Ballista' for variants [AP,SD,HD,CD,CC] that require turns phases.
+- Move Server code into 'Aquila'
