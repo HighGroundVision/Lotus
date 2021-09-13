@@ -63,16 +63,20 @@ export const HostChoice = {
 
       if (state.playerShuffle == false) {
         cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
+        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
       }
 
       if (state.pickTime != 7) {
         cmd += 'dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ';'
+        cmd += 'dota_gamemode_ability_draft_per_player_time;'
       }
       if (state.roundTime != 5) {
         cmd += 'dota_gamemode_ability_draft_pre_round_time ' + state.roundTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_round_time;'
       }
       if (state.draftTime != 60) {
         cmd += 'dota_gamemode_ability_draft_pre_time ' + state.draftTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_time;'
       }
 
       for (let i = 0; i < state.selection.length; i++) {

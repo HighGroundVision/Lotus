@@ -42,21 +42,19 @@ hr {
   border: rgb(89, 31, 130) 2px dashed;
 }
 
-/*!sc*/
 a {
   color: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-/*!sc*/
 * {
   box-sizing: border-box;
   font-family: 'Radiance', 'Noto Sans', sans-serif;
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {

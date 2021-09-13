@@ -1,21 +1,5 @@
 import db from '@/assets/heroes.json'
-
-function shuffleArray(array) {
-  var currentIndex = array.length,
-    randomIndex
-
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex)
-    currentIndex--
-
-    // And swap it with the current element.
-    ;[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]]
-  }
-
-  return array
-}
+import { shuffleArray } from '@/store/shuffle'
 
 var groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
@@ -216,16 +200,20 @@ export const BalancedDraft = {
 
       if (state.playerShuffle == false) {
         cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
+        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
       }
 
       if (state.pickTime != 7) {
         cmd += 'dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ';'
+        cmd += 'dota_gamemode_ability_draft_per_player_time;'
       }
       if (state.roundTime != 5) {
         cmd += 'dota_gamemode_ability_draft_pre_round_time ' + state.roundTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_round_time;'
       }
       if (state.draftTime != 60) {
         cmd += 'dota_gamemode_ability_draft_pre_time ' + state.draftTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_time;'
       }
 
       for (let i = 0; i < state.selection.length; i++) {

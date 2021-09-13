@@ -60,9 +60,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.toggle-purple {
-  --toggle-bg-on: #6161ab;
-  --toggle-border-on: #6161ab;
-}
-</style>
+<style scoped></style>

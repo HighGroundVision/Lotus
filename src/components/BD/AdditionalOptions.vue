@@ -77,15 +77,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.toggle-purple {
-  --toggle-bg-on: #6161ab;
-  --toggle-border-on: #6161ab;
-}
-
-.slider-purple {
-  --slider-connect-bg: #6161ab;
-  --slider-tooltip-bg: #6161ab;
-  --slider-handle-ring-color: #7b61ab;
-}
-</style>
+<style scoped></style>

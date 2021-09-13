@@ -9,7 +9,7 @@ const server = Server({
   db: new FlatFile({
     dir: './storage',
     logging: false,
-    ttl: 5 * 60 * 1000,
+    ttl: 60 * 60 * 1000,
   }),
 
   origins: [

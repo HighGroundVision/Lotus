@@ -3,37 +3,42 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home/Index.vue'),
   },
   {
     path: '/faq',
-    name: 'Faq',
+    name: 'faq',
     component: () => import(/* webpackChunkName: "faq" */ '../views/Faq/Index.vue'),
   },
   {
     path: '/hc',
-    name: 'HC',
+    name: 'host-choice',
     component: () => import(/* webpackChunkName: "hc" */ '../views/HC/Index.vue'),
   },
   {
     path: '/bd',
-    name: 'BD',
+    name: 'balanced-draft',
     component: () => import(/* webpackChunkName: "bd" */ '../views/BD/Index.vue'),
   },
   {
     path: '/sd',
-    name: 'SD Lobby',
+    name: 'single-draft',
     component: () => import(/* webpackChunkName: "sd" */ '../views/SD/Index.vue'),
   },
   {
-    path: '/sd/draft',
-    name: 'SD Draft',
-    component: () => import(/* webpackChunkName: "sd" */ '../views/SD/Draft.vue'),
+    path: '/sd/lobby/:matchID',
+    name: 'single-draft-lobby',
+    component: () => import(/* webpackChunkName: "sd" */ '../views/SD/Lobby.vue'),
+  },
+  {
+    path: '/sd/game/:matchID',
+    name: 'single-draft-game',
+    component: () => import(/* webpackChunkName: "sd" */ '../views/SD/Game.vue'),
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'NotFound',
+    name: 'not-found',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home/Index.vue'),
   },
 ]

@@ -1,0 +1,68 @@
+.multiselect-purple {
+  min-width: 250px;
+  --ms-bg: #222;
+  --ms-bg-disabled: #222;
+  --ms-border-color: #222;
+  --ms-border-width: 2px;
+  --ms-ring-color: rgb(89, 31, 130);
+  --ms-placeholder-color: #6161ab;
+  --ms-radius: 5px;
+  --ms-dropdown-bg: #222;
+  --ms-dropdown-border-color: #222;
+  --ms-dropdown-border-width: 2px;
+  --ms-dropdown-radius: 5px;
+  --ms-option-bg-pointed: rgb(121, 121, 121);
+  --ms-option-bg-selected: #6161ab;
+  --ms-option-bg-disabled: rgb(121, 121, 121);
+  --ms-option-bg-selected-pointed: 6161ab;
+  --ms-option-bg-selected-disabled: rgb(121, 121, 121);
+  --ms-option-color-pointed: rgb(89, 31, 130);
+  --ms-option-color-selected: rgb(121, 121, 121);
+  --ms-option-color-disabled: rgb(121, 121, 121);
+  --ms-option-color-selected-pointed: rgb(121, 121, 121);
+  --ms-option-color-selected-disabled: #6161ab;
+  --ms-tag-bg: #6161ab;
+  --ms-tag-bg-disabled: #9ca3af;
+  --ms-tag-color: #ffffff;
+  --ms-tag-color-disabled: #ffffff;
+}
+
+.hero-icon-select-purple {
+  min-width: 200px;
+  --ms-bg: #222;
+  --ms-bg-disabled: #222;
+  --ms-border-color: #222;
+  --ms-border-width: 2px;
+  --ms-ring-color: rgb(89, 31, 130);
+  --ms-placeholder-color: #6161ab;
+  --ms-radius: 5px;
+  --ms-dropdown-bg: #222;
+  --ms-dropdown-border-color: #222;
+  --ms-dropdown-border-width: 2px;
+  --ms-dropdown-radius: 5px;
+  --ms-option-bg-pointed: rgb(121, 121, 121);
+  --ms-option-bg-selected: #6161ab;
+  --ms-option-bg-disabled: rgb(121, 121, 121);
+  --ms-option-bg-selected-pointed: 6161ab;
+  --ms-option-bg-selected-disabled: rgb(121, 121, 121);
+  --ms-option-color-pointed: rgb(89, 31, 130);
+  --ms-option-color-selected: rgb(121, 121, 121);
+  --ms-option-color-disabled: rgb(121, 121, 121);
+  --ms-option-color-selected-pointed: rgb(121, 121, 121);
+  --ms-option-color-selected-disabled: #6161ab;
+  --ms-tag-bg: #6161ab;
+  --ms-tag-bg-disabled: #9ca3af;
+  --ms-tag-color: #ffffff;
+  --ms-tag-color-disabled: #ffffff;
+}
+
+.toggle-purple {
+  --toggle-bg-on: #6161ab;
+  --toggle-border-on: #6161ab;
+}
+
+.slider-purple {
+  --slider-connect-bg: #6161ab;
+  --slider-tooltip-bg: #6161ab;
+  --slider-handle-ring-color: #7b61ab;
+}
