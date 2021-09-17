@@ -3,11 +3,7 @@
     <div style="max-width: 800px; width: 100%; margin: auto; text-align: center; margin-top: 50px; margin-bottom: 50px">
       <div style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; width: 100%; margin: auto; margin-top: 50px; margin-bottom: 50px">
         <div style="font-size: 30px; margin-bottom: 5px">Create a Lobby</div>
-        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
-          The draft maybe Blind where no one but the host/spectators can see other players options and selection, Team where players can see the options and selection of other players on the same team, and Open where everyone can see each other options but only memebrs of same team can see each
-          others selection. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected, or Players Vote where the players get an extra phase to vote for one of the random choices, the hero on each team that gets the most votes will be
-          included.
-        </div>
+        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">...</div>
         <hr />
         <div style="display: flex">
           <div style="margin: 10px; min-width: 200px">
@@ -15,22 +11,6 @@
           </div>
           <div style="margin: 10px">
             <input v-model="name" class="dhjrhf" />
-          </div>
-        </div>
-        <div style="display: flex">
-          <div style="margin: 10px; min-width: 200px">
-            <span>Visibility</span>
-          </div>
-          <div style="margin: 10px">
-            <Multiselect v-model="visibility" :options="visibilityOptions" class="multiselect-purple" />
-          </div>
-        </div>
-        <div style="display: flex">
-          <div style="margin: 10px; min-width: 200px">
-            <span>Extra</span>
-          </div>
-          <div style="margin: 10px">
-            <Multiselect v-model="extra" :options="extraOptions" class="multiselect-purple" />
           </div>
         </div>
         <div @click="create" class="jnbrig" style="width: 100%">
@@ -42,35 +22,17 @@
 </template>
 
 <script>
-import Multiselect from '@vueform/multiselect'
-
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions } = createNamespacedHelpers('sd/lobbies')
+const { mapActions } = createNamespacedHelpers('ap/lobbies')
 
 export default {
   data() {
     return {
       name: '',
-      visibility: 1,
-      visibilityOptions: [
-        { value: 1, label: 'Blind' },
-        { value: 2, label: 'Team' },
-        { value: 3, label: 'Open' },
-      ],
-      extra: 1,
-      extraOptions: [
-        { value: 1, label: 'Random' },
-        { value: 2, label: 'Host Choice' },
-        { value: 3, label: 'Players Vote' },
-      ],
     }
   },
   mounted() {
-    this.visibility = this.$route.query.visibility ?? 1
-    this.extra = this.$route.query.extra ?? 1
-  },
-  components: {
-    Multiselect,
+    // this.visibility = this.$route.query.visibility ?? 1
   },
   methods: {
     ...mapActions(['createMatch', 'getHeroes']),
@@ -78,11 +40,9 @@ export default {
       try {
         let matchID = await this.createMatch({
           name: this.name,
-          visibility: this.visibility,
-          extra: this.extra,
         })
         this.$router.push({
-          name: 'single-draft-lobby',
+          name: 'all-pick-lobby',
           params: { matchID: matchID },
         })
       } catch (error) {

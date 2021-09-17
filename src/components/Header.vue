@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 0px: z-index:2;">
+  <div style="margin-bottom: -5px">
     <div style="position: relative; top: 100px; background-color: #591f82; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 0px; max-width: 800px; width: 100%; margin: auto; margin-top: 0px; display: flex; align-items: center">
       <div style="padding: 20px">
         <div style="font-size: 30px; margin-bottom: 5px"><slot name="title"></slot></div>

@@ -7,7 +7,20 @@
     </Header>
     <div style="background: #191919; margin-top: -5px">
       <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 10px 100px 10px">
-        <Game />
+        <div v-if="isConnected">
+          <div v-if="isHost">
+            <GameHost />
+          </div>
+          <div v-else-if="isPlayer">
+            <GamePlayer />
+          </div>
+          <div v-else-if="isSpectator">
+            <GameSpectator />
+          </div>
+        </div>
+        <div v-else>
+          <GameDisconnected />
+        </div>
       </div>
     </div>
     <Footer />
@@ -18,15 +31,36 @@
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
-import Game from '@/components/SD/Game.vue'
+import GameDisconnected from '@/components/SD/GameDisconnected.vue'
+import GameSpectator from '@/components/SD/GameSpectator.vue'
+import GameHost from '@/components/SD/GameHost.vue'
+import GamePlayer from '@/components/SD/GamePlayer.vue'
+
+import { createNamespacedHelpers } from 'vuex'
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('sd/game')
 
 export default {
   setup() {},
+  async mounted() {
+    let matchID = this.$route.params.matchID
+    await this.loadMatch(matchID)
+    await this.startClient()
+  },
   components: {
     Menu,
     Header,
     Footer,
-    Game,
+    GameDisconnected,
+    GameSpectator,
+    GameHost,
+    GamePlayer,
+  },
+  computed: {
+    ...mapState(['isConnected']),
+    ...mapGetters(['isHost', 'isPlayer', 'isSpectator']),
+  },
+  methods: {
+    ...mapActions(['loadMatch', 'startClient']),
   },
 }
 </script>

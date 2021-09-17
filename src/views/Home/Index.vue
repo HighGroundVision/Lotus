@@ -6,8 +6,6 @@
           <a style="height: 45px; line-height: 45px; font-size: 20px" href="/"><span style="border-bottom: 2px solid">hgv.lotus</span></a>
           <div style="display: flex">
             <div style="display: flex; align-items: center; height: 100%; justify-content: flex-end" class="jjSfOp">
-              <!--<a style="cursor: pointer; padding: 10px 20px" href="/faq">FAQ</a>-->
-              <!--<router-link to="/faq" style="cursor: pointer; padding: 10px 20px">FAQ</router-link>-->
               <a href="#hc" style="cursor: pointer; padding: 10px 20px">HC</a>
               <a href="#bd" style="cursor: pointer; padding: 10px 20px">BD</a>
               <a href="#ap" style="cursor: pointer; padding: 10px 20px">AP</a>
@@ -209,7 +207,7 @@
               <h2 id="ap" style="margin: 0; font-size: 35px; padding: 0px 20px">
                 <router-link to="/ap">All Pick</router-link>
               </h2>
-              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">Players can pick form the full hero pool. Players have 75 seconds for selection or their pick will be randomed. Players can also chose to random a hero.</p>
+              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">Players can pick form the full hero pool. Players have a number seconds determind by the host for selection or their pick will be randomed. Players can also chose to random a hero.</p>
               <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</p>
             </div>
           </div>

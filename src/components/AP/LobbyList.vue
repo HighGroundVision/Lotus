@@ -31,7 +31,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapActions } = createNamespacedHelpers('sd/lobbies')
+const { mapState, mapActions } = createNamespacedHelpers('ap/lobbies')
 
 export default {
   data() {
@@ -61,10 +61,10 @@ export default {
       return game.players.length
     },
     join(matchID) {
-      this.$router.push({ name: 'single-draft-lobby', params: { matchID: matchID } })
+      this.$router.push({ name: 'all-pick-lobby', params: { matchID: matchID } })
     },
     spectate(matchID) {
-      this.$router.push({ name: 'single-draft-game', params: { matchID: matchID } })
+      this.$router.push({ name: 'all-pick-game', params: { matchID: matchID } })
     },
     cancelAutoUpdate() {
       if (this.timer) clearInterval(this.timer)

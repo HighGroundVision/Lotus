@@ -1,29 +1,14 @@
 import { Client } from 'boardgame.io/client'
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { lobbyClient } from '@/store/lobby'
-import { SingleDraftGame } from '@/games/SD/'
-import { shuffleArray } from '@/store/shuffle'
+import { AllPickGame } from '@/games/AP/'
 import db from '@/assets/heroes.json'
-
-function getShuffledHeroes(attribute) {
-  let heroes = db.slice(0).filter((_) => _.primary_attribute == attribute)
-  let collection = shuffleArray(heroes)
-  return collection
-}
-
-function getFilterHero(collection) {
-  let item = collection.shift()
-  if (item.ability_replace_required) {
-    collection = collection.filter((_) => _.ability_replace_required == false)
-  }
-  return item
-}
 
 const NUMBER_PLAYERS = 11
 
-let sdGameClient = new Client({
+let apGameClient = new Client({
   // A game definition object.
-  game: SingleDraftGame,
+  game: AllPickGame,
   // The number of players.
   numPlayers: NUMBER_PLAYERS,
   // Set this to one of the following to enable multiplayer: SocketIO / Local / false
@@ -40,7 +25,7 @@ let sdGameClient = new Client({
   // enhancer: enhancer,
 })
 
-const SingleDraftCollectionStore = {
+const AllPickCollectionStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -55,13 +40,13 @@ const SingleDraftCollectionStore = {
   },
   actions: {
     async findMatches({ commit }) {
-      const { matches } = await lobbyClient.listMatches(SingleDraftGame.name)
+      const { matches } = await lobbyClient.listMatches(AllPickGame.name)
       commit('setMatches', matches)
     },
-    async createMatch({ dispatch }, config) {
-      let heroes = await dispatch('getHeroes')
-      let collection = heroes.map((i) => ({ options: i, selection: null, vote: null }))
-      const { matchID } = await lobbyClient.createMatch(SingleDraftGame.name, {
+    async createMatch(_, config) {
+      let collection = db.map((i) => i.id)
+
+      const { matchID } = await lobbyClient.createMatch(AllPickGame.name, {
         numPlayers: NUMBER_PLAYERS,
         setupData: { ...config, collection },
         unlisted: false,
@@ -69,32 +54,13 @@ const SingleDraftCollectionStore = {
 
       return matchID
     },
-    getHeroes() {
-      let strHeroes = getShuffledHeroes('STRENGTH')
-      let agiHeroes = getShuffledHeroes('AGILITY')
-      let intHeroes = getShuffledHeroes('INTELLECT')
-
-      let collection = []
-      for (let i = 0; i < 12; i++) {
-        let str = getFilterHero(strHeroes)
-        let agi = getFilterHero(agiHeroes)
-        let int = getFilterHero(intHeroes)
-        collection.push([
-          { ...str, votes: 0 },
-          { ...agi, votes: 0 },
-          { ...int, votes: 0 },
-        ])
-      }
-      return collection
-    },
     exists({ state }) {
       return state.playerID && state.playerCredentials
     },
   },
-  getters: {},
 }
 
-const SingleDraftLobbyStore = {
+const AllPickLobbyStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -121,23 +87,23 @@ const SingleDraftLobbyStore = {
   },
   actions: {
     async loadMatch({ commit }, matchID) {
-      const match = await lobbyClient.getMatch(SingleDraftGame.name, matchID)
-      let json = localStorage.getItem(`sd:${matchID}`)
+      const match = await lobbyClient.getMatch(AllPickGame.name, matchID)
+      let json = localStorage.getItem(`ap:${matchID}`)
       let existing = JSON.parse(json)
       commit('setMatch', { match, existing })
     },
     async joinSlot({ commit, state }, { playerID, playerName, data }) {
-      const { playerCredentials } = await lobbyClient.joinMatch(SingleDraftGame.name, state.match.matchID, { playerID, playerName, data })
+      const { playerCredentials } = await lobbyClient.joinMatch(AllPickGame.name, state.match.matchID, { playerID, playerName, data })
       let json = JSON.stringify({ playerID, playerCredentials })
-      localStorage.setItem(`sd:${state.match.matchID}`, json)
+      localStorage.setItem(`ap:${state.match.matchID}`, json)
       commit('joinMatch', { playerID, playerCredentials })
     },
     async leaveSlot({ commit, state }) {
-      await lobbyClient.leaveMatch(SingleDraftGame.name, state.match.matchID, {
+      await lobbyClient.leaveMatch(AllPickGame.name, state.match.matchID, {
         playerID: state.playerID,
         credentials: state.playerCredentials,
       })
-      localStorage.removeItem(`sd:${state.match.matchID}`)
+      localStorage.removeItem(`ap:${state.match.matchID}`)
       commit('leaveSlot')
     },
   },
@@ -157,7 +123,7 @@ const SingleDraftLobbyStore = {
   },
 }
 
-const SingleDraftGameStore = {
+const AllPickGameStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -189,36 +155,33 @@ const SingleDraftGameStore = {
   },
   actions: {
     async loadMatch({ commit }, matchID) {
-      const match = await lobbyClient.getMatch(SingleDraftGame.name, matchID)
-      let json = localStorage.getItem(`sd:${matchID}`)
+      const match = await lobbyClient.getMatch(AllPickGame.name, matchID)
+      let json = localStorage.getItem(`ap:${matchID}`)
       let slot = JSON.parse(json)
       commit('setMatch', { match, slot })
     },
     startClient({ commit, state }) {
-      if (state.isConnected) sdGameClient.stop()
-      sdGameClient.updateMatchID(state.match.matchID)
-      sdGameClient.updatePlayerID(state.slot?.playerID)
-      sdGameClient.updateCredentials(state.slot?.playerCredentials)
-      sdGameClient.subscribe((gs) => {
+      if (state.isConnected) apGameClient.stop()
+      apGameClient.updateMatchID(state.match.matchID)
+      apGameClient.updatePlayerID(state.slot?.playerID)
+      apGameClient.updateCredentials(state.slot?.playerCredentials)
+      apGameClient.subscribe((gs) => {
         if (gs) {
           commit('updateGameState', gs)
-          commit('setSlots', sdGameClient.matchData)
+          commit('setSlots', apGameClient.matchData)
         }
       })
-      sdGameClient.start()
+      apGameClient.start()
     },
     ready() {
-      sdGameClient.moves.Readyup()
+      let timestamp = new Date(new Date().getTime() + 75000).getTime()
+      apGameClient.moves.Readyup(timestamp)
     },
-    pick(_, key) {
-      sdGameClient.moves.PickHero(key)
+    pick(_, id) {
+      apGameClient.moves.PickHero(id)
     },
-    pickExtra(_, { index, id }) {
-      let hero = db.slice(0).find((i) => i.id == id)
-      sdGameClient.moves.PickExtra(index, hero)
-    },
-    voteExtra(_, index) {
-      sdGameClient.moves.VoteExtra(index)
+    random() {
+      apGameClient.moves.RandomHero()
     },
   },
   getters: {
@@ -237,18 +200,22 @@ const SingleDraftGameStore = {
     isSpectator(state) {
       return state.slot == null
     },
-    slots(state) {
-      let slots = state.G.collection.map((x, i) => {
-        let item = state.match.players[i + 1]
-        return { ...item, ...x }
-      })
-      return slots
-      // let players = state.match.players.slice(1)
-      // let slots = players.map((x, i) => {
-      //   let item = state.G.collection[i]
-      //   return { ...item, ...x }
-      // })
-      // return slots
+    timestamp(state) {
+      return state.G?.timestamp
+    },
+    selected(state) {
+      let id = state.G?.selection[state.slot?.playerID]
+      let hero = db.find((i) => i.id == id)
+      return hero
+    },
+    selection(state) {
+      return (
+        state.G?.selection?.slice(1).map((id, i) => {
+          let hero = db.find((h) => h.id == id)
+          let player = state.match.players[i + 1]
+          return { hero, player }
+        }) ?? []
+      )
     },
     phase(state) {
       if (state.ctx.gameover) {
@@ -263,36 +230,20 @@ const SingleDraftGameStore = {
     phasePick(state) {
       return !state.ctx.gameover && state.ctx.phase == 'pick'
     },
-    phaseExtra(state) {
-      return !state.ctx.gameover && state.ctx.phase == 'extra'
-    },
     phaseOver(state) {
       return state.ctx.gameover
-    },
-    options(state) {
-      let item = state.G.collection[state.slot?.playerID - 1]
-      return item.options
-    },
-    selection(state) {
-      let item = state.G.collection[state.slot?.playerID - 1]
-      return item?.selection
-    },
-    visibilityFlag(state) {
-      return state.G.visibility
-    },
-    extrasFlag(state) {
-      return state.G.extra
     },
     commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
 
-      for (let i = 0; i < state.G.collection.length; i++) {
-        const key = state.G.collection[i].selection?.key
-        if (key) {
+      let collection = state.G?.selection?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
+      for (let i = 0; i < collection.length; i++) {
+        let hero = collection[i]
+        if (hero) {
           const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + key + ' ' + team + ';'
+          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
         }
       }
 
@@ -303,25 +254,25 @@ const SingleDraftGameStore = {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
       cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
 
-      for (let i = 0; i < state.G.selection.length; i++) {
-        const key = state.G.collection[i].selection?.key
-        if (key) {
+      let collection = state.G?.selection?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
+      for (let i = 0; i < collection.length; i++) {
+        let hero = collection[i]
+        if (hero) {
           const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + key + ' ' + team + ' '
+          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
         }
       }
-
       cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd
     },
   },
 }
 
-export const SingleDraft = {
+export const AllPick = {
   namespaced: true,
   modules: {
-    lobbies: SingleDraftCollectionStore,
-    lobby: SingleDraftLobbyStore,
-    game: SingleDraftGameStore,
+    lobbies: AllPickCollectionStore,
+    lobby: AllPickLobbyStore,
+    game: AllPickGameStore,
   },
 }

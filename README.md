@@ -2,9 +2,25 @@
 
 ## Experimental Drafting Options for Ability Draft Lobbies
 
-**Single Draft**
+**All Pick**
 
--> Cleanup Components - Break Game into many components and even sub components
+- Count Down Clock
+
+-> Player
+
+- Select Hero
+- Pick Hero
+- Random Hero
+
+-> Host
+
+- Roster
+- Ready
+- Commands
+
+-> Spectator
+
+- Roster
 
 ## Split Game Client and Server
 

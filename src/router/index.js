@@ -37,6 +37,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "sd" */ '../views/SD/Game.vue'),
   },
   {
+    path: '/ap',
+    name: 'all-pick',
+    component: () => import(/* webpackChunkName: "ap" */ '../views/AP/Index.vue'),
+  },
+  {
+    path: '/ap/lobby/:matchID',
+    name: 'all-pick-lobby',
+    component: () => import(/* webpackChunkName: "ap" */ '../views/AP/Lobby.vue'),
+  },
+  {
+    path: '/ap/game/:matchID',
+    name: 'all-pick-game',
+    component: () => import(/* webpackChunkName: "ap" */ '../views/AP/Game.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home/Index.vue'),

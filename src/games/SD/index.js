@@ -43,7 +43,8 @@ export const SingleDraftGame = {
 
   validateSetupData: (data, players) => {
     if (players != 11) return 'Invaild Number of Players'
-    if (!data) return 'Invaild Setup Data'
+    if (!data) return 'Invaild Lobby Configuration'
+    if (!data.name) return 'A Lobby Name is required'
     if (data.collection.length != 12) return 'Invaild Roster Length'
     if (data.visibility < 1) return 'Invaild Visibility Option'
     if (data.extra < 1) return 'Invaild Extra Option'
