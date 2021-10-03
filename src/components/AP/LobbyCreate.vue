@@ -3,14 +3,38 @@
     <div style="max-width: 800px; width: 100%; margin: auto; text-align: center; margin-top: 50px; margin-bottom: 50px">
       <div style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; width: 100%; margin: auto; margin-top: 50px; margin-bottom: 50px">
         <div style="font-size: 30px; margin-bottom: 5px">Create a Lobby</div>
-        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">...</div>
+        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
+          The host may selet if there is ban phase and amount of seconds the players have to ban. The host may selet the amount of seconds the players have to pick their hero. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.
+        </div>
         <hr />
         <div style="display: flex">
-          <div style="margin: 10px; min-width: 200px">
-            <span>Lobby Name</span>
-          </div>
-          <div style="margin: 10px">
+          <div style="margin: 10px; padding: 10px; min-width: 200px">Lobby Name</div>
+          <div style="margin: 10px; width: 100%">
             <input v-model="name" class="dhjrhf" />
+          </div>
+        </div>
+        <div style="display: flex">
+          <div style="margin: 10px; padding: 10px; min-width: 200px">Ban Phase <span v-if="banSwitch">Enabled</span><span v-else>Disabled</span></div>
+          <div style="margin: 10px">
+            <Toggle v-model="banSwitch" class="toggle-purple" />
+          </div>
+        </div>
+        <div v-if="banSwitch" style="display: flex">
+          <div style="margin: 10px; padding: 10px; min-width: 200px">Ban Time</div>
+          <div style="margin: 10px; margin-top: 40px; width: 100%">
+            <Slider v-model="banTime" :min="5" :max="30" class="slider-purple" />
+          </div>
+        </div>
+        <div style="display: flex">
+          <div style="margin: 10px; padding: 10px; min-width: 200px">Pick Time</div>
+          <div style="margin: 10px; margin-top: 40px; width: 100%">
+            <Slider v-model="pickTime" :min="10" :max="120" class="slider-purple" />
+          </div>
+        </div>
+        <div style="display: flex">
+          <div style="margin: 10px; padding: 10px; min-width: 200px">Extras</div>
+          <div style="margin: 10px; width: 100%">
+            <Multiselect v-model="extra" :options="extraOptions" class="multiselect-purple" />
           </div>
         </div>
         <div @click="create" class="jnbrig" style="width: 100%">
@@ -22,6 +46,10 @@
 </template>
 
 <script>
+import Multiselect from '@vueform/multiselect'
+import Slider from '@vueform/slider'
+import Toggle from '@vueform/toggle'
+
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions } = createNamespacedHelpers('ap/lobbies')
 
@@ -29,10 +57,23 @@ export default {
   data() {
     return {
       name: '',
+      banSwitch: true,
+      banTime: 15,
+      pickTime: 75,
+      extra: 1,
+      extraOptions: [
+        { value: 1, label: 'Random' },
+        { value: 2, label: 'Host Choice' },
+      ],
     }
   },
   mounted() {
     // this.visibility = this.$route.query.visibility ?? 1
+  },
+  components: {
+    Multiselect,
+    Slider,
+    Toggle,
   },
   methods: {
     ...mapActions(['createMatch', 'getHeroes']),
@@ -40,6 +81,10 @@ export default {
       try {
         let matchID = await this.createMatch({
           name: this.name,
+          banSwitch: this.banSwitch,
+          banTime: this.banTime,
+          pickTime: this.pickTime,
+          extra: this.extra,
         })
         this.$router.push({
           name: 'all-pick-lobby',

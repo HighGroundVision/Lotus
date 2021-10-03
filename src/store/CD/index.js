@@ -1,14 +1,14 @@
 import { Client } from 'boardgame.io/client'
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { lobbyClient } from '@/store/lobby'
-import { AllPickGame } from '@/games/AP/'
-import db from '@/assets/heroes.json'
+import { CaptainsDuelGame } from '@/games/CD/'
+// import db from '@/assets/heroes.json'
 
-const NUMBER_PLAYERS = 11
+const NUMBER_PLAYERS = 3
 
-let apGameClient = new Client({
+let cdGameClient = new Client({
   // A game definition object.
-  game: AllPickGame,
+  game: CaptainsDuelGame,
   // The number of players.
   numPlayers: NUMBER_PLAYERS,
   // Set this to one of the following to enable multiplayer: SocketIO / Local / false
@@ -25,7 +25,7 @@ let apGameClient = new Client({
   // enhancer: enhancer,
 })
 
-const AllPickCollectionStore = {
+const CaptainsDuelCollectionStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -40,15 +40,15 @@ const AllPickCollectionStore = {
   },
   actions: {
     async findMatches({ commit }) {
-      const { matches } = await lobbyClient.listMatches(AllPickGame.name)
+      const { matches } = await lobbyClient.listMatches(CaptainsDuelGame.name)
       commit('setMatches', matches)
     },
-    async createMatch(_, config) {
-      let collection = db.map((i) => i.id)
+    async createMatch(_, { name, sequence }) {
+      let collection = sequence.map((i) => ({ stage: i.stage, team: i.team, choice: null, start: null, end: null, delta: 0.0 }))
 
-      const { matchID } = await lobbyClient.createMatch(AllPickGame.name, {
+      const { matchID } = await lobbyClient.createMatch(CaptainsDuelGame.name, {
         numPlayers: NUMBER_PLAYERS,
-        setupData: { ...config, collection },
+        setupData: { name, sequence: collection },
         unlisted: false,
       })
 
@@ -60,7 +60,7 @@ const AllPickCollectionStore = {
   },
 }
 
-const AllPickLobbyStore = {
+const CaptainsDuelLobbyStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -87,24 +87,24 @@ const AllPickLobbyStore = {
   },
   actions: {
     async loadMatch({ commit }, matchID) {
-      const match = await lobbyClient.getMatch(AllPickGame.name, matchID)
+      const match = await lobbyClient.getMatch(CaptainsDuelGame.name, matchID)
       let json = localStorage.getItem(`ap:${matchID}`)
       let existing = JSON.parse(json)
       commit('setMatch', { match, existing })
     },
     async joinSlot({ commit, state }, { playerID, playerName, data }) {
-      const { playerCredentials } = await lobbyClient.joinMatch(AllPickGame.name, state.match.matchID, { playerID, playerName, data })
+      const { playerCredentials } = await lobbyClient.joinMatch(CaptainsDuelGame.name, state.match.matchID, { playerID, playerName, data })
       let json = JSON.stringify({ playerID, playerCredentials })
       localStorage.setItem(`ap:${state.match.matchID}`, json)
       commit('joinMatch', { playerID, playerCredentials })
     },
     async leaveSlot({ commit, state }) {
-      await lobbyClient.leaveMatch(AllPickGame.name, state.match.matchID, {
+      await lobbyClient.leaveMatch(CaptainsDuelGame.name, state.match.matchID, {
         playerID: state.playerID,
         credentials: state.playerCredentials,
       })
       localStorage.removeItem(`ap:${state.match.matchID}`)
-      apGameClient?.stop()
+      cdGameClient?.stop()
       commit('leaveSlot')
     },
   },
@@ -124,7 +124,7 @@ const AllPickLobbyStore = {
   },
 }
 
-const AllPickGameStore = {
+const CaptainsDuelGameStore = {
   namespaced: true,
   state: () => {
     let data = {
@@ -156,41 +156,29 @@ const AllPickGameStore = {
   },
   actions: {
     async loadMatch({ commit }, matchID) {
-      const match = await lobbyClient.getMatch(AllPickGame.name, matchID)
+      const match = await lobbyClient.getMatch(CaptainsDuelGame.name, matchID)
       let json = localStorage.getItem(`ap:${matchID}`)
       let slot = JSON.parse(json)
       commit('setMatch', { match, slot })
     },
     startClient({ commit, state }) {
-      if (state.isConnected) apGameClient.stop()
-      apGameClient.updateMatchID(state.match.matchID)
-      apGameClient.updatePlayerID(state.slot?.playerID)
-      apGameClient.updateCredentials(state.slot?.playerCredentials)
-      apGameClient.subscribe((gs) => {
+      if (state.isConnected) cdGameClient.stop()
+      cdGameClient.updateMatchID(state.match.matchID)
+      cdGameClient.updatePlayerID(state.slot?.playerID)
+      cdGameClient.updateCredentials(state.slot?.playerCredentials)
+      cdGameClient.subscribe((gs) => {
         if (gs) {
           commit('updateGameState', gs)
-          commit('setSlots', apGameClient.matchData)
+          commit('setSlots', cdGameClient.matchData)
         }
       })
-      apGameClient.start()
+      cdGameClient.start()
     },
     next() {
-      apGameClient.moves.NextPhase()
+      cdGameClient.moves.NextPhase()
     },
-    pick(_, id) {
-      let heroes = db.slice(0)
-      let hero = heroes.find((i) => i.id == id)
-      let replacements = hero.ability_replace_required ? heroes.filter((i) => i.ability_replace_required == true).map((i) => i.id) : []
-      apGameClient.moves.PickHero(id, replacements)
-    },
-    ban(_, id) {
-      apGameClient.moves.BanHero(id)
-    },
-    random() {
-      apGameClient.moves.RandomHero()
-    },
-    extra(_, { index, id }) {
-      apGameClient.moves.PickExtra(index, id)
+    choice(id) {
+      cdGameClient.moves.MakeChoice(id)
     },
   },
   getters: {
@@ -200,6 +188,9 @@ const AllPickGameStore = {
     playerID(state) {
       return state.slot?.playerID
     },
+    activePlayer(state) {
+      return state.ctx.currentPlayer
+    },
     isHost(state) {
       return state.slot?.playerID == 0
     },
@@ -208,38 +199,6 @@ const AllPickGameStore = {
     },
     isSpectator(state) {
       return state.slot == null
-    },
-    banTimeStamp(state) {
-      return state.G?.banTimeStamp
-    },
-    pickTimeStamp(state) {
-      return state.G?.pickTimeStamp
-    },
-    bans(state) {
-      return (
-        state.G?.bans?.slice(1).map((id, i) => ({
-          hero: db.find((h) => h.id == id),
-          player: state.match.players[i + 1],
-        })) ?? []
-      )
-    },
-    baned(state) {
-      let id = state.G?.bans[state.slot?.playerID]
-      let hero = db.find((i) => i.id == id)
-      return hero
-    },
-    picks(state) {
-      return (
-        state.G?.picks?.slice(1).map((id, i) => ({
-          hero: db.find((h) => h.id == id),
-          player: state.match.players[i + 1],
-        })) ?? []
-      )
-    },
-    picked(state) {
-      let id = state.G?.picks[state.slot?.playerID]
-      let hero = db.find((i) => i.id == id)
-      return hero
     },
     phase(state) {
       if (state.ctx.gameover) {
@@ -251,79 +210,89 @@ const AllPickGameStore = {
     phaseReady(state) {
       return !state.ctx.gameover && state.ctx.phase == 'ready'
     },
-    phaseBan(state) {
-      return !state.ctx.gameover && state.ctx.phase == 'ban'
-    },
-    phasePick(state) {
-      return !state.ctx.gameover && state.ctx.phase == 'pick'
-    },
-    phaseExtra(state) {
-      return !state.ctx.gameover && state.ctx.phase == 'extra'
+    phaseDraft(state) {
+      return !state.ctx.gameover && state.ctx.phase == 'draft'
     },
     phaseOver(state) {
       return state.ctx.gameover
     },
-    extrasFlag(state) {
-      return state.G?.extra
+    stage(state) {
+      let turn = state.ctx.turn - 3
+      let current = state.G.sequence[turn]
+      return current.stage
     },
-    heroes(state) {
-      return (
-        state.G.collection
-          .filter((i) => !state.G.bans.includes(i))
-          .filter((i) => !state.G.picks.includes(i))
-          .map((id) => db.find((h) => h.id == id)) ?? []
-      )
+    stageBan(state) {
+      debugger
+      let turn = state.ctx.turn - 3
+      let current = state.G.sequence[turn]
+      return current.stage == 'ban'
     },
-    extraRadiantImage(state) {
-      let id = state.G?.picks[11]
-      let hero = db.find((h) => h.id == id)
-      return hero?.image_portrait ?? 'https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg'
+    stagePick(state) {
+      let turn = state.ctx.turn - 3
+      let current = state.G.sequence[turn]
+      return current.stage == 'pick'
     },
-    extraDireImage(state) {
-      let id = state.G?.picks[12]
-      let hero = db.find((h) => h.id == id)
-      return hero?.image_portrait ?? 'https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg'
+    radiantTimeUsage(state) {
+      let amount = state.G.sequence
+        .filter((i) => i.team == '1')
+        .map((i) => i.delta)
+        .reduce((total, i) => total + i)
+      return amount
     },
-    commands: (state) => {
+    direTimeUsage(state) {
+      let amount = state.G.sequence
+        .filter((i) => i.team == '2')
+        .map((i) => i.delta)
+        .reduce((total, i) => total + i)
+      return amount
+    },
+    lastestTimestamp(state) {
+      return state.G.ts
+    },
+    sequence(state) {
+      return state.G.sequence
+    },
+    commands: (/* state */) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
 
-      let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
-      for (let i = 0; i < collection.length; i++) {
-        let hero = collection[i]
-        if (hero) {
-          const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
-        }
-      }
+      // let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
+      // for (let i = 0; i < collection.length; i++) {
+      //   let hero = collection[i]
+      //   if (hero) {
+      //     const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
+      //     cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
+      //   }
+      // }
 
       cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
       return cmd
     },
-    launch: (state) => {
+    launch: (/* state */) => {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
       cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
 
-      let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
-      for (let i = 0; i < collection.length; i++) {
-        let hero = collection[i]
-        if (hero) {
-          const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
-        }
-      }
+      // let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
+      // for (let i = 0; i < collection.length; i++) {
+      //   let hero = collection[i]
+      //   if (hero) {
+      //     const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
+      //     cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
+      //   }
+      // }
+
       cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd
     },
   },
 }
 
-export const AllPick = {
+export const CaptainsDuel = {
   namespaced: true,
   modules: {
-    lobbies: AllPickCollectionStore,
-    lobby: AllPickLobbyStore,
-    game: AllPickGameStore,
+    lobbies: CaptainsDuelCollectionStore,
+    lobby: CaptainsDuelLobbyStore,
+    game: CaptainsDuelGameStore,
   },
 }

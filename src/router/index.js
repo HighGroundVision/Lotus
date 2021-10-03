@@ -52,6 +52,21 @@ const routes = [
     component: () => import(/* webpackChunkName: "ap" */ '../views/AP/Game.vue'),
   },
   {
+    path: '/cd',
+    name: 'captains-duel',
+    component: () => import(/* webpackChunkName: "cd" */ '../views/CD/Index.vue'),
+  },
+  {
+    path: '/cd/lobby/:matchID',
+    name: 'captains-duel-lobby',
+    component: () => import(/* webpackChunkName: "cd" */ '../views/CD/Lobby.vue'),
+  },
+  {
+    path: '/cd/game/:matchID',
+    name: 'captains-duel-game',
+    component: () => import(/* webpackChunkName: "cd" */ '../views/CD/Game.vue'),
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home/Index.vue'),

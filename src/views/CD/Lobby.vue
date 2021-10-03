@@ -1,12 +1,12 @@
 <template>
   <div>
-    <img alt="hero image" style="position: absolute; left: -50px; top: 0px; height: 390px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/97.png" />
+    <img alt="hero image" style="position: absolute; left: -50px; top: 0px; height: 390px; transform: scaleX(-1)" src="https://hyperstone.highgroundvision.com/images/heroes/profile/53.png" />
     <Menu />
     <Header>
-      <template v-slot:title>All Pick</template>
+      <template v-slot:title>Captains Duel</template>
       <template v-slot:description>
-        Players can pick form the full hero pool. Players have a number seconds determind by the host for bans and picks. Players can also chose to random a hero. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</template
-      >
+        The host can control the number and sequence for the bans and picks. The host can set the time in seconds to complete all actions in the sequence. If time runs out during a phase the selection will be random. If time runs out during a phase the selection will be random.
+      </template>
     </Header>
     <div style="background: #191919; margin-top: -5px">
       <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 0px; padding-bottom: 100px">
@@ -28,13 +28,13 @@
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
-import LobbyReconnect from '@/components/AP/LobbyReconnect.vue'
-import LobbySlots from '@/components/AP/LobbySlots.vue'
-import LobbyHost from '@/components/AP/LobbyHost.vue'
+import LobbyReconnect from '@/components/CD/LobbyReconnect.vue'
+import LobbySlots from '@/components/CD/LobbySlots.vue'
+import LobbyHost from '@/components/CD/LobbyHost.vue'
 import Persona from '@/components/Persona.vue'
 
 import { createNamespacedHelpers } from 'vuex'
-const { mapActions, mapGetters } = createNamespacedHelpers('ap/lobby')
+const { mapActions, mapGetters } = createNamespacedHelpers('cd/lobby')
 
 export default {
   setup() {},
@@ -61,7 +61,7 @@ export default {
         await this.loadMatch(matchId)
       } catch (error) {
         this.$toast.open({ message: error.details, type: 'error' })
-        this.$router.push({ name: 'all-pick' })
+        this.$router.push({ name: 'captains-duel' })
       }
     },
   },

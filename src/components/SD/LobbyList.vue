@@ -3,7 +3,7 @@
     <h1>Matches</h1>
     <div style="display: flex">
       <div v-if="matches.length == 0">
-        <p>There are no matches currently, if you are expecting this page will automaticly reference in a few seconds with any new matches.</p>
+        <p>There are no matches currently.</p>
       </div>
       <template v-for="game in matches" :key="game.matchID">
         <div style="border: 2px solid rgb(100, 109, 208); border-radius: 10px; margin: 20px; width: 200px">

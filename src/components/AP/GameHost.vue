@@ -3,8 +3,9 @@
     <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 10px 100px 10px">
       <div class="herogridpage_FilterContainer_2dEVd">
         <div class="herogridpage_FilterLabel_1Mwn_">Phase: {{ phase }}</div>
+        <div class="herogridpage_FilterLabel_1Mwn_">{{ clock }}</div>
         <div style="display: flex; align-items: center; justify-content: flex-end">
-          <div v-if="phaseReady" @click="ready" class="jnbrig" data-tooltip="up" aria-label="Moves to pick phase when all players are in the correct slot.">
+          <div v-if="phaseReady" @click="next" class="jnbrig" data-tooltip="up" aria-label="Moves to pick phase when all players are in the correct slot.">
             <img src="@/assets/ready.svg" />
           </div>
           <div v-if="phaseOver" @click="copy" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console.">
@@ -22,19 +23,19 @@
           </div>
           <img src="https://hyperstone.highgroundvision.com/images/towers/radiant/full.png" style="width: 100%; padding: 5px; margin: auto" />
         </div>
-        <template v-for="(item, index) in selection.slice(0, 5)" :key="index">
+        <template v-for="(item, index) in picks.slice(0, 5)" :key="index">
           <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; margin: 5px; border: 1px solid #616a6b; border-radius: 5px" v-bind:style="{ 'border-color': item.player.isConnected ? '#1d8348' : '#922B21' }">
             <div style="text-align: center; width: 100%; min-height: 20px" v-bind:style="{ background: item.player.isConnected ? '#1d8348' : '#922B21' }">
               <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 1) }}</div>
             </div>
             <img v-if="item.hero" :src="item.hero.image_portrait" style="width: 100%; border-radius: 5px 5px 0px 0px" />
-            <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
+            <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
             <div style="text-align: center; width: 100%; min-height: 20px" v-bind:style="{ background: item.player.isConnected ? '#1d8348' : '#922B21' }">
               <div style="font-size: 0.8em"></div>
             </div>
           </div>
         </template>
-        <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+        <div v-if="extrasFlag == 1" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
           <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
             <div style="width: 100%">Extra</div>
           </div>
@@ -43,6 +44,15 @@
           </div>
           <div style="text-align: center; width: 100%; min-height: 20px; background: #21618c">
             <div style="font-size: 0.8em; padding-top: 2px">Random</div>
+          </div>
+        </div>
+        <div v-if="extrasFlag == 2" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+          <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
+            <div style="width: 100%">Extra</div>
+          </div>
+          <img :src="extraRadiantImage" class="hero-roster" />
+          <div style="text-align: center; width: 100%; min-height: 20px; background: #21618c">
+            <div style="font-size: 0.8em; padding-top: 2px">Host Choice</div>
           </div>
         </div>
       </div>
@@ -54,20 +64,20 @@
           </div>
           <img src="https://hyperstone.highgroundvision.com/images/towers/dire/full.png" style="width: 100%; padding: 5px; margin: auto" />
         </div>
-        <template v-for="(item, index) in selection.slice(5, 10)" :key="index">
+        <template v-for="(item, index) in picks.slice(5, 10)" :key="index">
           <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; margin: 5px; border: 1px solid #616a6b; border-radius: 5px" v-bind:style="{ 'border-color': item.player.isConnected ? '#1d8348' : '#922B21' }">
             <div style="text-align: center; width: 100%; min-height: 20px" v-bind:style="{ background: item.player.isConnected ? '#1d8348' : '#922B21' }">
               <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 1) }}</div>
             </div>
             <img v-if="item.hero" :src="item.hero.image_portrait" style="width: 100%; border-radius: 5px 5px 0px 0px" />
-            <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
+            <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
             <div style="text-align: center; width: 100%; min-height: 20px" v-bind:style="{ background: item.player.isConnected ? '#1d8348' : '#922B21' }">
               <div v-if="item.isConnected" style="font-size: 0.8em">Connected</div>
               <div v-else style="font-size: 0.8em">Disconnected</div>
             </div>
           </div>
         </template>
-        <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+        <div v-if="extrasFlag == 1" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
           <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
             <div style="width: 100%">Extra</div>
           </div>
@@ -78,24 +88,127 @@
             <div style="font-size: 0.8em; padding-top: 2px">Random</div>
           </div>
         </div>
+        <div v-if="extrasFlag == 2" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+          <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
+            <div style="width: 100%">Extra</div>
+          </div>
+          <img :src="extraDireImage" class="hero-roster" />
+          <div style="text-align: center; width: 100%; min-height: 20px; background: #21618c">
+            <div style="font-size: 0.8em; padding-top: 2px">Host Choice</div>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="phaseExtra && extrasFlag == 2" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 30px; margin-bottom: 20px; display: flex; align-items: center">
+        <div style="padding: 20px">
+          <div style="font-size: 30px; margin-bottom: 5px">Extras</div>
+          <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">With this option you as the host select the extra heroes</div>
+          <div style="display: flex">
+            <div style="margin: 10px">
+              <Multiselect mode="single" v-model="extraRadiant" :options="extraOptions" label="name" valueProp="id" :canClear="false" :filterResults="false" class="hero-icon-select-purple">
+                <template v-slot:singlelabel="{ value }">
+                  <span style="font-size: 0.8em">{{ value.name }}</span>
+                </template>
+                <template v-slot:option="{ option }">
+                  <img :src="option.image_icon" />
+                  <span style="font-size: 0.8em">{{ option.name }}</span>
+                </template>
+              </Multiselect>
+            </div>
+            <div style="margin: 10px">
+              <Multiselect mode="single" v-model="extraDire" :options="extraOptions" label="name" valueProp="id" :canClear="false" :filterResults="false" class="hero-icon-select-purple">
+                <template v-slot:singleLabel="{ value }">
+                  <img :src="value.image_icon" />
+                  <span style="font-size: 0.8em">{{ value.name }}</span>
+                </template>
+                <template v-slot:option="{ option }">
+                  <img :src="option.image_icon" />
+                  <span style="font-size: 0.8em">{{ option.name }}</span>
+                </template>
+              </Multiselect>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Multiselect from '@vueform/multiselect'
+
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('ap/game')
 
+function formmatTime(timeStamp) {
+  let milliseconds = timeStamp - Date.now()
+  let seconds = Math.floor(milliseconds / 1000)
+  if (seconds > 0) {
+    const m = Math.floor(seconds / 60)
+    const s = Math.floor(seconds % 60)
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+  } else {
+    return `00:00`
+  }
+}
+
 export default {
   data() {
-    return {}
+    return {
+      interval: null,
+      clock: '##:##',
+    }
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      if (this.banTimeStamp) {
+        this.clock = formmatTime(this.banTimeStamp)
+      } else if (this.pickTimeStamp) {
+        this.clock = formmatTime(this.pickTimeStamp)
+      } else {
+        this.clock = '##:##'
+      }
+    }, 1000)
+  },
+  beforeUnmount() {
+    clearInterval(this.interval)
+  },
+  components: {
+    Multiselect,
   },
   computed: {
-    ...mapGetters(['selection', 'phase', 'phaseReady', 'phasePick', 'phaseOver', 'commands', 'launch']),
+    ...mapGetters(['heroes', 'bans', 'picks', 'banTimeStamp', 'pickTimeStamp', 'phase', 'phaseReady', 'phaseBan', 'phasePick', 'phaseExtra', 'phaseOver', 'extrasFlag', 'extraRadiantImage', 'extraDireImage', 'commands', 'launch']),
+    extraRadiant: {
+      get() {
+        return this.$store.state.ap.game.G.picks[11]
+      },
+      set(value) {
+        this.$store.dispatch('ap/game/extra', { index: 11, id: value })
+      },
+    },
+    extraDire: {
+      get() {
+        return this.$store.state.ap.game.G.picks[12]
+      },
+      set(value) {
+        this.$store.dispatch('ap/game/extra', { index: 12, id: value })
+      },
+    },
+  },
+  watch: {
+    clock(after) {
+      if (after == '00:00') {
+        this.next()
+      }
+    },
   },
   methods: {
-    ...mapActions(['ready']),
+    ...mapActions(['next']),
+    extraOptions() {
+      return new Promise((resolve) => {
+        resolve(this.heroes)
+      })
+    },
     copy() {
       let cmds = this.commands
       navigator.clipboard.writeText(cmds)

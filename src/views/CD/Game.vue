@@ -2,10 +2,10 @@
   <div>
     <Menu />
     <Header>
-      <template v-slot:title>All Pick</template>
+      <template v-slot:title>Captains Duel</template>
       <template v-slot:description>
-        Players can pick form the full hero pool. Players have a number seconds determind by the host for bans and picks. Players can also chose to random a hero. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</template
-      >
+        The host can control the number and sequence for the bans and picks. The host can set the time in seconds to complete all actions in the sequence. If time runs out during a phase the selection will be random. If time runs out during a phase the selection will be random.
+      </template>
     </Header>
     <div v-if="isConnected">
       <div v-if="isHost">
@@ -29,16 +29,18 @@
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
 import Header from '@/components/Header.vue'
-import GameDisconnected from '@/components/AP/GameDisconnected.vue'
-import GameSpectator from '@/components/AP/GameSpectator.vue'
-import GameHost from '@/components/AP/GameHost.vue'
-import GamePlayer from '@/components/AP/GamePlayer.vue'
+import GameDisconnected from '@/components/CD/GameDisconnected.vue'
+import GameSpectator from '@/components/CD/GameSpectator.vue'
+import GameHost from '@/components/CD/GameHost.vue'
+import GamePlayer from '@/components/CD/GamePlayer.vue'
 
 import { createNamespacedHelpers } from 'vuex'
-const { mapState, mapGetters, mapActions } = createNamespacedHelpers('ap/game')
+const { mapState, mapGetters, mapActions } = createNamespacedHelpers('cd/game')
 
 export default {
-  setup() {},
+  data() {
+    return {}
+  },
   async mounted() {
     let matchID = this.$route.params.matchID
     await this.loadMatch(matchID)
@@ -54,7 +56,7 @@ export default {
     GameHost,
   },
   computed: {
-    ...mapState(['isConnected']),
+    ...mapState(['isConnected', 'isActive']),
     ...mapGetters(['isHost', 'isPlayer', 'isSpectator']),
   },
   methods: {

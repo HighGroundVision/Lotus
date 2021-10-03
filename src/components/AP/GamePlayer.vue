@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 10px 30px 30px 30px; background: #191919">
-    <div v-if="phaseOver">
+    <div v-if="phaseExtra || phaseOver">
       <div style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 20px; max-width: 800px; width: 100%; margin: auto; margin-top: 5px; margin-bottom: 20px; display: flex; align-items: center">
         <div style="padding: 20px">
           <div style="font-size: 30px; margin-bottom: 5px">Draft Complete</div>
@@ -15,7 +15,7 @@
             </div>
             <img src="https://hyperstone.highgroundvision.com/images/towers/radiant/full.png" style="width: 100%; padding: 5px; margin: auto" />
           </div>
-          <template v-for="(item, index) in selection.slice(0, 5)" :key="index">
+          <template v-for="(item, index) in picks.slice(0, 5)" :key="index">
             <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; margin: 5px; border: 1px solid #616a6b; border-radius: 5px">
               <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
                 <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 1) }}</div>
@@ -26,7 +26,7 @@
               </div>
             </div>
           </template>
-          <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #616a6b; border-radius: 5px">
+          <div v-if="extrasFlag == 1" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #616a6b; border-radius: 5px">
             <div style="text-align: center; width: 100%; min-height: 20px; background-color: #616a6b">
               <div style="width: 100%">Extra</div>
             </div>
@@ -35,6 +35,15 @@
             </div>
             <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
               <div style="font-size: 0.8em; padding-top: 2px"></div>
+            </div>
+          </div>
+          <div v-if="extrasFlag == 2" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+            <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
+              <div style="width: 100%">Extra</div>
+            </div>
+            <img :src="extraRadiantImage" class="hero-roster" />
+            <div style="text-align: center; width: 100%; min-height: 20px; background: #21618c">
+              <div style="font-size: 0.8em; padding-top: 2px">Host Choice</div>
             </div>
           </div>
         </div>
@@ -46,7 +55,7 @@
             </div>
             <img src="https://hyperstone.highgroundvision.com/images/towers/dire/full.png" style="width: 100%; padding: 5px; margin: auto" />
           </div>
-          <template v-for="(item, index) in selection.slice(5, 10)" :key="index">
+          <template v-for="(item, index) in picks.slice(5, 10)" :key="index">
             <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; margin: 5px; border: 1px solid #616a6b; border-radius: 5px">
               <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
                 <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 1) }}</div>
@@ -57,7 +66,7 @@
               </div>
             </div>
           </template>
-          <div style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #616a6b; border-radius: 5px">
+          <div v-if="extrasFlag == 1" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #616a6b; border-radius: 5px">
             <div style="text-align: center; width: 100%; min-height: 20px; background-color: #616a6b">
               <div style="width: 100%">Extra</div>
             </div>
@@ -66,6 +75,15 @@
             </div>
             <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
               <div style="font-size: 0.8em; padding-top: 2px"></div>
+            </div>
+          </div>
+          <div v-if="extrasFlag == 2" style="flex: 1 0 12%; display: flex; flex-direction: column; align-items: flex-start; text-align: center; margin: 5px; border: 2px solid #21618c; border-radius: 5px">
+            <div style="text-align: center; width: 100%; min-height: 20px; background-color: #21618c">
+              <div style="width: 100%">Extra</div>
+            </div>
+            <img :src="extraDireImage" class="hero-roster" />
+            <div style="text-align: center; width: 100%; min-height: 20px; background: #21618c">
+              <div style="font-size: 0.8em; padding-top: 2px">Host Choice</div>
             </div>
           </div>
         </div>
@@ -79,11 +97,11 @@
         </div>
       </div>
     </div>
-    <div v-if="phasePick">
+    <div v-if="phaseBan || phasePick">
       <div style="display: flex; padding: 10px">
         <div style="width: 100%; display: flex; justify-content: flex-end">
-          <template v-for="(item, index) in selection.slice(0, 5)" :key="index">
-            <div style="width: 100%; margin: 5px; text-align: center; border-radius: 5px" v-bind:style="{ 'background-color': '#666' }">
+          <template v-for="(item, index) in picks.slice(0, 5)" :key="index">
+            <div style="width: 100%; margin: 5px; text-align: center; border-radius: 5px" :style="{ 'background-color': '#666' }">
               <img v-if="item.hero" :src="item.hero.image_banner" style="width: 100%; border-radius: 5px 5px 0px 0px" />
               <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
               <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 1) }}</div>
@@ -91,11 +109,14 @@
           </template>
         </div>
         <div style="width: 120px; text-align: center; padding: 5px; margin: 10px">
-          <h1>{{ clock }}</h1>
+          <div style="font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin-top: 15px">
+            {{ phase }} <br />
+            {{ clock }}
+          </div>
         </div>
         <div style="width: 100%; display: flex">
-          <template v-for="(item, index) in selection.slice(5, 10)" :key="index">
-            <div style="width: 100%; margin: 5px; text-align: center; border-radius: 5px" v-bind:style="{ 'background-color': '#666' }">
+          <template v-for="(item, index) in picks.slice(5, 10)" :key="index">
+            <div style="width: 100%; margin: 5px; text-align: center; border-radius: 5px" :style="{ 'background-color': '#666' }">
               <img v-if="item.hero" :src="item.hero.image_banner" style="width: 100%; border-radius: 5px 5px 0px 0px" />
               <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" style="width: 100%; border-radius: 5px 5px 0px 0px" />
               <div class="cut-text">{{ item.player.name ?? 'Slot ' + (index + 6) }}</div>
@@ -112,7 +133,7 @@
             </div>
             <div>
               <template v-for="hero in strHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" />
+                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
               </template>
             </div>
           </div>
@@ -123,7 +144,7 @@
             </div>
             <div>
               <template v-for="hero in agiHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" />
+                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
               </template>
             </div>
           </div>
@@ -134,7 +155,7 @@
             </div>
             <div>
               <template v-for="hero in intHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" />
+                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
               </template>
             </div>
           </div>
@@ -142,21 +163,38 @@
         <div style="width: 20%; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 10px">
           <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between">
             <div style="text-align: center">
-              <h3>CHOOSE YOUR HERO</h3>
-              <div v-if="selected">
-                <img :src="selected.image_profile" style="width: 100%" />
+              <h3 v-if="phaseBan">CHOOSE YOUR BAN</h3>
+              <h3 v-if="phasePick">CHOOSE YOUR PICK</h3>
+              <div v-if="picked && phasePick">
+                <img :src="picked.image_profile" style="width: 100%" />
+              </div>
+              <div v-else-if="baned && phaseBan">
+                <img :src="baned.image_profile" style="width: 100%" />
               </div>
               <div v-else-if="choice">
                 <img :src="choice.image_profile" style="width: 100%" />
               </div>
               <div v-else class="bkcanr">
-                <div class="cqfdfjkd" :style="{ '-webkit-mask': 'url(' + require('@/assets/profile.svg') + ')', mask: 'url(' + require('@/assets/profile.svg') + ')' }" />
+                <div class="cqfdfjkd" :style="{ '-webkit-mask': 'url(' + require('@/assets/profile.svg') + ')' }" />
+              </div>
+            </div>
+            <div v-if="phaseBan" style="display: flex">
+              <div v-if="baned" class="jnbria" style="width: 100%">
+                <div style="font-size: 0.8em">BANNED</div>
+                <div>{{ baned.name }}</div>
+              </div>
+              <div v-else-if="choice" @click="banHero" class="jnbrig" style="width: 100%">
+                <div style="font-size: 0.8em">BAN</div>
+                <div>{{ choice.name }}</div>
+              </div>
+              <div v-else class="jnbria" style="width: 100%">
+                <div style="font-size: 0.8em">BAN</div>
               </div>
             </div>
             <div v-if="phasePick" style="display: flex">
-              <div v-if="selected" class="jnbria" style="width: 100%">
+              <div v-if="picked" class="jnbria" style="width: 100%">
                 <div style="font-size: 0.8em">SELECTED</div>
-                <div>{{ selected.name }}</div>
+                <div>{{ picked.name }}</div>
               </div>
               <div v-else-if="choice" @click="pickHero" class="jnbrig" style="width: 80%">
                 <div style="font-size: 0.8em">LOCK IN</div>
@@ -165,7 +203,7 @@
               <div v-else class="jnbria" style="width: 80%">
                 <div style="font-size: 0.8em">LOCK IN</div>
               </div>
-              <div v-if="!selected" style="width: 20%">
+              <div v-if="!picked" style="width: 20%">
                 <div @click="pickRandom" class="jnbrig" data-tooltip="left" aria-label="Randomly selects a hero from the aviable options left.">
                   <img src="@/assets/random.svg" style="width: 100%" />
                 </div>
@@ -173,10 +211,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div style="margin-top: 80px">
-        <hr />
-        <img v-if="timer" class="image-timer" v-bind:style="{ 'animation-duration': timer + 's' }" alt="timer" src="https://hyperstone.highgroundvision.com/images/heroes/profile/97.png" />
       </div>
     </div>
   </div>
@@ -188,47 +222,47 @@ import db from '@/assets/heroes.json'
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('ap/game')
 
-function formmatTime(t) {
-  return t.toString().padStart(2, '0')
+function getSeconds(timeStamp) {
+  let milliseconds = timeStamp - Date.now()
+  let seconds = Math.floor(milliseconds / 1000)
+  return seconds > 0 ? seconds : 0
+}
+
+function formmatTime(timeStamp) {
+  let seconds = getSeconds(timeStamp)
+  if (seconds > 0) {
+    const m = Math.floor(seconds / 60)
+    const s = Math.floor(seconds % 60)
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+  } else {
+    return `00:00`
+  }
 }
 
 export default {
   data() {
     return {
-      timeout: false,
-      timer: null,
+      interval: null,
       clock: '##:##',
       choice: null,
     }
   },
   mounted() {
-    let interval = null
-    interval = setInterval(() => {
-      if (!this.timestamp) {
+    this.interval = setInterval(() => {
+      if (this.banTimeStamp) {
+        this.clock = formmatTime(this.banTimeStamp)
+      } else if (this.pickTimeStamp) {
+        this.clock = formmatTime(this.pickTimeStamp)
+      } else {
         this.clock = '##:##'
-        return
       }
-
-      let milliseconds = this.timestamp - Date.now()
-      let seconds = Math.floor(milliseconds / 1000)
-      if (!this.timer) {
-        this.timer = seconds
-      }
-
-      if (seconds < 1) {
-        clearInterval(interval)
-        this.timer = null
-        this.clock = `00:00`
-        return
-      }
-
-      const m = Math.floor(seconds / 60)
-      const s = Math.floor(seconds % 60)
-      this.clock = `${formmatTime(m)}:${formmatTime(s)}`
     }, 1000)
   },
+  beforeUnmount() {
+    clearInterval(this.interval)
+  },
   computed: {
-    ...mapGetters(['selection', 'selected', 'timestamp', 'phaseReady', 'phasePick', 'phaseOver']),
+    ...mapGetters(['bans', 'baned', 'picks', 'picked', 'banTimeStamp', 'pickTimeStamp', 'phase', 'phaseExtra', 'phaseReady', 'phaseBan', 'phasePick', 'phaseOver', 'extrasFlag', 'extraRadiantImage', 'extraDireImage']),
     strHeroes() {
       return db
         .slice(0)
@@ -248,29 +282,48 @@ export default {
         .sort((lhs, rhs) => lhs.name - rhs.name)
     },
   },
-  watch: {
-    clock(after) {
-      this.timeout = after == '00:00'
-    },
-    timeout(after) {
-      if (after == true) {
-        this.pickRandom()
-      }
-    },
-  },
   methods: {
-    ...mapActions(['pick', 'random']),
+    ...mapActions(['ban', 'pick', 'random']),
     selectHero(hero) {
+      if (this.bans.map((i) => i.hero?.id).includes(hero.id)) {
+        return
+      }
+      if (this.picks.map((i) => i.hero?.id).includes(hero.id)) {
+        return
+      }
+
       this.choice = hero
     },
-    pickHero() {
-      if (this.choice) {
-        this.pick(this.choice?.id)
+    banHero() {
+      if (!this.choice) {
+        return
       }
+
+      this.ban(this.choice.id)
+      this.choice = null
+    },
+    pickHero() {
+      if (!this.choice) {
+        return
+      }
+
+      this.pick(this.choice.id)
+      this.choice = null
     },
     pickRandom() {
-      if (!this.selected) {
-        this.random()
+      if (this.picked) {
+        return
+      }
+
+      this.random()
+      this.choice = null
+    },
+    getHeroImageStyle(hero) {
+      if (this.bans.map((i) => i.hero?.id).includes(hero.id)) {
+        return '-webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2); filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8); border: 2px solid red;'
+      }
+      if (this.picks.map((i) => i.hero?.id).includes(hero.id)) {
+        return '-webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(400%) contrast(2); filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8); border: 2px solid red;'
       }
     },
   },

@@ -1,10 +1,11 @@
 import { Server, FlatFile, Origins } from 'boardgame.io/server'
 import { AllPickGame } from './src/games/AP'
 import { SingleDraftGame } from './src/games/SD'
+import { CaptainsDuelGame } from './src/games/CD'
 
 const server = Server({
   // Provide the definitions for your game(s).
-  games: [SingleDraftGame, AllPickGame],
+  games: [SingleDraftGame, AllPickGame, CaptainsDuelGame],
 
   // Provide the database storage class to use.
   db: new FlatFile({

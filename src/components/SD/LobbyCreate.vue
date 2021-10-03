@@ -13,7 +13,7 @@
           <div style="margin: 10px; min-width: 200px">
             <span>Lobby Name</span>
           </div>
-          <div style="margin: 10px">
+          <div style="margin: 10px; width: 100%">
             <input v-model="name" class="dhjrhf" />
           </div>
         </div>
@@ -21,15 +21,15 @@
           <div style="margin: 10px; min-width: 200px">
             <span>Visibility</span>
           </div>
-          <div style="margin: 10px">
+          <div style="margin: 10px; width: 100%">
             <Multiselect v-model="visibility" :options="visibilityOptions" class="multiselect-purple" />
           </div>
         </div>
         <div style="display: flex">
           <div style="margin: 10px; min-width: 200px">
-            <span>Extra</span>
+            <span>Extras</span>
           </div>
-          <div style="margin: 10px">
+          <div style="margin: 10px; width: 100%">
             <Multiselect v-model="extra" :options="extraOptions" class="multiselect-purple" />
           </div>
         </div>

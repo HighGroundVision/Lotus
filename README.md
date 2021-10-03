@@ -2,25 +2,9 @@
 
 ## Experimental Drafting Options for Ability Draft Lobbies
 
-**All Pick**
+**Captains Duel**
 
-- Count Down Clock
-
--> Player
-
-- Select Hero
-- Pick Hero
-- Random Hero
-
--> Host
-
-- Roster
-- Ready
-- Commands
-
--> Spectator
-
-- Roster
+- Player Selection (heroId)
 
 ## Split Game Client and Server
 

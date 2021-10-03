@@ -4,6 +4,7 @@ import { HostChoice } from './HC/'
 import { BalancedDraft } from './BD/'
 import { SingleDraft } from './SD/'
 import { AllPick } from './AP/'
+import { CaptainsDuel } from './CD/'
 
 export default createStore({
   modules: {
@@ -11,6 +12,7 @@ export default createStore({
     bd: BalancedDraft,
     sd: SingleDraft,
     ap: AllPick,
+    cd: CaptainsDuel,
     persona: Persona,
   },
 })

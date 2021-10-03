@@ -1,5 +1,5 @@
 <template>
-  <div id="__next">
+  <div>
     <div style="overflow-x: hidden; background: #000">
       <header class="Header__HeaderBox-sc-7tl5ec-3 kXRVMW">
         <div style="margin: auto; width: 100%; max-width: 1100px; display: flex; justify-content: space-between; position: relative">
@@ -10,10 +10,9 @@
               <a href="#bd" style="cursor: pointer; padding: 10px 20px">BD</a>
               <a href="#ap" style="cursor: pointer; padding: 10px 20px">AP</a>
               <a href="#sd" style="cursor: pointer; padding: 10px 20px">SD</a>
-              <a href="#hd" style="cursor: pointer; padding: 10px 20px">HD</a>
               <a href="#cd" style="cursor: pointer; padding: 10px 20px">CD</a>
               <a href="#cc" style="cursor: pointer; padding: 10px 20px">CC</a>
-              <div style="margin-right: 20px"></div>
+              <div style="margin-right: 40px"></div>
               <router-link to="/faq" style="cursor: pointer; padding: 10px 20px">FAQ</router-link>
             </div>
           </div>
@@ -100,7 +99,6 @@
             <div style="font-size: 13px; color: rgba(255, 255, 255, 0.3)">What is this dark magic?</div>
             <div style="font-size: 30px; margin-bottom: 5px"><a href="https://www.reddit.com/r/Abilitydraft/comments/jl4vo9/hero_roaster_for_custom_lobbies/">Console Commands</a></div>
             <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">With the addition of some new console commands to set the hero roster (5 heroes for each team + 2 extras) and some old ones we can create experimental lobbies to test different drafting strategies.</div>
-            <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">Got an idea for a new draft strategy send it to us and it could be added to the list for all to enjoy.</div>
           </div>
         </div>
       </div>
@@ -205,9 +203,9 @@
             </div>
             <div class="dXuGjg">
               <h2 id="ap" style="margin: 0; font-size: 35px; padding: 0px 20px">
-                <router-link to="/ap">All Pick</router-link>
+                <router-link to="/ap">All Pick Variant</router-link>
               </h2>
-              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">Players can pick form the full hero pool. Players have a number seconds determind by the host for selection or their pick will be randomed. Players can also chose to random a hero.</p>
+              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">Players can pick form the full hero pool. Players have a number seconds determind by the host for bans and picks. Players can also chose to random a hero.</p>
               <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</p>
             </div>
           </div>
@@ -227,7 +225,7 @@
               <div style="display: flex">
                 <div class="dXuGjg">
                   <h2 id="sd" style="margin: 0; font-size: 35px; margin-top: 100px; padding: 0px 20px">
-                    <router-link to="/sd">Single Draft</router-link>
+                    <router-link to="/sd">Single Draft Variant</router-link>
                   </h2>
                   <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player.</p>
                   <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
@@ -254,7 +252,6 @@
                     <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">These are quick links to the most popular setups to get you started quickly.</div>
                   </div>
                 </div>
-
                 <div class="cZvBDc">
                   <img alt="hero image" style="height: 400px; margin-right: -530px; margin-top: -40px; margin-bottom: -440px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/123.png" />
                 </div>
@@ -265,6 +262,12 @@
       </div>
 
       <div style="margin-top: 0; background: #111">
+        <div style="position: relative; top: 100px; background-color: #591f82; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 0px; max-width: 800px; width: 100%; margin: auto; margin-top: 0px; display: flex; align-items: center">
+          <div style="padding: 20px">
+            <div style="font-size: 30px; margin-bottom: 5px">Competitive</div>
+            <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">You can use the following tools as the lobby host to set the roster but two captions interact with these tools to create the roster.</div>
+          </div>
+        </div>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
           <path
             class="wavePath2"
@@ -278,41 +281,21 @@
         <div style="max-width: 1100px; width: 100%; margin: auto; padding: 40px 0px; padding-top: 10vh; padding-bottom: 100px">
           <div style="display: flex">
             <div class="cZvBDc">
-              <img alt="hero image" style="height: 400px; margin-left: -430px; margin-top: -100px; margin-bottom: -230px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/59.png" />
+              <img alt="hero image" style="height: 400px; margin-left: -430px; margin-top: -100px; margin-bottom: -230px; transform: scaleX(-1)" src="https://hyperstone.highgroundvision.com/images/heroes/profile/53.png" />
             </div>
             <div class="dXuGjg">
-              <h2 id="hd" style="margin: 0; font-size: 35px; padding: 0px 20px">Horizon Draft</h2>
+              <h2 id="cd" style="margin: 0; font-size: 35px; margin-top: 100px; padding: 0px 20px">
+                <router-link to="/cd">Captains Duel Variant</router-link>
+              </h2>
               <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
-                Players pick from a pool of 18 random heroes. The players get 30 seconds in the pre-pick phase to review the randomly selected heroes. Then each player gets 5 seconds to choose a hero or pick is random from the available options.
+                The host can control the number and sequence for the bans and picks. The host can set the time in seconds to complete all actions in the sequence. If time runs out during a phase the selection will be random. If time runs out during a phase the selection will be random.
               </p>
-              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</p>
-              <div style="display: flex; align-items: center; justify-content: center">
-                <div style="font-size: 14px; color: #ffa233; margin-top: 10px; font-style: italic">
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" style="fill: #ffa233">
-                    <path
-                      d="M11 24h-6v-17h6v17zm-2-4l-2 1v1l2-1v-1zm2-18h10l3 3v1h-5v6h1v3.396c-1.66.085-2.782.652-3 1.604-.131.574.145 1.553 1.12 1.699.665.1 1.325-.24 1.657-.825.335-.661 1.201-.158.932.45-.429 1.023-1.526 1.676-2.709 1.676-1.656 0-3-1.344-3-3 0-1.305.835-2.417 2-2.829v-2.171h1v-6h-14v3h-4v-7h5v-2h6v2zm-2 15l-2 1v1l2-1v-1zm0-3l-2 1v1l2-1v-1zm0-3l-2 1v1l2-1v-1zm0-3l-2 1v1l2-1v-1z"
-                    />
-                  </svg>
-                  <span style="padding-left: 10px; padding-right: 15px">Under Construction</span>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" style="fill: #ffa233">
-                    <path
-                      d="M23 23h-22v-1h1v-8h-2v-10h2v-3h5v3h10v-3h5v3h2v10h-2v8h1v1zm-18-9h-1v8h1v-8zm15 0h-1v8h1v-8zm-3 0h-10v8h10v-8zm5-8h-20v6h20v-6zm-17.656 5h-2l1.312-4h2l-1.312 4zm4 0h-2l1.312-4h2l-1.312 4zm4 0h-2l1.312-4h2l-1.312 4zm4 0h-2l1.312-4h2l-1.312 4zm4 0h-2l1.312-4h2l-1.312 4zm-15.344-8h-1v1h1v-1zm15 0h-1v1h1v-1z"
-                    />
-                  </svg>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
       <div style="margin-top: -40px; background: #191919">
-        <div style="position: relative; top: 100px; background-color: #591f82; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 0px; max-width: 800px; width: 100%; margin: auto; margin-top: 0px; display: flex; align-items: center">
-          <div style="padding: 20px">
-            <div style="font-size: 30px; margin-bottom: 5px">Competitive</div>
-            <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">You can use the following tools as the lobby host to set the roster but two captions interact with these tools to create the roster.</div>
-          </div>
-        </div>
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
           <path
             class="wavePath"
@@ -325,38 +308,7 @@
         <div style="display: flex; max-width: 1100px; width: 100%; justify-content: space-between; flex-wrap: wrap; margin: auto; z-index: 4; position: relative; background: #111">
           <div style="display: flex">
             <div class="dXuGjg">
-              <h2 id="cd" style="margin: 0; font-size: 35px; margin-top: 100px; padding: 0px 20px">Captains Duel</h2>
-              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The lobby host populates the pool of available heroes. The captains ban certain heroes preventing either team from picking the hero. The captain also chooses heroes for their team.</p>
-              <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
-                The host can control the number and sequence for the bans and picks. The host can set the time in seconds that are allotted for bans and picks as well as bonus bonus time that can be used throughout any selection. If time runs out during a ban selection, no hero will be banned; if
-                time runs out during a pick selection, a random hero will be chosen.
-              </p>
-            </div>
-            <div class="cZvBDc">
-              <img alt="hero image" style="height: 400px; margin-right: -530px; margin-top: -40px; margin-bottom: -440px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/53.png" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top: 0; background: #111">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-          <path
-            class="wavePath2"
-            d="M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z"
-            fill="#191919"
-          ></path>
-        </svg>
-      </div>
-
-      <div style="background: #191919; margin-top: -5px">
-        <div style="max-width: 1100px; width: 100%; margin: auto; padding: 40px 0px; padding-top: 10vh; padding-bottom: 100px">
-          <div style="display: flex">
-            <div class="cZvBDc">
-              <img alt="hero image" style="height: 400px; margin-left: -430px; margin-top: -100px; margin-bottom: -230px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/50.png" />
-            </div>
-            <div class="dXuGjg">
-              <h2 id="cc" style="margin: 0; font-size: 35px; padding: 0px 20px">Cake Cutting</h2>
+              <h2 id="cc" style="margin: 0; font-size: 35px; padding: 0px 20px">Cake Cutting Variant</h2>
               <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
                 One divides, One chooses.
                 <br />
@@ -379,36 +331,41 @@
                 </div>
               </div>
             </div>
+            <div class="cZvBDc">
+              <img alt="hero image" style="height: 400px; margin-right: -530px; margin-top: -40px; margin-bottom: -440px; transform: scaleX(-1)" src="https://hyperstone.highgroundvision.com/images/heroes/profile/50.png" />
+            </div>
           </div>
         </div>
       </div>
 
-      <div style="margin-top: -40px; background: #191919">
+      <div style="margin-top: 0; background: #111">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
           <path
-            class="wavePath"
+            class="wavePath2"
             d="M826.337463,25.5396311 C670.970254,58.655965 603.696181,68.7870267 447.802481,35.1443383 C293.342778,1.81111414 137.33377,1.81111414 0,1.81111414 L0,150 L1920,150 L1920,1.81111414 C1739.53523,-16.6853983 1679.86404,73.1607868 1389.7826,37.4859505 C1099.70117,1.81111414 981.704672,-7.57670281 826.337463,25.5396311 Z"
-            fill="#111"
+            fill="#191919"
           ></path>
         </svg>
       </div>
-      <div style="background: #111; margin-top: -20px">
-        <div style="display: flex; max-width: 1100px; width: 100%; justify-content: space-between; flex-wrap: wrap; margin: auto; z-index: 4; position: relative; background: #111"></div>
 
-        <a href="http://ad.datdota.com/" target="_blank" rel="noreferrer noopener" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 20px; display: flex; align-items: center">
-          <div><img src="https://www.datdota.com/images/logos/datdota_logo_small.png" style="width: 100px" /></div>
-          <div style="padding: 20px">
-            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.3)">special thanks to</div>
-            <div style="font-size: 30px; margin-bottom: 5px">Ability Draft Statistics</div>
-            <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">Check out Ability Draft Statistics to improve and evaluate Ability Draft gameplay: measuring the strength of heroes, guiding your drafting of abilities, and also tracking your performance after games!</div>
-            <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">Some of the experiments would not have posible with the data they provide.</div>
+      <div style="background: #191919; margin-top: -20px">
+        <div style="max-width: 1100px; width: 100%; margin: auto; padding: 40px 0px; padding-top: 10vh; padding-bottom: 100px">
+          <div style="display: flex">
+            <a href="http://ad.datdota.com/" target="_blank" rel="noreferrer noopener" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 20px; display: flex; align-items: center">
+              <div><img src="https://www.datdota.com/images/logos/datdota_logo_small.png" style="width: 100px" /></div>
+              <div style="padding: 20px">
+                <div style="font-size: 13px; color: rgba(255, 255, 255, 0.3)">special thanks to</div>
+                <div style="font-size: 30px; margin-bottom: 5px">Ability Draft Statistics</div>
+                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">Check out Ability Draft Statistics to improve and evaluate Ability Draft gameplay: measuring the strength of heroes, guiding your drafting of abilities, and also tracking your performance after games!</div>
+                <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">Some of the experiments would not have posible with the data they provide.</div>
+              </div>
+            </a>
           </div>
-        </a>
-        <br />
+        </div>
       </div>
 
       <footer>
-        <div style="display: flex; background: #111">
+        <div style="display: flex; background: #191919">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" style="position: relative; z-index: 10">
             <path
               class="wavePath2"
@@ -490,6 +447,7 @@ export default {
   methods: {
     copy() {
       if (this.hero) {
+        let hero = this.heroes.find((h) => h.id == this.hero)
         let cmd = 'sv_cheats 1;'
         cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
         cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
@@ -500,13 +458,14 @@ export default {
         cmd += 'dota_gamemode_ability_draft_pre_round_time;'
         cmd += 'dota_gamemode_ability_draft_pre_time 10;'
         cmd += 'dota_gamemode_ability_draft_pre_time;'
-        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + this.hero + ' radiant;'
+        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' radiant;'
         cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
         navigator.clipboard.writeText(cmd)
       }
     },
     start() {
       if (this.hero) {
+        let hero = this.heroes.find((h) => h.id == this.hero)
         let cmd = ''
         cmd += '-console '
         cmd += '+sv_cheats 1 '
@@ -515,7 +474,7 @@ export default {
         cmd += '+dota_gamemode_ability_draft_pre_round_time 2 '
         cmd += '+dota_gamemode_ability_draft_pre_time 10 '
         cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
-        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + this.hero + ' radiant '
+        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' radiant '
         cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
         let params = encodeURIComponent(cmd)
         let url = 'steam://run/570//' + params
