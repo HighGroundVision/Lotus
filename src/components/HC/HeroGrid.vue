@@ -6,9 +6,9 @@
           <div class="herogridpage_FilterLabel_1Mwn_">Filter Heroes</div>
           <div class="herogridpage_SpecificFilterContainer_30qnj">
             <div class="herogridpage_SelectorLabel_1Y7hg">Attribute</div>
-            <div @click="filterAttribute('STRENGTH')" class="herogridpage_Filter_N74aa" v-bind:class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'STRENGTH' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-str-active.png') + ')' }"></div>
-            <div @click="filterAttribute('AGILITY')" class="herogridpage_Filter_N74aa" v-bind:class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'AGILITY' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-agi-active.png') + ')' }"></div>
-            <div @click="filterAttribute('INTELLECT')" class="herogridpage_Filter_N74aa" v-bind:class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'INTELLECT' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-int-active.png') + ')' }"></div>
+            <div class="herogridpage_Filter_N74aa" :class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'STRENGTH' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-str-active.png') + ')' }" @click="filterAttribute('STRENGTH')"></div>
+            <div class="herogridpage_Filter_N74aa" :class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'AGILITY' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-agi-active.png') + ')' }" @click="filterAttribute('AGILITY')"></div>
+            <div class="herogridpage_Filter_N74aa" :class="{ 'herogridpage_Selected_1os0-': attributeFilter == 'INTELLECT' }" :style="{ 'background-image': 'url(' + require('@/assets/filter-int-active.png') + ')' }" @click="filterAttribute('INTELLECT')"></div>
           </div>
           <div class="herogridpage_SpecificFilterContainer_30qnj">
             <div class="herogridpage_SelectorLabel_1Y7hg">Complexity</div>
@@ -24,7 +24,7 @@
                   />
                 </svg>
               </div>
-              <form v-on:submit.prevent><input type="text" v-model="nameFilter" /></form>
+              <form @submit.prevent><input v-model="nameFilter" type="text" /></form>
             </div>
           </div>
         </div>
@@ -40,7 +40,9 @@
                   <div class="herogridpage_HeroName_3N-bh">{{ item.name }}</div>
                 </div>
                 <div class="herogridpage_FadeContainer_Abboq">
-                  <div class="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh"><div class="fade_Fade_1keus" style="background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.733) 75%, rgb(0, 0, 0) 100%)"></div></div>
+                  <div class="fade_FadeContainer_1JDI3 fade_Bottom_1NXAh">
+                    <div class="fade_Fade_1keus" style="background: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.733) 75%, rgb(0, 0, 0) 100%)"></div>
+                  </div>
                 </div>
               </div>
             </template>
@@ -58,15 +60,15 @@ import Complexity from '@/components/Complexity.vue'
 const { mapState, mapActions } = createNamespacedHelpers('hc') //
 
 export default {
+  components: {
+    Complexity,
+  },
   data() {
     return {
       nameFilter: '',
       attributeFilter: '',
       complexityFilter: 0,
     }
-  },
-  components: {
-    Complexity,
   },
   computed: {
     ...mapState({

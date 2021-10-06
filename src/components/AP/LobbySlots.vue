@@ -12,7 +12,7 @@
             <div v-if="item.name" class="jnbria">
               <span>{{ item.name }}</span>
             </div>
-            <div v-else @click="claim(item.id)" class="jnbrig">
+            <div v-else class="jnbrig" @click="claim(item.id)">
               <span>Claim Slot #{{ index + 1 }}</span>
             </div>
           </template>
@@ -25,7 +25,7 @@
             <div v-if="item.name" class="jnbria">
               <span>{{ item.name }}</span>
             </div>
-            <div v-else @click="claim(item.id)" class="jnbrig">
+            <div v-else class="jnbrig" @click="claim(item.id)">
               <span>Claim Slot #{{ index + 6 }}</span>
             </div>
           </template>
@@ -40,10 +40,10 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('ap/lobby')
 
 export default {
+  emits: ['refresh'],
   data() {
     return {}
   },
-  emits: ['refresh'],
   computed: {
     ...mapGetters(['matchID', 'players']),
   },

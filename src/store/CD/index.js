@@ -2,7 +2,7 @@ import { Client } from 'boardgame.io/client'
 import { SocketIO } from 'boardgame.io/multiplayer'
 import { lobbyClient } from '@/store/lobby'
 import { CaptainsDuelGame } from '@/games/CD/'
-// import db from '@/assets/heroes.json'
+import db from '@/assets/heroes.json'
 
 const NUMBER_PLAYERS = 3
 
@@ -12,7 +12,7 @@ let cdGameClient = new Client({
   // The number of players.
   numPlayers: NUMBER_PLAYERS,
   // Set this to one of the following to enable multiplayer: SocketIO / Local / false
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  multiplayer: SocketIO({ server: `${process.env.VUE_APP_SERVER_ADDRESS}` }),
   // Match to connect to (multiplayer).
   // matchID: state.match.matchID,
   // Associate the client with a player (multiplayer).
@@ -20,7 +20,7 @@ let cdGameClient = new Client({
   // The player’s authentication credentials (multiplayer).
   // credentials: state.slot.playerCredentials,
   // Set to false to disable the Debug Panel
-  debug: true,
+  debug: false,
   // Add a Redux enhancer to the internal store.
   // enhancer: enhancer,
 })
@@ -44,7 +44,7 @@ const CaptainsDuelCollectionStore = {
       commit('setMatches', matches)
     },
     async createMatch(_, { name, sequence }) {
-      let collection = sequence.map((i) => ({ stage: i.stage, team: i.team, choice: null, start: null, end: null, delta: 0.0 }))
+      let collection = sequence.map((x, i) => ({ id: i + 1, stage: x.stage, team: x.team, choice: null, start: null, end: null, delta: 0.0 }))
 
       const { matchID } = await lobbyClient.createMatch(CaptainsDuelGame.name, {
         numPlayers: NUMBER_PLAYERS,
@@ -88,14 +88,14 @@ const CaptainsDuelLobbyStore = {
   actions: {
     async loadMatch({ commit }, matchID) {
       const match = await lobbyClient.getMatch(CaptainsDuelGame.name, matchID)
-      let json = localStorage.getItem(`ap:${matchID}`)
+      let json = localStorage.getItem(`cd:${matchID}`)
       let existing = JSON.parse(json)
       commit('setMatch', { match, existing })
     },
     async joinSlot({ commit, state }, { playerID, playerName, data }) {
       const { playerCredentials } = await lobbyClient.joinMatch(CaptainsDuelGame.name, state.match.matchID, { playerID, playerName, data })
       let json = JSON.stringify({ playerID, playerCredentials })
-      localStorage.setItem(`ap:${state.match.matchID}`, json)
+      localStorage.setItem(`cd:${state.match.matchID}`, json)
       commit('joinMatch', { playerID, playerCredentials })
     },
     async leaveSlot({ commit, state }) {
@@ -103,7 +103,7 @@ const CaptainsDuelLobbyStore = {
         playerID: state.playerID,
         credentials: state.playerCredentials,
       })
-      localStorage.removeItem(`ap:${state.match.matchID}`)
+      localStorage.removeItem(`cd:${state.match.matchID}`)
       cdGameClient?.stop()
       commit('leaveSlot')
     },
@@ -157,7 +157,7 @@ const CaptainsDuelGameStore = {
   actions: {
     async loadMatch({ commit }, matchID) {
       const match = await lobbyClient.getMatch(CaptainsDuelGame.name, matchID)
-      let json = localStorage.getItem(`ap:${matchID}`)
+      let json = localStorage.getItem(`cd:${matchID}`)
       let slot = JSON.parse(json)
       commit('setMatch', { match, slot })
     },
@@ -174,11 +174,19 @@ const CaptainsDuelGameStore = {
       })
       cdGameClient.start()
     },
-    next() {
+    playersReady() {
       cdGameClient.moves.NextPhase()
     },
-    choice(id) {
-      cdGameClient.moves.MakeChoice(id)
+    makeChoice({ getters }, hero) {
+      let replacement = getters.stagePick ? hero.ability_replace_required : false
+      cdGameClient.moves.PlayersChoice(hero.id, replacement)
+    },
+    updateOrder(_, roster) {
+      let data = Object.assign({}, roster)
+      cdGameClient.moves.UpdateOrder(data)
+    },
+    doneOrdering() {
+      cdGameClient.moves.PlayerDone()
     },
   },
   getters: {
@@ -213,6 +221,9 @@ const CaptainsDuelGameStore = {
     phaseDraft(state) {
       return !state.ctx.gameover && state.ctx.phase == 'draft'
     },
+    phaseOrder(state) {
+      return !state.ctx.gameover && state.ctx.phase == 'order'
+    },
     phaseOver(state) {
       return state.ctx.gameover
     },
@@ -222,7 +233,6 @@ const CaptainsDuelGameStore = {
       return current.stage
     },
     stageBan(state) {
-      debugger
       let turn = state.ctx.turn - 3
       let current = state.G.sequence[turn]
       return current.stage == 'ban'
@@ -231,6 +241,14 @@ const CaptainsDuelGameStore = {
       let turn = state.ctx.turn - 3
       let current = state.G.sequence[turn]
       return current.stage == 'pick'
+    },
+    stageExtra(state) {
+      let turn = state.ctx.turn - 3
+      let current = state.G.sequence[turn]
+      return current.stage == 'extra'
+    },
+    isDone(state) {
+      return state.G.done[state.ctx.currentPlayer - 1]
     },
     radiantTimeUsage(state) {
       let amount = state.G.sequence
@@ -250,37 +268,54 @@ const CaptainsDuelGameStore = {
       return state.G.ts
     },
     sequence(state) {
-      return state.G.sequence
+      let sequence = state.G.sequence.map((i) => ({
+        ...i,
+        hero: db.find((h) => h.id == i.choice),
+      }))
+      return sequence
     },
-    commands: (/* state */) => {
+    replacement(state) {
+      return state.G.replacement
+    },
+    commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
       cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
 
-      // let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
-      // for (let i = 0; i < collection.length; i++) {
-      //   let hero = collection[i]
-      //   if (hero) {
-      //     const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-      //     cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
-      //   }
-      // }
+      let sequence = state.G.sequence.map((i) => ({
+        ...i,
+        hero: db.find((h) => h.id == i.choice),
+      }))
+
+      for (const item of sequence) {
+        if (item.stage == 'pick') {
+          const team = item.team == 1 ? 'radiant' : 'dire'
+          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + item.hero.key + ' ' + team + ';'
+        } else if (item.stage == 'extra') {
+          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + item.hero.key + ' extra;'
+        }
+      }
 
       cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
       return cmd
     },
-    launch: (/* state */) => {
+    launch: (state) => {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
       cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
 
-      // let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
-      // for (let i = 0; i < collection.length; i++) {
-      //   let hero = collection[i]
-      //   if (hero) {
-      //     const team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-      //     cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
-      //   }
-      // }
+      let sequence = state.G.sequence.map((i) => ({
+        ...i,
+        hero: db.find((h) => h.id == i.choice),
+      }))
+
+      for (const item of sequence) {
+        if (item.stage == 'pick') {
+          const team = item.team == 1 ? 'radiant' : 'dire'
+          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + item.hero.key + ' ' + team + ' '
+        } else if (item.stage == 'extra') {
+          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + item.hero.key + ' extra '
+        }
+      }
 
       cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd

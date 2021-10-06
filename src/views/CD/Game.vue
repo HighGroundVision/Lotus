@@ -2,8 +2,8 @@
   <div>
     <Menu />
     <Header>
-      <template v-slot:title>Captains Duel</template>
-      <template v-slot:description>
+      <template #title>Captains Duel</template>
+      <template #description>
         The host can control the number and sequence for the bans and picks. The host can set the time in seconds to complete all actions in the sequence. If time runs out during a phase the selection will be random. If time runs out during a phase the selection will be random.
       </template>
     </Header>
@@ -38,14 +38,6 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapActions } = createNamespacedHelpers('cd/game')
 
 export default {
-  data() {
-    return {}
-  },
-  async mounted() {
-    let matchID = this.$route.params.matchID
-    await this.loadMatch(matchID)
-    await this.startClient()
-  },
   components: {
     Menu,
     Header,
@@ -55,9 +47,17 @@ export default {
     GamePlayer,
     GameHost,
   },
+  data() {
+    return {}
+  },
   computed: {
     ...mapState(['isConnected', 'isActive']),
     ...mapGetters(['isHost', 'isPlayer', 'isSpectator']),
+  },
+  async mounted() {
+    let matchID = this.$route.params.matchID
+    await this.loadMatch(matchID)
+    await this.startClient()
   },
   methods: {
     ...mapActions(['loadMatch', 'startClient']),

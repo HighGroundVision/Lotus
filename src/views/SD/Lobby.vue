@@ -2,8 +2,8 @@
   <div>
     <Menu />
     <Header>
-      <template v-slot:title>Single Draft Lobby</template>
-      <template v-slot:description>Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player. </template>
+      <template #title>Single Draft Lobby</template>
+      <template #description>Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player. </template>
     </Header>
     <div style="background: #191919; margin-top: -5px">
       <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 0px; padding-bottom: 100px">
@@ -34,10 +34,6 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions, mapGetters } = createNamespacedHelpers('sd/lobby')
 
 export default {
-  setup() {},
-  async mounted() {
-    await this.loadData()
-  },
   components: {
     Menu,
     Header,
@@ -47,8 +43,12 @@ export default {
     LobbyHost,
     Persona,
   },
+  setup() {},
   computed: {
     ...mapGetters(['existing']),
+  },
+  async mounted() {
+    await this.loadData()
   },
   methods: {
     ...mapActions(['loadMatch']),

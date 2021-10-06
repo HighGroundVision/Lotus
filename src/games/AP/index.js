@@ -53,7 +53,7 @@ function FinalizeRoster(G, ctx) {
     .filter((i) => G.picks.includes(i) == false)
     .slice(0)
   let options = ctx.random.Shuffle(available).slice(0)
-  for (let i = 1; i < 10; i++) {
+  for (let i = 1; i < 11; i++) {
     if (!G.picks[i]) {
       G.picks[i] = options.shift()
     }

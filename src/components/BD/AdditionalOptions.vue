@@ -32,12 +32,12 @@ import Slider from '@vueform/slider'
 import Toggle from '@vueform/toggle'
 
 export default {
-  data() {
-    return {}
-  },
   components: {
     Slider,
     Toggle,
+  },
+  data() {
+    return {}
   },
   computed: {
     playerShuffle: {

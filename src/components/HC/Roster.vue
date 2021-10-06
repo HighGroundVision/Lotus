@@ -32,25 +32,25 @@
       <div class="herogridpage_FilterContainer_2dEVd">
         <div class="herogridpage_FilterLabel_1Mwn_">Select Roster</div>
         <div style="display: flex; align-items: center; justify-content: flex-end">
-          <div @click="clear" class="jnbrig" data-tooltip="up" aria-label="Clear Roster">
+          <div class="jnbrig" data-tooltip="up" aria-label="Clear Roster" @click="clear">
             <img src="@/assets/clear.svg" />
           </div>
-          <div @click="copy" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console.">
+          <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
             <img src="@/assets/copy.svg" />
           </div>
-          <div @click="start" class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly.">
+          <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
             <img src="@/assets/dota.svg" />
           </div>
         </div>
       </div>
       <div style="margin-top: 20px">
-        <draggable v-model="selection" @start="drag = true" @end="drag = false" group="roster" item-key="id" style="display: inline">
+        <draggable v-model="selection" group="roster" item-key="id" style="display: inline" @start="drag = true" @end="drag = false">
           <template #item="{ element, index }">
-            <img @click="select(element)" :src="element.image_banner" class="grabbable" v-bind:class="getHeroRosterClass(index)" />
+            <img :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" @click="select(element)" />
           </template>
         </draggable>
         <template v-for="index in placeholders" :key="index">
-          <img src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" v-bind:class="getHeroRosterClass(index)" />
+          <img src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
         </template>
       </div>
     </div>
@@ -66,15 +66,15 @@ import Toggle from '@vueform/toggle'
 const { mapActions, mapGetters } = createNamespacedHelpers('hc') //mapState,
 
 export default {
-  data() {
-    return {
-      drag: false,
-    }
-  },
   components: {
     draggable,
     Slider,
     Toggle,
+  },
+  data() {
+    return {
+      drag: false,
+    }
   },
   computed: {
     ...mapGetters(['commands', 'launch']),

@@ -2,8 +2,8 @@
   <div>
     <Menu />
     <Header>
-      <template v-slot:title>Single Draft</template>
-      <template v-slot:description>Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player</template>
+      <template #title>Single Draft</template>
+      <template #description>Players pick from a pool of one Strength hero, one Agility hero, and one Intelligence hero where the 3 choices are randomly picked and exclusive to that player. </template>
     </Header>
     <div style="background: #191919; margin-top: -5px">
       <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 10px 100px 10px">
@@ -40,12 +40,6 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapActions } = createNamespacedHelpers('sd/game')
 
 export default {
-  setup() {},
-  async mounted() {
-    let matchID = this.$route.params.matchID
-    await this.loadMatch(matchID)
-    await this.startClient()
-  },
   components: {
     Menu,
     Header,
@@ -55,9 +49,15 @@ export default {
     GameHost,
     GamePlayer,
   },
+  setup() {},
   computed: {
     ...mapState(['isConnected']),
     ...mapGetters(['isHost', 'isPlayer', 'isSpectator']),
+  },
+  async mounted() {
+    let matchID = this.$route.params.matchID
+    await this.loadMatch(matchID)
+    await this.startClient()
   },
   methods: {
     ...mapActions(['loadMatch', 'startClient']),

@@ -20,11 +20,11 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('bd')
 
 export default {
-  data() {
-    return {}
-  },
   components: {
     Multiselect,
+  },
+  data() {
+    return {}
   },
   computed: {
     ...mapGetters(['sequenceOptions']),

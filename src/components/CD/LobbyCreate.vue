@@ -82,7 +82,7 @@
             </draggable>
           </div>
         </div> -->
-        <div @click="create" class="jnbrig" style="width: 100%">
+        <div class="jnbrig" style="width: 100%" @click="create">
           <span style="font-size: 1.2em"> Create</span>
         </div>
       </div>
@@ -100,7 +100,67 @@ import { nanoid } from 'nanoid'
 import { createNamespacedHelpers } from 'vuex'
 const { mapActions } = createNamespacedHelpers('cd/lobbies')
 
+function CaptainsModeSequence() {
+  return [
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+
+    { id: nanoid(), stage: 'extra', team: '2' },
+    { id: nanoid(), stage: 'extra', team: '1' },
+  ]
+}
+
+function CaptainsDraftSequence() {
+  return [
+    { id: nanoid(), stage: 'ban', team: '2' },
+    { id: nanoid(), stage: 'ban', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'pick', team: '2' },
+    { id: nanoid(), stage: 'pick', team: '1' },
+    { id: nanoid(), stage: 'extra', team: '2' },
+    { id: nanoid(), stage: 'extra', team: '1' },
+  ]
+}
+
 export default {
+  components: {
+    Slider,
+    draggable,
+  },
   data() {
     return {
       name: '',
@@ -113,34 +173,24 @@ export default {
         { id: 5, stage: 'pick', team: '2' },
         { id: 6, stage: 'extra', team: '2' },
       ],
-      sequence: [
-        { id: nanoid(), stage: 'ban', team: '2' },
-        { id: nanoid(), stage: 'ban', team: '1' },
-        { id: nanoid(), stage: 'pick', team: '2' },
-        { id: nanoid(), stage: 'pick', team: '1' },
-        { id: nanoid(), stage: 'pick', team: '2' },
-        { id: nanoid(), stage: 'pick', team: '1' },
-        { id: nanoid(), stage: 'pick', team: '2' },
-        { id: nanoid(), stage: 'pick', team: '1' },
-        { id: nanoid(), stage: 'pick', team: '2' },
-        { id: nanoid(), stage: 'pick', team: '1' },
-        { id: nanoid(), stage: 'pick', team: '2' },
-        { id: nanoid(), stage: 'pick', team: '1' },
-        { id: nanoid(), stage: 'extra', team: '2' },
-        { id: nanoid(), stage: 'extra', team: '1' },
-      ],
+      sequence: [],
     }
   },
   mounted() {
-    // this.visibility = this.$route.query.visibility ?? 1
+    switch (this.$route.query.sequence) {
+      case 'blank':
+        this.sequence = []
+        break
+      case 'captains-draft':
+        this.sequence = CaptainsDraftSequence()
+        break
+      case 'captains-mode':
+        this.sequence = CaptainsModeSequence()
+        break
+      default:
+        break
+    }
   },
-  components: {
-    // Multiselect,
-    Slider,
-    // Toggle,
-    draggable,
-  },
-  computed: {},
   methods: {
     ...mapActions(['createMatch', 'getHeroes']),
     add(item) {

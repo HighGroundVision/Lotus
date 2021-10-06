@@ -3,8 +3,8 @@
     <img alt="hero image" style="position: absolute; left: -50px; top: 0px; height: 390px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/72.png" />
     <Menu />
     <Header>
-      <template v-slot:title>Balanced Draft</template>
-      <template v-slot:description>The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams. You can use these switches to create a fair draft or a complete clown festival the choice is yours.</template>
+      <template #title>Balanced Draft</template>
+      <template #description>The draft is still randomly generated but there are a number of additional switches to Disqualify Heroes and/or Balance Teams. You can use these switches to create a fair draft or a complete clown festival the choice is yours.</template>
     </Header>
     <div style="background: #191919; margin-top: -5px">
       <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 0px; padding-bottom: 100px">
@@ -38,9 +38,6 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapActions } = createNamespacedHelpers('bd') //mapState,,
 
 export default {
-  data() {
-    return {}
-  },
   components: {
     Menu,
     Header,
@@ -52,13 +49,16 @@ export default {
     AdditionalOptions,
     Roster,
   },
+  data() {
+    return {}
+  },
+  computed: {
+    ...mapGetters(['commands', 'launch']),
+  },
   mounted() {
     if (this.$route.query.default) {
       this.$store.dispatch('bd/default', this.$route.query.default)
     }
-  },
-  computed: {
-    ...mapGetters(['commands', 'launch']),
   },
   methods: {
     ...mapActions(['generate', 'clear']),

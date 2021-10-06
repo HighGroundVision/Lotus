@@ -27,11 +27,11 @@
 import Toggle from '@vueform/toggle'
 
 export default {
-  data() {
-    return {}
-  },
   components: {
     Toggle,
+  },
+  data() {
+    return {}
   },
   computed: {
     balanceAttribute: {

@@ -16,10 +16,10 @@
             </div>
           </div>
           <div style="margin: 5px">
-            <div @click="join(game.matchID)" class="jnbrig">
+            <div class="jnbrig" @click="join(game.matchID)">
               <span>Lobby</span>
             </div>
-            <div @click="spectate(game.matchID)" class="jnbrig">
+            <div class="jnbrig" @click="spectate(game.matchID)">
               <span>Spectate</span>
             </div>
           </div>

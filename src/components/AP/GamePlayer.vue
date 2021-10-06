@@ -133,7 +133,7 @@
             </div>
             <div>
               <template v-for="hero in strHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
+                <img :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" @click="selectHero(hero)" />
               </template>
             </div>
           </div>
@@ -144,7 +144,7 @@
             </div>
             <div>
               <template v-for="hero in agiHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
+                <img :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" @click="selectHero(hero)" />
               </template>
             </div>
           </div>
@@ -155,7 +155,7 @@
             </div>
             <div>
               <template v-for="hero in intHeroes" :key="hero.id">
-                <img @click="selectHero(hero)" :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" />
+                <img :src="hero.image_portrait" class="button-hero" :style="getHeroImageStyle(hero)" @click="selectHero(hero)" />
               </template>
             </div>
           </div>
@@ -183,7 +183,7 @@
                 <div style="font-size: 0.8em">BANNED</div>
                 <div>{{ baned.name }}</div>
               </div>
-              <div v-else-if="choice" @click="banHero" class="jnbrig" style="width: 100%">
+              <div v-else-if="choice" class="jnbrig" style="width: 100%" @click="banHero">
                 <div style="font-size: 0.8em">BAN</div>
                 <div>{{ choice.name }}</div>
               </div>
@@ -196,7 +196,7 @@
                 <div style="font-size: 0.8em">SELECTED</div>
                 <div>{{ picked.name }}</div>
               </div>
-              <div v-else-if="choice" @click="pickHero" class="jnbrig" style="width: 80%">
+              <div v-else-if="choice" class="jnbrig" style="width: 80%" @click="pickHero">
                 <div style="font-size: 0.8em">LOCK IN</div>
                 <div>{{ choice.name }}</div>
               </div>
@@ -204,7 +204,7 @@
                 <div style="font-size: 0.8em">LOCK IN</div>
               </div>
               <div v-if="!picked" style="width: 20%">
-                <div @click="pickRandom" class="jnbrig" data-tooltip="left" aria-label="Randomly selects a hero from the aviable options left.">
+                <div class="jnbrig" data-tooltip="left" aria-label="Randomly selects a hero from the aviable options left." @click="pickRandom">
                   <img src="@/assets/random.svg" style="width: 100%" />
                 </div>
               </div>
@@ -247,20 +247,6 @@ export default {
       choice: null,
     }
   },
-  mounted() {
-    this.interval = setInterval(() => {
-      if (this.banTimeStamp) {
-        this.clock = formmatTime(this.banTimeStamp)
-      } else if (this.pickTimeStamp) {
-        this.clock = formmatTime(this.pickTimeStamp)
-      } else {
-        this.clock = '##:##'
-      }
-    }, 1000)
-  },
-  beforeUnmount() {
-    clearInterval(this.interval)
-  },
   computed: {
     ...mapGetters(['bans', 'baned', 'picks', 'picked', 'banTimeStamp', 'pickTimeStamp', 'phase', 'phaseExtra', 'phaseReady', 'phaseBan', 'phasePick', 'phaseOver', 'extrasFlag', 'extraRadiantImage', 'extraDireImage']),
     strHeroes() {
@@ -281,6 +267,20 @@ export default {
         .filter((i) => i.primary_attribute == 'INTELLECT')
         .sort((lhs, rhs) => lhs.name - rhs.name)
     },
+  },
+  mounted() {
+    this.interval = setInterval(() => {
+      if (this.banTimeStamp) {
+        this.clock = formmatTime(this.banTimeStamp)
+      } else if (this.pickTimeStamp) {
+        this.clock = formmatTime(this.pickTimeStamp)
+      } else {
+        this.clock = '##:##'
+      }
+    }, 1000)
+  },
+  beforeUnmount() {
+    clearInterval(this.interval)
   },
   methods: {
     ...mapActions(['ban', 'pick', 'random']),

@@ -1,5 +1,5 @@
 import { LobbyClient } from 'boardgame.io/client'
 
 export const lobbyClient = new LobbyClient({
-  server: 'http://localhost:8000',
+  server: `${process.env.VUE_APP_SERVER_PROTOCOL}://${process.env.VUE_APP_SERVER_ADDRESS}`,
 })

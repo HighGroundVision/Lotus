@@ -83,11 +83,11 @@
       <div style="display: flex; padding: 10px">
         <template v-for="(item, index) in options" :key="index">
           <div v-if="selection" style="text-align: center">
-            <img :src="item.image_profile" class="hero-selection" v-bind:class="getSelectedStyle(item, selection)" />
+            <img :src="item.image_profile" class="hero-selection" :class="getSelectedStyle(item, selection)" />
             <div>{{ item.name }}</div>
           </div>
           <div v-else style="text-align: center">
-            <img @click="pick(index)" class="hero-selection" :src="item.image_profile" v-bind:class="getHeroImageStyle(item)" />
+            <img class="hero-selection" :src="item.image_profile" :class="getHeroImageStyle(item)" @click="pick(index)" />
             <div>{{ item.name }}</div>
           </div>
         </template>
@@ -102,12 +102,12 @@
         <template v-for="(item, index) in slots.slice(10, 11)" :key="index">
           <template v-for="(hero, i) in item.options" :key="hero.id">
             <div v-if="isActive" style="text-align: center">
-              <img @click="extraVote(i)" class="hero-selection" :src="hero.image_profile" v-bind:class="getHeroImageStyle(hero)" />
+              <img class="hero-selection" :src="hero.image_profile" :class="getHeroImageStyle(hero)" @click="extraVote(i)" />
               <span>{{ hero.name }}</span>
               <span style="margin: 2px; padding: 5px; border-radius: 5px; width: 20px; z-index: 9" class="cqvqpa">{{ hero.votes }}</span>
             </div>
             <div v-else style="text-align: center">
-              <img :src="hero.image_profile" class="hero-selection" v-bind:class="getSelectedStyle(hero, item.selection)" />
+              <img :src="hero.image_profile" class="hero-selection" :class="getSelectedStyle(hero, item.selection)" />
               <span>{{ hero.name }}</span>
               <span style="margin-left: 10px; padding: 5px; border-radius: 5px; width: 20px; z-index: 9" class="cqvqpa">{{ hero.votes }}</span>
             </div>
@@ -118,11 +118,11 @@
         <template v-for="(item, index) in slots.slice(11)" :key="index">
           <template v-for="(hero, i) in item.options" :key="hero.id">
             <div v-if="isActive" style="text-align: center">
-              <img @click="extraVote(i)" class="hero-selection" :src="hero.image_profile" v-bind:class="getHeroImageStyle(hero)" />
+              <img class="hero-selection" :src="hero.image_profile" :class="getHeroImageStyle(hero)" @click="extraVote(i)" />
               <div>{{ item.name }}</div>
             </div>
             <div v-else style="text-align: center">
-              <img :src="hero.image_profile" class="hero-selection" v-bind:class="getSelectedStyle(hero, item.selection)" />
+              <img :src="hero.image_profile" class="hero-selection" :class="getSelectedStyle(hero, item.selection)" />
               <div>{{ item.name }}</div>
             </div>
           </template>
@@ -145,7 +145,7 @@
               <div class="cut-text">{{ item.name ?? 'Slot ' + (index + 1) }}</div>
             </div>
             <template v-for="hero in item.options" :key="hero.id">
-              <img v-if="item.selection && playerID < 6" :src="hero.image_banner" class="hero-roster" v-bind:class="getSelectedStyle(hero, item.selection)" />
+              <img v-if="item.selection && playerID < 6" :src="hero.image_banner" class="hero-roster" :class="getSelectedStyle(hero, item.selection)" />
               <img v-else :src="hero.image_banner" class="hero-roster" />
             </template>
             <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
@@ -182,7 +182,7 @@
             <template v-for="hero in item.options" :key="hero.id">
               <div style="position: relative">
                 <span style="position: absolute; right: 0px; bottom: 0px; margin: 2px; padding: 5px; border-radius: 5px; width: 20px; z-index: 9" class="cqvqpa">{{ hero.votes }}</span>
-                <img v-if="item.selection && playerID < 6" :src="hero.image_banner" class="hero-roster" v-bind:class="getSelectedStyle(hero, item.selection)" />
+                <img v-if="item.selection && playerID < 6" :src="hero.image_banner" class="hero-roster" :class="getSelectedStyle(hero, item.selection)" />
                 <img v-else :src="hero.image_banner" class="hero-roster" />
               </div>
             </template>
@@ -208,7 +208,7 @@
               <div class="cut-text">{{ item.name ?? 'Slot ' + (index + 1) }}</div>
             </div>
             <template v-for="hero in item.options" :key="hero.id">
-              <img v-if="item.selection && playerID > 5" :src="hero.image_banner" class="hero-roster" v-bind:class="getSelectedStyle(hero, item.selection)" />
+              <img v-if="item.selection && playerID > 5" :src="hero.image_banner" class="hero-roster" :class="getSelectedStyle(hero, item.selection)" />
               <img v-else :src="hero.image_banner" class="hero-roster" />
             </template>
             <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
@@ -245,7 +245,7 @@
             <template v-for="hero in item.options" :key="hero.id">
               <div style="position: relative">
                 <span style="position: absolute; right: 0px; bottom: 0px; margin: 2px; padding: 5px; border-radius: 5px; width: 20px; z-index: 9" class="cqvqpa">{{ hero.votes }}</span>
-                <img v-if="item.selection && playerID > 5" :src="hero.image_banner" class="hero-roster" v-bind:class="getSelectedStyle(hero, item.selection)" />
+                <img v-if="item.selection && playerID > 5" :src="hero.image_banner" class="hero-roster" :class="getSelectedStyle(hero, item.selection)" />
                 <img v-else :src="hero.image_banner" class="hero-roster" />
               </div>
             </template>

@@ -12,7 +12,7 @@ let apGameClient = new Client({
   // The number of players.
   numPlayers: NUMBER_PLAYERS,
   // Set this to one of the following to enable multiplayer: SocketIO / Local / false
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  multiplayer: SocketIO({ server: `${process.env.VUE_APP_SERVER_ADDRESS}` }),
   // Match to connect to (multiplayer).
   // matchID: state.match.matchID,
   // Associate the client with a player (multiplayer).
@@ -20,7 +20,7 @@ let apGameClient = new Client({
   // The player’s authentication credentials (multiplayer).
   // credentials: state.slot.playerCredentials,
   // Set to false to disable the Debug Panel
-  debug: true,
+  debug: false,
   // Add a Redux enhancer to the internal store.
   // enhancer: enhancer,
 })

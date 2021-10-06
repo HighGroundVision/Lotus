@@ -18,7 +18,7 @@
                 <span>Primary Attribute</span>
               </div>
               <div style="flex: 5; flex-grow: 5">
-                <Multiselect mode="tags" v-model="attribute" :options="attributeOptions" class="multiselect-purple" />
+                <Multiselect v-model="attribute" mode="tags" :options="attributeOptions" class="multiselect-purple" />
               </div>
             </div>
             <div style="margin: 20px 1%; display: flex">
@@ -26,7 +26,7 @@
                 <span>Roles</span>
               </div>
               <div style="flex: 5; flex-grow: 5">
-                <Multiselect mode="tags" v-model="roles" :options="rolesOptions" class="multiselect-purple" />
+                <Multiselect v-model="roles" mode="tags" :options="rolesOptions" class="multiselect-purple" />
               </div>
             </div>
             <div style="margin: 20px 1%; display: flex">
@@ -53,13 +53,13 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters } = createNamespacedHelpers('bd')
 
 export default {
-  data() {
-    return {}
-  },
   components: {
     Slider,
     Complexity,
     Multiselect,
+  },
+  data() {
+    return {}
   },
   computed: {
     ...mapGetters(['attributeOptions', 'rolesOptions']),

@@ -5,8 +5,7 @@
         <div style="font-size: 30px; margin-bottom: 5px">Create a Lobby</div>
         <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
           The draft maybe Blind where no one but the host/spectators can see other players options and selection, Team where players can see the options and selection of other players on the same team, and Open where everyone can see each other options but only memebrs of same team can see each
-          others selection. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected, or Players Vote where the players get an extra phase to vote for one of the random choices, the hero on each team that gets the most votes will be
-          included.
+          others selection. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.
         </div>
         <hr />
         <div style="display: flex">
@@ -33,7 +32,7 @@
             <Multiselect v-model="extra" :options="extraOptions" class="multiselect-purple" />
           </div>
         </div>
-        <div @click="create" class="jnbrig" style="width: 100%">
+        <div class="jnbrig" style="width: 100%" @click="create">
           <span style="font-size: 1.2em"> Create</span>
         </div>
       </div>
@@ -48,6 +47,9 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions } = createNamespacedHelpers('sd/lobbies')
 
 export default {
+  components: {
+    Multiselect,
+  },
   data() {
     return {
       name: '',
@@ -61,16 +63,13 @@ export default {
       extraOptions: [
         { value: 1, label: 'Random' },
         { value: 2, label: 'Host Choice' },
-        { value: 3, label: 'Players Vote' },
+        // { value: 3, label: 'Players Vote' },
       ],
     }
   },
   mounted() {
     this.visibility = this.$route.query.visibility ?? 1
     this.extra = this.$route.query.extra ?? 1
-  },
-  components: {
-    Multiselect,
   },
   methods: {
     ...mapActions(['createMatch', 'getHeroes']),

@@ -37,7 +37,7 @@
             <Multiselect v-model="extra" :options="extraOptions" class="multiselect-purple" />
           </div>
         </div>
-        <div @click="create" class="jnbrig" style="width: 100%">
+        <div class="jnbrig" style="width: 100%" @click="create">
           <span style="font-size: 1.2em"> Create</span>
         </div>
       </div>
@@ -54,6 +54,11 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapActions } = createNamespacedHelpers('ap/lobbies')
 
 export default {
+  components: {
+    Multiselect,
+    Slider,
+    Toggle,
+  },
   data() {
     return {
       name: '',
@@ -69,11 +74,6 @@ export default {
   },
   mounted() {
     // this.visibility = this.$route.query.visibility ?? 1
-  },
-  components: {
-    Multiselect,
-    Slider,
-    Toggle,
   },
   methods: {
     ...mapActions(['createMatch', 'getHeroes']),

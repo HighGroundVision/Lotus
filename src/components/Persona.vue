@@ -3,7 +3,7 @@
     <div v-if="change">
       <div style="display: flex">
         <input v-model="name" class="dhjrhf" />
-        <img @click="change = false" src="@/assets/edit.svg" style="padding-left: 5px" />
+        <img src="@/assets/edit.svg" style="padding-left: 5px" @click="change = false" />
       </div>
     </div>
     <div v-else @click="change = true">

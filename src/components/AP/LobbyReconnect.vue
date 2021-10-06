@@ -4,10 +4,10 @@
       <div style="font-size: 30px; margin-bottom: 5px">Existing Connetion Found</div>
       <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">You where already connected to this lobby.</div>
       <div style="display: flex; align-items: center">
-        <div @click="reconnect" class="jnbrig" style="width: 50%">
+        <div class="jnbrig" style="width: 50%" @click="reconnect">
           <span>Reconnect</span>
         </div>
-        <div @click="leave" class="jnbria-" style="width: 50%">
+        <div class="jnbria-" style="width: 50%" @click="leave">
           <span>Leave</span>
         </div>
       </div>

@@ -1,16 +1,16 @@
 <template>
   <div style="display: flex">
-    <div class="jsdfjdsk" @click="select(1)" v-bind:class="{ 'jsdfjdsk-': complexity > 0 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }"></div>
-    <div class="jsdfjdsk" @click="select(2)" v-bind:class="{ 'jsdfjdsk-': complexity > 1 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }"></div>
-    <div class="jsdfjdsk" @click="select(3)" v-bind:class="{ 'jsdfjdsk-': complexity > 2 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }"></div>
+    <div class="jsdfjdsk" :class="{ 'jsdfjdsk-': complexity > 0 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }" @click="select(1)"></div>
+    <div class="jsdfjdsk" :class="{ 'jsdfjdsk-': complexity > 1 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }" @click="select(2)"></div>
+    <div class="jsdfjdsk" :class="{ 'jsdfjdsk-': complexity > 2 }" :style="{ 'background-image': 'url(' + require('@/assets/filter-diamond.png') + ')' }" @click="select(3)"></div>
   </div>
 </template>
 
 <script>
 export default {
-  setup() {},
   props: ['complexity'],
   emits: ['update:complexity'],
+  setup() {},
   methods: {
     select(value) {
       if (this.complexity == value) {

@@ -3,8 +3,8 @@
     <img alt="hero image" style="position: absolute; left: -100px; top: -50px; height: 390px" src="https://hyperstone.highgroundvision.com/images/heroes/profile/128.png" />
     <Menu />
     <Header>
-      <template v-slot:title>Host Choice</template>
-      <template v-slot:description>As the lobby host you select the heroes and their team (Radiant/Dire/Extra) to create the roster for the draft. You do not have submit a complete lineup, the remain slots will be random.</template>
+      <template #title>Host Choice</template>
+      <template #description> As the lobby host you select the heroes and their team (Radiant/Dire/Extra) to create the roster for the draft. You do not have submit a complete lineup, the remain slots will be random. </template>
     </Header>
     <Roster />
     <HeroGrid />
@@ -22,7 +22,6 @@ import Roster from '@/components/HC/Roster.vue'
 // TODO: Check for Class B heroes
 
 export default {
-  setup() {},
   components: {
     Menu,
     Header,
@@ -30,6 +29,7 @@ export default {
     Roster,
     HeroGrid,
   },
+  setup() {},
 }
 </script>
 

@@ -2,8 +2,8 @@
   <div>
     <Menu />
     <Header>
-      <template v-slot:title>All Pick</template>
-      <template v-slot:description>
+      <template #title>All Pick</template>
+      <template #description>
         Players can pick form the full hero pool. Players have a number seconds determind by the host for bans and picks. Players can also chose to random a hero. The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected.</template
       >
     </Header>
@@ -38,12 +38,6 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapState, mapGetters, mapActions } = createNamespacedHelpers('ap/game')
 
 export default {
-  setup() {},
-  async mounted() {
-    let matchID = this.$route.params.matchID
-    await this.loadMatch(matchID)
-    await this.startClient()
-  },
   components: {
     Menu,
     Header,
@@ -53,10 +47,17 @@ export default {
     GamePlayer,
     GameHost,
   },
+  setup() {},
   computed: {
     ...mapState(['isConnected']),
     ...mapGetters(['isHost', 'isPlayer', 'isSpectator']),
   },
+  async mounted() {
+    let matchID = this.$route.params.matchID
+    await this.loadMatch(matchID)
+    await this.startClient()
+  },
+
   methods: {
     ...mapActions(['loadMatch', 'startClient']),
   },

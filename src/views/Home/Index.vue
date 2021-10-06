@@ -62,16 +62,16 @@
             <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center" class="iZcrcO">
               <div>
                 <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
-                  <Multiselect v-model="hero" :options="heroes" valueProp="id" label="name" class="multiselect-purple">
-                    <template v-slot:option="{ option }">
+                  <Multiselect v-model="hero" :options="heroes" value-prop="id" label="name" class="multiselect-purple">
+                    <template #option="{ option }">
                       <img :src="option.image_icon" />
                       <span style="padding-left: 5px">{{ option.name }}</span>
                     </template>
                   </Multiselect>
-                  <div @click="copy" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console.">
+                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
                     <img src="@/assets/copy.svg" />
                   </div>
-                  <div @click="start" class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly.">
+                  <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
                     <img src="@/assets/dota.svg" />
                   </div>
                 </div>
@@ -232,9 +232,7 @@
                     The draft maybe Blind where no one but the host/spectators can see other players options and selection, Team where players can see the options and selection of other players on the same team, and Open where everyone can see each other options but only memebrs of same team can see
                     each others selection.
                   </p>
-                  <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
-                    The Extra heroes may be Random the default, Host Choice where the host selects the extra heroes from those unselected, or Players Vote where the players get an extra phase to vote for one of the random choices, the host get the final choice.
-                  </p>
+                  <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The Extra heroes may be Random the default or Host Choice where the host selects the extra heroes from those unselected.</p>
                   <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center">
                     <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
                       <div class="jnbrig">
@@ -290,6 +288,22 @@
               <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">
                 The host can control the number and sequence for the bans and picks. The host can set the time in seconds to complete all actions in the sequence. If time runs out during a phase the selection will be random. If time runs out during a phase the selection will be random.
               </p>
+              <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center">
+                <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
+                  <div class="jnbrig">
+                    <router-link to="/cd/?sequence=blank">Build Your Own</router-link>
+                  </div>
+                  <div class="jnbrig">
+                    <router-link to="/cd/?sequence=captains-draft">Short</router-link>
+                  </div>
+                  <div class="jnbrig">
+                    <router-link to="/cd/?sequence=captains-mode">Long</router-link>
+                  </div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: center">
+                <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">These are quick links to the most popular setups to get you started quickly.</div>
+              </div>
             </div>
           </div>
         </div>
@@ -435,14 +449,14 @@ import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'Home',
+  components: {
+    Multiselect,
+  },
   data() {
     return {
       hero: null,
       heroes: db.slice(0),
     }
-  },
-  components: {
-    Multiselect,
   },
   methods: {
     copy() {

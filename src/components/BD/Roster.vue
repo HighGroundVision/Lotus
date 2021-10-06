@@ -1,6 +1,6 @@
 <template>
   <div style="max-width: 600px; width: 100%; margin: auto; text-align: center; margin-top: 50px; margin-bottom: 50px">
-    <div @click="generate" class="jnbrig" style="">
+    <div class="jnbrig" style="" @click="generate">
       <span style="font-size: 1.2em"> Generate</span>
     </div>
   </div>
@@ -8,21 +8,21 @@
     <div class="herogridpage_FilterContainer_2dEVd">
       <div class="herogridpage_FilterLabel_1Mwn_">Generated Roster</div>
       <div style="display: flex; align-items: center; justify-content: flex-end">
-        <div @click="clear" class="jnbrig" data-tooltip="up" aria-label="Clear Roster">
+        <div class="jnbrig" data-tooltip="up" aria-label="Clear Roster" @click="clear">
           <img src="@/assets/clear.svg" />
         </div>
-        <div @click="copy" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console.">
+        <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
           <img src="@/assets/copy.svg" />
         </div>
-        <div @click="start" class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly.">
+        <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
           <img src="@/assets/dota.svg" />
         </div>
       </div>
     </div>
     <div style="margin-top: 20px">
       <template v-for="(item, index) in selection" :key="index">
-        <img v-if="item" :src="item.image_banner" v-bind:class="getHeroRosterClass(index)" />
-        <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" v-bind:class="getHeroRosterClass(index)" />
+        <img v-if="item" :src="item.image_banner" :class="getHeroRosterClass(index)" />
+        <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
       </template>
     </div>
   </div>
@@ -33,10 +33,10 @@ import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapActions } = createNamespacedHelpers('bd')
 
 export default {
+  components: {},
   data() {
     return {}
   },
-  components: {},
   computed: {
     ...mapGetters(['commands', 'launch']),
     selection: {
