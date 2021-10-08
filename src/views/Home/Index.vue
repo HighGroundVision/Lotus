@@ -455,8 +455,14 @@ export default {
   //
   mounted() {
     setTimeout(function () {
+      if (!location.hash) {
+        return
+      }
       let el = document.querySelector(location.hash)
-      el?.scrollIntoView({ behavior: 'smooth' })
+      if (!el) {
+        return
+      }
+      el.scrollIntoView({ behavior: 'smooth' })
     }, 1000)
   },
   methods: {
