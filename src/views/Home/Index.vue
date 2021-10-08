@@ -156,15 +156,15 @@
                 </p>
                 <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center">
                   <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
-                    <div class="jnbrig">
-                      <router-link to="/bd/?default=speed-draft">Speed Draft</router-link>
-                    </div>
-                    <div class="jnbrig">
-                      <router-link to="/bd/?default=all-intelligence">All Intelligence</router-link>
-                    </div>
-                    <div class="jnbrig">
-                      <router-link to="/bd/?default=hard-mode">Hard Mode</router-link>
-                    </div>
+                    <router-link to="/bd/?default=speed-draft">
+                      <div class="jnbrig">Speed Draft</div>
+                    </router-link>
+                    <router-link to="/bd/?default=all-intelligence">
+                      <div class="jnbrig">All Intelligence</div>
+                    </router-link>
+                    <router-link to="/bd/?default=hard-mode">
+                      <div class="jnbrig">Hard model</div>
+                    </router-link>
                   </div>
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center">
@@ -235,15 +235,13 @@
                   <p style="font-size: 18px; line-height: 26px; color: #999; padding: 0px 20px">The Extra heroes may be Random the default or Host Choice where the host selects the extra heroes from those unselected.</p>
                   <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center">
                     <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
-                      <div class="jnbrig">
-                        <router-link to="/sd/?visibility=1">Blind</router-link>
-                      </div>
-                      <div class="jnbrig">
-                        <router-link to="/sd/?visibility=2">Team</router-link>
-                      </div>
-                      <div class="jnbrig">
-                        <router-link to="/sd/?visibility=3">Open</router-link>
-                      </div>
+                      <router-link to="/sd/?visibility=1"><div class="jnbrig">Blind</div> </router-link>
+                      <router-link to="/sd/?visibility=2">
+                        <div class="jnbrig">Team</div>
+                      </router-link>
+                      <router-link to="/sd/?visibility=3">
+                        <div class="jnbrig">Open</div>
+                      </router-link>
                     </div>
                   </div>
                   <div style="display: flex; align-items: center; justify-content: center">
@@ -290,15 +288,11 @@
               </p>
               <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center">
                 <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
-                  <div class="jnbrig">
-                    <router-link to="/cd/?sequence=blank">Build Your Own</router-link>
-                  </div>
-                  <div class="jnbrig">
-                    <router-link to="/cd/?sequence=captains-draft">Short</router-link>
-                  </div>
-                  <div class="jnbrig">
-                    <router-link to="/cd/?sequence=captains-mode">Long</router-link>
-                  </div>
+                  <router-link to="/cd/?sequence=blank"><div class="jnbrig">Build Your Own</div></router-link>
+                  <router-link to="/cd/?sequence=captains-draft"><div class="jnbrig">Short</div></router-link>
+                  <router-link to="/cd/?sequence=captains-mode">
+                    <div class="jnbrig">Long</div>
+                  </router-link>
                 </div>
               </div>
               <div style="display: flex; align-items: center; justify-content: center">
