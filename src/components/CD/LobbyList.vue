@@ -39,15 +39,16 @@ export default {
       timer: null,
     }
   },
+  computed: {
+    ...mapState(['matches']),
+  },
   mounted() {
     this.findMatches()
     this.timer = setInterval(this.findMatches, 10000)
   },
+
   beforeUnmount() {
     this.cancelAutoUpdate()
-  },
-  computed: {
-    ...mapState(['matches']),
   },
   methods: {
     ...mapActions(['findMatches']),

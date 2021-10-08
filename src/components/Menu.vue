@@ -8,7 +8,7 @@
         <router-link to="/ap" style="cursor: pointer; padding: 10px 20px">AP</router-link>
         <router-link to="/sd" style="cursor: pointer; padding: 10px 20px">SD</router-link>
         <router-link to="/cd" style="cursor: pointer; padding: 10px 20px">CD</router-link>
-        <router-link to="/" style="cursor: pointer; padding: 10px 20px">CC</router-link>
+        <router-link to="/#cc" style="cursor: pointer; padding: 10px 20px">CC</router-link>
         <div style="margin-right: 40px"></div>
         <router-link to="/faq" style="cursor: pointer; padding: 10px 20px">FAQ</router-link>
       </div>
