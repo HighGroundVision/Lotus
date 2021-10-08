@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Matches</h1>
-    <div style="display: flex">
+    <div style="display: flex; flex-wrap: wrap">
       <div v-if="matches.length == 0">
         <p>There are no matches currently.</p>
       </div>
@@ -52,7 +52,7 @@ export default {
   methods: {
     ...mapActions(['findMatches']),
     name(game) {
-      return game.setupData.name
+      return game.matchID
     },
     connected(game) {
       return game.players.filter((_) => _.name).length

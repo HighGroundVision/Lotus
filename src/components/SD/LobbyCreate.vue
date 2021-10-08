@@ -10,14 +10,6 @@
         <hr />
         <div style="display: flex">
           <div style="margin: 10px; min-width: 200px">
-            <span>Lobby Name</span>
-          </div>
-          <div style="margin: 10px; width: 100%">
-            <input v-model="name" class="dhjrhf" />
-          </div>
-        </div>
-        <div style="display: flex">
-          <div style="margin: 10px; min-width: 200px">
             <span>Visibility</span>
           </div>
           <div style="margin: 10px; width: 100%">
@@ -52,7 +44,6 @@ export default {
   },
   data() {
     return {
-      name: '',
       visibility: 1,
       visibilityOptions: [
         { value: 1, label: 'Blind' },

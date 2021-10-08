@@ -4,5 +4,4 @@
 
 **TODO**
 
-- FAQ Page
 - Add Timer to Single Draft

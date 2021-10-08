@@ -458,6 +458,13 @@ export default {
       heroes: db.slice(0),
     }
   },
+  //
+  mounted() {
+    setTimeout(function () {
+      let el = document.querySelector(location.hash)
+      el?.scrollIntoView({ behavior: 'smooth' })
+    }, 1000)
+  },
   methods: {
     copy() {
       if (this.hero) {

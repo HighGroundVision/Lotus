@@ -8,12 +8,6 @@
         </div>
         <hr />
         <div style="display: flex">
-          <div style="margin: 10px; padding: 10px; min-width: 200px">Lobby Name</div>
-          <div style="margin: 10px; width: 100%">
-            <input v-model="name" class="dhjrhf" />
-          </div>
-        </div>
-        <div style="display: flex">
           <div style="margin: 10px; padding: 10px; min-width: 200px">Ban Phase <span v-if="banSwitch">Enabled</span><span v-else>Disabled</span></div>
           <div style="margin: 10px">
             <Toggle v-model="banSwitch" class="toggle-purple" />
@@ -61,7 +55,6 @@ export default {
   },
   data() {
     return {
-      name: '',
       banSwitch: true,
       banTime: 15,
       pickTime: 75,

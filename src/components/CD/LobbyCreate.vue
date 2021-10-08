@@ -9,12 +9,6 @@
         </div>
         <hr />
         <div style="display: flex">
-          <div style="margin: 10px; padding: 10px; width: 200px">Lobby Name</div>
-          <div style="margin: 10px; width: 100%">
-            <input v-model="name" class="dhjrhf" />
-          </div>
-        </div>
-        <div style="display: flex">
           <div style="margin: 10px; padding: 10px; width: 200px">Time</div>
           <div style="margin: 10px; margin-top: 40px; width: 100%">
             <Slider v-model="time" :min="30" :max="300" :step="5" :format="{ suffix: 's' }" class="slider-purple" />
@@ -74,14 +68,6 @@
             </draggable>
           </div>
         </div>
-        <!-- <div style="display: flex">
-          <div style="margin: 10px; padding: 10px; min-width: 200px">Remove</div>
-          <div style="margin: 10px; width: 100%">
-            <draggable item-key="id" group="sequence" style="border-radius: 5px 5px 5px 5px; border: 2px dashed #ca3535; min-height: 70px">
-              <template #item=""></template>
-            </draggable>
-          </div>
-        </div> -->
         <div class="jnbrig" style="width: 100%" @click="create">
           <span style="font-size: 1.2em"> Create</span>
         </div>
@@ -163,7 +149,6 @@ export default {
   },
   data() {
     return {
-      name: '',
       time: 180,
       options: [
         { id: 1, stage: 'ban', team: '1' },
