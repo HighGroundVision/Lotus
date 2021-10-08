@@ -8,7 +8,12 @@
 
 <script>
 export default {
-  props: ['complexity'],
+  props: {
+    complexity: {
+      type: Number,
+      default: 0,
+    },
+  },
   emits: ['update:complexity'],
   setup() {},
   methods: {
