@@ -248,7 +248,8 @@ const CaptainsDuelGameStore = {
       return current.stage == 'extra'
     },
     isDone(state) {
-      return state.G.done[state.ctx.currentPlayer - 1]
+      let id = (state.slot?.playerID ?? 1) - 1
+      return state.G.done[id]
     },
     radiantTimeUsage(state) {
       let amount = state.G.sequence
