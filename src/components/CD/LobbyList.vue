@@ -53,7 +53,7 @@ export default {
   methods: {
     ...mapActions(['findMatches']),
     name(game) {
-      return game.setupData.name
+      return game.matchID
     },
     connected(game) {
       return game.players.filter((_) => _.name).length
