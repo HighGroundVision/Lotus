@@ -33,7 +33,7 @@ export const BalancedDraft = {
       roundTime: 5,
       pickTime: 7,
       // Roster
-      selection: [null, null, null, null, null, null, null, null, null, null, null, null],
+      selection: [],
     }
     return data
   },
@@ -45,10 +45,13 @@ export const BalancedDraft = {
       state.selection = collection
     },
     clear(state) {
-      state.selection = [null, null, null, null, null, null, null, null, null, null, null, null]
+      state.selection = []
     },
   },
   actions: {
+    update({ commit }, collection) {
+      commit('update', collection)
+    },
     default({ commit }, option) {
       switch (option.toLowerCase()) {
         case 'speed-draft':

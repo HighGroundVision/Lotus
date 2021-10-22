@@ -20,9 +20,19 @@
       </div>
     </div>
     <div style="margin-top: 20px">
+      <!--
       <template v-for="(item, index) in selection" :key="index">
         <img v-if="item" :src="item.image_banner" :class="getHeroRosterClass(index)" />
         <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
+      </template>
+      -->
+      <draggable v-model="selection" group="roster" item-key="id" style="display: inline" @start="drag = true" @end="drag = false">
+        <template #item="{ element, index }">
+          <img :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" />
+        </template>
+      </draggable>
+      <template v-for="index in placeholders" :key="index">
+        <img src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
       </template>
     </div>
   </div>
@@ -30,12 +40,18 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
+import draggable from 'vuedraggable'
+
 const { mapGetters, mapActions } = createNamespacedHelpers('bd')
 
 export default {
-  components: {},
+  components: {
+    draggable,
+  },
   data() {
-    return {}
+    return {
+      drag: false,
+    }
   },
   computed: {
     ...mapGetters(['commands', 'launch']),

@@ -10,7 +10,7 @@
     </div>
     <div v-if="phaseDraft">
       <div style="display: flex">
-        <div style="width: 80%">
+        <div class="main-content">
           <div style="display: flex; padding: 5px; margin: 5px">
             <div style="writing-mode: vertical-lr; text-orientation: mixed">
               <div style="text-align: center; transform: scale(-1, -1)">STRENGTH</div>
@@ -45,7 +45,7 @@
             </div>
           </div>
         </div>
-        <div style="width: 20%; border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 10px">
+        <div class="side-content" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 10px">
           <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between">
             <div style="display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 10px">
               <div style="display: flex; justify-content: center; margin-right: 2px; width: 100%">{{ radiantClock }}</div>
@@ -347,6 +347,13 @@ export default {
 </script>
 
 <style scoped>
+.main-content {
+  width: 100%;
+}
+.side-content {
+  width: 350px;
+}
+
 .hero-roster {
   padding: 5px;
   margin: auto;
