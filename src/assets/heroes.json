@@ -1692,6 +1692,36 @@
   "complexity": 2
   },
   {
+    "id": 136,
+    "key": "marci",
+    "name": "Marci",
+    "aliases": [],
+    "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/136.jpg",
+    "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/136.png",
+    "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/136.png",
+    "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/136.jpg",
+    "ability_replace_required": false,
+    "strength_gain": 3.3,
+    "max_strength": 122,
+    "intelligence_gain": 1.9,
+    "max_intelligence": 76,
+    "agility_gain": 2.4,
+    "max_agility": 92,
+    "primary_attribute": "STRENGTH",
+    "attack_capabilities": "MELEE",
+    "win_rate": 0.5290322581,
+    "picked": false,
+    "damage": 35,
+    "roles": [
+    "Support",
+    "Carry",
+    "Initiator",
+    "Disabler",
+    "Escape"
+    ],
+    "complexity": 2
+  },
+  {
   "id": 129,
   "key": "mars",
   "name": "Mars",
