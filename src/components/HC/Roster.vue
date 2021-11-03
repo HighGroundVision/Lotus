@@ -44,14 +44,12 @@
         </div>
       </div>
       <div style="margin-top: 20px">
-        <draggable v-model="selection" group="roster" item-key="id" style="display: inline" @start="drag = true" @end="drag = false">
+        <draggable v-model="selection" group="roster" style="display: inline" @start="drag = true" @end="drag = false">
           <template #item="{ element, index }">
-            <img :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" @click="select(element)" />
+            <img v-if="element.image_banner" :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" />
+            <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
           </template>
         </draggable>
-        <template v-for="index in placeholders" :key="index">
-          <img src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
-        </template>
       </div>
     </div>
   </div>

@@ -31,9 +31,6 @@
           <img :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" />
         </template>
       </draggable>
-      <template v-for="index in placeholders" :key="index">
-        <img src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
-      </template>
     </div>
   </div>
 </template>
@@ -62,14 +59,6 @@ export default {
       set(value) {
         this.$store.dispatch('bd/update', value)
       },
-    },
-    placeholders: function () {
-      let size = this.$store.state.bd.selection.length
-      let collection = []
-      for (let i = size; i < 12; i++) {
-        collection.push(i)
-      }
-      return collection
     },
   },
   methods: {

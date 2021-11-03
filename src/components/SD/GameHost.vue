@@ -1,10 +1,46 @@
 <template>
+  <div>
+    <div v-if="phaseOver" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 5px; width: 100%; margin: auto; margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center">
+      <div style="padding: 10px; width: 100%">
+        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5); float: right; margin: 5px">For these options to work the lobby's Location should be set to LOCALHOST</div>
+        <div style="font-size: 30px; margin-bottom: 5px">Additional Options</div>
+        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
+          <div style="display: flex; padding: 0 1%">
+            <div style="flex: 1; margin: 0 1%">
+              <p style="margin-bottom: 30px">Player Shuffle <span v-if="playerShuffle">Enabled</span><span v-else>Disabled</span></p>
+              <Toggle v-model="playerShuffle" class="toggle-purple" />
+            </div>
+            <div style="flex: 1; margin: 0 1%">
+              <p style="margin-bottom: 40px">Pick Time</p>
+              <Slider v-model="pickTime" :min="1" :max="10" class="slider-purple" />
+            </div>
+            <div style="flex: 1; margin: 0 1%">
+              <p style="margin-bottom: 40px">Round Time</p>
+              <Slider v-model="roundTime" :min="1" :max="30" class="slider-purple" />
+            </div>
+            <div style="flex: 1; margin: 0 1%">
+              <p style="margin-bottom: 40px">Draft Time</p>
+              <Slider v-model="draftTime" :min="10" :max="120" class="slider-purple" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="herogridpage_FilterContainer_2dEVd">
     <div class="herogridpage_FilterLabel_1Mwn_">Phase: {{ phase }}</div>
     <div style="display: flex; align-items: center; justify-content: flex-end">
       <div v-if="phaseReady" class="jnbrig" data-tooltip="up" aria-label="Moves to pick phase when all players are in the correct slot." @click="ready">
         <img src="@/assets/ready.svg" />
       </div>
+      <div v-if="phasePick" class="jnbrig" data-tooltip="up" aria-label="Moves to next phase. Usefull if you do not have all full house or a player is lingering." @click="ready">
+        <img src="@/assets/next.svg" />
+      </div>
+      <!--
+      <div v-if="phaseOver" class="jnbrig" data-tooltip="up" aria-label="Addtional Options" @click="copy">
+        <img src="@/assets/options.svg" />
+      </div>
+      -->
       <div v-if="phaseOver" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
         <img src="@/assets/copy.svg" />
       </div>
@@ -174,6 +210,8 @@
 <script>
 import db from '@/assets/heroes.json'
 import Multiselect from '@vueform/multiselect'
+import Slider from '@vueform/slider'
+import Toggle from '@vueform/toggle'
 
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapActions } = createNamespacedHelpers('sd/game')
@@ -181,6 +219,8 @@ const { mapGetters, mapActions } = createNamespacedHelpers('sd/game')
 export default {
   components: {
     Multiselect,
+    Slider,
+    Toggle,
   },
   setup() {},
   computed: {
@@ -206,6 +246,38 @@ export default {
     },
     extraDireImage() {
       return this.$store.state.sd.game.G.collection[11]?.selection?.image_banner
+    },
+    playerShuffle: {
+      get() {
+        return this.$store.state.sd.game.playerShuffle
+      },
+      set(value) {
+        this.$store.commit('sd/game/setPlayerShuffle', value)
+      },
+    },
+    draftTime: {
+      get() {
+        return this.$store.state.sd.game.draftTime
+      },
+      set(value) {
+        this.$store.commit('sd/game/setDraftTime', value)
+      },
+    },
+    roundTime: {
+      get() {
+        return this.$store.state.sd.game.roundTime
+      },
+      set(value) {
+        this.$store.commit('sd/game/setRoundTime', value)
+      },
+    },
+    pickTime: {
+      get() {
+        return this.$store.state.sd.game.pickTime
+      },
+      set(value) {
+        this.$store.commit('sd/game/setPickTime', value)
+      },
     },
   },
   methods: {

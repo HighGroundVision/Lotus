@@ -168,6 +168,10 @@ const SingleDraftGameStore = {
       isActive: false,
       isConnected: false,
       log: [],
+      playerShuffle: false,
+      draftTime: 60,
+      roundTime: 5,
+      pickTime: 7,
     }
     return data
   },
@@ -185,6 +189,18 @@ const SingleDraftGameStore = {
       state.isActive = isActive
       state.isConnected = isConnected
       state.log = log
+    },
+    setPlayerShuffle(state, value) {
+      state.playerShuffle = value
+    },
+    setDraftTime(state, value) {
+      state.draftTime = value
+    },
+    setRoundTime(state, value) {
+      state.roundTime = value
+    },
+    setPickTime(state, value) {
+      state.pickTime = value
     },
   },
   actions: {
@@ -279,8 +295,24 @@ const SingleDraftGameStore = {
     },
     commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
-      cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
-      cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
+
+      if (state.playerShuffle == false) {
+        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
+        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
+      }
+
+      if (state.pickTime != 7) {
+        cmd += 'dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ';'
+        cmd += 'dota_gamemode_ability_draft_per_player_time;'
+      }
+      if (state.roundTime != 5) {
+        cmd += 'dota_gamemode_ability_draft_pre_round_time ' + state.roundTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_round_time;'
+      }
+      if (state.draftTime != 60) {
+        cmd += 'dota_gamemode_ability_draft_pre_time ' + state.draftTime + ';'
+        cmd += 'dota_gamemode_ability_draft_pre_time;'
+      }
 
       for (let i = 0; i < state.G.collection.length; i++) {
         const key = state.G.collection[i].selection?.key
@@ -296,6 +328,20 @@ const SingleDraftGameStore = {
     launch: (state) => {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
       cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
+
+      if (state.playerShuffle == false) {
+        cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
+      }
+
+      if (state.pickTime != 7) {
+        cmd += '+dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ' '
+      }
+      if (state.roundTime != 5) {
+        cmd += '+dota_gamemode_ability_draft_pre_round_time ' + state.roundTime + ' '
+      }
+      if (state.draftTime != 60) {
+        cmd += '+dota_gamemode_ability_draft_pre_time ' + state.draftTime + ' '
+      }
 
       for (let i = 0; i < state.G.selection.length; i++) {
         const key = state.G.collection[i].selection?.key

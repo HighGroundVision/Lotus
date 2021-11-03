@@ -2,7 +2,7 @@
   <div style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 10px; margin-bottom: 50px; display: flex; align-items: center">
     <div style="padding: 5px">
       <div style="font-size: 30px; margin-bottom: 5px">Host</div>
-      <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">The host starts the draft when the captains are ready. They also see the roster and can generate the commands</div>
+      <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">The host starts the draft when the captains are ready. They also see the roster and can generate the commands. If you want to play as well as host you will need to use incognito mode or a second browser.</div>
       <template v-for="item in players.slice(0, 1)" :key="item.id">
         <div v-if="item.name" class="jnbria" style="width: 50%; text-align: center">
           <span>{{ item.name }}</span>

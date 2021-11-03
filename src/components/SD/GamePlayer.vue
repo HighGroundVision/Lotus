@@ -18,7 +18,8 @@
           <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
             <div class="cut-text">{{ item.name ?? 'Slot ' + (index + 1) }}</div>
           </div>
-          <img :src="item.selection.image_portrait" class="hero-roster" />
+          <img v-if="item.selection" :src="item.selection.image_portrait" class="hero-roster" />
+          <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg" class="hero-roster" />
           <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
             <div style="font-size: 0.8em"></div>
           </div>
@@ -50,7 +51,8 @@
           <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
             <div class="cut-text">{{ item.name ?? 'Slot ' + (index + 1) }}</div>
           </div>
-          <img :src="item.selection.image_portrait" class="hero-roster" />
+          <img v-if="item.selection" :src="item.selection.image_portrait" class="hero-roster" />
+          <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/portrait/0.jpg" class="hero-roster" />
           <div style="text-align: center; width: 100%; min-height: 20px; background: #616a6b">
             <div style="font-size: 0.8em"></div>
           </div>

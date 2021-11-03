@@ -1,11 +1,22 @@
 import db from '@/assets/heroes.json'
 
+const NILL_HERO = {
+  id: 0,
+  key: null,
+  image_banner: 'https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg',
+}
+
+const NILL_HERO_ID = 0
+const NO_RESULT = -1
+
 export const HostChoice = {
   namespaced: true,
   state: () => {
     let data = {
       heroes: db.slice(),
-      selection: [],
+      selection: Array(12)
+        .fill()
+        .map(() => NILL_HERO),
       playerShuffle: true,
       draftTime: 60,
       roundTime: 5,
@@ -29,11 +40,16 @@ export const HostChoice = {
     update(state, collection) {
       state.selection = collection
     },
-    add(state, hero) {
-      state.selection.push(hero)
+    add(state, { index, hero }) {
+      state.selection[index] = hero
     },
-    remove(state, hero) {
-      state.selection = state.selection.filter((i) => i.id != hero.id)
+    remove(state, index) {
+      state.selection[index] = NILL_HERO
+    },
+    clear(state) {
+      state.selection = Array(12)
+        .fill()
+        .map(() => NILL_HERO)
     },
   },
   actions: {
@@ -41,19 +57,20 @@ export const HostChoice = {
       commit('update', collection)
     },
     select({ commit, state }, hero) {
-      if (state.selection.some((i) => i.id == hero.id)) {
-        commit('remove', hero)
+      let existing = state.selection.findIndex((i) => i.id == hero.id)
+      if (NO_RESULT != existing) {
+        commit('remove', existing)
         return
       }
-      if (state.selection.length < 12) {
-        commit('add', hero)
+
+      let index = state.selection.findIndex((i) => i.id == NILL_HERO_ID)
+      if (NO_RESULT != index) {
+        commit('add', { index, hero })
         return
       }
     },
-    clear({ commit, state }) {
-      for (const hero of state.selection) {
-        commit('remove', hero)
-      }
+    clear({ commit }) {
+      commit('clear')
     },
   },
   getters: {
@@ -81,8 +98,10 @@ export const HostChoice = {
 
       for (let i = 0; i < state.selection.length; i++) {
         const hero = state.selection[i]
-        var team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
+        if (hero.key) {
+          var team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
+          cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
+        }
       }
 
       cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
@@ -107,8 +126,10 @@ export const HostChoice = {
 
       for (let i = 0; i < state.selection.length; i++) {
         const hero = state.selection[i]
-        var team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
-        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ' '
+        if (hero.key) {
+          var team = i < 5 ? 'radiant' : i < 10 ? 'dire' : 'extra'
+          cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ' '
+        }
       }
 
       cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'

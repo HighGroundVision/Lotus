@@ -67,7 +67,6 @@ export default {
     async create() {
       try {
         let matchID = await this.createMatch({
-          name: this.name,
           visibility: this.visibility,
           extra: this.extra,
         })

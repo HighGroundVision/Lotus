@@ -73,7 +73,6 @@ export default {
     async create() {
       try {
         let matchID = await this.createMatch({
-          name: this.name,
           banSwitch: this.banSwitch,
           banTime: this.banTime,
           pickTime: this.pickTime,

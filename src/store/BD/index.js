@@ -8,6 +8,14 @@ var groupBy = function (xs, key) {
   }, {})
 }
 
+const NILL_HERO = {
+  id: 0,
+  key: null,
+  image_banner: 'https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg',
+}
+
+// const NILL_HERO_ID = 0
+
 export const BalancedDraft = {
   namespaced: true,
   state: () => {
@@ -33,7 +41,9 @@ export const BalancedDraft = {
       roundTime: 5,
       pickTime: 7,
       // Roster
-      selection: [],
+      selection: Array(12)
+        .fill()
+        .map(() => NILL_HERO),
     }
     return data
   },
@@ -45,7 +55,9 @@ export const BalancedDraft = {
       state.selection = collection
     },
     clear(state) {
-      state.selection = []
+      state.selection = Array(12)
+        .fill()
+        .map(() => NILL_HERO)
     },
   },
   actions: {
@@ -170,7 +182,7 @@ export const BalancedDraft = {
           }
         })
         .map((x) => {
-          return x.hero
+          return x.hero ?? NILL_HERO
         })
 
       commit('update', heroes)
