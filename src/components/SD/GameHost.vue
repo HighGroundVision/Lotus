@@ -1,28 +1,11 @@
 <template>
   <div>
-    <div v-if="phaseOver" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 5px; width: 100%; margin: auto; margin-top: 10px; margin-bottom: 10px; display: flex; align-items: center">
-      <div style="padding: 10px; width: 100%">
-        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5); float: right; margin: 5px">For these options to work the lobby's Location should be set to LOCALHOST</div>
-        <div style="font-size: 30px; margin-bottom: 5px">Additional Options</div>
+    <div v-if="phaseOver" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 20px; max-width: 800px; width: 100%; margin: auto; margin-top: 5px; margin-bottom: 0px; display: flex; align-items: center">
+      <div style="padding: 20px">
+        <div style="font-size: 30px; margin-bottom: 5px">Draft Complete</div>
         <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
-          <div style="display: flex; padding: 0 1%">
-            <div style="flex: 1; margin: 0 1%">
-              <p style="margin-bottom: 30px">Player Shuffle <span v-if="playerShuffle">Enabled</span><span v-else>Disabled</span></p>
-              <Toggle v-model="playerShuffle" class="toggle-purple" />
-            </div>
-            <div style="flex: 1; margin: 0 1%">
-              <p style="margin-bottom: 40px">Pick Time</p>
-              <Slider v-model="pickTime" :min="1" :max="10" class="slider-purple" />
-            </div>
-            <div style="flex: 1; margin: 0 1%">
-              <p style="margin-bottom: 40px">Round Time</p>
-              <Slider v-model="roundTime" :min="1" :max="30" class="slider-purple" />
-            </div>
-            <div style="flex: 1; margin: 0 1%">
-              <p style="margin-bottom: 40px">Draft Time</p>
-              <Slider v-model="draftTime" :min="10" :max="120" class="slider-purple" />
-            </div>
-          </div>
+          <p>You as the host need to enter the console commands. There are two button below that will do this quickly.</p>
+          <p>Also as the lobby host you can also set the Shuffling Player option to Off if you want the player to have the hero they drafted and players will need to be the correct slot in lobby.</p>
         </div>
       </div>
     </div>
@@ -210,8 +193,6 @@
 <script>
 import db from '@/assets/heroes.json'
 import Multiselect from '@vueform/multiselect'
-import Slider from '@vueform/slider'
-import Toggle from '@vueform/toggle'
 
 import { createNamespacedHelpers } from 'vuex'
 const { mapGetters, mapActions } = createNamespacedHelpers('sd/game')
@@ -219,8 +200,6 @@ const { mapGetters, mapActions } = createNamespacedHelpers('sd/game')
 export default {
   components: {
     Multiselect,
-    Slider,
-    Toggle,
   },
   setup() {},
   computed: {
@@ -246,38 +225,6 @@ export default {
     },
     extraDireImage() {
       return this.$store.state.sd.game.G.collection[11]?.selection?.image_banner
-    },
-    playerShuffle: {
-      get() {
-        return this.$store.state.sd.game.playerShuffle
-      },
-      set(value) {
-        this.$store.commit('sd/game/setPlayerShuffle', value)
-      },
-    },
-    draftTime: {
-      get() {
-        return this.$store.state.sd.game.draftTime
-      },
-      set(value) {
-        this.$store.commit('sd/game/setDraftTime', value)
-      },
-    },
-    roundTime: {
-      get() {
-        return this.$store.state.sd.game.roundTime
-      },
-      set(value) {
-        this.$store.commit('sd/game/setRoundTime', value)
-      },
-    },
-    pickTime: {
-      get() {
-        return this.$store.state.sd.game.pickTime
-      },
-      set(value) {
-        this.$store.commit('sd/game/setPickTime', value)
-      },
     },
   },
   methods: {

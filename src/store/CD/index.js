@@ -280,8 +280,6 @@ const CaptainsDuelGameStore = {
     },
     commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
-      cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
-      cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
 
       let sequence = state.G.sequence.map((i) => ({
         ...i,
@@ -302,7 +300,6 @@ const CaptainsDuelGameStore = {
     },
     launch: (state) => {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
-      cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
 
       let sequence = state.G.sequence.map((i) => ({
         ...i,

@@ -1,5 +1,15 @@
 <template>
-  <div style="background: #191919; margin-top: -5px">
+  <div style="padding: 10px 30px 30px 30px; background: #191919">
+    <div v-if="phaseOver" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 20px; max-width: 800px; width: 100%; margin: auto; margin-top: 5px; margin-bottom: 0px; display: flex; align-items: center">
+      <div style="padding: 20px">
+        <div style="font-size: 30px; margin-bottom: 5px">Draft Complete</div>
+        <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
+          <p>You as the host need to enter the console commands. There are two button below that will do this quickly.</p>
+          <p>Also as the lobby host you can also set the Shuffling Player option to Off if you want the player to have the hero they drafted and players will need to be the correct slot in lobby.</p>
+        </div>
+      </div>
+    </div>
+
     <div style="max-width: 1200px; width: 100%; margin: auto; padding: 40px 10px 100px 10px">
       <div class="herogridpage_FilterContainer_2dEVd">
         <div class="herogridpage_FilterLabel_1Mwn_">Phase: {{ phase }}</div>
