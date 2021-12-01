@@ -82,7 +82,7 @@
         <div style="display: flex; align-items: center; justify-content: center" class="fDQsWU">
           <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">
             These commands enabled cheats, disabled the player shuffle, shorten the draft time and sets the hero to the first slot. <br />
-            For either option start a custom lobby with the region as LOCALHOST with no bots.
+            but for either option to work correctly you need to a custom lobby with the region as LOCALHOST with NO BOTS and Player Shuffle option set to OFF.
           </div>
         </div>
       </div>
@@ -471,8 +471,6 @@ export default {
         let hero = this.heroes.find((h) => h.id == this.hero)
         let cmd = 'sv_cheats 1;'
         cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
-        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
-        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
         cmd += 'dota_gamemode_ability_draft_per_player_time 1;'
         cmd += 'dota_gamemode_ability_draft_per_player_time;'
         cmd += 'dota_gamemode_ability_draft_pre_round_time 2;'
@@ -490,7 +488,6 @@ export default {
         let cmd = ''
         cmd += '-console '
         cmd += '+sv_cheats 1 '
-        cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
         cmd += '+dota_gamemode_ability_draft_per_player_time 1 '
         cmd += '+dota_gamemode_ability_draft_pre_round_time 2 '
         cmd += '+dota_gamemode_ability_draft_pre_time 10 '

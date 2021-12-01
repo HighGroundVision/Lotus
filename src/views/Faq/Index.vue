@@ -26,10 +26,6 @@
               These commands only work in the private lobby.
             </li>
             <li>
-              I have disabled the player shuffle but player still appear in random slots, why? <br />
-              You need to set the lobby region as LOCALHOST for the 'dota_gamemode_ability_draft_shuffle_draft_order' command to work correctly..
-            </li>
-            <li>
               Some variants require a host, why? <br />
               The host a speical player that normaly dose not draft but dose see what the players are doing and controls the flow of the draft through the phases, they are also reposible for getting the commands.
             </li>
