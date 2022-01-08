@@ -60,7 +60,7 @@
               </div>
               <div style="color: #999; height: 30px; display: flex; align-items: center; margin-top: 4px">
                 <div class="aXnnF">4.</div>
-                <div>Clear the roster</div>
+                <div>Clean up</div>
               </div>
             </div>
             <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center" class="iZcrcO">
