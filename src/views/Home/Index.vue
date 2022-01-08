@@ -58,6 +58,10 @@
                 <div class="aXnnF">3.</div>
                 <div>Start testing 🎉</div>
               </div>
+              <div style="color: #999; height: 30px; display: flex; align-items: center; margin-top: 4px">
+                <div class="aXnnF">4.</div>
+                <div>Clear the roster</div>
+              </div>
             </div>
             <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center" class="iZcrcO">
               <div>
@@ -68,11 +72,15 @@
                       <span style="padding-left: 5px">{{ option.name }}</span>
                     </template>
                   </Multiselect>
-                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
+                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to set the roster to the clipboard; ready to paste into the Dota console." @click="copy">
                     <img src="@/assets/copy.svg" />
                   </div>
+
                   <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
                     <img src="@/assets/dota.svg" />
+                  </div>
+                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clear the roster to the clipboard; ready to paste into the Dota console." @click="clear">
+                    <img src="@/assets/clear.svg" />
                   </div>
                 </div>
               </div>
@@ -498,6 +506,10 @@ export default {
         let url = 'steam://run/570//' + params
         window.open(url)
       }
+    },
+    clear() {
+      let cmd = 'sv_cheats 0;dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
+      navigator.clipboard.writeText(cmd)
     },
   },
 }
