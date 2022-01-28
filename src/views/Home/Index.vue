@@ -367,12 +367,12 @@
       <div style="background: #191919; margin-top: -20px">
         <div style="max-width: 1100px; width: 100%; margin: auto; padding: 40px 0px; padding-top: 10vh; padding-bottom: 100px">
           <div style="display: flex">
-            <a href="http://ad.datdota.com/" target="_blank" rel="noreferrer noopener" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 20px; display: flex; align-items: center">
-              <div><img src="https://www.datdota.com/images/logos/datdota_logo_small.png" style="width: 100px" /></div>
+            <a href="https://windrun.io/" target="_blank" rel="noreferrer noopener" style="border: 2px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 30px; max-width: 800px; width: 100%; margin: auto; margin-top: 20px; display: flex; align-items: center">
+              <div><img src="https://tango.highgroundvision.com/images/image3.png" style="width: 100px" /></div>
               <div style="padding: 20px">
                 <div style="font-size: 13px; color: rgba(255, 255, 255, 0.3)">special thanks to</div>
-                <div style="font-size: 30px; margin-bottom: 5px">Ability Draft Statistics</div>
-                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">Check out Ability Draft Statistics to improve and evaluate Ability Draft gameplay: measuring the strength of heroes, guiding your drafting of abilities, and also tracking your performance after games!</div>
+                <div style="font-size: 30px; margin-bottom: 5px">Windrun.io</div>
+                <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">Check out Windrun.io to improve and evaluate Ability Draft gameplay: measuring the strength of heroes, guiding your drafting of abilities, and also tracking your performance after games!</div>
                 <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">Some of the experiments would not have posible with the data they provide.</div>
               </div>
             </a>
