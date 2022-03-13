@@ -213,11 +213,6 @@ export const BalancedDraft = {
     commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
 
-      if (state.playerShuffle == false) {
-        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order 0;'
-        cmd += 'dota_gamemode_ability_draft_shuffle_draft_order;'
-      }
-
       if (state.pickTime != 7) {
         cmd += 'dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ';'
         cmd += 'dota_gamemode_ability_draft_per_player_time;'
@@ -244,10 +239,6 @@ export const BalancedDraft = {
     },
     launch: (state) => {
       let cmd = '-console +dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
-
-      if (state.playerShuffle == false) {
-        cmd += '+dota_gamemode_ability_draft_shuffle_draft_order 0 '
-      }
 
       if (state.pickTime != 7) {
         cmd += '+dota_gamemode_ability_draft_per_player_time ' + state.pickTime + ' '

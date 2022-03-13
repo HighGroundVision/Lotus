@@ -5,10 +5,12 @@
       <div style="font-size: 30px; margin-bottom: 5px">Additional Options</div>
       <div style="font-size: 14px; color: rgba(255, 255, 255, 0.5)">
         <div style="display: flex; padding: 0 1%">
+          <!--
           <div style="flex: 1; margin: 0 1%">
             <p style="margin-bottom: 30px">Player Shuffle <span v-if="playerShuffle">Enabled</span><span v-else>Disabled</span></p>
             <Toggle v-model="playerShuffle" class="toggle-purple" />
           </div>
+          -->
           <div style="flex: 1; margin: 0 1%">
             <p style="margin-bottom: 40px">Pick Time</p>
             <Slider v-model="pickTime" :min="1" :max="10" class="slider-purple" />
@@ -29,12 +31,12 @@
 
 <script>
 import Slider from '@vueform/slider'
-import Toggle from '@vueform/toggle'
+//import Toggle from '@vueform/toggle'
 
 export default {
   components: {
     Slider,
-    Toggle,
+    //Toggle,
   },
   data() {
     return {}

@@ -286,6 +286,7 @@ const AllPickGameStore = {
     },
     commands: (state) => {
       let cmd = 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
+      
       let collection = state.G?.picks?.slice(1).map((id) => db.find((h) => h.id == id)) ?? []
       for (let i = 0; i < collection.length; i++) {
         let hero = collection[i]
