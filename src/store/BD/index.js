@@ -1,5 +1,5 @@
 import db from '@/assets/heroes.json'
-import { shuffleArray } from '@/store/shuffle'
+import { shuffleArray, balanceByWinrate } from '@/store/shuffle'
 
 var groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
@@ -33,6 +33,7 @@ export const BalancedDraft = {
       // Balance
       balanceAttribute: false,
       balanceCapabilities: false,
+      balanceUrist: false,
       // Order
       sequence: 0,
       // Additional Options
@@ -170,6 +171,10 @@ export const BalancedDraft = {
         } else {
           break
         }
+      }
+      if (state.balanceUrist) {
+        console.log("Pre-balance roster:" + roster.map(a => a.hero.name));
+        roster = balanceByWinrate(roster)
       }
 
       let heroes = roster
