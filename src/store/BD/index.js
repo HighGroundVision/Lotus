@@ -173,7 +173,6 @@ export const BalancedDraft = {
         }
       }
       if (state.balanceUrist) {
-        console.log("Pre-balance roster:" + roster.map(a => a.hero.name));
         roster = balanceByWinrate(roster)
       }
 

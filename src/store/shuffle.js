@@ -16,8 +16,8 @@ export function shuffleArray(array) {
 }
 
 export function balanceByWinrate(roster) {
+  console.log("begin rebalance");
   const combs = [0, 1, 2, 3, 4].map((a) => [roster[a], roster[a+5]])
-
   var balancedRosterPairs = combinator(combs, winrateDifference, [roster[10], roster[11]]).roster;
   var nonReserve = [...balancedRosterPairs.map(a => { a[0].team = 1; return a[0] }), ...balancedRosterPairs.map(a => { a[1].team = 2; return a[1] })];
   var reserve = roster.filter(a => nonReserve.map(r => r.hero.id).indexOf(a.hero.id) < 0);
