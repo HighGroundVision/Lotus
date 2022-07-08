@@ -15,6 +15,17 @@ export function shuffleArray(array) {
   return array
 }
 
+export function matchedSort(roster) {
+  const rad = roster.slice(0, 5);
+  const wrOrder = rad.map((a, i) => ({ id: i, winrate: a.hero?.win_rate }))
+    .sort((lhs, rhs) => lhs.winrate - rhs.winrate)
+    .map((a, i) => ({ id: a.id, winrate: a.winrate, wrOrder: i }))
+    .sort((lhs, rhs) => lhs.id - rhs.id);
+
+  const dire = wrOrder.map(a => roster[a.wrOrder + 5]);
+  return [...rad,...dire, roster[10], roster[11]];
+}
+
 export function balanceByWinrate(roster) {
   console.log("begin rebalance");
   const combs = [0, 1, 2, 3, 4].map((a) => [roster[a], roster[a+5]])

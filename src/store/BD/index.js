@@ -1,5 +1,5 @@
 import db from '@/assets/heroes.json'
-import { shuffleArray, balanceByWinrate } from '@/store/shuffle'
+import { shuffleArray, balanceByWinrate, matchedSort } from '@/store/shuffle'
 
 var groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
@@ -176,7 +176,7 @@ export const BalancedDraft = {
         roster = balanceByWinrate(roster)
       }
 
-      let heroes = roster
+      let heroes = (state.sequence == 3 ? matchedSort(roster) : roster)
         .sort((lhs, rhs) => {
           let result = lhs.team - rhs.team
           if (result == 0) {
@@ -212,6 +212,7 @@ export const BalancedDraft = {
         { value: 0, label: 'Random' },
         { value: 1, label: 'Weaker Heroes First' },
         { value: 2, label: 'Stronger Heroes First' },
+        { value: 3, label: 'Matched' },
       ]
     },
     commands: (state) => {
