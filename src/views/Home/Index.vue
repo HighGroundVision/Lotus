@@ -173,6 +173,9 @@
                     <router-link to="/bd/?default=hard-mode">
                       <div class="jnbrig">Hard model</div>
                     </router-link>
+                    <router-link to="/bd/?default=win-rate">
+                      <div class="jnbrig">Win Rate</div>
+                    </router-link>
                   </div>
                 </div>
                 <div style="display: flex; align-items: center; justify-content: center">

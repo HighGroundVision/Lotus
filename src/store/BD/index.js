@@ -67,6 +67,9 @@ export const BalancedDraft = {
     },
     default({ commit }, option) {
       switch (option.toLowerCase()) {
+        case 'win-rate':
+          commit('set', { key: 'balanceUrist', value: true })
+          break
         case 'speed-draft':
           commit('set', { key: 'draftTime', value: 20 })
           commit('set', { key: 'roundTime', value: 3 })
