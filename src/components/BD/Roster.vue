@@ -1,6 +1,6 @@
 <template>
   <div style="max-width: 600px; width: 100%; margin: auto; text-align: center; margin-top: 50px; margin-bottom: 50px">
-    <div class="jnbrig" style="" @click="generate">
+    <div id="generate" class="jnbrig" @click="generate">
       <span style="font-size: 1.2em"> Generate</span>
     </div>
   </div>
@@ -19,13 +19,7 @@
         </div>
       </div>
     </div>
-    <div style="margin-top: 20px">
-      <!--
-      <template v-for="(item, index) in selection" :key="index">
-        <img v-if="item" :src="item.image_banner" :class="getHeroRosterClass(index)" />
-        <img v-else src="https://hyperstone.highgroundvision.com/images/heroes/banner/0.jpg" :class="getHeroRosterClass(index)" />
-      </template>
-      -->
+    <div id="roster" style="margin-top: 20px">
       <draggable v-model="selection" group="roster" item-key="id" style="display: inline" @start="drag = true" @end="drag = false">
         <template #item="{ element, index }">
           <img :src="element.image_banner" class="grabbable" :class="getHeroRosterClass(index)" />
