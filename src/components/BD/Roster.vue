@@ -26,6 +26,9 @@
         </template>
       </draggable>
     </div>
+    <div class="" style="display: none">
+      <pre id="commands">{{ commands }}</pre>
+    </div>
   </div>
 </template>
 
