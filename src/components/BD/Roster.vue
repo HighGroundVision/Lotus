@@ -8,13 +8,13 @@
     <div class="herogridpage_FilterContainer_2dEVd">
       <div class="herogridpage_FilterLabel_1Mwn_">Generated Roster</div>
       <div style="display: flex; align-items: center; justify-content: flex-end">
-        <div class="jnbrig" data-tooltip="up" aria-label="Clear Roster" @click="clear">
+        <div id="clear" class="jnbrig" data-tooltip="up" aria-label="Clear Roster" @click="clear">
           <img src="@/assets/clear.svg" />
         </div>
-        <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
+        <div id="copy" class="jnbrig" data-tooltip="up" aria-label="Copy the commands to clipboard; ready to paste into the Dota console." @click="copy">
           <img src="@/assets/copy.svg" />
         </div>
-        <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
+        <div id="start" class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
           <img src="@/assets/dota.svg" />
         </div>
       </div>
