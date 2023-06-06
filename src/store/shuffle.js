@@ -24,17 +24,14 @@ export function matchedSort(roster) {
     .sort((lhs, rhs) => lhs.id - rhs.id)
   const wrOrderDire = roster.filter((a) => a.team == 2).sort((lhs, rhs) => lhs.hero?.win_rate - rhs.hero?.win_rate)
   const dire = wrOrderRad.map((a) => wrOrderDire[a.wrOrder])
-  console.log('Matched Order:')
-  console.log([...rad, ...dire, roster.filter((a) => a.team == 3)])
   return [...rad, ...dire, ...roster.filter((a) => a.team == 3)]
 }
 
-export function balanceByWinrate(roster) {
-  console.log('begin rebalance')
+export function balanceByWinrate(roster, byAttribute, byAttackCapability) {
   const rad = roster.filter((a) => a.team == 1)
   const dire = roster.filter((a) => a.team == 2)
   const combs = [0, 1, 2, 3, 4].map((a) => [rad[a], dire[a]])
-  var balancedRosterPairs = combinator(combs, winrateDifference, [...roster.filter((a) => a.team == 3)]).roster
+  var balancedRosterPairs = combinator(combs, [...roster.filter((a) => a.team == 3)], byAttribute, byAttackCapability).roster
   var nonReserve = [
     ...balancedRosterPairs.map((a) => {
       a[0].team = 1
@@ -45,20 +42,20 @@ export function balanceByWinrate(roster) {
       return a[1]
     }),
   ]
+
   var reserve = roster.filter((a) => nonReserve.map((r) => r.hero.id).indexOf(a.hero.id) < 0)
   reserve.forEach((a) => (a.team = 3))
   var newRoster = [...nonReserve, ...reserve]
+
   return newRoster
 }
 
-function combinator(list, compFunction, adds, n = 0, used = [], current = [], best = { roster: [], min: 1000 }) {
+function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = [], current = [],  best = { roster: [], min: 1000 } ) {
   if (n === list.length) {
-    const comparisonResult = compFunction(current)
-    if (comparisonResult < best.min) {
+      const draftBalanceRating = getDraftBalanceRating(current, byAttribute, byAttackCapability)
+      if (draftBalanceRating < best.min) {
       best.roster = current
-      best.min = comparisonResult
-      console.log('found better:' + current.map((a) => a[0].hero.name + ' vs ' + a[1].hero.name))
-      console.log('new imbalance:' + (1000 * best.min).toFixed(1))
+      best.min = draftBalanceRating
     }
   } else {
     var vals = [...list[n], ...adds.filter((a) => !used[a.hero.id])]
@@ -67,15 +64,29 @@ function combinator(list, compFunction, adds, n = 0, used = [], current = [], be
       var newUsed = [...used]
       newUsed[item[0].hero.id] = 1
       newUsed[item[1].hero.id] = 1
-      combinator(list, compFunction, adds, n + 1, newUsed, [...current, item], best)
+        combinator(list, adds, byAttribute, byAttackCapability, n + 1, newUsed, [...current, item], best)
     })
   }
 
   return best
 }
 
-function winrateDifference(roster) {
+function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
   const radiantWin = roster.reduce((c, a) => c + a[0].hero.win_rate, 0)
+  const direAttr = [...new Set(roster.map(x=>x[1].hero.primary_attribute))]
+  const radAttr = [...new Set(roster.map(x=>x[0].hero.primary_attribute))]
+  const direTypes = [...new Set(roster.map(x=>x[1].hero.attack_capabilities))]
+  const radTypes = [...new Set(roster.map(x=>x[0].hero.attack_capabilities))]
   const direWin = roster.reduce((c, a) => c + a[1].hero.win_rate, 0)
-  return Math.abs(radiantWin - direWin)
+  const modifiers = 
+    (byAttribute ? 
+      Math.abs(direAttr
+        .filter(x => !radAttr.includes(x))
+        .concat(radAttr.filter(x => !direAttr.includes(x))).length) * 0.1 : 0) + 
+    (byAttackCapability ? 
+      Math.abs(direTypes
+        .filter(x => !radTypes.includes(x))
+        .concat(radTypes.filter(x => !direTypes.includes(x))).length) * 0.3 : 0)
+
+  return Math.abs(radiantWin - direWin) + modifiers
 }
