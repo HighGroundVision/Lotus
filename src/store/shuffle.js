@@ -50,10 +50,10 @@ export function balanceByWinrate(roster, byAttribute, byAttackCapability) {
   return newRoster
 }
 
-function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = [], current = [],  best = { roster: [], min: 1000 } ) {
+function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = [], current = [], best = { roster: [], min: 1000 } ) {
   if (n === list.length) {
-      const draftBalanceRating = getDraftBalanceRating(current, byAttribute, byAttackCapability)
-      if (draftBalanceRating < best.min) {
+    const draftBalanceRating = getDraftBalanceRating(current, byAttribute, byAttackCapability)
+    if (draftBalanceRating < best.min) {
       best.roster = current
       best.min = draftBalanceRating
     }
@@ -64,7 +64,7 @@ function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = []
       var newUsed = [...used]
       newUsed[item[0].hero.id] = 1
       newUsed[item[1].hero.id] = 1
-        combinator(list, adds, byAttribute, byAttackCapability, n + 1, newUsed, [...current, item], best)
+      combinator(list, adds, byAttribute, byAttackCapability, n + 1, newUsed, [...current, item], best)
     })
   }
 
@@ -73,12 +73,12 @@ function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = []
 
 function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
   const radiantWin = roster.reduce((c, a) => c + a[0].hero.win_rate, 0)
-  const direAttr = [...new Set(roster.map(x=>x[1].hero.primary_attribute))]
-  const radAttr = [...new Set(roster.map(x=>x[0].hero.primary_attribute))]
-  const direTypes = [...new Set(roster.map(x=>x[1].hero.attack_capabilities))]
-  const radTypes = [...new Set(roster.map(x=>x[0].hero.attack_capabilities))]
+  const direAttr = [...new Set(roster.map(x => x[1].hero.primary_attribute))]
+  const radAttr = [...new Set(roster.map(x => x[0].hero.primary_attribute))]
+  const direTypes = [...new Set(roster.map(x => x[1].hero.attack_capabilities))]
+  const radTypes = [...new Set(roster.map(x => x[0].hero.attack_capabilities))]
   const direWin = roster.reduce((c, a) => c + a[1].hero.win_rate, 0)
-  const modifiers = 
+  const modifiers =
     (byAttribute ? 
       Math.abs(direAttr
         .filter(x => !radAttr.includes(x))
