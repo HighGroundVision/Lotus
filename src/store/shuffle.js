@@ -50,7 +50,7 @@ export function balanceByWinrate(roster, byAttribute, byAttackCapability) {
   return newRoster
 }
 
-function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = [], current = [], best = { roster: [], min: 1000 } ) {
+function combinator(list, adds, byAttribute, byAttackCapability, n = 0, used = [], current = [], best = { roster: [], min: 1000 }) {
   if (n === list.length) {
     const draftBalanceRating = getDraftBalanceRating(current, byAttribute, byAttackCapability)
     if (draftBalanceRating < best.min) {
@@ -73,20 +73,20 @@ function combinator(list, adds, byAttribute, byAttackCapability, n = 0,used = []
 
 function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
   const radiantWin = roster.reduce((c, a) => c + a[0].hero.win_rate, 0)
-  const direAttr = [...new Set(roster.map(x => x[1].hero.primary_attribute))]
-  const radAttr = [...new Set(roster.map(x => x[0].hero.primary_attribute))]
-  const direTypes = [...new Set(roster.map(x => x[1].hero.attack_capabilities))]
-  const radTypes = [...new Set(roster.map(x => x[0].hero.attack_capabilities))]
+  const direAttr = [...new Set(roster.map((x) => x[1].hero.primary_attribute))]
+  const radAttr = [...new Set(roster.map((x) => x[0].hero.primary_attribute))]
+  const direTypes = [...new Set(roster.map((x) => x[1].hero.attack_capabilities))]
+  const radTypes = [...new Set(roster.map((x) => x[0].hero.attack_capabilities))]
   const direWin = roster.reduce((c, a) => c + a[1].hero.win_rate, 0)
   const modifiers =
     (byAttribute ? 
       Math.abs(direAttr
-        .filter(x => !radAttr.includes(x))
-        .concat(radAttr.filter(x => !direAttr.includes(x))).length) * 0.1 : 0) + 
+        .filter((x) => !radAttr.includes(x))
+        .concat(radAttr.filter((x) => !direAttr.includes(x))).length) * 0.1 : 0) + 
     (byAttackCapability ? 
       Math.abs(direTypes
-        .filter(x => !radTypes.includes(x))
-        .concat(radTypes.filter(x => !direTypes.includes(x))).length) * 0.3 : 0)
+        .filter((x) => !radTypes.includes(x))
+        .concat(radTypes.filter((x) => !direTypes.includes(x))).length) * 0.3 : 0)
 
   return Math.abs(radiantWin - direWin) + modifiers
 }
