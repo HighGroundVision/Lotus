@@ -1,5 +1,7 @@
 import db from '@/assets/heroes.json'
-import { shuffleArray, balanceByWinrate, matchedSort } from '@/store/shuffle'
+import { shuffleArray } from '@/store/shuffle'
+import { balanceByWinrate } from '@/store/balanceByWinrate'
+import { matchedSort } from '@/store/matchedSort'
 
 var groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
