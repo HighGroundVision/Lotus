@@ -1,5 +1,7 @@
 import db from '@/assets/heroes.json'
-import { shuffleArray, balanceByWinrate, matchedSort } from '@/store/shuffle'
+import { shuffleArray } from '@/store/shuffle'
+import { balanceByWinrate } from '@/store/balanceByWinrate'
+import { matchedSort } from '@/store/matchedSort'
 
 var groupBy = function (xs, key) {
   return xs.reduce(function (rv, x) {
@@ -33,7 +35,7 @@ export const BalancedDraft = {
       // Balance
       balanceAttribute: false,
       balanceCapabilities: false,
-      balanceUrist: false,
+      balanceWinrate: false,
       // Order
       sequence: 0,
       // Additional Options
@@ -68,7 +70,7 @@ export const BalancedDraft = {
     default({ commit }, option) {
       switch (option.toLowerCase()) {
         case 'win-rate':
-          commit('set', { key: 'balanceUrist', value: true })
+          commit('set', { key: 'balanceWinrate', value: true })
           break
         case 'speed-draft':
           commit('set', { key: 'draftTime', value: 20 })
@@ -175,8 +177,8 @@ export const BalancedDraft = {
           break
         }
       }
-      if (state.balanceUrist) {
-        roster = balanceByWinrate(roster)
+      if (state.balanceWinrate) {
+        roster = balanceByWinrate(roster, state.balanceAttribute, state.balanceCapabilities)
       }
 
       let heroes = (state.sequence == 3 ? matchedSort(roster) : roster)

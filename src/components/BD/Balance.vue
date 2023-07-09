@@ -20,7 +20,7 @@
           <div style="flex: 1; margin: 0 1%">
             <p>By Winrate</p>
             <div style="padding: 2px">
-              <Toggle v-model="balanceUrist" class="toggle-purple" />
+              <Toggle v-model="balanceWinrate" class="toggle-purple" />
             </div>
           </div>
         </div>
@@ -46,8 +46,6 @@ export default {
       },
       set(value) {
         this.$store.commit('bd/set', { key: 'balanceAttribute', value: value })
-        this.$store.commit('bd/set', { key: 'balanceCapabilities', value: false })
-        this.$store.commit('bd/set', { key: 'balanceUrist', value: false })
       },
     },
     balanceCapabilities: {
@@ -55,19 +53,15 @@ export default {
         return this.$store.state.bd.balanceCapabilities
       },
       set(value) {
-        this.$store.commit('bd/set', { key: 'balanceAttribute', value: false })
         this.$store.commit('bd/set', { key: 'balanceCapabilities', value: value })
-        this.$store.commit('bd/set', { key: 'balanceUrist', value: false })
       },
     },
-    balanceUrist: {
+    balanceWinrate: {
       get() {
-        return this.$store.state.bd.balanceUrist
+        return this.$store.state.bd.balanceWinrate
       },
       set(value) {
-        this.$store.commit('bd/set', { key: 'balanceAttribute', value: false })
-        this.$store.commit('bd/set', { key: 'balanceCapabilities', value: false })
-        this.$store.commit('bd/set', { key: 'balanceUrist', value: value })
+        this.$store.commit('bd/set', { key: 'balanceWinrate', value: value })
       },
     },
   },
