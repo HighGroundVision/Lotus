@@ -1,36 +1,28 @@
-﻿import { shuffleArray } from './shuffle'
+﻿import { shuffleArray } from "./shuffle"
 
 export function balanceByWinrate(roster, byAttribute, byAttackCapability) {
-  const mapped = roster.map((x) => ({ key: (byAttackCapability ? x.hero.attack_capabilities : '') + (byAttribute ? x.hero.primary_attribute : ''), value: x }))
+  const mapped = roster.map((x) => ({ key: (byAttackCapability ? x.hero.attack_capabilities : "") + (byAttribute ? x.hero.primary_attribute : ""), value: x }))
   const rad = mapped.filter((x) => x.value.team == 1)
   //since the generator will give a roster with roughly even capability/attributes we can sort the teams and match them, giving more valid combinations for tryCombinations
-  const dire = matchRightToKeysOnLeft(
-    rad,
-    mapped.filter((x) => x.value.team == 2)
-  )
+  const dire = matchRightToKeysOnLeft(rad, mapped.filter((x) => x.value.team == 2))
   const combs = [0, 1, 2, 3, 4].map((i) => [rad[i].value, dire[i].value])
   var balancedRosterPairs = tryCombinations(combs, [...roster.filter((x) => x.team == 3)], byAttribute, byAttackCapability).roster
 
   //shuffle again and get them back in the team order for the rest of the site
   var nonReserve = [
-    ...shuffleArray(
-      balancedRosterPairs.map((x) => {
-        x[0].team = 1
-        return x[0]
-      })
-    ),
-    ...shuffleArray(
-      balancedRosterPairs.map((x) => {
-        x[1].team = 2
-        return x[1]
-      })
-    ),
+      ...shuffleArray(balancedRosterPairs.map((x) => {
+          x[0].team = 1;
+          return x[0];
+      })),
+      ...shuffleArray(balancedRosterPairs.map((x) => {
+          x[1].team = 2;
+          return x[1];
+      })),
   ]
   var reserve = roster.filter((a) => nonReserve.map((r) => r.hero.id).indexOf(a.hero.id) < 0)
   reserve.forEach((a) => (a.team = 3))
   var newRoster = [...nonReserve, ...reserve]
-
-  return newRoster
+  return newRoster;
 }
 
 export function tryCombinations(list, adds, byAttribute, byAttackCapability, n = 0, used = [], current = [], best = { roster: [], min: 1000 }) {
@@ -62,7 +54,7 @@ function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
   const radTypes = [...new Set(roster.map((x) => x[0].hero.attack_capabilities))]
   const direWin = roster.reduce((c, x) => c + x[1].hero.win_rate, 0)
   const attackRangeDiff = Math.abs(roster.reduce((c, x) => c + x[1].hero.attack_range, 0) - roster.reduce((c, x) => c + x[0].hero.attack_range, 0))
-  const rangeImbalance = attackRangeDiff < 400 ? 0 : attackRangeDiff < 800 ? 0.05 : 0.1
+  const rangeImbalance = attackRangeDiff < 500 ? 0 : attackRangeDiff < 800 ? 0.05 : 0.1
   const modifiers =
     (byAttribute ? Math.abs(direAttr.filter((x) => !radAttr.includes(x)).concat(radAttr.filter((x) => !direAttr.includes(x))).length) * 0.05 : 0) +
     (byAttackCapability ? Math.abs(direTypes.filter((x) => !radTypes.includes(x)).concat(radTypes.filter((x) => !direTypes.includes(x))).length) * 0.05 : 0) +
@@ -72,19 +64,20 @@ function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
 }
 
 export function matchRightToKeysOnLeft(left, right) {
-  let newRight = new Array(left.length)
-  let alreadyPaired = new Array(left.length)
-  right.forEach((r) => {
-    var ind = left.findIndex((l, i) => l.key == r.key && !alreadyPaired[i])
-    if (ind != -1) {
-      alreadyPaired[ind] = true
-      newRight[ind] = r
-    }
-  })
-  ;[0, 1, 2, 3, 4].forEach((i) => {
-    if (!newRight[i]) {
-      newRight[i] = right.find((r2) => !newRight.includes(r2))
-    }
-  })
-  return newRight
+    let newRight = new Array(left.length);
+    let alreadyPaired = new Array(left.length);
+    right.forEach((r) => {
+        var ind = left.findIndex((l, i) => l.key == r.key && !alreadyPaired[i])
+        if (ind != -1) {
+            alreadyPaired[ind] = true;
+            newRight[ind] = r;
+        }
+    });
+
+    [0,1,2,3,4].forEach((i) => {
+        if (!newRight[i]) {
+            newRight[i] = right.find(r2 => !newRight.includes(r2));
+        }
+    });
+    return newRight;
 }
