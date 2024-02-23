@@ -10,14 +10,14 @@ export function balanceByWinrate(roster, byAttribute, byAttackCapability) {
 
   //shuffle again and get them back in the team order for the rest of the site
   var nonReserve = [
-      ...shuffleArray(balancedRosterPairs.map((x) => {
-          x[0].team = 1;
-          return x[0];
-      })),
-      ...shuffleArray(balancedRosterPairs.map((x) => {
-          x[1].team = 2;
-          return x[1];
-      })),
+    ...shuffleArray(balancedRosterPairs.map((x) => {
+      x[0].team = 1;
+      return x[0];
+    })),
+    ...shuffleArray(balancedRosterPairs.map((x) => {
+      x[1].team = 2;
+      return x[1];
+    })),
   ]
   var reserve = roster.filter((a) => nonReserve.map((r) => r.hero.id).indexOf(a.hero.id) < 0)
   reserve.forEach((a) => (a.team = 3))
@@ -64,20 +64,20 @@ function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
 }
 
 export function matchRightToKeysOnLeft(left, right) {
-    let newRight = new Array(left.length);
-    let alreadyPaired = new Array(left.length);
-    right.forEach((r) => {
-        var ind = left.findIndex((l, i) => l.key == r.key && !alreadyPaired[i])
-        if (ind != -1) {
-            alreadyPaired[ind] = true;
-            newRight[ind] = r;
-        }
-    });
+  let newRight = new Array(left.length);
+  let alreadyPaired = new Array(left.length);
+  right.forEach((r) => {
+    var ind = left.findIndex((l, i) => l.key == r.key && !alreadyPaired[i])
+    if (ind != -1) {
+      alreadyPaired[ind] = true;
+      newRight[ind] = r;
+    }
+  });
 
-    [0,1,2,3,4].forEach((i) => {
-        if (!newRight[i]) {
-            newRight[i] = right.find(r2 => !newRight.includes(r2));
-        }
-    });
-    return newRight;
+  [0, 1, 2, 3, 4].forEach((i) => {
+    if (!newRight[i]) {
+      newRight[i] = right.find(r2 => !newRight.includes(r2));
+    }
+  });
+  return newRight;
 }
