@@ -54,7 +54,7 @@ function getDraftBalanceRating(roster, byAttribute, byAttackCapability) {
   const radTypes = [...new Set(roster.map((x) => x[0].hero.attack_capabilities))]
   const direWin = roster.reduce((c, x) => c + x[1].hero.win_rate, 0)
   const attackRangeDiff = Math.abs(roster.reduce((c, x) => c + x[1].hero.attack_range, 0) - roster.reduce((c, x) => c + x[0].hero.attack_range, 0))
-  const rangeImbalance = attackRangeDiff < 500 ? 0 : attackRangeDiff < 800 ? 0.05 : 0.1
+  const rangeImbalance = attackRangeDiff < 300 ? 0 : attackRangeDiff < 500 ? 0.02 : attackRangeDiff < 700 ? 0.05 : 0.1
   const modifiers =
     (byAttribute ? Math.abs(direAttr.filter((x) => !radAttr.includes(x)).concat(radAttr.filter((x) => !direAttr.includes(x))).length) * 0.05 : 0) +
     (byAttackCapability ? Math.abs(direTypes.filter((x) => !radTypes.includes(x)).concat(radTypes.filter((x) => !direTypes.includes(x))).length) * 0.05 : 0) +
@@ -74,7 +74,7 @@ export function matchRightToKeysOnLeft(left, right) {
     }
   });
 
-  [0, 1, 2, 3, 4].forEach((i) => {
+  [0,1,2,3,4].forEach((i) => {
     if (!newRight[i]) {
       newRight[i] = right.find(r2 => !newRight.includes(r2));
     }
