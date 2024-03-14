@@ -13,16 +13,16 @@
     "ability_replace_required": false,
     "strength_gain": 2.2,
     "max_strength": 88.0,
-    "intelligence_gain": 1.2,
-    "max_intelligence": 54.0,
+    "intelligence_gain": 1.6,
+    "max_intelligence": 67.0,
     "agility_gain": 1.3,
     "max_agility": 62.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4717655468,
+    "win_rate": 0.4717857809,
     "picked": false,
-    "damage": 14,
+    "damage": 7,
     "roles": [
       "Support",
       "Carry",
@@ -34,7 +34,9 @@
     "id": 73,
     "key": "alchemist",
     "name": "Alchemist",
-    "aliases": [],
+    "aliases": [
+      "Razzil"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/73.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/73.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/73.png",
@@ -49,7 +51,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4570403396,
+    "win_rate": 0.4565177081,
     "picked": false,
     "damage": 30,
     "roles": [
@@ -76,14 +78,14 @@
     "ability_replace_required": false,
     "strength_gain": 1.9,
     "max_strength": 77.0,
-    "intelligence_gain": 3.4,
-    "max_intelligence": 125.0,
+    "intelligence_gain": 3.1,
+    "max_intelligence": 116.0,
     "agility_gain": 2.2,
     "max_agility": 86.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 675,
-    "win_rate": 0.4895286551,
+    "win_rate": 0.4894062255,
     "picked": false,
     "damage": 26,
     "roles": [
@@ -98,7 +100,8 @@
     "key": "antimage",
     "name": "Anti-Mage",
     "aliases": [
-      "am"
+      "am",
+      "wei"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/1.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/1.png",
@@ -114,7 +117,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4606267397,
+    "win_rate": 0.4602403765,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -129,7 +132,7 @@
     "key": "arc_warden",
     "name": "Arc Warden",
     "aliases": [
-      "zet"
+      "zet,aw"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/113.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/113.png",
@@ -145,7 +148,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 625,
-    "win_rate": 0.5321520561,
+    "win_rate": 0.5326665741,
     "picked": false,
     "damage": 34,
     "roles": [
@@ -169,12 +172,12 @@
     "max_strength": 109.0,
     "intelligence_gain": 1.6,
     "max_intelligence": 66.0,
-    "agility_gain": 2.0,
-    "max_agility": 80.0,
+    "agility_gain": 1.7,
+    "max_agility": 71.0,
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5005748985,
+    "win_rate": 0.5005626829,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -204,9 +207,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.5495332785,
+    "win_rate": 0.5495095663,
     "picked": false,
-    "damage": 7,
+    "damage": 2,
     "roles": [
       "Support",
       "Disabler",
@@ -236,9 +239,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.5177955134,
+    "win_rate": 0.5180743212,
     "picked": false,
-    "damage": 2,
+    "damage": -2,
     "roles": [
       "Initiator",
       "Disabler",
@@ -267,9 +270,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4695642849,
+    "win_rate": 0.4695618168,
     "picked": false,
-    "damage": 14,
+    "damage": 5,
     "roles": [
       "Initiator",
       "Disabler",
@@ -299,7 +302,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4913510903,
+    "win_rate": 0.4911877395,
     "picked": false,
     "damage": 38,
     "roles": [
@@ -323,7 +326,7 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/62.png",
     "ability_replace_required": false,
     "strength_gain": 2.5,
-    "max_strength": 95.0,
+    "max_strength": 94.0,
     "intelligence_gain": 1.9,
     "max_intelligence": 79.0,
     "agility_gain": 2.6,
@@ -331,7 +334,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5012980085,
+    "win_rate": 0.5012905502,
     "picked": false,
     "damage": 37,
     "roles": [
@@ -345,7 +348,8 @@
     "key": "brewmaster",
     "name": "Brewmaster",
     "aliases": [
-      "bm"
+      "bm",
+      "Mangix"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/78.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/78.png",
@@ -361,9 +365,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.525061539,
+    "win_rate": 0.5249493202,
     "picked": false,
-    "damage": 17,
+    "damage": 12,
     "roles": [
       "Carry",
       "Initiator",
@@ -386,8 +390,8 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/99.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/99.png",
     "ability_replace_required": false,
-    "strength_gain": 2.5,
-    "max_strength": 97.0,
+    "strength_gain": 2.7,
+    "max_strength": 103.0,
     "intelligence_gain": 2.8,
     "max_intelligence": 98.0,
     "agility_gain": 1.8,
@@ -395,9 +399,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4889003798,
+    "win_rate": 0.4890660127,
     "picked": false,
-    "damage": 33,
+    "damage": 36,
     "roles": [
       "Carry",
       "Durable",
@@ -411,7 +415,8 @@
     "key": "broodmother",
     "name": "Broodmother",
     "aliases": [
-      "bm"
+      "bm",
+      "Arachnia"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/61.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/61.png",
@@ -419,17 +424,17 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/61.png",
     "ability_replace_required": false,
     "strength_gain": 2.3,
-    "max_strength": 87.0,
+    "max_strength": 88.0,
     "intelligence_gain": 1.4,
     "max_intelligence": 60.0,
-    "agility_gain": 2.4,
-    "max_agility": 90.0,
+    "agility_gain": 2.6,
+    "max_agility": 96.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 175,
-    "win_rate": 0.4423603604,
+    "win_rate": 0.4423192658,
     "picked": false,
-    "damage": 17,
+    "damage": 12,
     "roles": [
       "Carry",
       "Pusher",
@@ -459,7 +464,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5517130276,
+    "win_rate": 0.5513256797,
     "picked": false,
     "damage": 37,
     "roles": [
@@ -484,7 +489,7 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/81.png",
     "ability_replace_required": false,
     "strength_gain": 3.2,
-    "max_strength": 118.0,
+    "max_strength": 120.0,
     "intelligence_gain": 1.2,
     "max_intelligence": 54.0,
     "agility_gain": 1.4,
@@ -492,9 +497,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4915060467,
+    "win_rate": 0.4914087424,
     "picked": false,
-    "damage": 44,
+    "damage": 39,
     "roles": [
       "Carry",
       "Disabler",
@@ -508,7 +513,9 @@
     "id": 66,
     "key": "chen",
     "name": "Chen",
-    "aliases": [],
+    "aliases": [
+      "Holy Knight"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/66.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/66.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/66.png",
@@ -523,9 +530,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 650,
-    "win_rate": 0.5513268726,
+    "win_rate": 0.5511442015,
     "picked": false,
-    "damage": 17,
+    "damage": 12,
     "roles": [
       "Support",
       "Pusher"
@@ -551,7 +558,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4758052996,
+    "win_rate": 0.4759359285,
     "picked": false,
     "damage": 22,
     "roles": [
@@ -565,7 +572,10 @@
     "id": 51,
     "key": "rattletrap",
     "name": "Clockwerk",
-    "aliases": [],
+    "aliases": [
+      "Rattletrap",
+      "cw"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/51.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/51.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/51.png",
@@ -573,16 +583,16 @@
     "ability_replace_required": false,
     "strength_gain": 2.8,
     "max_strength": 111.0,
-    "intelligence_gain": 1.3,
-    "max_intelligence": 57.0,
-    "agility_gain": 1.8,
-    "max_agility": 67.0,
+    "intelligence_gain": 1.7,
+    "max_intelligence": 69.0,
+    "agility_gain": 2.1,
+    "max_agility": 76.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5266009941,
+    "win_rate": 0.5265572911,
     "picked": false,
-    "damage": 13,
+    "damage": 9,
     "roles": [
       "Initiator",
       "Disabler",
@@ -597,7 +607,8 @@
     "name": "Crystal Maiden",
     "aliases": [
       "cm",
-      "rylai"
+      "rylai",
+      "wolf"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/5.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/5.png",
@@ -607,13 +618,13 @@
     "strength_gain": 2.2,
     "max_strength": 83.0,
     "intelligence_gain": 3.3,
-    "max_intelligence": 115.0,
+    "max_intelligence": 117.0,
     "agility_gain": 1.6,
     "max_agility": 64.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4803273416,
+    "win_rate": 0.4806551505,
     "picked": false,
     "damage": 33,
     "roles": [
@@ -628,7 +639,8 @@
     "key": "dark_seer",
     "name": "Dark Seer",
     "aliases": [
-      "ds"
+      "ds",
+      "Ishkafel"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/55.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/55.png",
@@ -644,9 +656,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5014472951,
+    "win_rate": 0.5016611296,
     "picked": false,
-    "damage": 16,
+    "damage": 10,
     "roles": [
       "Initiator",
       "Escape",
@@ -658,7 +670,10 @@
     "id": 119,
     "key": "dark_willow",
     "name": "Dark Willow",
-    "aliases": [],
+    "aliases": [
+      "dw",
+      "Mireska"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/119.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/119.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/119.png",
@@ -673,9 +688,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 475,
-    "win_rate": 0.513986201,
+    "win_rate": 0.5141130532,
     "picked": false,
-    "damage": 13,
+    "damage": 9,
     "roles": [
       "Support",
       "Nuker",
@@ -697,15 +712,15 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/135.png",
     "ability_replace_required": false,
     "strength_gain": 3.4,
-    "max_strength": 129.0,
-    "intelligence_gain": 2.2,
-    "max_intelligence": 86.0,
+    "max_strength": 127.0,
+    "intelligence_gain": 2.0,
+    "max_intelligence": 80.0,
     "agility_gain": 1.7,
     "max_agility": 65.0,
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4952071487,
+    "win_rate": 0.4951306346,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -726,16 +741,16 @@
     "ability_replace_required": false,
     "strength_gain": 2.0,
     "max_strength": 78.0,
-    "intelligence_gain": 2.5,
-    "max_intelligence": 100.0,
+    "intelligence_gain": 2.8,
+    "max_intelligence": 109.0,
     "agility_gain": 1.4,
     "max_agility": 62.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.538796255,
+    "win_rate": 0.5387749028,
     "picked": false,
-    "damage": 13,
+    "damage": 6,
     "roles": [
       "Support",
       "Nuker",
@@ -748,7 +763,8 @@
     "key": "death_prophet",
     "name": "Death Prophet",
     "aliases": [
-      "dp"
+      "dp",
+      "Krobelus"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/43.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/43.png",
@@ -764,7 +780,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.5125116013,
+    "win_rate": 0.5123959245,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -796,9 +812,9 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 625,
-    "win_rate": 0.4849199964,
+    "win_rate": 0.4856604759,
     "picked": false,
-    "damage": 31,
+    "damage": 29,
     "roles": [
       "Support",
       "Disabler",
@@ -828,7 +844,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 200,
-    "win_rate": 0.488010404,
+    "win_rate": 0.4886686869,
     "picked": false,
     "damage": 39,
     "roles": [
@@ -845,7 +861,7 @@
     "key": "dragon_knight",
     "name": "Dragon Knight",
     "aliases": [
-      "dk,davion"
+      "dk,davion,dragon's blood"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/49.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/49.png",
@@ -861,7 +877,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5103678214,
+    "win_rate": 0.5102116737,
     "picked": false,
     "damage": 37,
     "roles": [
@@ -878,7 +894,9 @@
     "id": 6,
     "key": "drow_ranger",
     "name": "Drow Ranger",
-    "aliases": [],
+    "aliases": [
+      "Traxex"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/6.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/6.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/6.png",
@@ -893,7 +911,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 625,
-    "win_rate": 0.5098115683,
+    "win_rate": 0.5092808282,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -908,7 +926,9 @@
     "key": "earth_spirit",
     "name": "Earth Spirit",
     "aliases": [
-      "Kaolin,Earth"
+      "es",
+      "Kaolin",
+      "Earth"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/107.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/107.png",
@@ -918,13 +938,13 @@
     "strength_gain": 3.8,
     "max_strength": 136.0,
     "intelligence_gain": 2.1,
-    "max_intelligence": 83.0,
+    "max_intelligence": 81.0,
     "agility_gain": 2.4,
     "max_agility": 89.0,
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5000989547,
+    "win_rate": 0.4995396035,
     "picked": false,
     "damage": 30,
     "roles": [
@@ -941,7 +961,8 @@
     "key": "earthshaker",
     "name": "Earthshaker",
     "aliases": [
-      "es"
+      "es",
+      "Raigor"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/7.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/7.png",
@@ -957,7 +978,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5158075848,
+    "win_rate": 0.5157757009,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -989,7 +1010,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4891798833,
+    "win_rate": 0.4891486743,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -1005,7 +1026,7 @@
     "key": "ember_spirit",
     "name": "Ember Spirit",
     "aliases": [
-      "Xin,Ember"
+      "Xin,Ember,es"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/106.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/106.png",
@@ -1021,7 +1042,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4782803083,
+    "win_rate": 0.4783786814,
     "picked": false,
     "damage": 35,
     "roles": [
@@ -1037,14 +1058,16 @@
     "id": 58,
     "key": "enchantress",
     "name": "Enchantress",
-    "aliases": [],
+    "aliases": [
+      "Aiushtha"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/58.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/58.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/58.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/58.png",
     "ability_replace_required": false,
-    "strength_gain": 1.7,
-    "max_strength": 68.0,
+    "strength_gain": 2.0,
+    "max_strength": 77.0,
     "intelligence_gain": 3.8,
     "max_intelligence": 136.0,
     "agility_gain": 2.1,
@@ -1052,9 +1075,9 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.5206494692,
+    "win_rate": 0.5205328451,
     "picked": false,
-    "damage": 28,
+    "damage": 26,
     "roles": [
       "Support",
       "Pusher",
@@ -1082,7 +1105,7 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.4971487818,
+    "win_rate": 0.496912947,
     "picked": false,
     "damage": 10,
     "roles": [
@@ -1113,7 +1136,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4668549025,
+    "win_rate": 0.4664161578,
     "picked": false,
     "damage": 40,
     "roles": [
@@ -1146,7 +1169,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4976240666,
+    "win_rate": 0.4972287021,
     "picked": false,
     "damage": 23,
     "roles": [
@@ -1161,7 +1184,9 @@
     "id": 72,
     "key": "gyrocopter",
     "name": "Gyrocopter",
-    "aliases": [],
+    "aliases": [
+      "Aurel"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/72.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/72.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/72.png",
@@ -1171,12 +1196,12 @@
     "max_strength": 97.0,
     "intelligence_gain": 2.4,
     "max_intelligence": 93.0,
-    "agility_gain": 3.3,
-    "max_agility": 125.0,
+    "agility_gain": 3.1,
+    "max_agility": 119.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 365,
-    "win_rate": 0.5710925577,
+    "win_rate": 0.571482085,
     "picked": false,
     "damage": 19,
     "roles": [
@@ -1191,7 +1216,8 @@
     "key": "hoodwink",
     "name": "Hoodwink",
     "aliases": [
-      "squirrel"
+      "squirrel",
+      "hw"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/123.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/123.png",
@@ -1207,7 +1233,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.5513151294,
+    "win_rate": 0.5516337912,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -1229,7 +1255,7 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/59.png",
     "ability_replace_required": false,
     "strength_gain": 3.3,
-    "max_strength": 119.0,
+    "max_strength": 122.0,
     "intelligence_gain": 1.5,
     "max_intelligence": 63.0,
     "agility_gain": 1.5,
@@ -1237,7 +1263,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.4651045513,
+    "win_rate": 0.4648009178,
     "picked": false,
     "damage": 23,
     "roles": [
@@ -1251,24 +1277,26 @@
     "id": 74,
     "key": "invoker",
     "name": "Invoker",
-    "aliases": [],
+    "aliases": [
+      "kid"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/74.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/74.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/74.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/74.png",
     "ability_replace_required": true,
     "strength_gain": 2.4,
-    "max_strength": 90.0,
-    "intelligence_gain": 4.6,
-    "max_intelligence": 153.0,
-    "agility_gain": 1.9,
-    "max_agility": 71.0,
-    "primary_attribute": "INTELLECT",
+    "max_strength": 91.0,
+    "intelligence_gain": 4.0,
+    "max_intelligence": 139.0,
+    "agility_gain": 1.8,
+    "max_agility": 68.0,
+    "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.513057346,
+    "win_rate": 0.5130332301,
     "picked": false,
-    "damage": 32,
+    "damage": 6,
     "roles": [
       "Carry",
       "Nuker",
@@ -1299,9 +1327,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.5221170735,
+    "win_rate": 0.5215536596,
     "picked": false,
-    "damage": 10,
+    "damage": 7,
     "roles": [
       "Support",
       "Escape",
@@ -1313,7 +1341,10 @@
     "id": 64,
     "key": "jakiro",
     "name": "Jakiro",
-    "aliases": [],
+    "aliases": [
+      "thd",
+      "twin headed dragon"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/64.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/64.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/64.png",
@@ -1328,7 +1359,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.4884578045,
+    "win_rate": 0.4887904996,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -1343,7 +1374,9 @@
     "id": 8,
     "key": "juggernaut",
     "name": "Juggernaut",
-    "aliases": [],
+    "aliases": [
+      "Yurnero"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/8.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/8.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/8.png",
@@ -1358,7 +1391,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4885644856,
+    "win_rate": 0.4892074262,
     "picked": false,
     "damage": 21,
     "roles": [
@@ -1391,7 +1424,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.492180462,
+    "win_rate": 0.4920825968,
     "picked": false,
     "damage": 23,
     "roles": [
@@ -1405,7 +1438,9 @@
     "id": 23,
     "key": "kunkka",
     "name": "Kunkka",
-    "aliases": [],
+    "aliases": [
+      "Admiral"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/23.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/23.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/23.png",
@@ -1420,7 +1455,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5260671986,
+    "win_rate": 0.5260152284,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -1445,8 +1480,8 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/104.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/104.png",
     "ability_replace_required": false,
-    "strength_gain": 3.3,
-    "max_strength": 124.0,
+    "strength_gain": 3.1,
+    "max_strength": 116.0,
     "intelligence_gain": 2.2,
     "max_intelligence": 86.0,
     "agility_gain": 1.7,
@@ -1454,9 +1489,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4855647685,
+    "win_rate": 0.4849615037,
     "picked": false,
-    "damage": 37,
+    "damage": 35,
     "roles": [
       "Carry",
       "Disabler",
@@ -1470,7 +1505,9 @@
     "id": 52,
     "key": "leshrac",
     "name": "Leshrac",
-    "aliases": [],
+    "aliases": [
+      "ts"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/52.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/52.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/52.png",
@@ -1485,7 +1522,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.5609607675,
+    "win_rate": 0.5614936302,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -1501,7 +1538,9 @@
     "id": 31,
     "key": "lich",
     "name": "Lich",
-    "aliases": [],
+    "aliases": [
+      "Ethreain"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/31.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/31.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/31.png",
@@ -1510,13 +1549,13 @@
     "strength_gain": 2.1,
     "max_strength": 83.0,
     "intelligence_gain": 3.8,
-    "max_intelligence": 138.0,
+    "max_intelligence": 140.0,
     "agility_gain": 2.0,
     "max_agility": 77.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.4936228825,
+    "win_rate": 0.4936862328,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -1530,7 +1569,8 @@
     "key": "life_stealer",
     "name": "Lifestealer",
     "aliases": [
-      "ls"
+      "ls",
+      "Naix"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/54.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/54.png",
@@ -1546,7 +1586,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4869016005,
+    "win_rate": 0.4867318043,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -1561,7 +1601,9 @@
     "id": 25,
     "key": "lina",
     "name": "Lina",
-    "aliases": [],
+    "aliases": [
+      "slayer"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/25.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/25.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/25.png",
@@ -1576,7 +1618,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 670,
-    "win_rate": 0.548224889,
+    "win_rate": 0.5485232852,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -1591,7 +1633,9 @@
     "id": 26,
     "key": "lion",
     "name": "Lion",
-    "aliases": [],
+    "aliases": [
+      "Demon Witch"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/26.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/26.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/26.png",
@@ -1600,13 +1644,13 @@
     "strength_gain": 2.2,
     "max_strength": 84.0,
     "intelligence_gain": 3.5,
-    "max_intelligence": 123.0,
+    "max_intelligence": 125.0,
     "agility_gain": 1.5,
     "max_agility": 60.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4743259793,
+    "win_rate": 0.4738900007,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -1622,7 +1666,9 @@
     "key": "lone_druid",
     "name": "Lone Druid",
     "aliases": [
-      "ld"
+      "ld",
+      "bear",
+      "Sylla"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/80.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/80.png",
@@ -1630,7 +1676,7 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/80.png",
     "ability_replace_required": false,
     "strength_gain": 2.0,
-    "max_strength": 78.0,
+    "max_strength": 80.0,
     "intelligence_gain": 2.0,
     "max_intelligence": 73.0,
     "agility_gain": 2.0,
@@ -1638,9 +1684,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.5188637055,
+    "win_rate": 0.5183739777,
     "picked": false,
-    "damage": 6,
+    "damage": 3,
     "roles": [
       "Carry",
       "Pusher",
@@ -1652,7 +1698,9 @@
     "id": 48,
     "key": "luna",
     "name": "Luna",
-    "aliases": [],
+    "aliases": [
+      "Moon Rider"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/48.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/48.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/48.png",
@@ -1667,7 +1715,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 330,
-    "win_rate": 0.518682688,
+    "win_rate": 0.5190544386,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -1681,7 +1729,10 @@
     "id": 77,
     "key": "lycan",
     "name": "Lycan",
-    "aliases": [],
+    "aliases": [
+      "Banehallow",
+      "wolf"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/77.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/77.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/77.png",
@@ -1691,14 +1742,14 @@
     "max_strength": 116.0,
     "intelligence_gain": 1.2,
     "max_intelligence": 59.0,
-    "agility_gain": 1.4,
-    "max_agility": 58.0,
+    "agility_gain": 1.8,
+    "max_agility": 72.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5146266841,
+    "win_rate": 0.513985491,
     "picked": false,
-    "damage": 10,
+    "damage": 6,
     "roles": [
       "Carry",
       "Pusher",
@@ -1724,13 +1775,13 @@
     "intelligence_gain": 1.6,
     "max_intelligence": 67.0,
     "agility_gain": 2.0,
-    "max_agility": 75.0,
+    "max_agility": 69.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
-    "attack_range": 150,
-    "win_rate": 0.5023203513,
+    "attack_range": 200,
+    "win_rate": 0.5029323602,
     "picked": false,
-    "damage": 21,
+    "damage": 13,
     "roles": [
       "Initiator",
       "Disabler",
@@ -1749,18 +1800,18 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/136.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/136.png",
     "ability_replace_required": false,
-    "strength_gain": 3.2,
-    "max_strength": 119.0,
+    "strength_gain": 3.0,
+    "max_strength": 113.0,
     "intelligence_gain": 1.5,
     "max_intelligence": 64.0,
-    "agility_gain": 2.0,
-    "max_agility": 80.0,
+    "agility_gain": 1.8,
+    "max_agility": 74.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5024662235,
+    "win_rate": 0.5027625341,
     "picked": false,
-    "damage": 18,
+    "damage": 10,
     "roles": [
       "Support",
       "Carry",
@@ -1791,7 +1842,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 250,
-    "win_rate": 0.5193088522,
+    "win_rate": 0.5197342639,
     "picked": false,
     "damage": 30,
     "roles": [
@@ -1816,14 +1867,14 @@
     "ability_replace_required": false,
     "strength_gain": 0.0,
     "max_strength": 0.0,
-    "intelligence_gain": 3.7,
-    "max_intelligence": 138.0,
+    "intelligence_gain": 3.4,
+    "max_intelligence": 127.0,
     "agility_gain": 3.4,
     "max_agility": 124.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4831017481,
+    "win_rate": 0.4831145518,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -1846,16 +1897,16 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/82.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/82.png",
     "ability_replace_required": true,
-    "strength_gain": 2.5,
-    "max_strength": 99.0,
+    "strength_gain": 2.2,
+    "max_strength": 90.0,
     "intelligence_gain": 1.9,
-    "max_intelligence": 77.0,
-    "agility_gain": 2.2,
-    "max_agility": 83.0,
+    "max_intelligence": 75.0,
+    "agility_gain": 2.1,
+    "max_agility": 80.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5086271901,
+    "win_rate": 0.5083505131,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -1872,7 +1923,11 @@
     "id": 9,
     "key": "mirana",
     "name": "Mirana",
-    "aliases": [],
+    "aliases": [
+      "Princess",
+      "Moon",
+      "potm"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/9.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/9.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/9.png",
@@ -1887,9 +1942,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 630,
-    "win_rate": 0.5022635815,
+    "win_rate": 0.5022872999,
     "picked": false,
-    "damage": 8,
+    "damage": -3,
     "roles": [
       "Carry",
       "Support",
@@ -1904,7 +1959,8 @@
     "key": "monkey_king",
     "name": "Monkey King",
     "aliases": [
-      "mk"
+      "mk",
+      "Sun Wukong"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/114.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/114.png",
@@ -1920,7 +1976,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 300,
-    "win_rate": 0.5210125951,
+    "win_rate": 0.5206322641,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -1941,8 +1997,8 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/10.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/10.png",
     "ability_replace_required": true,
-    "strength_gain": 3.0,
-    "max_strength": 113.0,
+    "strength_gain": 3.2,
+    "max_strength": 119.0,
     "intelligence_gain": 1.8,
     "max_intelligence": 73.0,
     "agility_gain": 3.9,
@@ -1950,7 +2006,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 350,
-    "win_rate": 0.5364337339,
+    "win_rate": 0.5354316258,
     "picked": false,
     "damage": 13,
     "roles": [
@@ -1981,7 +2037,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.5317163176,
+    "win_rate": 0.5320836607,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -1996,7 +2052,8 @@
     "key": "naga_siren",
     "name": "Naga Siren",
     "aliases": [
-      "naga"
+      "naga",
+      "Slithice"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/89.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/89.png",
@@ -2012,7 +2069,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5214047954,
+    "win_rate": 0.521438142,
     "picked": false,
     "damage": 24,
     "roles": [
@@ -2038,15 +2095,15 @@
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/53.png",
     "ability_replace_required": false,
     "strength_gain": 2.6,
-    "max_strength": 99.0,
+    "max_strength": 97.0,
     "intelligence_gain": 3.5,
     "max_intelligence": 127.0,
     "agility_gain": 3.4,
-    "max_agility": 122.0,
+    "max_agility": 116.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
-    "attack_range": 600,
-    "win_rate": 0.570110403,
+    "attack_range": 620,
+    "win_rate": 0.5707128516,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -2061,7 +2118,9 @@
     "id": 36,
     "key": "necrolyte",
     "name": "Necrophos",
-    "aliases": [],
+    "aliases": [
+      "Rotundjere"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/36.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/36.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/36.png",
@@ -2076,7 +2135,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.441250111,
+    "win_rate": 0.4414983243,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -2092,7 +2151,8 @@
     "key": "night_stalker",
     "name": "Night Stalker",
     "aliases": [
-      "ns"
+      "ns",
+      "Balanar"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/60.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/60.png",
@@ -2108,7 +2168,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5088618903,
+    "win_rate": 0.508479003,
     "picked": false,
     "damage": 42,
     "roles": [
@@ -2141,9 +2201,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4825562672,
+    "win_rate": 0.4834258792,
     "picked": false,
-    "damage": 17,
+    "damage": 11,
     "roles": [
       "Disabler",
       "Nuker",
@@ -2173,7 +2233,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4696586879,
+    "win_rate": 0.4665339752,
     "picked": false,
     "damage": 47,
     "roles": [
@@ -2189,7 +2249,9 @@
     "id": 57,
     "key": "omniknight",
     "name": "Omniknight",
-    "aliases": [],
+    "aliases": [
+      "Purist Thunderwrath"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/57.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/57.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/57.png",
@@ -2204,7 +2266,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5195330767,
+    "win_rate": 0.5194520445,
     "picked": false,
     "damage": 36,
     "roles": [
@@ -2219,7 +2281,7 @@
     "key": "oracle",
     "name": "Oracle",
     "aliases": [
-      "ora"
+      "ora,Nerif"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/111.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/111.png",
@@ -2235,7 +2297,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 620,
-    "win_rate": 0.4989139216,
+    "win_rate": 0.4992129526,
     "picked": false,
     "damage": 16,
     "roles": [
@@ -2251,7 +2313,8 @@
     "key": "obsidian_destroyer",
     "name": "Outworld Devourer",
     "aliases": [
-      "od"
+      "od",
+      "Harbinger"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/76.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/76.png",
@@ -2267,7 +2330,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 450,
-    "win_rate": 0.5530368451,
+    "win_rate": 0.5534458774,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -2289,8 +2352,8 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/120.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/120.png",
     "ability_replace_required": false,
-    "strength_gain": 2.5,
-    "max_strength": 94.0,
+    "strength_gain": 2.7,
+    "max_strength": 100.0,
     "intelligence_gain": 1.9,
     "max_intelligence": 73.0,
     "agility_gain": 2.5,
@@ -2298,9 +2361,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4753716222,
+    "win_rate": 0.4751329488,
     "picked": false,
-    "damage": 21,
+    "damage": 11,
     "roles": [
       "Carry",
       "Nuker",
@@ -2329,11 +2392,11 @@
     "intelligence_gain": 1.4,
     "max_intelligence": 57.0,
     "agility_gain": 3.2,
-    "max_agility": 119.0,
+    "max_agility": 117.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4411954303,
+    "win_rate": 0.4407067745,
     "picked": false,
     "damage": 32,
     "roles": [
@@ -2347,7 +2410,8 @@
     "key": "phantom_lancer",
     "name": "Phantom Lancer",
     "aliases": [
-      "pl"
+      "pl",
+      "Azwraith"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/12.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/12.png",
@@ -2363,7 +2427,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 225,
-    "win_rate": 0.4690987124,
+    "win_rate": 0.4685748449,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -2395,9 +2459,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 525,
-    "win_rate": 0.5065045852,
+    "win_rate": 0.5066745773,
     "picked": false,
-    "damage": 19,
+    "damage": 14,
     "roles": [
       "Support",
       "Nuker",
@@ -2419,14 +2483,14 @@
     "ability_replace_required": false,
     "strength_gain": 4.3,
     "max_strength": 155.0,
-    "intelligence_gain": 1.4,
-    "max_intelligence": 58.0,
+    "intelligence_gain": 1.7,
+    "max_intelligence": 67.0,
     "agility_gain": 1.0,
     "max_agility": 45.0,
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5261880797,
+    "win_rate": 0.5266820475,
     "picked": false,
     "damage": 37,
     "roles": [
@@ -2440,7 +2504,10 @@
     "id": 13,
     "key": "puck",
     "name": "Puck",
-    "aliases": [],
+    "aliases": [
+      "Faerie Dragon",
+      "fd"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/13.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/13.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/13.png",
@@ -2455,7 +2522,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.471943402,
+    "win_rate": 0.4714518455,
     "picked": false,
     "damage": 26,
     "roles": [
@@ -2470,7 +2537,9 @@
     "id": 14,
     "key": "pudge",
     "name": "Pudge",
-    "aliases": [],
+    "aliases": [
+      "Toy Butcher"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/14.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/14.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/14.png",
@@ -2485,7 +2554,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 175,
-    "win_rate": 0.4716254524,
+    "win_rate": 0.4707010163,
     "picked": false,
     "damage": 48,
     "roles": [
@@ -2509,13 +2578,13 @@
     "strength_gain": 2.0,
     "max_strength": 79.0,
     "intelligence_gain": 5.2,
-    "max_intelligence": 180.0,
+    "max_intelligence": 182.0,
     "agility_gain": 1.3,
     "max_agility": 63.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 630,
-    "win_rate": 0.5413052421,
+    "win_rate": 0.5414620484,
     "picked": false,
     "damage": 24,
     "roles": [
@@ -2529,7 +2598,8 @@
     "key": "queenofpain",
     "name": "Queen of Pain",
     "aliases": [
-      "qop"
+      "qop",
+      "Akasha"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/39.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/39.png",
@@ -2545,7 +2615,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.5155747859,
+    "win_rate": 0.5157859256,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -2559,7 +2629,9 @@
     "id": 15,
     "key": "razor",
     "name": "Razor",
-    "aliases": [],
+    "aliases": [
+      "Lightning Revenant"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/15.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/15.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/15.png",
@@ -2569,12 +2641,12 @@
     "max_strength": 106.0,
     "intelligence_gain": 2.2,
     "max_intelligence": 87.0,
-    "agility_gain": 2.6,
-    "max_agility": 100.0,
+    "agility_gain": 2.8,
+    "max_agility": 108.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 475,
-    "win_rate": 0.5083196458,
+    "win_rate": 0.508283273,
     "picked": false,
     "damage": 24,
     "roles": [
@@ -2589,24 +2661,27 @@
     "id": 32,
     "key": "riki",
     "name": "Riki",
-    "aliases": [],
+    "aliases": [
+      "Stealth Assassin",
+      "sa"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/32.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/32.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/32.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/32.png",
     "ability_replace_required": false,
-    "strength_gain": 2.6,
-    "max_strength": 96.0,
+    "strength_gain": 2.0,
+    "max_strength": 78.0,
     "intelligence_gain": 1.3,
     "max_intelligence": 53.0,
-    "agility_gain": 1.4,
-    "max_agility": 60.0,
+    "agility_gain": 2.4,
+    "max_agility": 102.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.457061223,
+    "win_rate": 0.4569526489,
     "picked": false,
-    "damage": 43,
+    "damage": 29,
     "roles": [
       "Carry",
       "Escape",
@@ -2635,7 +2710,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.5074111,
+    "win_rate": 0.5081467101,
     "picked": false,
     "damage": 30,
     "roles": [
@@ -2650,7 +2725,8 @@
     "key": "sand_king",
     "name": "Sand King",
     "aliases": [
-      "sk"
+      "sk",
+      "Crixalis"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/16.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/16.png",
@@ -2666,9 +2742,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4759079083,
+    "win_rate": 0.4770358791,
     "picked": false,
-    "damage": 13,
+    "damage": 5,
     "roles": [
       "Initiator",
       "Disabler",
@@ -2699,7 +2775,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.5162799836,
+    "win_rate": 0.5161512796,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -2730,8 +2806,8 @@
     "max_agility": 125.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
-    "attack_range": 500,
-    "win_rate": 0.549193231,
+    "attack_range": 525,
+    "win_rate": 0.5494833997,
     "picked": false,
     "damage": 24,
     "roles": [
@@ -2745,7 +2821,8 @@
     "key": "shadow_shaman",
     "name": "Shadow Shaman",
     "aliases": [
-      "ss"
+      "ss",
+      "Rhasta"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/27.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/27.png",
@@ -2761,7 +2838,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.4963197199,
+    "win_rate": 0.4970471524,
     "picked": false,
     "damage": 43,
     "roles": [
@@ -2777,7 +2854,9 @@
     "id": 75,
     "key": "silencer",
     "name": "Silencer",
-    "aliases": [],
+    "aliases": [
+      "Nortrom"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/75.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/75.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/75.png",
@@ -2792,7 +2871,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.5047902688,
+    "win_rate": 0.505497799,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -2809,7 +2888,8 @@
     "key": "skywrath_mage",
     "name": "Skywrath Mage",
     "aliases": [
-      "dragonus"
+      "sm",
+      "Dragonus"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/101.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/101.png",
@@ -2819,13 +2899,13 @@
     "strength_gain": 2.0,
     "max_strength": 81.0,
     "intelligence_gain": 4.1,
-    "max_intelligence": 148.0,
+    "max_intelligence": 146.0,
     "agility_gain": 0.8,
     "max_agility": 37.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 625,
-    "win_rate": 0.4914310351,
+    "win_rate": 0.4913547371,
     "picked": false,
     "damage": 21,
     "roles": [
@@ -2839,7 +2919,9 @@
     "id": 28,
     "key": "slardar",
     "name": "Slardar",
-    "aliases": [],
+    "aliases": [
+      "Slithereen Guard"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/28.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/28.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/28.png",
@@ -2854,7 +2936,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4978529206,
+    "win_rate": 0.4969707201,
     "picked": false,
     "damage": 34,
     "roles": [
@@ -2887,7 +2969,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4396219999,
+    "win_rate": 0.4403496999,
     "picked": false,
     "damage": 37,
     "roles": [
@@ -2919,9 +3001,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.5493291943,
+    "win_rate": 0.5492323439,
     "picked": false,
-    "damage": 11,
+    "damage": 7,
     "roles": [
       "Support",
       "Nuker",
@@ -2934,7 +3016,9 @@
     "id": 35,
     "key": "sniper",
     "name": "Sniper",
-    "aliases": [],
+    "aliases": [
+      "Kardel Sharpeye"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/35.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/35.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/35.png",
@@ -2949,7 +3033,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.5418996422,
+    "win_rate": 0.5418880108,
     "picked": false,
     "damage": 16,
     "roles": [
@@ -2962,14 +3046,16 @@
     "id": 67,
     "key": "spectre",
     "name": "Spectre",
-    "aliases": [],
+    "aliases": [
+      "Mercurial"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/67.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/67.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/67.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/67.png",
-    "ability_replace_required": false,
+    "ability_replace_required": true,
     "strength_gain": 2.5,
-    "max_strength": 98.0,
+    "max_strength": 96.0,
     "intelligence_gain": 1.7,
     "max_intelligence": 67.0,
     "agility_gain": 2.1,
@@ -2977,7 +3063,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.444348901,
+    "win_rate": 0.4439789009,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -2992,15 +3078,16 @@
     "key": "spirit_breaker",
     "name": "Spirit Breaker",
     "aliases": [
-      "sb"
+      "sb",
+      "Barathrum"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/71.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/71.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/71.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/71.png",
     "ability_replace_required": false,
-    "strength_gain": 3.0,
-    "max_strength": 118.0,
+    "strength_gain": 3.3,
+    "max_strength": 127.0,
     "intelligence_gain": 1.8,
     "max_intelligence": 68.0,
     "agility_gain": 1.7,
@@ -3008,7 +3095,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4952137613,
+    "win_rate": 0.4942147211,
     "picked": false,
     "damage": 36,
     "roles": [
@@ -3026,7 +3113,8 @@
     "name": "Storm Spirit",
     "aliases": [
       "ss",
-      "raijin"
+      "raijin",
+      "thunderkeg"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/17.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/17.png",
@@ -3042,7 +3130,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 480,
-    "win_rate": 0.5108190819,
+    "win_rate": 0.5110518006,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -3058,7 +3146,9 @@
     "id": 18,
     "key": "sven",
     "name": "Sven",
-    "aliases": [],
+    "aliases": [
+      "Rogue Knight"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/18.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/18.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/18.png",
@@ -3073,9 +3163,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5046995516,
+    "win_rate": 0.5049312249,
     "picked": false,
-    "damage": 42,
+    "damage": 38,
     "roles": [
       "Carry",
       "Disabler",
@@ -3089,7 +3179,11 @@
     "id": 105,
     "key": "techies",
     "name": "Techies",
-    "aliases": [],
+    "aliases": [
+      "Squee",
+      "Spleen",
+      "Spoon"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/105.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/105.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/105.png",
@@ -3104,9 +3198,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 700,
-    "win_rate": 0.5666886673,
+    "win_rate": 0.5658196035,
     "picked": false,
-    "damage": 13,
+    "damage": 4,
     "roles": [
       "Nuker",
       "Disabler"
@@ -3118,7 +3212,8 @@
     "key": "templar_assassin",
     "name": "Templar Assassin",
     "aliases": [
-      "ta"
+      "ta",
+      "Lanaya"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/46.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/46.png",
@@ -3134,7 +3229,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 200,
-    "win_rate": 0.4733174895,
+    "win_rate": 0.4745346044,
     "picked": false,
     "damage": 33,
     "roles": [
@@ -3164,9 +3259,9 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5232050915,
+    "win_rate": 0.5238343902,
     "picked": false,
-    "damage": 33,
+    "damage": 31,
     "roles": [
       "Carry",
       "Pusher",
@@ -3178,7 +3273,10 @@
     "id": 29,
     "key": "tidehunter",
     "name": "Tidehunter",
-    "aliases": [],
+    "aliases": [
+      "th",
+      "Leviathan"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/29.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/29.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/29.png",
@@ -3193,7 +3291,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4841629767,
+    "win_rate": 0.4843470483,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -3228,9 +3326,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5233927008,
+    "win_rate": 0.5229202037,
     "picked": false,
-    "damage": 12,
+    "damage": 6,
     "roles": [
       "Nuker",
       "Durable",
@@ -3242,14 +3340,16 @@
     "id": 34,
     "key": "tinker",
     "name": "Tinker",
-    "aliases": [],
+    "aliases": [
+      "Boush"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/34.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/34.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/34.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/34.png",
     "ability_replace_required": false,
-    "strength_gain": 2.5,
-    "max_strength": 94.0,
+    "strength_gain": 2.3,
+    "max_strength": 88.0,
     "intelligence_gain": 3.3,
     "max_intelligence": 129.0,
     "agility_gain": 1.4,
@@ -3257,7 +3357,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.4710880979,
+    "win_rate": 0.4712565711,
     "picked": false,
     "damage": 25,
     "roles": [
@@ -3271,7 +3371,9 @@
     "id": 19,
     "key": "tiny",
     "name": "Tiny",
-    "aliases": [],
+    "aliases": [
+      "Stone Giant"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/19.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/19.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/19.png",
@@ -3286,7 +3388,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4744436248,
+    "win_rate": 0.4751310622,
     "picked": false,
     "damage": 34,
     "roles": [
@@ -3318,9 +3420,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4692522271,
+    "win_rate": 0.4684233245,
     "picked": false,
-    "damage": 66,
+    "damage": 64,
     "roles": [
       "Support",
       "Initiator",
@@ -3351,7 +3453,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 500,
-    "win_rate": 0.4832979374,
+    "win_rate": 0.4841685178,
     "picked": false,
     "damage": 31,
     "roles": [
@@ -3367,7 +3469,7 @@
     "key": "tusk",
     "name": "Tusk",
     "aliases": [
-      "Tuskarr"
+      "Ymir"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/100.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/100.png",
@@ -3383,7 +3485,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.5355849346,
+    "win_rate": 0.535277902,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -3414,7 +3516,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 200,
-    "win_rate": 0.5079860311,
+    "win_rate": 0.5072048242,
     "picked": false,
     "damage": 40,
     "roles": [
@@ -3431,7 +3533,7 @@
     "key": "undying",
     "name": "Undying",
     "aliases": [
-      "dirge"
+      "Dirge"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/85.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/85.png",
@@ -3447,9 +3549,9 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4761442665,
+    "win_rate": 0.4768867836,
     "picked": false,
-    "damage": 39,
+    "damage": 35,
     "roles": [
       "Support",
       "Durable",
@@ -3462,7 +3564,9 @@
     "id": 70,
     "key": "ursa",
     "name": "Ursa",
-    "aliases": [],
+    "aliases": [
+      "Ulfsaar"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/70.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/70.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/70.png",
@@ -3472,12 +3576,12 @@
     "max_strength": 103.0,
     "intelligence_gain": 1.5,
     "max_intelligence": 61.0,
-    "agility_gain": 2.6,
-    "max_agility": 96.0,
+    "agility_gain": 2.8,
+    "max_agility": 102.0,
     "primary_attribute": "AGILITY",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4714655824,
+    "win_rate": 0.4711276472,
     "picked": false,
     "damage": 26,
     "roles": [
@@ -3492,7 +3596,8 @@
     "key": "vengefulspirit",
     "name": "Vengeful Spirit",
     "aliases": [
-      "vs"
+      "vs",
+      "Shendelzare"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/20.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/20.png",
@@ -3508,9 +3613,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 400,
-    "win_rate": 0.4876449823,
+    "win_rate": 0.4876804638,
     "picked": false,
-    "damage": 15,
+    "damage": 12,
     "roles": [
       "Support",
       "Initiator",
@@ -3524,7 +3629,9 @@
     "id": 40,
     "key": "venomancer",
     "name": "Venomancer",
-    "aliases": [],
+    "aliases": [
+      "Lesale"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/40.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/40.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/40.png",
@@ -3539,9 +3646,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 450,
-    "win_rate": 0.459699294,
+    "win_rate": 0.4602525376,
     "picked": false,
-    "damage": 10,
+    "damage": 0,
     "roles": [
       "Support",
       "Nuker",
@@ -3555,7 +3662,9 @@
     "id": 47,
     "key": "viper",
     "name": "Viper",
-    "aliases": [],
+    "aliases": [
+      "Netherdrake"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/47.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/47.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/47.png",
@@ -3570,7 +3679,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 575,
-    "win_rate": 0.4877670664,
+    "win_rate": 0.4876334288,
     "picked": false,
     "damage": 28,
     "roles": [
@@ -3586,7 +3695,7 @@
     "key": "visage",
     "name": "Visage",
     "aliases": [
-      "visage"
+      "visage,Necrolic"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/92.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/92.png",
@@ -3602,9 +3711,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.4884246699,
+    "win_rate": 0.4885872336,
     "picked": false,
-    "damage": 12,
+    "damage": 9,
     "roles": [
       "Support",
       "Nuker",
@@ -3626,18 +3735,18 @@
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/126.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/126.png",
     "ability_replace_required": false,
-    "strength_gain": 2.6,
-    "max_strength": 100.0,
-    "intelligence_gain": 3.1,
-    "max_intelligence": 117.0,
+    "strength_gain": 2.3,
+    "max_strength": 90.0,
+    "intelligence_gain": 2.3,
+    "max_intelligence": 93.0,
     "agility_gain": 2.2,
     "max_agility": 85.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "MELEE",
     "attack_range": 200,
-    "win_rate": 0.4794598843,
+    "win_rate": 0.4796179176,
     "picked": false,
-    "damage": 17,
+    "damage": 6,
     "roles": [
       "Carry",
       "Escape",
@@ -3650,14 +3759,17 @@
     "id": 37,
     "key": "warlock",
     "name": "Warlock",
-    "aliases": [],
+    "aliases": [
+      "wl",
+      "Demnok Lannik"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/37.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/37.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/37.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/37.png",
     "ability_replace_required": false,
-    "strength_gain": 3.0,
-    "max_strength": 114.0,
+    "strength_gain": 2.8,
+    "max_strength": 108.0,
     "intelligence_gain": 3.1,
     "max_intelligence": 118.0,
     "agility_gain": 1.0,
@@ -3665,7 +3777,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.5068923995,
+    "win_rate": 0.507609736,
     "picked": false,
     "damage": 29,
     "roles": [
@@ -3679,7 +3791,10 @@
     "id": 63,
     "key": "weaver",
     "name": "Weaver",
-    "aliases": [],
+    "aliases": [
+      "nw",
+      "Skitskurr"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/63.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/63.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/63.png",
@@ -3694,7 +3809,7 @@
     "primary_attribute": "AGILITY",
     "attack_capabilities": "RANGED",
     "attack_range": 425,
-    "win_rate": 0.4527154314,
+    "win_rate": 0.4530864198,
     "picked": false,
     "damage": 40,
     "roles": [
@@ -3708,25 +3823,26 @@
     "key": "windrunner",
     "name": "Windranger",
     "aliases": [
-      "wr"
+      "wr",
+      "Lyralei"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/21.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/21.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/21.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/21.png",
     "ability_replace_required": false,
-    "strength_gain": 2.4,
-    "max_strength": 90.0,
+    "strength_gain": 2.0,
+    "max_strength": 78.0,
     "intelligence_gain": 2.4,
-    "max_intelligence": 90.0,
+    "max_intelligence": 93.0,
     "agility_gain": 1.4,
-    "max_agility": 59.0,
+    "max_agility": 61.0,
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 600,
-    "win_rate": 0.5027062018,
+    "win_rate": 0.5022603215,
     "picked": false,
-    "damage": 14,
+    "damage": 8,
     "roles": [
       "Carry",
       "Support",
@@ -3740,14 +3856,17 @@
     "id": 112,
     "key": "winter_wyvern",
     "name": "Winter Wyvern",
-    "aliases": [],
+    "aliases": [
+      "ww",
+      "Auroth"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/112.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/112.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/112.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/112.png",
     "ability_replace_required": false,
     "strength_gain": 2.2,
-    "max_strength": 88.0,
+    "max_strength": 86.0,
     "intelligence_gain": 2.8,
     "max_intelligence": 110.0,
     "agility_gain": 1.5,
@@ -3755,9 +3874,9 @@
     "primary_attribute": "ALL",
     "attack_capabilities": "RANGED",
     "attack_range": 425,
-    "win_rate": 0.4665955099,
+    "win_rate": 0.4661993652,
     "picked": false,
-    "damage": 2,
+    "damage": -1,
     "roles": [
       "Support",
       "Disabler",
@@ -3770,25 +3889,26 @@
     "key": "witch_doctor",
     "name": "Witch Doctor",
     "aliases": [
-      "wd"
+      "wd",
+      "Zharvakko"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/30.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/30.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/30.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/30.png",
     "ability_replace_required": false,
-    "strength_gain": 2.3,
-    "max_strength": 87.0,
-    "intelligence_gain": 3.3,
-    "max_intelligence": 121.0,
+    "strength_gain": 2.1,
+    "max_strength": 83.0,
+    "intelligence_gain": 3.1,
+    "max_intelligence": 115.0,
     "agility_gain": 1.4,
     "max_agility": 55.0,
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 550,
-    "win_rate": 0.4893761747,
+    "win_rate": 0.4891515423,
     "picked": false,
-    "damage": 34,
+    "damage": 31,
     "roles": [
       "Support",
       "Nuker",
@@ -3804,15 +3924,17 @@
       "sk",
       "snk",
       "wk",
-      "skeleton"
+      "skeleton",
+      "one true king",
+      "Ostarion"
     ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/42.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/42.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/42.png",
     "image_portrait": "https://hyperstone.highgroundvision.com/images/heroes/portrait/42.png",
     "ability_replace_required": false,
-    "strength_gain": 3.0,
-    "max_strength": 112.0,
+    "strength_gain": 2.8,
+    "max_strength": 106.0,
     "intelligence_gain": 1.6,
     "max_intelligence": 66.0,
     "agility_gain": 1.7,
@@ -3820,7 +3942,7 @@
     "primary_attribute": "STRENGTH",
     "attack_capabilities": "MELEE",
     "attack_range": 150,
-    "win_rate": 0.4546578066,
+    "win_rate": 0.4550165566,
     "picked": false,
     "damage": 39,
     "roles": [
@@ -3836,7 +3958,9 @@
     "id": 22,
     "key": "zuus",
     "name": "Zeus",
-    "aliases": [],
+    "aliases": [
+      "Lord of Heaven"
+    ],
     "image_banner": "https://hyperstone.highgroundvision.com/images/heroes/banner/22.png",
     "image_icon": "https://hyperstone.highgroundvision.com/images/heroes/icon/22.png",
     "image_profile": "https://hyperstone.highgroundvision.com/images/heroes/profile/22.png",
@@ -3851,7 +3975,7 @@
     "primary_attribute": "INTELLECT",
     "attack_capabilities": "RANGED",
     "attack_range": 380,
-    "win_rate": 0.4785024284,
+    "win_rate": 0.4785727629,
     "picked": false,
     "damage": 37,
     "roles": [
