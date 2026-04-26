@@ -571,7 +571,6 @@ export default {
           }
         })
 
-      commands.push('dota_gamemode_ability_draft_set_draft_hero_and_team')
       cmd += commands.map((command) => prefix + command).join(separator)
       return isLaunch ? cmd : cmd + ';'
     },

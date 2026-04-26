@@ -296,7 +296,6 @@ const AllPickGameStore = {
         }
       }
 
-      cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
       return cmd
     },
     launch: (state) => {
@@ -310,7 +309,6 @@ const AllPickGameStore = {
           cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' ' + team + ';'
         }
       }
-      cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd
     },
   },

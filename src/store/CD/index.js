@@ -295,7 +295,6 @@ const CaptainsDuelGameStore = {
         }
       }
 
-      cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
       return cmd
     },
     launch: (state) => {
@@ -315,7 +314,6 @@ const CaptainsDuelGameStore = {
         }
       }
 
-      cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd
     },
   },

@@ -246,7 +246,6 @@ export const BalancedDraft = {
         }
       }
 
-      cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
       return cmd
     },
     launch: (state) => {
@@ -270,7 +269,6 @@ export const BalancedDraft = {
         }
       }
 
-      cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
       return cmd
     },
   },
