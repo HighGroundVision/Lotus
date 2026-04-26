@@ -45,10 +45,10 @@
               <div style="position: absolute; right: -30px; font-size: 40px; top: 55px; z-index: 100" class="bkcanr">
                 <div class="cqvqpa" :style="{ '-webkit-mask': 'url(' + require('@/assets/arrow.svg') + ')', mask: 'url(' + require('@/assets/arrow.svg') + ')' }" />
               </div>
-              <h2 style="margin: 0; margin-bottom: 10px">Quickly Test a Hero</h2>
+              <h2 style="margin: 0; margin-bottom: 10px">Quickly Build a Test Roster</h2>
               <div style="color: #999; height: 30px; display: flex; align-items: center; margin-top: 4px">
                 <div class="aXnnF">1.</div>
-                <div>Select the hero</div>
+                <div>Select the heroes</div>
               </div>
               <div style="color: #999; height: 30px; display: flex; align-items: center; margin-top: 4px">
                 <div class="aXnnF">2.</div>
@@ -64,18 +64,57 @@
               </div>
             </div>
             <div style="border-radius: 0px 9px 9px 0px; display: flex; align-items: center; justify-content: center" class="iZcrcO">
-              <div>
-                <div style="padding: 5px; border-radius: 10px; border: 2px solid #646dd0; display: flex">
-                  <Multiselect v-model="hero" :options="heroes" value-prop="id" label="name" class="multiselect-purple">
-                    <template #option="{ option }">
-                      <img :src="option.image_icon" />
-                      <span style="padding-left: 5px">{{ option.name }}</span>
-                    </template>
-                  </Multiselect>
-                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to set the roster to the clipboard; ready to paste into the Dota console." @click="copy">
+              <div class="quick-roster">
+                <div class="quick-roster__teams">
+                  <div class="quick-roster__team quick-roster__team--radiant">
+                    <div class="quick-roster__team-header">
+                      <span>Radiant</span>
+                      <span>{{ radiantHeroCount }}/5</span>
+                    </div>
+                    <div class="quick-roster__slots">
+                      <div v-for="slot in 5" :key="'radiant-' + slot" class="quick-roster__slot-row">
+                        <div class="quick-roster__slot-number">{{ slot }}</div>
+                        <div v-if="getSelectedHero('radiant', slot - 1)" class="quick-roster__hero-card">
+                          <img :src="getSelectedHero('radiant', slot - 1).image_icon" />
+                          <span>{{ getSelectedHero('radiant', slot - 1).name }}</span>
+                          <button type="button" aria-label="Remove Radiant hero" @click="removeHero('radiant', slot - 1)">x</button>
+                        </div>
+                        <Multiselect v-else v-model="radiantHeroes[slot - 1]" :options="getSlotOptions('radiant', slot - 1)" value-prop="id" label="name" :searchable="true" :can-clear="false" placeholder="Select hero" class="multiselect-purple quick-roster__slot-select">
+                          <template #option="{ option }">
+                            <img :src="option.image_icon" />
+                            <span style="padding-left: 5px">{{ option.name }}</span>
+                          </template>
+                        </Multiselect>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="quick-roster__team quick-roster__team--dire">
+                    <div class="quick-roster__team-header">
+                      <span>Dire</span>
+                      <span>{{ direHeroCount }}/5</span>
+                    </div>
+                    <div class="quick-roster__slots">
+                      <div v-for="slot in 5" :key="'dire-' + slot" class="quick-roster__slot-row">
+                        <div class="quick-roster__slot-number">{{ slot }}</div>
+                        <div v-if="getSelectedHero('dire', slot - 1)" class="quick-roster__hero-card">
+                          <img :src="getSelectedHero('dire', slot - 1).image_icon" />
+                          <span>{{ getSelectedHero('dire', slot - 1).name }}</span>
+                          <button type="button" aria-label="Remove Dire hero" @click="removeHero('dire', slot - 1)">x</button>
+                        </div>
+                        <Multiselect v-else v-model="direHeroes[slot - 1]" :options="getSlotOptions('dire', slot - 1)" value-prop="id" label="name" :searchable="true" :can-clear="false" placeholder="Select hero" class="multiselect-purple quick-roster__slot-select">
+                          <template #option="{ option }">
+                            <img :src="option.image_icon" />
+                            <span style="padding-left: 5px">{{ option.name }}</span>
+                          </template>
+                        </Multiselect>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="quick-roster__actions">
+                  <div class="jnbrig" data-tooltip="up" aria-label="Copy the commands to set the selected roster to the clipboard; ready to paste into the Dota console." @click="copy">
                     <img src="@/assets/copy.svg" />
                   </div>
-
                   <div class="jnbrig" data-tooltip="up" aria-label="Opens Dota via the browser and sets commands via the launch options automaticly." @click="start">
                     <img src="@/assets/dota.svg" />
                   </div>
@@ -89,7 +128,7 @@
         </div>
         <div style="display: flex; align-items: center; justify-content: center" class="fDQsWU">
           <div style="font-size: 14px; color: #4d749e; margin-top: 10px; font-style: italic">
-            These commands enabled cheats, disabled the player shuffle, shorten the draft time and sets the hero to the first slot. <br />
+            These commands enable cheats, disable the player shuffle, shorten the draft time and set up to 5 Radiant and 5 Dire heroes. <br />
             but for either option to work correctly you need to a custom lobby with the region as LOCALHOST with NO BOTS and Player Shuffle option set to OFF.
           </div>
         </div>
@@ -459,9 +498,21 @@ export default {
   },
   data() {
     return {
-      hero: null,
+      radiantHeroes: Array(5).fill(null),
+      direHeroes: Array(5).fill(null),
       heroes: db.slice(0),
     }
+  },
+  computed: {
+    radiantHeroCount() {
+      return this.radiantHeroes.filter((id) => id).length
+    },
+    direHeroCount() {
+      return this.direHeroes.filter((id) => id).length
+    },
+    hasSelectedHeroes() {
+      return this.radiantHeroCount + this.direHeroCount > 0
+    },
   },
   //
   mounted() {
@@ -477,40 +528,69 @@ export default {
     }, 1000)
   },
   methods: {
+    getHero(id) {
+      return this.heroes.find((hero) => hero.id == id)
+    },
+    getSelectedHero(team, index) {
+      const collection = team == 'radiant' ? this.radiantHeroes : this.direHeroes
+      return this.getHero(collection[index])
+    },
+    getSlotOptions(team, index) {
+      const currentTeam = team == 'radiant' ? this.radiantHeroes : this.direHeroes
+      const otherTeam = team == 'radiant' ? this.direHeroes : this.radiantHeroes
+      const currentHeroID = currentTeam[index]
+      const selectedHeroIDs = currentTeam.concat(otherTeam).filter((id) => id && id != currentHeroID)
+
+      return this.heroes.filter((hero) => !selectedHeroIDs.includes(hero.id))
+    },
+    removeHero(team, index) {
+      const collection = team == 'radiant' ? this.radiantHeroes : this.direHeroes
+      collection[index] = null
+    },
+    buildRosterCommands(format) {
+      const isLaunch = format == 'launch'
+      let cmd = isLaunch ? '-console ' : ''
+      const separator = isLaunch ? ' ' : ';'
+      const prefix = isLaunch ? '+' : ''
+      const commands = ['sv_cheats 1', 'dota_gamemode_ability_draft_shuffle_draft_order 0', 'dota_gamemode_ability_draft_per_player_time 1', 'dota_gamemode_ability_draft_pre_round_time 2', 'dota_gamemode_ability_draft_pre_time 10', 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear']
+
+      this.radiantHeroes
+        .filter((id) => id)
+        .forEach((id) => {
+          const hero = this.getHero(id)
+          if (hero) {
+            commands.push('dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' radiant')
+          }
+        })
+      this.direHeroes
+        .filter((id) => id)
+        .forEach((id) => {
+          const hero = this.getHero(id)
+          if (hero) {
+            commands.push('dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' dire')
+          }
+        })
+
+      commands.push('dota_gamemode_ability_draft_set_draft_hero_and_team')
+      cmd += commands.map((command) => prefix + command).join(separator)
+      return isLaunch ? cmd : cmd + ';'
+    },
     copy() {
-      if (this.hero) {
-        let hero = this.heroes.find((h) => h.id == this.hero)
-        let cmd = 'sv_cheats 1;'
-        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
-        cmd += 'dota_gamemode_ability_draft_per_player_time 1;'
-        cmd += 'dota_gamemode_ability_draft_per_player_time;'
-        cmd += 'dota_gamemode_ability_draft_pre_round_time 2;'
-        cmd += 'dota_gamemode_ability_draft_pre_round_time;'
-        cmd += 'dota_gamemode_ability_draft_pre_time 10;'
-        cmd += 'dota_gamemode_ability_draft_pre_time;'
-        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' radiant;'
-        cmd += 'dota_gamemode_ability_draft_set_draft_hero_and_team;'
-        navigator.clipboard.writeText(cmd)
+      if (this.hasSelectedHeroes) {
+        navigator.clipboard.writeText(this.buildRosterCommands('console'))
       }
     },
     start() {
-      if (this.hero) {
-        let hero = this.heroes.find((h) => h.id == this.hero)
-        let cmd = ''
-        cmd += '-console '
-        cmd += '+sv_cheats 1 '
-        cmd += '+dota_gamemode_ability_draft_per_player_time 1 '
-        cmd += '+dota_gamemode_ability_draft_pre_round_time 2 '
-        cmd += '+dota_gamemode_ability_draft_pre_time 10 '
-        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team_clear '
-        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team ' + hero.key + ' radiant '
-        cmd += '+dota_gamemode_ability_draft_set_draft_hero_and_team'
+      if (this.hasSelectedHeroes) {
+        let cmd = this.buildRosterCommands('launch')
         let params = encodeURIComponent(cmd)
         let url = 'steam://run/570//' + params
         window.open(url)
       }
     },
     clear() {
+      this.radiantHeroes = Array(5).fill(null)
+      this.direHeroes = Array(5).fill(null)
       let cmd = 'sv_cheats 0;dota_gamemode_ability_draft_set_draft_hero_and_team_clear;'
       navigator.clipboard.writeText(cmd)
     },
@@ -739,6 +819,131 @@ export default {
   border: 2px solid #444;
   color: #fff;
   border-radius: 5px;
+}
+
+.quick-roster {
+  width: 100%;
+  padding: 6px;
+  border-radius: 8px;
+  border: 2px solid #646dd0;
+  background: #080808;
+}
+
+.quick-roster__teams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.quick-roster__team {
+  min-width: 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: #111;
+}
+
+.quick-roster__team--radiant {
+  border: 1px solid #55c897;
+}
+
+.quick-roster__team--dire {
+  border: 1px solid #ca3535;
+}
+
+.quick-roster__team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.quick-roster__slots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.quick-roster__slot-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.quick-roster__slot-number {
+  display: flex;
+  width: 28px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #080808;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.quick-roster__slot-select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.quick-roster__hero-card {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #222;
+  background: #25282a;
+  overflow: hidden;
+}
+
+.quick-roster__hero-card img {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  object-fit: cover;
+}
+
+.quick-roster__hero-card span {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quick-roster__hero-card button {
+  width: 34px;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid #111;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  cursor: pointer;
+}
+
+.quick-roster__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+@media (max-width: 700px) {
+  .quick-roster__teams {
+    grid-template-columns: 1fr;
+  }
 }
 
 .cLtstx {
